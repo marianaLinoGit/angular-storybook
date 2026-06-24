@@ -1,0 +1,32 @@
+@if (isVisible()) {
+  <section [class]="alertClasses()" role="alert" aria-live="polite">
+    @if (icon()) {
+      <span class="ui-alert__icon" aria-hidden="true">
+        {{ icon() }}
+      </span>
+    }
+
+    <div class="ui-alert__content">
+      @if (title()) {
+        <strong class="ui-alert__title">
+          {{ title() }}
+        </strong>
+      }
+
+      <p class="ui-alert__message">
+        {{ message() }}
+      </p>
+    </div>
+
+    @if (closable()) {
+      <button
+        type="button"
+        class="ui-alert__close"
+        aria-label="Fechar alerta"
+        (click)="close()"
+      >
+        ×
+      </button>
+    }
+  </section>
+}

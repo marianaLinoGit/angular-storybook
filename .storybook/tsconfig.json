@@ -7,6 +7,16 @@
     "moduleResolution": "bundler"
   },
   "exclude": ["../src/test.ts", "../src/**/*.spec.ts"],
-  "include": ["../src/**/*.stories.*", "./preview.ts"],
+  "include": [
+    "../src/**/*.stories.*",
+    "./preview.ts",
+    "../src/**/*.ts",
+    "../src/**/*.mdx",
+
+    "../projects/ui-kit/src/**/*.ts",
+    "../projects/ui-kit/src/**/*.stories.ts",
+
+    "../.storybook/*.ts"
+  ],
   "files": ["./typings.d.ts"]
 }

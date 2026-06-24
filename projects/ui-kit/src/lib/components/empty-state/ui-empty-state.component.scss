@@ -1,0 +1,122 @@
+.ui-empty-state {
+  padding: var(--ui-space-8);
+  background: var(--ui-color-surface);
+  border-radius: var(--ui-radius-lg);
+  color: var(--ui-color-text);
+
+  &--dashed {
+    border: 1px dashed var(--ui-color-border);
+  }
+
+  &--default {
+    border: 1px solid var(--ui-color-border);
+    box-shadow: var(--ui-shadow-sm);
+  }
+
+  &--plain {
+    border: 0;
+    background: transparent;
+  }
+
+  &--sm {
+    padding: var(--ui-space-5);
+
+    .ui-empty-state__icon {
+      font-size: 32px;
+    }
+
+    h2 {
+      font-size: var(--ui-font-size-md);
+    }
+  }
+
+  &--md {
+    padding: var(--ui-space-8);
+
+    .ui-empty-state__icon {
+      font-size: 42px;
+    }
+
+    h2 {
+      font-size: var(--ui-font-size-lg);
+    }
+  }
+
+  &--lg {
+    padding: calc(var(--ui-space-8) * 1.5);
+
+    .ui-empty-state__icon {
+      font-size: 56px;
+    }
+
+    h2 {
+      font-size: var(--ui-font-size-xl);
+    }
+  }
+
+  &--align-left {
+    text-align: left;
+  }
+
+  &--align-center {
+    text-align: center;
+  }
+
+  &--align-right {
+    text-align: right;
+  }
+
+  &__icon {
+    margin-bottom: var(--ui-space-4);
+    line-height: 1;
+  }
+
+  h2 {
+    margin: 0 0 var(--ui-space-2);
+    font-family: var(--ui-font-family-title);
+    font-weight: var(--ui-font-weight-bold);
+    color: var(--ui-color-text);
+  }
+
+  p {
+    margin: 0 0 var(--ui-space-5);
+    color: var(--ui-color-muted);
+    line-height: 1.6;
+  }
+
+  &__button {
+    border-radius: var(--ui-radius-md);
+    padding: var(--ui-space-3) var(--ui-space-4);
+    cursor: pointer;
+    font-weight: var(--ui-font-weight-semibold);
+    font-size: var(--ui-font-size-sm);
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ui-color-primary);
+      outline-offset: 2px;
+    }
+
+    &--primary {
+      border: 0;
+      background: var(--ui-color-primary);
+      color: var(--ui-color-surface);
+    }
+
+    &--secondary {
+      border: 0;
+      background: var(--ui-color-secondary);
+      color: var(--ui-color-surface);
+    }
+
+    &--outline {
+      border: 1px solid var(--ui-color-primary);
+      background: transparent;
+      color: var(--ui-color-primary);
+    }
+  }
+}

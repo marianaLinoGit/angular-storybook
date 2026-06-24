@@ -1,0 +1,35 @@
+<article
+  [class]="cardClasses()"
+  [attr.role]="clickable() ? 'link' : null"
+  [attr.tabindex]="clickable() ? 0 : null"
+  [attr.aria-label]="clickable() ? title() : null"
+  (click)="handleClick()"
+  (keydown.enter)="handleClick()"
+  (keydown.space)="handleClick()"
+>
+  @if (imageUrl()) {
+    <img
+      class="ui-card__image"
+      [src]="imageUrl()!"
+      [alt]="imageAlt() || title()"
+    />
+  }
+
+  <div class="ui-card__content">
+    <h3>{{ title() }}</h3>
+
+    @if (subtitle()) {
+      <span class="ui-card__subtitle">
+        {{ subtitle() }}
+      </span>
+    }
+
+    <p>{{ description() }}</p>
+  </div>
+
+  @if (footer()) {
+    <footer class="ui-card__footer">
+      {{ footer() }}
+    </footer>
+  }
+</article>

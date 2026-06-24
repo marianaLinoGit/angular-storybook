@@ -1,0 +1,24 @@
+<div [class]="wrapperClasses()">
+  <button
+    [type]="type()"
+    [class]="buttonClasses()"
+    [disabled]="disabled() || loading()"
+    [attr.aria-label]="accessibleLabel()"
+    [attr.aria-busy]="loading()"
+    (click)="onClick()"
+  >
+    @if (icon() && iconPosition() === "left") {
+      <span class="ui-button__icon" aria-hidden="true">
+        {{ icon() }}
+      </span>
+    }
+
+    <span>{{ label() }}</span>
+
+    @if (icon() && iconPosition() === "right") {
+      <span class="ui-button__icon" aria-hidden="true">
+        {{ icon() }}
+      </span>
+    }
+  </button>
+</div>

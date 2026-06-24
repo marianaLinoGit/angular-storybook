@@ -1,0 +1,26 @@
+@if (visible()) {
+  <article [class]="classes()" role="status" aria-live="polite">
+    @if (icon()) {
+      <span class="ui-toast__icon">
+        {{ icon() }}
+      </span>
+    }
+
+    <div class="ui-toast__content">
+      <strong>{{ title() }}</strong>
+
+      <p>{{ text() }}</p>
+    </div>
+
+    @if (closable()) {
+      <button
+        type="button"
+        class="ui-toast__close"
+        aria-label="Fechar"
+        (click)="close()"
+      >
+        ×
+      </button>
+    }
+  </article>
+}

@@ -1,0 +1,51 @@
+<div [class]="accordionClasses()">
+  @for (item of items(); track item.id; let index = $index) {
+    <article
+      class="ui-accordion__item"
+      [class.ui-accordion__item--open]="isOpen(item.id)"
+      [class.ui-accordion__item--disabled]="item.disabled"
+    >
+      <h3 class="ui-accordion__heading">
+        <button
+          type="button"
+          [id]="getTriggerId(item.id)"
+          [disabled]="item.disabled"
+          [attr.aria-expanded]="isOpen(item.id)"
+          [attr.aria-controls]="getPanelId(item.id)"
+          (click)="toggle(item)"
+        >
+          <span class="ui-accordion__title">
+            @if (showNumbers()) {
+              <span class="ui-accordion__number" aria-hidden="true">
+                {{ index + 1 }}
+              </span>
+            }
+
+            @if (showIcons() && item.icon) {
+              <span class="ui-accordion__icon" aria-hidden="true">
+                {{ item.icon }}
+              </span>
+            }
+
+            <span>{{ item.title }}</span>
+          </span>
+
+          <span class="ui-accordion__toggle" aria-hidden="true">
+            {{ isOpen(item.id) ? "−" : "+" }}
+          </span>
+        </button>
+      </h3>
+
+      @if (isOpen(item.id)) {
+        <div
+          class="ui-accordion__content"
+          role="region"
+          [id]="getPanelId(item.id)"
+          [attr.aria-labelledby]="getTriggerId(item.id)"
+        >
+          {{ item.content }}
+        </div>
+      }
+    </article>
+  }
+</div>

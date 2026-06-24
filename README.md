@@ -1,165 +1,239 @@
 # Model UI Kit
 
-Model UI Kit é um projeto de portfólio criado para demonstrar a construção de um pequeno Design System com Angular moderno, SCSS e Storybook.
+Model UI Kit é um Design System criado com Angular, SCSS e Storybook.
 
-O objetivo é documentar, testar visualmente e validar componentes de interface de forma isolada, sem depender de uma aplicação completa.
+O projeto foi desenvolvido como portfólio técnico para demonstrar a construção de componentes reutilizáveis, documentação visual, Design Tokens e distribuição através de Angular Library.
 
-## Tecnologias e versões
+---
 
-- Angular: `18.2.x`
-- Angular CLI: `18.2.21`
-- TypeScript: `5.5.2`
-- Storybook: `8.6.14`
-- Storybook Angular: `8.6.14`
-- Storybook Addon Docs: `8.6.14`
-- Storybook Addon A11y: `8.6.14`
-- RxJS: `7.8.x`
-- Zone.js: `0.14.x`
-- SCSS
-- Angular Standalone Components
-- Angular Signals
-- Design Tokens com CSS Variables
-- Google Fonts:
-  - Puritan para títulos
-  - Pliant para textos
+## Tecnologias
 
-## Objetivo
+| Tecnologia        | Versão  |
+| ----------------- | ------- |
+| Angular           | 18.2.x  |
+| Angular CLI       | 18.2.21 |
+| TypeScript        | 5.5.x   |
+| Storybook         | 8.6.14  |
+| Storybook Angular | 8.6.14  |
+| Storybook Docs    | 8.6.14  |
+| Storybook A11y    | 8.6.14  |
+| RxJS              | 7.8.x   |
+| Zone.js           | 0.14.x  |
+| SCSS              | Latest  |
+
+---
+
+## Objetivos
 
 Este projeto demonstra:
 
-- Componentização com Angular
-- Uso de Storybook como documentação visual
-- Componentes customizáveis e reutilizáveis
-- Organização baseada em Design System
-- Uso de tokens visuais para cores, fontes, espaçamentos e sombras
-- Boas práticas com componentes standalone
-- Uso de recursos modernos do Angular, como `input()`, `output()`, `computed()`, `signal()`, `@if` e `@for`
-- Teste visual de estados e variações de componentes
-- Documentação de componentes com Stories e MDX
+- Angular moderno com Standalone Components
+- Angular Signals
+- Storybook para documentação visual
+- Design Tokens com CSS Variables
+- Componentização reutilizável
+- Design System
+- Documentação técnica
+- Distribuição através de Angular Library
+- Integração em aplicações externas
+
+---
 
 ## Componentes
 
-### Button
+Atualmente o projeto possui os seguintes componentes:
 
-Componente de botão customizável com suporte a:
+- Accordion
+- Alert
+- Breadcrumb
+- Button
+- Card
+- Empty State
+- Loading
+- Modal
+- Tabs
+- Toast
+- Tooltip
 
-- Cores
-- Tamanhos
-- Ícone opcional
-- Ícone à esquerda ou à direita
-- Estado disabled
-- Versão outline
-- Versão arredondada
-- Largura total
-- Classe CSS customizada
+Todos os componentes possuem documentação visual, exemplos de uso, controles interativos e demonstrações de estados através do Storybook.
 
-### Alert
+---
 
-Componente de alerta com:
-
-- Mensagem dinâmica
-- Ícone opcional
-- Fechamento manual
-- Variações de cor
-- Opção fixa no topo
-
-### Card
-
-Componente para exibição de conteúdo com:
-
-- Título
-- Subtítulo
-- Descrição
-- Imagem opcional
-- Footer opcional
-- Estado clicável
-- Borda
-- Sombra
-- Destaque visual
-
-### Loading
-
-Componente para estados de carregamento com:
-
-- Spinner
-- Dots
-- Skeleton text
-- Skeleton card
-- Skeleton table
-- Skeleton avatar
-- Overlay
-
-### Modal
-
-Componente de modal com:
-
-- Modal informativo
-- Modal de confirmação
-- Modal de conteúdo
-- Footer dinâmico
-- Conteúdo customizado via `ng-content`
-
-### Empty State
-
-Componente para estados vazios com:
-
-- Ícone
-- Título
-- Texto
-- Botão opcional
-
-### Accordion
-
-Componente de acordeão com:
-
-- Múltiplos itens
-- Abertura única ou múltipla
-- Itens desabilitados
-
-### Breadcrumb
-
-Componente de navegação hierárquica com:
-
-- Separador customizável
-- Itens clicáveis
-- Itens desabilitados
-
-### Tooltip
-
-Componente de tooltip com:
-
-- Texto simples
-- HTML formatado
-- Posição customizável
-
-### Tabs
-
-Componente de abas com:
-
-- Conteúdo dinâmico
-- Contador
-- Estado checked
-- Estado disabled
-- Suporte para fluxo por etapas
-
-### Toast
-
-Componente de feedback com:
-
-- Título
-- Texto
-- Ícone
-- Cores de status
-- Posição na tela
-- Fechamento manual
-- Duração configurável
-
-## Design System
-
-O projeto usa tokens globais para manter consistência visual.
-
-Os tokens ficam em:
+## Estrutura do Projeto
 
 ```txt
-src/styles/_tokens.scss
+model-ui-kit/
+
+├── .storybook/
+│
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── LIBRARY.md
+│   └── STORYBOOK.md
+│
+├── projects/
+│   └── ui-kit/
+│
+├── src/
+│   └── stories/
+│
+└── README.md
+```
+
+---
+
+## Executando Localmente
+
+Instalar dependências:
+
+```bash
+npm install
+```
+
+Executar Storybook:
+
+```bash
+npm run storybook
+```
+
+Acessar:
+
+```txt
+http://localhost:6006
+```
+
+---
+
+## Executando a Aplicação Angular
+
+```bash
+npm start
+```
+
+Acessar:
+
+```txt
+http://localhost:4200
+```
+
+---
+
+## Build da Angular Library
+
+Gerar build da library:
+
+```bash
+ng build ui-kit
+```
+
+Resultado:
+
+```txt
+dist/ui-kit
+```
+
+---
+
+## Build do Storybook
+
+Gerar versão estática:
+
+```bash
+npm run build-storybook
+```
+
+Resultado:
+
+```txt
+storybook-static/
+```
+
+---
+
+## Documentação
+
+### Arquitetura
+
+Documentação da estrutura interna do projeto:
+
+```txt
+docs/ARCHITECTURE.md
+```
+
+---
+
+### Storybook
+
+Organização da documentação visual:
+
+```txt
+docs/STORYBOOK.md
+```
+
+---
+
+### Angular Library
+
+Distribuição e utilização da library:
+
+```txt
+docs/LIBRARY.md
+```
+
+---
+
+## Storybook Online
+
+GitHub Pages:
+
+```txt
+https://marianalinogit.github.io/angular-storybook/
+```
+
+---
+
+## Funcionalidades Demonstradas
+
+### Design System
+
+- Colors
+- Typography
+- Spacing
+- Border Radius
+- Shadows
+- Accessibility
+
+### Documentation
+
+- Component API
+- Usage Guidelines
+- Roadmap
+
+### Components
+
+- Componentes reutilizáveis
+- Estados visuais
+- Variantes
+- Responsividade
+- Acessibilidade
+- Documentação MDX
+
+---
+
+## Autor
+
+### Mariana Lino
+
+Frontend Specialist • Angular • TypeScript • Design Systems • Storybook
+
+GitHub:
+
+```txt
+https://github.com/marianaLinoGit
+```
+
+LinkedIn:
+
+```txt
+https://linkedin.com/in/marianalino
 ```

@@ -1,0 +1,63 @@
+@if (isVisible()) {
+  <div [class]="backdropClasses()">
+    <section
+      [class]="modalClasses()"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="title()"
+    >
+      <header class="ui-modal__header">
+        <div class="ui-modal__title-wrapper">
+          @if (icon()) {
+            <span class="ui-modal__title-icon" aria-hidden="true">
+              {{ icon() }}
+            </span>
+          }
+
+          <h2>{{ title() }}</h2>
+        </div>
+
+        @if (showCloseButton()) {
+          <button
+            type="button"
+            class="ui-modal__icon-button"
+            aria-label="Fechar modal"
+            (click)="close()"
+          >
+            ×
+          </button>
+        }
+      </header>
+
+      <main class="ui-modal__body">
+        @if (description()) {
+          <p>{{ description() }}</p>
+        }
+
+        <ng-content></ng-content>
+      </main>
+
+      @if (type() !== "content") {
+        <footer class="ui-modal__footer">
+          @if (type() === "confirmation") {
+            <button
+              type="button"
+              class="ui-modal__button ui-modal__button--secondary"
+              (click)="cancel()"
+            >
+              {{ cancelLabel() }}
+            </button>
+          }
+
+          <button
+            type="button"
+            class="ui-modal__button ui-modal__button--primary"
+            (click)="type() === 'confirmation' ? confirm() : close()"
+          >
+            {{ type() === "confirmation" ? confirmLabel() : closeLabel() }}
+          </button>
+        </footer>
+      }
+    </section>
+  </div>
+}

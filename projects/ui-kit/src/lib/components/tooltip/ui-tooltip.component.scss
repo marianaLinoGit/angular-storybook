@@ -1,0 +1,63 @@
+.ui-tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  &:hover,
+  &:focus-within {
+    .ui-tooltip__content {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    z-index: 10;
+    min-width: 160px;
+    width: max-content;
+    padding: var(--ui-space-2) var(--ui-space-3);
+    border-radius: var(--ui-radius-sm);
+    background: var(--ui-color-text);
+    color: var(--ui-color-surface);
+    box-shadow: var(--ui-shadow-sm);
+    font-size: var(--ui-font-size-xs);
+    font-family: var(--ui-font-family-text);
+    line-height: 1.4;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+
+    &--top {
+      bottom: calc(100% + var(--ui-space-2));
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &--bottom {
+      top: calc(100% + var(--ui-space-2));
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &--left {
+      right: calc(100% + var(--ui-space-2));
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &--right {
+      left: calc(100% + var(--ui-space-2));
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &--disabled {
+      display: none;
+    }
+  }
+}

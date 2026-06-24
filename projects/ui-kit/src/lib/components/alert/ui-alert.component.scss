@@ -1,0 +1,129 @@
+.ui-alert {
+  width: calc(100% - var(--ui-space-8));
+  max-width: 960px;
+  margin: var(--ui-space-4) auto;
+  border-radius: var(--ui-radius-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ui-space-3);
+  box-shadow: var(--ui-shadow-sm);
+  font-family: var(--ui-font-family-text);
+  border: 1px solid transparent;
+
+  &--sm {
+    padding: var(--ui-space-3) var(--ui-space-4);
+    font-size: var(--ui-font-size-sm);
+  }
+
+  &--md {
+    padding: var(--ui-space-4) var(--ui-space-5);
+    font-size: var(--ui-font-size-md);
+  }
+
+  &--lg {
+    padding: var(--ui-space-5) var(--ui-space-6);
+    font-size: var(--ui-font-size-lg);
+  }
+
+  &--fixed {
+    position: fixed;
+    left: 50%;
+    z-index: 1000;
+    transform: translateX(-50%);
+  }
+
+  &--fixed-top {
+    top: var(--ui-space-4);
+  }
+
+  &--fixed-bottom {
+    bottom: var(--ui-space-4);
+  }
+
+  &--success {
+    --alert-color: var(--ui-color-success);
+    --alert-soft-bg: #dcfce7;
+    --alert-soft-text: #166534;
+  }
+
+  &--warning {
+    --alert-color: var(--ui-color-warning);
+    --alert-soft-bg: #fef3c7;
+    --alert-soft-text: #92400e;
+  }
+
+  &--danger {
+    --alert-color: var(--ui-color-danger);
+    --alert-soft-bg: #fee2e2;
+    --alert-soft-text: #991b1b;
+  }
+
+  &--info {
+    --alert-color: var(--ui-color-info);
+    --alert-soft-bg: #dbeafe;
+    --alert-soft-text: #1e40af;
+  }
+
+  &--soft {
+    background: var(--alert-soft-bg);
+    color: var(--alert-soft-text);
+    border-color: transparent;
+  }
+
+  &--solid {
+    background: var(--alert-color);
+    color: var(--ui-color-surface);
+    border-color: var(--alert-color);
+  }
+
+  &--outline {
+    background: var(--ui-color-surface);
+    color: var(--alert-color);
+    border-color: var(--alert-color);
+    box-shadow: none;
+  }
+
+  &__icon {
+    font-size: 1.2em;
+    line-height: 1.2;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1;
+    display: grid;
+    gap: var(--ui-space-1);
+  }
+
+  &__title {
+    font-family: var(--ui-font-family-title);
+    font-weight: var(--ui-font-weight-bold);
+    line-height: 1.2;
+  }
+
+  &__message {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  &__close {
+    border: 0;
+    background: transparent;
+    color: currentColor;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+    padding: 0;
+    opacity: 0.75;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+      border-radius: var(--ui-radius-sm);
+    }
+  }
+}

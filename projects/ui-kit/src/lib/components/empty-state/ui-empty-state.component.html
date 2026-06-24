@@ -1,0 +1,30 @@
+<section
+  [class]="classes()"
+  [attr.aria-labelledby]="titleId"
+  [attr.aria-describedby]="descriptionId"
+>
+  @if (icon()) {
+    <div class="ui-empty-state__icon" aria-hidden="true">
+      {{ icon() }}
+    </div>
+  }
+
+  <h2 [id]="titleId">
+    {{ title() }}
+  </h2>
+
+  <p [id]="descriptionId">
+    {{ description() }}
+  </p>
+
+  @if (buttonLabel()) {
+    <button
+      type="button"
+      [class]="buttonClasses()"
+      [disabled]="buttonDisabled()"
+      (click)="handleButtonClick()"
+    >
+      {{ buttonLabel() }}
+    </button>
+  }
+</section>

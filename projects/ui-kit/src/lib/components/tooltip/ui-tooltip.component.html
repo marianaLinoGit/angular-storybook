@@ -1,0 +1,18 @@
+<span class="ui-tooltip">
+  <ng-content></ng-content>
+
+  @if (!disabled()) {
+    <span
+      role="tooltip"
+      [class]="tooltipClasses()"
+      [style.max-width]="maxWidth()"
+      [style.transition-delay]="delay()"
+    >
+      @if (html()) {
+        <span [innerHTML]="html()"></span>
+      } @else {
+        {{ text() }}
+      }
+    </span>
+  }
+</span>

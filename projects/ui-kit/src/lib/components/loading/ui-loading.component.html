@@ -1,0 +1,59 @@
+<div
+  [class]="classes()"
+  role="status"
+  aria-live="polite"
+  aria-busy="true"
+  [attr.aria-label]="ariaLabel()"
+>
+  @if (type() === "spinner") {
+    <div class="ui-loading__spinner" aria-hidden="true"></div>
+  }
+
+  @if (type() === "dots") {
+    <div class="ui-loading__dots" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  }
+
+  @if (type() === "skeleton-text") {
+    <div class="ui-skeleton ui-skeleton--text" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  }
+
+  @if (type() === "skeleton-card") {
+    <div class="ui-skeleton-card" aria-hidden="true">
+      <span class="image"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  }
+
+  @if (type() === "skeleton-table") {
+    <div class="ui-skeleton-table" aria-hidden="true">
+      @for (row of [1, 2, 3, 4]; track row) {
+        <span></span>
+      }
+    </div>
+  }
+
+  @if (type() === "skeleton-avatar") {
+    <div class="ui-skeleton-avatar" aria-hidden="true">
+      <span class="avatar"></span>
+
+      <div>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  }
+
+  @if (message()) {
+    <p>{{ message() }}</p>
+  }
+</div>

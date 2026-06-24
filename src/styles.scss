@@ -1,10 +1,1 @@
-@use "./styles/reset";
-@use "./styles/tokens";
-@use "./styles/typography";
-@import url("https://fonts.googleapis.com/css2?family=Pliant&family=Puritan:wght@400;700&display=swap");
-body {
-  margin: 0;
-  font-family: var(--ui-font-family-text);
-  background: var(--ui-color-background);
-  color: var(--ui-color-text);
-}
+@use "../projects/ui-kit/src/lib/styles";

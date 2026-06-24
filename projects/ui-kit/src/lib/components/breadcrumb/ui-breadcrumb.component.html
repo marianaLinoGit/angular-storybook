@@ -1,0 +1,49 @@
+<nav class="ui-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    @for (
+      item of items();
+      track item.label;
+      let last = $last;
+      let index = $index
+    ) {
+      <li>
+        @if (!last && !item.disabled) {
+          <button type="button" (click)="itemClick.emit(item)">
+            <span class="ui-breadcrumb__content">
+              @if (getIcon(item, index)) {
+                <span class="ui-breadcrumb__icon">{{
+                  getIcon(item, index)
+                }}</span>
+              }
+
+              @if (shouldShowLabel(index)) {
+                <span>{{ item.label }}</span>
+              }
+            </span>
+          </button>
+        } @else {
+          <span
+            class="ui-breadcrumb__current"
+            [class.ui-breadcrumb__current--disabled]="item.disabled"
+          >
+            <span class="ui-breadcrumb__content">
+              @if (getIcon(item, index)) {
+                <span class="ui-breadcrumb__icon">{{
+                  getIcon(item, index)
+                }}</span>
+              }
+
+              @if (shouldShowLabel(index)) {
+                <span>{{ item.label }}</span>
+              }
+            </span>
+          </span>
+        }
+
+        @if (!last) {
+          <small>{{ separator() }}</small>
+        }
+      </li>
+    }
+  </ol>
+</nav>
