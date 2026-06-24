@@ -1,0 +1,31 @@
+.ui-accordion {
+  display: grid;
+  gap: var(--ui-space-2);
+
+  &__item {
+    background: var(--ui-color-surface);
+    border: 1px solid var(--ui-color-border);
+    border-radius: var(--ui-radius-md);
+    overflow: hidden;
+
+    &--disabled {
+      opacity: 0.55;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: var(--ui-space-4);
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      font-weight: var(--ui-font-weight-semibold);
+    }
+  }
+
+  &__content {
+    padding: 0 var(--ui-space-4) var(--ui-space-4);
+    color: var(--ui-color-muted);
+  }
+}

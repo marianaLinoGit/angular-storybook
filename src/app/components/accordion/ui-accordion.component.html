@@ -1,0 +1,19 @@
+<div class="ui-accordion">
+  @for (item of items(); track item.id) {
+    <article
+      class="ui-accordion__item"
+      [class.ui-accordion__item--disabled]="item.disabled"
+    >
+      <button type="button" (click)="toggle(item.id, item.disabled)">
+        <span>{{ item.title }}</span>
+        <span>{{ isOpen(item.id) ? "−" : "+" }}</span>
+      </button>
+
+      @if (isOpen(item.id)) {
+        <div class="ui-accordion__content">
+          {{ item.content }}
+        </div>
+      }
+    </article>
+  }
+</div>

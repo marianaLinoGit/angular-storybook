@@ -1,0 +1,52 @@
+<div [class]="classes()">
+  @if (type() === "spinner") {
+    <div class="ui-loading__spinner"></div>
+  }
+
+  @if (type() === "dots") {
+    <div class="ui-loading__dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  }
+
+  @if (type() === "skeleton-text") {
+    <div class="ui-skeleton ui-skeleton--text">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  }
+
+  @if (type() === "skeleton-card") {
+    <div class="ui-skeleton-card">
+      <span class="image"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  }
+
+  @if (type() === "skeleton-table") {
+    <div class="ui-skeleton-table">
+      @for (row of [1, 2, 3, 4]; track row) {
+        <span></span>
+      }
+    </div>
+  }
+
+  @if (type() === "skeleton-avatar") {
+    <div class="ui-skeleton-avatar">
+      <span class="avatar"></span>
+      <div>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  }
+
+  @if (message()) {
+    <p>{{ message() }}</p>
+  }
+</div>

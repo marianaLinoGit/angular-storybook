@@ -1,0 +1,2099 @@
+{
+  "pipes": [],
+  "interfaces": [
+    {
+      "name": "AccordionItem",
+      "id": "interface-AccordionItem-a49d0b54357976ca4c3b4a28048d40378560ee7c8958205af01f82877f4b1032909e5ab53d5c06f9fbb87ecb901c02491c56748ab597a8f7bed52ea874ba9657",
+      "file": "src/app/components/accordion/ui-accordion.component.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  input,\r\n  signal,\r\n} from '@angular/core';\r\n\r\nexport interface AccordionItem {\r\n  id: string;\r\n  title: string;\r\n  content: string;\r\n  disabled?: boolean;\r\n}\r\n\r\n@Component({\r\n  selector: 'ui-accordion',\r\n  standalone: true,\r\n  templateUrl: './ui-accordion.component.html',\r\n  styleUrl: './ui-accordion.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class AccordionComponent {\r\n  items = input<AccordionItem[]>([]);\r\n  multiple = input(false);\r\n\r\n  openedIds = signal<string[]>([]);\r\n\r\n  toggle(id: string, disabled?: boolean): void {\r\n    if (disabled) return;\r\n\r\n    const current = this.openedIds();\r\n    const isOpen = current.includes(id);\r\n\r\n    if (this.multiple()) {\r\n      this.openedIds.set(\r\n        isOpen ? current.filter((item) => item !== id) : [...current, id],\r\n      );\r\n      return;\r\n    }\r\n\r\n    this.openedIds.set(isOpen ? [] : [id]);\r\n  }\r\n\r\n  isOpen(id: string): boolean {\r\n    return this.openedIds().includes(id);\r\n  }\r\n}\r\n",
+      "properties": [
+        {
+          "name": "content",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 11
+        },
+        {
+          "name": "disabled",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 12
+        },
+        {
+          "name": "id",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 9
+        },
+        {
+          "name": "title",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 10
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 172,
+      "methods": [],
+      "extends": []
+    },
+    {
+      "name": "BreadcrumbItem",
+      "id": "interface-BreadcrumbItem-fbf86470144aca3accc8bc685ae21cbafe9334e175b48b80079005df5578558d88831e8bb7f9f676e9759b76711b5c5ed47c5d59d73d65057a1e620d4734a716",
+      "file": "src/app/components/breadcrumb/ui-breadcrumb.component.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  input,\r\n  output,\r\n} from '@angular/core';\r\n\r\nexport interface BreadcrumbItem {\r\n  label: string;\r\n  url?: string;\r\n  disabled?: boolean;\r\n}\r\n\r\n@Component({\r\n  selector: 'ui-breadcrumb',\r\n  standalone: true,\r\n  templateUrl: './ui-breadcrumb.component.html',\r\n  styleUrl: './ui-breadcrumb.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BreadcrumbComponent {\r\n  items = input<BreadcrumbItem[]>([]);\r\n  separator = input('/');\r\n\r\n  itemClick = output<BreadcrumbItem>();\r\n}\r\n",
+      "properties": [
+        {
+          "name": "disabled",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 11
+        },
+        {
+          "name": "label",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 9
+        },
+        {
+          "name": "url",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 10
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 172,
+      "methods": [],
+      "extends": []
+    },
+    {
+      "name": "TabItem",
+      "id": "interface-TabItem-cce3641e16eedc64680786560d7f713691f7a1683d0a8a894f6c5b933d08a0501edc68a06e5f761ef2f80e5ab2268d22c306858f2149b57bb0831d00919cff53",
+      "file": "src/app/components/tabs/ui-tabs.component.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  input,\r\n  output,\r\n  signal,\r\n} from '@angular/core';\r\n\r\nexport interface TabItem {\r\n  id: string;\r\n  label: string;\r\n  content: string;\r\n  count?: number;\r\n  checked?: boolean;\r\n  disabled?: boolean;\r\n}\r\n\r\n@Component({\r\n  selector: 'ui-tabs',\r\n  standalone: true,\r\n  templateUrl: './ui-tabs.component.html',\r\n  styleUrl: './ui-tabs.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class TabsComponent {\r\n  tabs = input<TabItem[]>([]);\r\n  activeId = signal<string | null>(null);\r\n\r\n  tabChange = output<TabItem>();\r\n\r\n  selectTab(tab: TabItem): void {\r\n    if (tab.disabled) return;\r\n\r\n    this.activeId.set(tab.id);\r\n    this.tabChange.emit(tab);\r\n  }\r\n\r\n  isActive(tab: TabItem): boolean {\r\n    return this.activeId()\r\n      ? this.activeId() === tab.id\r\n      : this.tabs()[0]?.id === tab.id;\r\n  }\r\n}\r\n",
+      "properties": [
+        {
+          "name": "checked",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 14
+        },
+        {
+          "name": "content",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 12
+        },
+        {
+          "name": "count",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 13
+        },
+        {
+          "name": "disabled",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 15
+        },
+        {
+          "name": "id",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 10
+        },
+        {
+          "name": "label",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 11
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 172,
+      "methods": [],
+      "extends": []
+    }
+  ],
+  "injectables": [],
+  "guards": [],
+  "interceptors": [],
+  "classes": [],
+  "directives": [],
+  "components": [
+    {
+      "name": "AccordionComponent",
+      "id": "component-AccordionComponent-a49d0b54357976ca4c3b4a28048d40378560ee7c8958205af01f82877f4b1032909e5ab53d5c06f9fbb87ecb901c02491c56748ab597a8f7bed52ea874ba9657",
+      "file": "src/app/components/accordion/ui-accordion.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-accordion",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-accordion.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "items",
+          "defaultValue": "[]",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "AccordionItem[]",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 23,
+          "required": false
+        },
+        {
+          "name": "multiple",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 24,
+          "required": false
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "openedIds",
+          "defaultValue": "signal<string[]>([])",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "unknown",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 26
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "isOpen",
+          "args": [
+            {
+              "name": "id",
+              "type": "string",
+              "optional": false,
+              "dotDotDotToken": false,
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "boolean",
+          "typeParameters": [],
+          "line": 44,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "id",
+              "type": "string",
+              "optional": false,
+              "dotDotDotToken": false,
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "toggle",
+          "args": [
+            {
+              "name": "id",
+              "type": "string",
+              "optional": false,
+              "dotDotDotToken": false,
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "optional": true,
+              "dotDotDotToken": false,
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 28,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "id",
+              "type": "string",
+              "optional": false,
+              "dotDotDotToken": false,
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "optional": true,
+              "dotDotDotToken": false,
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  input,\r\n  signal,\r\n} from '@angular/core';\r\n\r\nexport interface AccordionItem {\r\n  id: string;\r\n  title: string;\r\n  content: string;\r\n  disabled?: boolean;\r\n}\r\n\r\n@Component({\r\n  selector: 'ui-accordion',\r\n  standalone: true,\r\n  templateUrl: './ui-accordion.component.html',\r\n  styleUrl: './ui-accordion.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class AccordionComponent {\r\n  items = input<AccordionItem[]>([]);\r\n  multiple = input(false);\r\n\r\n  openedIds = signal<string[]>([]);\r\n\r\n  toggle(id: string, disabled?: boolean): void {\r\n    if (disabled) return;\r\n\r\n    const current = this.openedIds();\r\n    const isOpen = current.includes(id);\r\n\r\n    if (this.multiple()) {\r\n      this.openedIds.set(\r\n        isOpen ? current.filter((item) => item !== id) : [...current, id],\r\n      );\r\n      return;\r\n    }\r\n\r\n    this.openedIds.set(isOpen ? [] : [id]);\r\n  }\r\n\r\n  isOpen(id: string): boolean {\r\n    return this.openedIds().includes(id);\r\n  }\r\n}\r\n",
+      "styleUrl": "./ui-accordion.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<div class=\"ui-accordion\">\r\n  @for (item of items(); track item.id) {\r\n    <article\r\n      class=\"ui-accordion__item\"\r\n      [class.ui-accordion__item--disabled]=\"item.disabled\"\r\n    >\r\n      <button type=\"button\" (click)=\"toggle(item.id, item.disabled)\">\r\n        <span>{{ item.title }}</span>\r\n        <span>{{ isOpen(item.id) ? \"−\" : \"+\" }}</span>\r\n      </button>\r\n\r\n      @if (isOpen(item.id)) {\r\n        <div class=\"ui-accordion__content\">\r\n          {{ item.content }}\r\n        </div>\r\n      }\r\n    </article>\r\n  }\r\n</div>\r\n"
+    },
+    {
+      "name": "AppComponent",
+      "id": "component-AppComponent-d1c43a46046bd60943a84b51ca9e99425eecbcb1f3aaf46302ca8fd165ddd42e9e0415e7f82f2a64af95b9a6153c860041a54daa2b5ad48103f82a35c372f5d1",
+      "file": "src/app/app.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "app-root",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./app.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "title",
+          "defaultValue": "'model-ui-kit'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 11
+        }
+      ],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './app.component.html',\r\n  styleUrl: './app.component.scss'\r\n})\r\nexport class AppComponent {\r\n  title = 'model-ui-kit';\r\n}\r\n",
+      "styleUrl": "./app.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->\r\n<!-- * * * * * * * to get started with your project! * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n\r\n<style>\r\n  :host {\r\n    --bright-blue: oklch(51.01% 0.274 263.83);\r\n    --electric-violet: oklch(53.18% 0.28 296.97);\r\n    --french-violet: oklch(47.66% 0.246 305.88);\r\n    --vivid-pink: oklch(69.02% 0.277 332.77);\r\n    --hot-red: oklch(61.42% 0.238 15.34);\r\n    --orange-red: oklch(63.32% 0.24 31.68);\r\n\r\n    --gray-900: oklch(19.37% 0.006 300.98);\r\n    --gray-700: oklch(36.98% 0.014 302.71);\r\n    --gray-400: oklch(70.9% 0.015 304.04);\r\n\r\n    --red-to-pink-to-purple-vertical-gradient: linear-gradient(\r\n      180deg,\r\n      var(--orange-red) 0%,\r\n      var(--vivid-pink) 50%,\r\n      var(--electric-violet) 100%\r\n    );\r\n\r\n    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(\r\n      90deg,\r\n      var(--orange-red) 0%,\r\n      var(--vivid-pink) 50%,\r\n      var(--electric-violet) 100%\r\n    );\r\n\r\n    --pill-accent: var(--bright-blue);\r\n\r\n    font-family: \"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto,\r\n      Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\",\r\n      \"Segoe UI Symbol\";\r\n    box-sizing: border-box;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n  }\r\n\r\n  h1 {\r\n    font-size: 3.125rem;\r\n    color: var(--gray-900);\r\n    font-weight: 500;\r\n    line-height: 100%;\r\n    letter-spacing: -0.125rem;\r\n    margin: 0;\r\n    font-family: \"Inter Tight\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto,\r\n      Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\",\r\n      \"Segoe UI Symbol\";\r\n  }\r\n\r\n  p {\r\n    margin: 0;\r\n    color: var(--gray-700);\r\n  }\r\n\r\n  main {\r\n    width: 100%;\r\n    min-height: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    padding: 1rem;\r\n    box-sizing: inherit;\r\n    position: relative;\r\n  }\r\n\r\n  .angular-logo {\r\n    max-width: 9.2rem;\r\n  }\r\n\r\n  .content {\r\n    display: flex;\r\n    justify-content: space-around;\r\n    width: 100%;\r\n    max-width: 700px;\r\n    margin-bottom: 3rem;\r\n  }\r\n\r\n  .content h1 {\r\n    margin-top: 1.75rem;\r\n  }\r\n\r\n  .content p {\r\n    margin-top: 1.5rem;\r\n  }\r\n\r\n  .divider {\r\n    width: 1px;\r\n    background: var(--red-to-pink-to-purple-vertical-gradient);\r\n    margin-inline: 0.5rem;\r\n  }\r\n\r\n  .pill-group {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: start;\r\n    flex-wrap: wrap;\r\n    gap: 1.25rem;\r\n  }\r\n\r\n  .pill {\r\n    display: flex;\r\n    align-items: center;\r\n    --pill-accent: var(--bright-blue);\r\n    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);\r\n    color: var(--pill-accent);\r\n    padding-inline: 0.75rem;\r\n    padding-block: 0.375rem;\r\n    border-radius: 2.75rem;\r\n    border: 0;\r\n    transition: background 0.3s ease;\r\n    font-family: var(--inter-font);\r\n    font-size: 0.875rem;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    line-height: 1.4rem;\r\n    letter-spacing: -0.00875rem;\r\n    text-decoration: none;\r\n  }\r\n\r\n  .pill:hover {\r\n    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);\r\n  }\r\n\r\n  .pill-group .pill:nth-child(6n + 1) {\r\n    --pill-accent: var(--bright-blue);\r\n  }\r\n  .pill-group .pill:nth-child(6n + 2) {\r\n    --pill-accent: var(--french-violet);\r\n  }\r\n  .pill-group .pill:nth-child(6n + 3),\r\n  .pill-group .pill:nth-child(6n + 4),\r\n  .pill-group .pill:nth-child(6n + 5) {\r\n    --pill-accent: var(--hot-red);\r\n  }\r\n\r\n  .pill-group svg {\r\n    margin-inline-start: 0.25rem;\r\n  }\r\n\r\n  .social-links {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.73rem;\r\n    margin-top: 1.5rem;\r\n  }\r\n\r\n  .social-links path {\r\n    transition: fill 0.3s ease;\r\n    fill: var(--gray-400);\r\n  }\r\n\r\n  .social-links a:hover svg path {\r\n    fill: var(--gray-900);\r\n  }\r\n\r\n  @media screen and (max-width: 650px) {\r\n    .content {\r\n      flex-direction: column;\r\n      width: max-content;\r\n    }\r\n\r\n    .divider {\r\n      height: 1px;\r\n      width: 100%;\r\n      background: var(--red-to-pink-to-purple-horizontal-gradient);\r\n      margin-block: 1.5rem;\r\n    }\r\n  }\r\n</style>\r\n\r\n<main class=\"main\">\r\n  <div class=\"content\">\r\n    <div class=\"left-side\">\r\n      <svg\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n        viewBox=\"0 0 982 239\"\r\n        fill=\"none\"\r\n        class=\"angular-logo\"\r\n      >\r\n        <g clip-path=\"url(#a)\">\r\n          <path\r\n            fill=\"url(#b)\"\r\n            d=\"M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z\"\r\n          />\r\n          <path\r\n            fill=\"url(#c)\"\r\n            d=\"M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z\"\r\n          />\r\n        </g>\r\n        <defs>\r\n          <radialGradient\r\n            id=\"c\"\r\n            cx=\"0\"\r\n            cy=\"0\"\r\n            r=\"1\"\r\n            gradientTransform=\"rotate(118.122 171.182 60.81) scale(205.794)\"\r\n            gradientUnits=\"userSpaceOnUse\"\r\n          >\r\n            <stop stop-color=\"#FF41F8\" />\r\n            <stop offset=\".707\" stop-color=\"#FF41F8\" stop-opacity=\".5\" />\r\n            <stop offset=\"1\" stop-color=\"#FF41F8\" stop-opacity=\"0\" />\r\n          </radialGradient>\r\n          <linearGradient\r\n            id=\"b\"\r\n            x1=\"0\"\r\n            x2=\"982\"\r\n            y1=\"192\"\r\n            y2=\"192\"\r\n            gradientUnits=\"userSpaceOnUse\"\r\n          >\r\n            <stop stop-color=\"#F0060B\" />\r\n            <stop offset=\"0\" stop-color=\"#F0070C\" />\r\n            <stop offset=\".526\" stop-color=\"#CC26D5\" />\r\n            <stop offset=\"1\" stop-color=\"#7702FF\" />\r\n          </linearGradient>\r\n          <clipPath id=\"a\"><path fill=\"#fff\" d=\"M0 0h982v239H0z\" /></clipPath>\r\n        </defs>\r\n      </svg>\r\n      <h1>Hello, {{ title }}</h1>\r\n      <p>Congratulations! Your app is running. 🎉</p>\r\n    </div>\r\n    <div class=\"divider\" role=\"separator\" aria-label=\"Divider\"></div>\r\n    <div class=\"right-side\">\r\n      <div class=\"pill-group\">\r\n        @for (item of [\r\n          { title: 'Explore the Docs', link: 'https://angular.dev' },\r\n          { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },\r\n          { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },\r\n          { title: 'Angular Language Service', link: 'https://angular.dev/tools/language-service' },\r\n          { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools' },\r\n        ]; track item.title) {\r\n          <a\r\n            class=\"pill\"\r\n            [href]=\"item.link\"\r\n            target=\"_blank\"\r\n            rel=\"noopener\"\r\n          >\r\n            <span>{{ item.title }}</span>\r\n            <svg\r\n              xmlns=\"http://www.w3.org/2000/svg\"\r\n              height=\"14\"\r\n              viewBox=\"0 -960 960 960\"\r\n              width=\"14\"\r\n              fill=\"currentColor\"\r\n            >\r\n              <path\r\n                d=\"M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z\"\r\n              />\r\n            </svg>\r\n          </a>\r\n        }\r\n      </div>\r\n      <div class=\"social-links\">\r\n        <a\r\n          href=\"https://github.com/angular/angular\"\r\n          aria-label=\"Github\"\r\n          target=\"_blank\"\r\n          rel=\"noopener\"\r\n        >\r\n          <svg\r\n            width=\"25\"\r\n            height=\"24\"\r\n            viewBox=\"0 0 25 24\"\r\n            fill=\"none\"\r\n            xmlns=\"http://www.w3.org/2000/svg\"\r\n            alt=\"Github\"\r\n          >\r\n            <path\r\n              d=\"M12.3047 0C5.50634 0 0 5.50942 0 12.3047C0 17.7423 3.52529 22.3535 8.41332 23.9787C9.02856 24.0946 9.25414 23.7142 9.25414 23.3871C9.25414 23.0949 9.24389 22.3207 9.23876 21.2953C5.81601 22.0377 5.09414 19.6444 5.09414 19.6444C4.53427 18.2243 3.72524 17.8449 3.72524 17.8449C2.61064 17.082 3.81137 17.0973 3.81137 17.0973C5.04697 17.1835 5.69604 18.3647 5.69604 18.3647C6.79321 20.2463 8.57636 19.7029 9.27978 19.3881C9.39052 18.5924 9.70736 18.0499 10.0591 17.7423C7.32641 17.4347 4.45429 16.3765 4.45429 11.6618C4.45429 10.3185 4.9311 9.22133 5.72065 8.36C5.58222 8.04931 5.16694 6.79833 5.82831 5.10337C5.82831 5.10337 6.85883 4.77319 9.2121 6.36459C10.1965 6.09082 11.2424 5.95546 12.2883 5.94931C13.3342 5.95546 14.3801 6.09082 15.3644 6.36459C17.7023 4.77319 18.7328 5.10337 18.7328 5.10337C19.3942 6.79833 18.9789 8.04931 18.8559 8.36C19.6403 9.22133 20.1171 10.3185 20.1171 11.6618C20.1171 16.3888 17.2409 17.4296 14.5031 17.7321C14.9338 18.1012 15.3337 18.8559 15.3337 20.0084C15.3337 21.6552 15.3183 22.978 15.3183 23.3779C15.3183 23.7009 15.5336 24.0854 16.1642 23.9623C21.0871 22.3484 24.6094 17.7341 24.6094 12.3047C24.6094 5.50942 19.0999 0 12.3047 0Z\"\r\n            />\r\n          </svg>\r\n        </a>\r\n        <a\r\n          href=\"https://twitter.com/angular\"\r\n          aria-label=\"Twitter\"\r\n          target=\"_blank\"\r\n          rel=\"noopener\"\r\n        >\r\n          <svg\r\n            width=\"24\"\r\n            height=\"24\"\r\n            viewBox=\"0 0 24 24\"\r\n            fill=\"none\"\r\n            xmlns=\"http://www.w3.org/2000/svg\"\r\n            alt=\"Twitter\"\r\n          >\r\n            <path\r\n              d=\"M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z\"\r\n            />\r\n          </svg>\r\n        </a>\r\n        <a\r\n          href=\"https://www.youtube.com/channel/UCbn1OgGei-DV7aSRo_HaAiw\"\r\n          aria-label=\"Youtube\"\r\n          target=\"_blank\"\r\n          rel=\"noopener\"\r\n        >\r\n          <svg\r\n            width=\"29\"\r\n            height=\"20\"\r\n            viewBox=\"0 0 29 20\"\r\n            fill=\"none\"\r\n            xmlns=\"http://www.w3.org/2000/svg\"\r\n            alt=\"Youtube\"\r\n          >\r\n            <path\r\n              fill-rule=\"evenodd\"\r\n              clip-rule=\"evenodd\"\r\n              d=\"M27.4896 1.52422C27.9301 1.96749 28.2463 2.51866 28.4068 3.12258C29.0004 5.35161 29.0004 10 29.0004 10C29.0004 10 29.0004 14.6484 28.4068 16.8774C28.2463 17.4813 27.9301 18.0325 27.4896 18.4758C27.0492 18.9191 26.5 19.2389 25.8972 19.4032C23.6778 20 14.8068 20 14.8068 20C14.8068 20 5.93586 20 3.71651 19.4032C3.11363 19.2389 2.56449 18.9191 2.12405 18.4758C1.68361 18.0325 1.36732 17.4813 1.20683 16.8774C0.613281 14.6484 0.613281 10 0.613281 10C0.613281 10 0.613281 5.35161 1.20683 3.12258C1.36732 2.51866 1.68361 1.96749 2.12405 1.52422C2.56449 1.08095 3.11363 0.76113 3.71651 0.596774C5.93586 0 14.8068 0 14.8068 0C14.8068 0 23.6778 0 25.8972 0.596774C26.5 0.76113 27.0492 1.08095 27.4896 1.52422ZM19.3229 10L11.9036 5.77905V14.221L19.3229 10Z\"\r\n            />\r\n          </svg>\r\n        </a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</main>\r\n\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n\r\n\r\n"
+    },
+    {
+      "name": "BreadcrumbComponent",
+      "id": "component-BreadcrumbComponent-fbf86470144aca3accc8bc685ae21cbafe9334e175b48b80079005df5578558d88831e8bb7f9f676e9759b76711b5c5ed47c5d59d73d65057a1e620d4734a716",
+      "file": "src/app/components/breadcrumb/ui-breadcrumb.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-breadcrumb",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-breadcrumb.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "items",
+          "defaultValue": "[]",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "BreadcrumbItem[]",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 22,
+          "required": false
+        },
+        {
+          "name": "separator",
+          "defaultValue": "'/'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 23,
+          "required": false
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "itemClick",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "BreadcrumbItem",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 25,
+          "required": false
+        }
+      ],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  input,\r\n  output,\r\n} from '@angular/core';\r\n\r\nexport interface BreadcrumbItem {\r\n  label: string;\r\n  url?: string;\r\n  disabled?: boolean;\r\n}\r\n\r\n@Component({\r\n  selector: 'ui-breadcrumb',\r\n  standalone: true,\r\n  templateUrl: './ui-breadcrumb.component.html',\r\n  styleUrl: './ui-breadcrumb.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BreadcrumbComponent {\r\n  items = input<BreadcrumbItem[]>([]);\r\n  separator = input('/');\r\n\r\n  itemClick = output<BreadcrumbItem>();\r\n}\r\n",
+      "styleUrl": "./ui-breadcrumb.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<nav class=\"ui-breadcrumb\" aria-label=\"Breadcrumb\">\r\n  <ol>\r\n    @for (item of items(); track item.label; let last = $last) {\r\n      <li>\r\n        @if (!last && !item.disabled) {\r\n          <button type=\"button\" (click)=\"itemClick.emit(item)\">\r\n            {{ item.label }}\r\n          </button>\r\n        } @else {\r\n          <span [class.disabled]=\"item.disabled\">{{ item.label }}</span>\r\n        }\r\n\r\n        @if (!last) {\r\n          <small>{{ separator() }}</small>\r\n        }\r\n      </li>\r\n    }\r\n  </ol>\r\n</nav>\r\n"
+    },
+    {
+      "name": "EmptyStateComponent",
+      "id": "component-EmptyStateComponent-4c114659a50460d28297bee1a917efa6fbf2049076205fccce8b210da4d103d92d4d7c8991486e995a4579d5225e33ad237736e4c2021d30386a4beb2b064a88",
+      "file": "src/app/components/empty-state/ui-empty-state.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-empty-state",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-empty-state.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "buttonLabel",
+          "defaultValue": "'Criar novo'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string | null",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 19,
+          "required": false
+        },
+        {
+          "name": "description",
+          "defaultValue": "'Tente ajustar os filtros ou criar um novo item.'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 18,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "defaultValue": "'📭'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 16,
+          "required": false
+        },
+        {
+          "name": "title",
+          "defaultValue": "'Nenhum resultado encontrado'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 17,
+          "required": false
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "buttonClick",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "void",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 20,
+          "required": false
+        }
+      ],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  input,\r\n  output,\r\n} from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'ui-empty-state',\r\n  standalone: true,\r\n  templateUrl: './ui-empty-state.component.html',\r\n  styleUrl: './ui-empty-state.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class EmptyStateComponent {\r\n  icon = input('📭');\r\n  title = input('Nenhum resultado encontrado');\r\n  description = input('Tente ajustar os filtros ou criar um novo item.');\r\n  buttonLabel = input<string | null>('Criar novo');\r\n  buttonClick = output<void>();\r\n}\r\n",
+      "styleUrl": "./ui-empty-state.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<section class=\"ui-empty-state\">\r\n  <div class=\"ui-empty-state__icon\">{{ icon() }}</div>\r\n  <h2>{{ title() }}</h2>\r\n  <p>{{ description() }}</p>\r\n\r\n  @if (buttonLabel()) {\r\n    <button type=\"button\" (click)=\"buttonClick.emit()\">\r\n      {{ buttonLabel() }}\r\n    </button>\r\n  }\r\n</section>\r\n"
+    },
+    {
+      "name": "TabsComponent",
+      "id": "component-TabsComponent-cce3641e16eedc64680786560d7f713691f7a1683d0a8a894f6c5b933d08a0501edc68a06e5f761ef2f80e5ab2268d22c306858f2149b57bb0831d00919cff53",
+      "file": "src/app/components/tabs/ui-tabs.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-tabs",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-tabs.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "tabs",
+          "defaultValue": "[]",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TabItem[]",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 26,
+          "required": false
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "tabChange",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TabItem",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 29,
+          "required": false
+        }
+      ],
+      "propertiesClass": [
+        {
+          "name": "activeId",
+          "defaultValue": "signal<string | null>(null)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "unknown",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 27
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "isActive",
+          "args": [
+            {
+              "name": "tab",
+              "type": "TabItem",
+              "optional": false,
+              "dotDotDotToken": false,
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "boolean",
+          "typeParameters": [],
+          "line": 38,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "tab",
+              "type": "TabItem",
+              "optional": false,
+              "dotDotDotToken": false,
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "selectTab",
+          "args": [
+            {
+              "name": "tab",
+              "type": "TabItem",
+              "optional": false,
+              "dotDotDotToken": false,
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 31,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "tab",
+              "type": "TabItem",
+              "optional": false,
+              "dotDotDotToken": false,
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  input,\r\n  output,\r\n  signal,\r\n} from '@angular/core';\r\n\r\nexport interface TabItem {\r\n  id: string;\r\n  label: string;\r\n  content: string;\r\n  count?: number;\r\n  checked?: boolean;\r\n  disabled?: boolean;\r\n}\r\n\r\n@Component({\r\n  selector: 'ui-tabs',\r\n  standalone: true,\r\n  templateUrl: './ui-tabs.component.html',\r\n  styleUrl: './ui-tabs.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class TabsComponent {\r\n  tabs = input<TabItem[]>([]);\r\n  activeId = signal<string | null>(null);\r\n\r\n  tabChange = output<TabItem>();\r\n\r\n  selectTab(tab: TabItem): void {\r\n    if (tab.disabled) return;\r\n\r\n    this.activeId.set(tab.id);\r\n    this.tabChange.emit(tab);\r\n  }\r\n\r\n  isActive(tab: TabItem): boolean {\r\n    return this.activeId()\r\n      ? this.activeId() === tab.id\r\n      : this.tabs()[0]?.id === tab.id;\r\n  }\r\n}\r\n",
+      "styleUrl": "./ui-tabs.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<div class=\"ui-tabs\">\r\n  <div class=\"ui-tabs__header\" role=\"tablist\">\r\n    @for (tab of tabs(); track tab.id) {\r\n      <button\r\n        type=\"button\"\r\n        role=\"tab\"\r\n        [disabled]=\"tab.disabled\"\r\n        [class.active]=\"isActive(tab)\"\r\n        [class.checked]=\"tab.checked\"\r\n        (click)=\"selectTab(tab)\"\r\n      >\r\n        @if (tab.checked) {\r\n          <span>✓</span>\r\n        }\r\n\r\n        {{ tab.label }}\r\n\r\n        @if (tab.count !== undefined) {\r\n          <small>{{ tab.count }}</small>\r\n        }\r\n      </button>\r\n    }\r\n  </div>\r\n\r\n  <div class=\"ui-tabs__content\">\r\n    @for (tab of tabs(); track tab.id) {\r\n      @if (isActive(tab)) {\r\n        <p>{{ tab.content }}</p>\r\n      }\r\n    }\r\n  </div>\r\n</div>\r\n"
+    },
+    {
+      "name": "ToastComponent",
+      "id": "component-ToastComponent-6e311f48e98ece1739879c5b09e21e5ebba759189b66db41dd5bcd580cd389494e08a184d43ee1231c71575ca064f88fcfe478643756ffa4bcec98f50e1e5514",
+      "file": "src/app/components/toast/ui-toast.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-toast",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-toast.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "closable",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 24,
+          "required": false
+        },
+        {
+          "name": "color",
+          "defaultValue": "'info'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Extract<UiColor, 'success' | 'danger' | 'warning' | 'info'>",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 20,
+          "required": false
+        },
+        {
+          "name": "duration",
+          "defaultValue": "5000",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 25,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "defaultValue": "'ℹ️'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string | null",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 22,
+          "required": false
+        },
+        {
+          "name": "position",
+          "defaultValue": "'top-right'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "UiToastPosition",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 23,
+          "required": false
+        },
+        {
+          "name": "text",
+          "defaultValue": "'Mensagem do toast'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 19,
+          "required": false
+        },
+        {
+          "name": "title",
+          "defaultValue": "'Título do toast'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 18,
+          "required": false
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "closed",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "void",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 27,
+          "required": false
+        }
+      ],
+      "propertiesClass": [
+        {
+          "name": "classes",
+          "defaultValue": "computed(() =>\r\n    [\r\n      'ui-toast',\r\n      `ui-toast--${this.color()}`,\r\n      `ui-toast--${this.position()}`,\r\n    ].join(' '),\r\n  )",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "unknown",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 29
+        }
+      ],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  computed,\r\n  input,\r\n  output,\r\n} from '@angular/core';\r\nimport { UiColor, UiToastPosition } from '@design-system/types/ui.types';\r\n\r\n@Component({\r\n  selector: 'ui-toast',\r\n  standalone: true,\r\n  templateUrl: './ui-toast.component.html',\r\n  styleUrl: './ui-toast.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class ToastComponent {\r\n  title = input('Título do toast');\r\n  text = input('Mensagem do toast');\r\n  color =\r\n    input<Extract<UiColor, 'success' | 'danger' | 'warning' | 'info'>>('info');\r\n  icon = input<string | null>('ℹ️');\r\n  position = input<UiToastPosition>('top-right');\r\n  closable = input(true);\r\n  duration = input(5000);\r\n\r\n  closed = output<void>();\r\n\r\n  classes = computed(() =>\r\n    [\r\n      'ui-toast',\r\n      `ui-toast--${this.color()}`,\r\n      `ui-toast--${this.position()}`,\r\n    ].join(' '),\r\n  );\r\n}\r\n",
+      "styleUrl": "./ui-toast.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<article [class]=\"classes()\">\r\n  @if (icon()) {\r\n    <span class=\"ui-toast__icon\">{{ icon() }}</span>\r\n  }\r\n\r\n  <div>\r\n    <strong>{{ title() }}</strong>\r\n    <p>{{ text() }}</p>\r\n  </div>\r\n\r\n  @if (closable()) {\r\n    <button type=\"button\" (click)=\"closed.emit()\">×</button>\r\n  }\r\n</article>\r\n"
+    },
+    {
+      "name": "TooltipComponent",
+      "id": "component-TooltipComponent-473850c983b258a35ce4ff46a3326614c7be14f8cc363f677b9803e5d0b981eb2f34c074c654573216dc1515ca29a165d72dcb458dc7e60c5b4096bb07da9eef",
+      "file": "src/app/components/tooltip/ui-tooltip.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-tooltip",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-tooltip.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "html",
+          "defaultValue": "null",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string | null",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 12,
+          "required": false
+        },
+        {
+          "name": "position",
+          "defaultValue": "'top'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 13,
+          "required": false
+        },
+        {
+          "name": "text",
+          "defaultValue": "'Passe o mouse'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 11,
+          "required": false
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'ui-tooltip',\r\n  standalone: true,\r\n  templateUrl: './ui-tooltip.component.html',\r\n  styleUrl: './ui-tooltip.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class TooltipComponent {\r\n  text = input('Passe o mouse');\r\n  html = input<string | null>(null);\r\n  position = input<'top' | 'right' | 'bottom' | 'left'>('top');\r\n}\r\n",
+      "styleUrl": "./ui-tooltip.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<span class=\"ui-tooltip\">\r\n  <ng-content></ng-content>\r\n\r\n  <span\r\n    class=\"ui-tooltip__content\"\r\n    [class]=\"'ui-tooltip__content ui-tooltip__content--' + position()\"\r\n  >\r\n    @if (html()) {\r\n      <span [innerHTML]=\"html()\"></span>\r\n    } @else {\r\n      {{ text() }}\r\n    }\r\n  </span>\r\n</span>\r\n"
+    },
+    {
+      "name": "UiAlertComponent",
+      "id": "component-UiAlertComponent-a5c1c6700bf7b3f4b67f76180bdce1481db8f23466dbcde2e0b575504aa96ec46a59a5449819b8e7e5cfd850d5716d126e872fe2c3f232987c8b49661f26db27",
+      "file": "src/app/components/alert/ui-alert.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-alert",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-alert.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "closable",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 17,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "color",
+          "defaultValue": "'info'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 15,
+          "type": "AlertColor",
+          "decorators": []
+        },
+        {
+          "name": "fixed",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 18,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "icon",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 16,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "message",
+          "defaultValue": "'Mensagem do alerta'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 14,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "visible",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 19,
+          "type": "boolean",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "closed",
+          "defaultValue": "new EventEmitter<void>()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 21,
+          "type": "EventEmitter"
+        }
+      ],
+      "propertiesClass": [],
+      "methodsClass": [
+        {
+          "name": "close",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 23,
+          "deprecated": false,
+          "deprecationMessage": ""
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "NgClass"
+        },
+        {
+          "name": "NgIf"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { NgClass, NgIf } from '@angular/common';\r\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\r\n\r\ntype AlertColor = 'success' | 'warning' | 'danger' | 'info';\r\n\r\n@Component({\r\n  selector: 'ui-alert',\r\n  standalone: true,\r\n  imports: [NgClass, NgIf],\r\n  templateUrl: './ui-alert.component.html',\r\n  styleUrl: './ui-alert.component.scss',\r\n})\r\nexport class UiAlertComponent {\r\n  @Input() message = 'Mensagem do alerta';\r\n  @Input() color: AlertColor = 'info';\r\n  @Input() icon?: string;\r\n  @Input() closable = true;\r\n  @Input() fixed = true;\r\n  @Input() visible = true;\r\n\r\n  @Output() closed = new EventEmitter<void>();\r\n\r\n  close(): void {\r\n    this.visible = false;\r\n    this.closed.emit();\r\n  }\r\n}\r\n",
+      "styleUrl": "./ui-alert.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<section\r\n  *ngIf=\"visible\"\r\n  class=\"ui-alert\"\r\n  [ngClass]=\"['color-' + color, fixed ? 'fixed' : '']\"\r\n>\r\n  <span *ngIf=\"icon\" class=\"icon\">{{ icon }}</span>\r\n\r\n  <p>{{ message }}</p>\r\n\r\n  <button *ngIf=\"closable\" type=\"button\" class=\"close-button\" (click)=\"close()\">\r\n    ×\r\n  </button>\r\n</section>\r\n"
+    },
+    {
+      "name": "UiButtonComponent",
+      "id": "component-UiButtonComponent-163aac21d0fd46833b75a61ef638afaa18c764322cfdf8ddd40635bc9ab54eee57dab7957c93833c760756dcc0c0a7c8ec1a25bbcf7403778c73557d30851bd3",
+      "file": "src/app/components/button/ui-button.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-button",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-button.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "color",
+          "defaultValue": "'primary'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "UiColor",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 23,
+          "required": false
+        },
+        {
+          "name": "customClass",
+          "defaultValue": "''",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 32,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 26,
+          "required": false
+        },
+        {
+          "name": "fullWidth",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 27,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "defaultValue": "null",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string | null",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 30,
+          "required": false
+        },
+        {
+          "name": "iconPosition",
+          "defaultValue": "'left'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"left\" | \"right\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 31,
+          "required": false
+        },
+        {
+          "name": "label",
+          "defaultValue": "'Button'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 22,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 29,
+          "required": false
+        },
+        {
+          "name": "position",
+          "defaultValue": "'center'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "UiHorizontalPosition",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 25,
+          "required": false
+        },
+        {
+          "name": "rounded",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 28,
+          "required": false
+        },
+        {
+          "name": "size",
+          "defaultValue": "'md'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "UiSize",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 24,
+          "required": false
+        },
+        {
+          "name": "type",
+          "defaultValue": "'button'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"button\" | \"submit\" | \"reset\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 33,
+          "required": false
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "buttonClick",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "void",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 35,
+          "required": false
+        }
+      ],
+      "propertiesClass": [
+        {
+          "name": "buttonClasses",
+          "defaultValue": "computed(() =>\r\n    [\r\n      'ui-button',\r\n      `ui-button--${this.color()}`,\r\n      `ui-button--${this.size()}`,\r\n      this.outline() ? 'ui-button--outline' : '',\r\n      this.fullWidth() ? 'ui-button--full' : '',\r\n      this.rounded() ? 'ui-button--rounded' : '',\r\n      this.disabled() ? 'ui-button--disabled' : '',\r\n      this.customClass(),\r\n    ]\r\n      .filter(Boolean)\r\n      .join(' '),\r\n  )",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "unknown",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 37
+        },
+        {
+          "name": "wrapperClasses",
+          "defaultValue": "computed(\r\n    () => `ui-button-wrapper ui-button-wrapper--${this.position()}`,\r\n  )",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "unknown",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 52
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "onClick",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 56,
+          "deprecated": false,
+          "deprecationMessage": ""
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  computed,\r\n  input,\r\n  output,\r\n} from '@angular/core';\r\nimport {\r\n  UiColor,\r\n  UiHorizontalPosition,\r\n  UiSize,\r\n} from '@design-system/types/ui.types';\r\n\r\n@Component({\r\n  selector: 'ui-button',\r\n  standalone: true,\r\n  templateUrl: './ui-button.component.html',\r\n  styleUrl: './ui-button.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class UiButtonComponent {\r\n  label = input('Button');\r\n  color = input<UiColor>('primary');\r\n  size = input<UiSize>('md');\r\n  position = input<UiHorizontalPosition>('center');\r\n  disabled = input(false);\r\n  fullWidth = input(false);\r\n  rounded = input(false);\r\n  outline = input(false);\r\n  icon = input<string | null>(null);\r\n  iconPosition = input<'left' | 'right'>('left');\r\n  customClass = input('');\r\n  type = input<'button' | 'submit' | 'reset'>('button');\r\n\r\n  buttonClick = output<void>();\r\n\r\n  buttonClasses = computed(() =>\r\n    [\r\n      'ui-button',\r\n      `ui-button--${this.color()}`,\r\n      `ui-button--${this.size()}`,\r\n      this.outline() ? 'ui-button--outline' : '',\r\n      this.fullWidth() ? 'ui-button--full' : '',\r\n      this.rounded() ? 'ui-button--rounded' : '',\r\n      this.disabled() ? 'ui-button--disabled' : '',\r\n      this.customClass(),\r\n    ]\r\n      .filter(Boolean)\r\n      .join(' '),\r\n  );\r\n\r\n  wrapperClasses = computed(\r\n    () => `ui-button-wrapper ui-button-wrapper--${this.position()}`,\r\n  );\r\n\r\n  onClick(): void {\r\n    if (!this.disabled()) {\r\n      this.buttonClick.emit();\r\n    }\r\n  }\r\n}\r\n",
+      "styleUrl": "./ui-button.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<div [class]=\"wrapperClasses()\">\r\n  <button\r\n    [type]=\"type()\"\r\n    [class]=\"buttonClasses()\"\r\n    [disabled]=\"disabled()\"\r\n    (click)=\"onClick()\"\r\n  >\r\n    @if (icon() && iconPosition() === \"left\") {\r\n      <span class=\"ui-button__icon\">{{ icon() }}</span>\r\n    }\r\n\r\n    <span>{{ label() }}</span>\r\n\r\n    @if (icon() && iconPosition() === \"right\") {\r\n      <span class=\"ui-button__icon\">{{ icon() }}</span>\r\n    }\r\n  </button>\r\n</div>\r\n"
+    },
+    {
+      "name": "UiCardComponent",
+      "id": "component-UiCardComponent-b81b50dc0a7139182413450cadff0eeb1735072a6679a38742b4d3991848df817dd707afa2bf06efc1b7176779b3b6d70ee42008228bfe90a7363fe883520ddf",
+      "file": "src/app/components/card/ui-card.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-card",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-card.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "align",
+          "defaultValue": "'left'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 22,
+          "type": "\"left\" | \"center\"",
+          "decorators": []
+        },
+        {
+          "name": "bordered",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 19,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "clickable",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 20,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "description",
+          "defaultValue": "'Descrição do card'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 15,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "footer",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 23,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "highlighted",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 21,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "imageUrl",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 16,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "shadow",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 18,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "size",
+          "defaultValue": "'md'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 17,
+          "type": "UiSize",
+          "decorators": []
+        },
+        {
+          "name": "subtitle",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 14,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "title",
+          "defaultValue": "'Título do card'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 13,
+          "type": "string",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "NgClass"
+        },
+        {
+          "name": "NgIf"
+        },
+        {
+          "name": "NgTemplateOutlet"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';\r\nimport { Component, Input } from '@angular/core';\r\nimport { UiSize } from '@design-system/types/ui.types';\r\n\r\n@Component({\r\n  selector: 'ui-card',\r\n  standalone: true,\r\n  imports: [NgClass, NgIf, NgTemplateOutlet],\r\n  templateUrl: './ui-card.component.html',\r\n  styleUrl: './ui-card.component.scss',\r\n})\r\nexport class UiCardComponent {\r\n  @Input() title = 'Título do card';\r\n  @Input() subtitle?: string;\r\n  @Input() description = 'Descrição do card';\r\n  @Input() imageUrl?: string;\r\n  @Input() size: UiSize = 'md';\r\n  @Input() shadow = true;\r\n  @Input() bordered = false;\r\n  @Input() clickable = false;\r\n  @Input() highlighted = false;\r\n  @Input() align: 'left' | 'center' = 'left';\r\n  @Input() footer?: string;\r\n}\r\n",
+      "styleUrl": "./ui-card.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<article\r\n  class=\"ui-card\"\r\n  [ngClass]=\"[\r\n    'size-' + size,\r\n    'align-' + align,\r\n    shadow ? 'shadow' : '',\r\n    bordered ? 'bordered' : '',\r\n    clickable ? 'clickable' : '',\r\n    highlighted ? 'highlighted' : '',\r\n  ]\"\r\n>\r\n  <img *ngIf=\"imageUrl\" [src]=\"imageUrl\" [alt]=\"title\" class=\"card-image\" />\r\n\r\n  <div class=\"card-content\">\r\n    <h3>{{ title }}</h3>\r\n    <span *ngIf=\"subtitle\">{{ subtitle }}</span>\r\n    <p>{{ description }}</p>\r\n  </div>\r\n\r\n  <footer *ngIf=\"footer\">\r\n    {{ footer }}\r\n  </footer>\r\n</article>\r\n"
+    },
+    {
+      "name": "UiLoadingComponent",
+      "id": "component-UiLoadingComponent-34ba229f9ad80f1cee6a3f6da596124cf8629ff53509048100d5a2d3fefdfe0e2a8260667dac35ca50aa63fad55dce80e8170653e1a9c0db58449de1d50f7b3a",
+      "file": "src/app/components/loading/ui-loading.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-loading",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-loading.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "message",
+          "defaultValue": "null",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string | null",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 27,
+          "required": false
+        },
+        {
+          "name": "overlay",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 28,
+          "required": false
+        },
+        {
+          "name": "size",
+          "defaultValue": "'md'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "UiSize",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 26,
+          "required": false
+        },
+        {
+          "name": "type",
+          "defaultValue": "'spinner'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "LoadingType",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 25,
+          "required": false
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "classes",
+          "defaultValue": "computed(() =>\r\n    [\r\n      'ui-loading',\r\n      `ui-loading--${this.size()}`,\r\n      this.overlay() ? 'ui-loading--overlay' : '',\r\n    ]\r\n      .filter(Boolean)\r\n      .join(' '),\r\n  )",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "unknown",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 30
+        }
+      ],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  computed,\r\n  input,\r\n} from '@angular/core';\r\nimport { UiSize } from '@design-system/types/ui.types';\r\n\r\ntype LoadingType =\r\n  | 'spinner'\r\n  | 'dots'\r\n  | 'skeleton-text'\r\n  | 'skeleton-card'\r\n  | 'skeleton-table'\r\n  | 'skeleton-avatar';\r\n\r\n@Component({\r\n  selector: 'ui-loading',\r\n  standalone: true,\r\n  templateUrl: './ui-loading.component.html',\r\n  styleUrl: './ui-loading.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class UiLoadingComponent {\r\n  type = input<LoadingType>('spinner');\r\n  size = input<UiSize>('md');\r\n  message = input<string | null>(null);\r\n  overlay = input(false);\r\n\r\n  classes = computed(() =>\r\n    [\r\n      'ui-loading',\r\n      `ui-loading--${this.size()}`,\r\n      this.overlay() ? 'ui-loading--overlay' : '',\r\n    ]\r\n      .filter(Boolean)\r\n      .join(' '),\r\n  );\r\n}\r\n",
+      "styleUrl": "./ui-loading.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<div [class]=\"classes()\">\r\n  @if (type() === \"spinner\") {\r\n    <div class=\"ui-loading__spinner\"></div>\r\n  }\r\n\r\n  @if (type() === \"dots\") {\r\n    <div class=\"ui-loading__dots\">\r\n      <span></span>\r\n      <span></span>\r\n      <span></span>\r\n    </div>\r\n  }\r\n\r\n  @if (type() === \"skeleton-text\") {\r\n    <div class=\"ui-skeleton ui-skeleton--text\">\r\n      <span></span>\r\n      <span></span>\r\n      <span></span>\r\n    </div>\r\n  }\r\n\r\n  @if (type() === \"skeleton-card\") {\r\n    <div class=\"ui-skeleton-card\">\r\n      <span class=\"image\"></span>\r\n      <span></span>\r\n      <span></span>\r\n      <span></span>\r\n    </div>\r\n  }\r\n\r\n  @if (type() === \"skeleton-table\") {\r\n    <div class=\"ui-skeleton-table\">\r\n      @for (row of [1, 2, 3, 4]; track row) {\r\n        <span></span>\r\n      }\r\n    </div>\r\n  }\r\n\r\n  @if (type() === \"skeleton-avatar\") {\r\n    <div class=\"ui-skeleton-avatar\">\r\n      <span class=\"avatar\"></span>\r\n      <div>\r\n        <span></span>\r\n        <span></span>\r\n      </div>\r\n    </div>\r\n  }\r\n\r\n  @if (message()) {\r\n    <p>{{ message() }}</p>\r\n  }\r\n</div>\r\n"
+    },
+    {
+      "name": "UiModalComponent",
+      "id": "component-UiModalComponent-961cdaa910f39b199e92f17fa92584d71150815b24442aa9c4a65f3d5dd59f4f8de7803177b9c7083b1ee725c616cabc2c1f2ccfa78fdd8e3ed289778dc0a3cd",
+      "file": "src/app/components/modal/ui-modal.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "ui-modal",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./ui-modal.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "cancelLabel",
+          "defaultValue": "'Cancelar'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 19,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "closeLabel",
+          "defaultValue": "'Fechar'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 20,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "confirmLabel",
+          "defaultValue": "'Confirmar'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 18,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "description",
+          "defaultValue": "'Descrição do modal'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 17,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "open",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 14,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "showCloseButton",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 21,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "size",
+          "defaultValue": "'md'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 22,
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "decorators": []
+        },
+        {
+          "name": "title",
+          "defaultValue": "'Título do modal'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 16,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "type",
+          "defaultValue": "'informative'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 15,
+          "type": "ModalType",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "cancelled",
+          "defaultValue": "new EventEmitter<void>()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 25,
+          "type": "EventEmitter"
+        },
+        {
+          "name": "closed",
+          "defaultValue": "new EventEmitter<void>()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 26,
+          "type": "EventEmitter"
+        },
+        {
+          "name": "confirmed",
+          "defaultValue": "new EventEmitter<void>()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 24,
+          "type": "EventEmitter"
+        }
+      ],
+      "propertiesClass": [],
+      "methodsClass": [
+        {
+          "name": "cancel",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 38,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "close",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 28,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "confirm",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 33,
+          "deprecated": false,
+          "deprecationMessage": ""
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "NgClass"
+        },
+        {
+          "name": "NgIf"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { NgClass, NgIf } from '@angular/common';\r\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\r\n\r\ntype ModalType = 'confirmation' | 'informative' | 'content';\r\n\r\n@Component({\r\n  selector: 'ui-modal',\r\n  standalone: true,\r\n  imports: [NgClass, NgIf],\r\n  templateUrl: './ui-modal.component.html',\r\n  styleUrl: './ui-modal.component.scss',\r\n})\r\nexport class UiModalComponent {\r\n  @Input() open = true;\r\n  @Input() type: ModalType = 'informative';\r\n  @Input() title = 'Título do modal';\r\n  @Input() description = 'Descrição do modal';\r\n  @Input() confirmLabel = 'Confirmar';\r\n  @Input() cancelLabel = 'Cancelar';\r\n  @Input() closeLabel = 'Fechar';\r\n  @Input() showCloseButton = true;\r\n  @Input() size: 'sm' | 'md' | 'lg' = 'md';\r\n\r\n  @Output() confirmed = new EventEmitter<void>();\r\n  @Output() cancelled = new EventEmitter<void>();\r\n  @Output() closed = new EventEmitter<void>();\r\n\r\n  close(): void {\r\n    this.open = false;\r\n    this.closed.emit();\r\n  }\r\n\r\n  confirm(): void {\r\n    this.confirmed.emit();\r\n    this.close();\r\n  }\r\n\r\n  cancel(): void {\r\n    this.cancelled.emit();\r\n    this.close();\r\n  }\r\n}\r\n",
+      "styleUrl": "./ui-modal.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<div *ngIf=\"open\" class=\"modal-backdrop\">\r\n  <section class=\"ui-modal\" [ngClass]=\"'size-' + size\">\r\n    <header>\r\n      <h2>{{ title }}</h2>\r\n\r\n      <button\r\n        *ngIf=\"showCloseButton\"\r\n        type=\"button\"\r\n        class=\"icon-button\"\r\n        (click)=\"close()\"\r\n      >\r\n        ×\r\n      </button>\r\n    </header>\r\n\r\n    <main>\r\n      <p>{{ description }}</p>\r\n\r\n      <ng-content></ng-content>\r\n    </main>\r\n\r\n    <footer *ngIf=\"type !== 'content'\">\r\n      <button\r\n        *ngIf=\"type === 'confirmation'\"\r\n        type=\"button\"\r\n        class=\"secondary-button\"\r\n        (click)=\"cancel()\"\r\n      >\r\n        {{ cancelLabel }}\r\n      </button>\r\n\r\n      <button\r\n        type=\"button\"\r\n        class=\"primary-button\"\r\n        (click)=\"type === 'confirmation' ? confirm() : close()\"\r\n      >\r\n        {{ type === \"confirmation\" ? confirmLabel : closeLabel }}\r\n      </button>\r\n    </footer>\r\n  </section>\r\n</div>\r\n"
+    }
+  ],
+  "modules": [],
+  "miscellaneous": {
+    "variables": [
+      {
+        "name": "appConfig",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/app.config.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "ApplicationConfig",
+        "defaultValue": "{\r\n  providers: [provideZoneChangeDetection({ eventCoalescing: true })]\r\n}"
+      }
+    ],
+    "functions": [],
+    "typealiases": [
+      {
+        "name": "AlertColor",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"success\" | \"warning\" | \"danger\" | \"info\"",
+        "file": "src/app/components/alert/ui-alert.component.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 193
+      },
+      {
+        "name": "LoadingType",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"spinner\" | \"dots\" | \"skeleton-text\" | \"skeleton-card\" | \"skeleton-table\" | \"skeleton-avatar\"",
+        "file": "src/app/components/loading/ui-loading.component.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 193
+      },
+      {
+        "name": "ModalType",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"confirmation\" | \"informative\" | \"content\"",
+        "file": "src/app/components/modal/ui-modal.component.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 193
+      },
+      {
+        "name": "UiColor",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | \"info\" | \"disabled\"",
+        "file": "src/app/design-system/types/ui.types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 193
+      },
+      {
+        "name": "UiHorizontalPosition",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"left\" | \"center\" | \"right\"",
+        "file": "src/app/design-system/types/ui.types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 193
+      },
+      {
+        "name": "UiSize",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"sm\" | \"md\" | \"lg\"",
+        "file": "src/app/design-system/types/ui.types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 193
+      },
+      {
+        "name": "UiToastPosition",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"top-left\" | \"top-center\" | \"top-right\" | \"bottom-left\" | \"bottom-center\" | \"bottom-right\"",
+        "file": "src/app/design-system/types/ui.types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 193
+      }
+    ],
+    "enumerations": [],
+    "groupedVariables": {
+      "src/app/app.config.ts": [
+        {
+          "name": "appConfig",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/app.config.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "ApplicationConfig",
+          "defaultValue": "{\r\n  providers: [provideZoneChangeDetection({ eventCoalescing: true })]\r\n}"
+        }
+      ]
+    },
+    "groupedFunctions": {},
+    "groupedEnumerations": {},
+    "groupedTypeAliases": {
+      "src/app/components/alert/ui-alert.component.ts": [
+        {
+          "name": "AlertColor",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"success\" | \"warning\" | \"danger\" | \"info\"",
+          "file": "src/app/components/alert/ui-alert.component.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 193
+        }
+      ],
+      "src/app/components/loading/ui-loading.component.ts": [
+        {
+          "name": "LoadingType",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"spinner\" | \"dots\" | \"skeleton-text\" | \"skeleton-card\" | \"skeleton-table\" | \"skeleton-avatar\"",
+          "file": "src/app/components/loading/ui-loading.component.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 193
+        }
+      ],
+      "src/app/components/modal/ui-modal.component.ts": [
+        {
+          "name": "ModalType",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"confirmation\" | \"informative\" | \"content\"",
+          "file": "src/app/components/modal/ui-modal.component.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 193
+        }
+      ],
+      "src/app/design-system/types/ui.types.ts": [
+        {
+          "name": "UiColor",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | \"info\" | \"disabled\"",
+          "file": "src/app/design-system/types/ui.types.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 193
+        },
+        {
+          "name": "UiHorizontalPosition",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"left\" | \"center\" | \"right\"",
+          "file": "src/app/design-system/types/ui.types.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 193
+        },
+        {
+          "name": "UiSize",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"sm\" | \"md\" | \"lg\"",
+          "file": "src/app/design-system/types/ui.types.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 193
+        },
+        {
+          "name": "UiToastPosition",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"top-left\" | \"top-center\" | \"top-right\" | \"bottom-left\" | \"bottom-center\" | \"bottom-right\"",
+          "file": "src/app/design-system/types/ui.types.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 193
+        }
+      ]
+    }
+  },
+  "routes": {
+    "name": "<root>",
+    "kind": "module",
+    "children": []
+  },
+  "coverage": {
+    "count": 0,
+    "status": "low",
+    "files": [
+      {
+        "filePath": "src/app/app.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "AppComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/2",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/app.config.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "appConfig",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/accordion/ui-accordion.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "AccordionComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/6",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/accordion/ui-accordion.component.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "AccordionItem",
+        "coveragePercent": 0,
+        "coverageCount": "0/5",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/alert/ui-alert.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "UiAlertComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/9",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/alert/ui-alert.component.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "AlertColor",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/breadcrumb/ui-breadcrumb.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "BreadcrumbComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/4",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/breadcrumb/ui-breadcrumb.component.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "BreadcrumbItem",
+        "coveragePercent": 0,
+        "coverageCount": "0/4",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/button/ui-button.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "UiButtonComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/17",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/card/ui-card.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "UiCardComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/12",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/empty-state/ui-empty-state.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "EmptyStateComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/6",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/loading/ui-loading.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "UiLoadingComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/6",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/loading/ui-loading.component.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "LoadingType",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/modal/ui-modal.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "UiModalComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/16",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/modal/ui-modal.component.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "ModalType",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/tabs/ui-tabs.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "TabsComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/6",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/tabs/ui-tabs.component.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "TabItem",
+        "coveragePercent": 0,
+        "coverageCount": "0/7",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/toast/ui-toast.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "ToastComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/10",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/tooltip/ui-tooltip.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "TooltipComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/4",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/design-system/types/ui.types.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "UiColor",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/design-system/types/ui.types.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "UiHorizontalPosition",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/design-system/types/ui.types.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "UiSize",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/design-system/types/ui.types.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "UiToastPosition",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--ui-font-family-title);
+  font-weight: var(--ui-font-weight-bold);
+  color: var(--ui-color-text);
+  margin-top: 0;
+}
+
+body,
+p,
+span,
+button,
+input,
+textarea,
+select {
+  font-family: var(--ui-font-family-text);
+}
+
+p {
+  line-height: 1.5;
+}

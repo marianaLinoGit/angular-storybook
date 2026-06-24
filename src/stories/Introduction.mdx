@@ -1,31 +1,18 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
 # Model UI Kit
 
-Model UI Kit é um projeto de portfólio criado para demonstrar a construção de um pequeno Design System com Angular moderno, SCSS e Storybook.
+**Model UI Kit** é um projeto de portfólio criado para demonstrar a construção de um pequeno Design System com Angular moderno e Storybook.
 
 O objetivo é documentar, testar visualmente e validar componentes de interface de forma isolada, sem depender de uma aplicação completa.
 
-## Tecnologias e versões
+---
 
-- Angular: `18.2.x`
-- Angular CLI: `18.2.21`
-- TypeScript: `5.5.2`
-- Storybook: `8.6.14`
-- Storybook Angular: `8.6.14`
-- Storybook Addon Docs: `8.6.14`
-- Storybook Addon A11y: `8.6.14`
-- RxJS: `7.8.x`
-- Zone.js: `0.14.x`
-- SCSS
-- Angular Standalone Components
-- Angular Signals
-- Design Tokens com CSS Variables
-- Google Fonts:
-  - Puritan para títulos
-  - Pliant para textos
+## Objetivo do projeto
 
-## Objetivo
-
-Este projeto demonstra:
+Este projeto foi criado para demonstrar:
 
 - Componentização com Angular
 - Uso de Storybook como documentação visual
@@ -33,18 +20,33 @@ Este projeto demonstra:
 - Organização baseada em Design System
 - Uso de tokens visuais para cores, fontes, espaçamentos e sombras
 - Boas práticas com componentes standalone
-- Uso de recursos modernos do Angular, como `input()`, `output()`, `computed()`, `signal()`, `@if` e `@for`
-- Teste visual de estados e variações de componentes
-- Documentação de componentes com Stories e MDX
+- Uso de recursos modernos do Angular, como Signals, `input()`, `output()`, `computed()`, `@if` e `@for`
 
-## Componentes
+---
+
+## Tecnologias utilizadas
+
+- Angular
+- TypeScript
+- SCSS
+- Storybook
+- Angular Standalone Components
+- Angular Signals
+- Design Tokens com CSS Variables
+- Google Fonts
+- Puritan para títulos
+- Pliant para textos
+
+---
+
+## Componentes disponíveis
 
 ### Button
 
 Componente de botão customizável com suporte a:
 
-- Cores
-- Tamanhos
+- Variação de cor
+- Tamanho
 - Ícone opcional
 - Ícone à esquerda ou à direita
 - Estado disabled
@@ -55,17 +57,17 @@ Componente de botão customizável com suporte a:
 
 ### Alert
 
-Componente de alerta com:
+Componente de alerta com suporte a:
 
 - Mensagem dinâmica
 - Ícone opcional
 - Fechamento manual
 - Variações de cor
-- Opção fixa no topo
+- Exibição fixa no topo
 
 ### Card
 
-Componente para exibição de conteúdo com:
+Componente para exibição de conteúdo com suporte a:
 
 - Título
 - Subtítulo
@@ -73,13 +75,14 @@ Componente para exibição de conteúdo com:
 - Imagem opcional
 - Footer opcional
 - Estado clicável
+- Destaque visual
 - Borda
 - Sombra
-- Destaque visual
+- Alinhamento
 
 ### Loading
 
-Componente para estados de carregamento com:
+Componente para estados de carregamento com suporte a:
 
 - Spinner
 - Dots
@@ -91,17 +94,17 @@ Componente para estados de carregamento com:
 
 ### Modal
 
-Componente de modal com:
+Componente de modal com suporte a:
 
 - Modal informativo
 - Modal de confirmação
 - Modal de conteúdo
-- Footer dinâmico
-- Conteúdo customizado via `ng-content`
+- Footer dinâmico conforme o tipo
+- Conteúdo customizado com `ng-content`
 
 ### Empty State
 
-Componente para estados vazios com:
+Componente para estados vazios com suporte a:
 
 - Ícone
 - Título
@@ -110,7 +113,7 @@ Componente para estados vazios com:
 
 ### Accordion
 
-Componente de acordeão com:
+Componente de acordeão com suporte a:
 
 - Múltiplos itens
 - Abertura única ou múltipla
@@ -118,7 +121,7 @@ Componente de acordeão com:
 
 ### Breadcrumb
 
-Componente de navegação hierárquica com:
+Componente de navegação hierárquica com suporte a:
 
 - Separador customizável
 - Itens clicáveis
@@ -126,7 +129,7 @@ Componente de navegação hierárquica com:
 
 ### Tooltip
 
-Componente de tooltip com:
+Componente de tooltip com suporte a:
 
 - Texto simples
 - HTML formatado
@@ -134,17 +137,17 @@ Componente de tooltip com:
 
 ### Tabs
 
-Componente de abas com:
+Componente de abas com suporte a:
 
 - Conteúdo dinâmico
 - Contador
 - Estado checked
 - Estado disabled
-- Suporte para fluxo por etapas
+- Uso como navegação ou fluxo por etapas
 
 ### Toast
 
-Componente de feedback com:
+Componente de feedback com suporte a:
 
 - Título
 - Texto
@@ -154,11 +157,24 @@ Componente de feedback com:
 - Fechamento manual
 - Duração configurável
 
+---
+
 ## Design System
 
 O projeto usa tokens globais para manter consistência visual.
 
-Os tokens ficam em:
+Os tokens incluem:
+
+- Fontes
+- Tamanhos de fonte
+- Pesos de fonte
+- Cores
+- Espaçamentos
+- Bordas
+- Raios de borda
+- Sombras
+
+Esses tokens ficam centralizados em:
 
 ```txt
 src/styles/_tokens.scss

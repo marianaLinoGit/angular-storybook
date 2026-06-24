@@ -1,0 +1,18 @@
+<div [class]="wrapperClasses()">
+  <button
+    [type]="type()"
+    [class]="buttonClasses()"
+    [disabled]="disabled()"
+    (click)="onClick()"
+  >
+    @if (icon() && iconPosition() === "left") {
+      <span class="ui-button__icon">{{ icon() }}</span>
+    }
+
+    <span>{{ label() }}</span>
+
+    @if (icon() && iconPosition() === "right") {
+      <span class="ui-button__icon">{{ icon() }}</span>
+    }
+  </button>
+</div>

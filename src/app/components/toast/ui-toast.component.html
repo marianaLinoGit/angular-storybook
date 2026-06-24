@@ -1,0 +1,14 @@
+<article [class]="classes()">
+  @if (icon()) {
+    <span class="ui-toast__icon">{{ icon() }}</span>
+  }
+
+  <div>
+    <strong>{{ title() }}</strong>
+    <p>{{ text() }}</p>
+  </div>
+
+  @if (closable()) {
+    <button type="button" (click)="closed.emit()">×</button>
+  }
+</article>

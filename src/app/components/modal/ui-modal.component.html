@@ -1,0 +1,41 @@
+<div *ngIf="open" class="modal-backdrop">
+  <section class="ui-modal" [ngClass]="'size-' + size">
+    <header>
+      <h2>{{ title }}</h2>
+
+      <button
+        *ngIf="showCloseButton"
+        type="button"
+        class="icon-button"
+        (click)="close()"
+      >
+        ×
+      </button>
+    </header>
+
+    <main>
+      <p>{{ description }}</p>
+
+      <ng-content></ng-content>
+    </main>
+
+    <footer *ngIf="type !== 'content'">
+      <button
+        *ngIf="type === 'confirmation'"
+        type="button"
+        class="secondary-button"
+        (click)="cancel()"
+      >
+        {{ cancelLabel }}
+      </button>
+
+      <button
+        type="button"
+        class="primary-button"
+        (click)="type === 'confirmation' ? confirm() : close()"
+      >
+        {{ type === "confirmation" ? confirmLabel : closeLabel }}
+      </button>
+    </footer>
+  </section>
+</div>

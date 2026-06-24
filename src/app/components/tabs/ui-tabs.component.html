@@ -1,0 +1,32 @@
+<div class="ui-tabs">
+  <div class="ui-tabs__header" role="tablist">
+    @for (tab of tabs(); track tab.id) {
+      <button
+        type="button"
+        role="tab"
+        [disabled]="tab.disabled"
+        [class.active]="isActive(tab)"
+        [class.checked]="tab.checked"
+        (click)="selectTab(tab)"
+      >
+        @if (tab.checked) {
+          <span>✓</span>
+        }
+
+        {{ tab.label }}
+
+        @if (tab.count !== undefined) {
+          <small>{{ tab.count }}</small>
+        }
+      </button>
+    }
+  </div>
+
+  <div class="ui-tabs__content">
+    @for (tab of tabs(); track tab.id) {
+      @if (isActive(tab)) {
+        <p>{{ tab.content }}</p>
+      }
+    }
+  </div>
+</div>
