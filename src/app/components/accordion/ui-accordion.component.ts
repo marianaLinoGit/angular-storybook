@@ -9,6 +9,7 @@ export interface AccordionItem {
   id: string;
   title: string;
   content: string;
+  icon?: string;
   disabled?: boolean;
 }
 
@@ -22,6 +23,8 @@ export interface AccordionItem {
 export class AccordionComponent {
   items = input<AccordionItem[]>([]);
   multiple = input(false);
+  showNumbers = input(false);
+  showIcons = input(true);
 
   openedIds = signal<string[]>([]);
 
