@@ -4,178 +4,304 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # Model UI Kit
 
-**Model UI Kit** é um projeto de portfólio criado para demonstrar a construção de um pequeno Design System com Angular moderno e Storybook.
+Design System e biblioteca de componentes desenvolvidos com Angular moderno, Storybook e Design Tokens.
 
-O objetivo é documentar, testar visualmente e validar componentes de interface de forma isolada, sem depender de uma aplicação completa.
-
----
-
-## Objetivo do projeto
-
-Este projeto foi criado para demonstrar:
-
-- Componentização com Angular
-- Uso de Storybook como documentação visual
-- Componentes customizáveis e reutilizáveis
-- Organização baseada em Design System
-- Uso de tokens visuais para cores, fontes, espaçamentos e sombras
-- Boas práticas com componentes standalone
-- Uso de recursos modernos do Angular, como Signals, `input()`, `output()`, `computed()`, `@if` e `@for`
+Este projeto foi criado como portfólio técnico para demonstrar arquitetura front-end, componentização, documentação visual, acessibilidade e escalabilidade de interfaces.
 
 ---
 
-## Tecnologias utilizadas
+## Visão Geral
 
-- Angular
-- TypeScript
-- SCSS
-- Storybook
-- Angular Standalone Components
-- Angular Signals
-- Design Tokens com CSS Variables
-- Google Fonts
-- Puritan para títulos
-- Pliant para textos
+O Model UI Kit foi construído utilizando recursos modernos do Angular e uma abordagem baseada em Design System.
+
+Todos os componentes foram desenvolvidos para serem:
+
+* Reutilizáveis
+* Configuráveis
+* Documentados
+* Escaláveis
+* Independentes de aplicação
+
+O objetivo é permitir que equipes desenvolvam interfaces consistentes utilizando os mesmos padrões visuais e comportamentais.
 
 ---
 
-## Componentes disponíveis
+## Tecnologias
 
-### Button
+### Core
 
-Componente de botão customizável com suporte a:
+* Angular 18
+* TypeScript 5.5
+* SCSS
+* Storybook 8
 
-- Variação de cor
-- Tamanho
-- Ícone opcional
-- Ícone à esquerda ou à direita
-- Estado disabled
-- Versão outline
-- Versão arredondada
-- Largura total
-- Classe CSS customizada
+### Angular Moderno
 
-### Alert
+* Standalone Components
+* Signals
+* input()
+* output()
+* computed()
+* @if
+* @for
 
-Componente de alerta com suporte a:
+### Documentação
 
-- Mensagem dinâmica
-- Ícone opcional
-- Fechamento manual
-- Variações de cor
-- Exibição fixa no topo
+* Storybook Docs
+* MDX
+* Storybook Controls
+* Storybook A11y
 
-### Card
+### Design System
 
-Componente para exibição de conteúdo com suporte a:
+* Design Tokens
+* CSS Variables
+* Atomic Styling
+* Google Fonts
 
-- Título
-- Subtítulo
-- Descrição
-- Imagem opcional
-- Footer opcional
-- Estado clicável
-- Destaque visual
-- Borda
-- Sombra
-- Alinhamento
+---
 
-### Loading
+## Arquitetura
 
-Componente para estados de carregamento com suporte a:
+O projeto foi dividido em três grandes áreas:
 
-- Spinner
-- Dots
-- Skeleton text
-- Skeleton card
-- Skeleton table
-- Skeleton avatar
-- Overlay
+### Introduction
 
-### Modal
+Documentação geral do projeto.
 
-Componente de modal com suporte a:
+### Design Tokens
 
-- Modal informativo
-- Modal de confirmação
-- Modal de conteúdo
-- Footer dinâmico conforme o tipo
-- Conteúdo customizado com `ng-content`
+Fundamentos visuais utilizados pelos componentes.
 
-### Empty State
+Contém:
 
-Componente para estados vazios com suporte a:
+* Border Radius
+* Colors
+* Shadows
+* Spacing
+* Typography
 
-- Ícone
-- Título
-- Texto
-- Botão opcional
+### Guidelines
+
+Regras, convenções e documentação técnica.
+
+Contém:
+
+* Accessibility
+* Component API
+* Roadmap
+* Usage Guidelines
+
+### Components
+
+Biblioteca de componentes reutilizáveis.
+
+---
+
+## Componentes Disponíveis
 
 ### Accordion
 
-Componente de acordeão com suporte a:
+* Abertura única ou múltipla
+* Numeração automática
+* Ícones opcionais
+* Estado desabilitado
+* Separador visual ao expandir
 
-- Múltiplos itens
-- Abertura única ou múltipla
-- Itens desabilitados
+### Alert
+
+* Feedback visual
+* Variantes de status
+* Fechamento opcional
+* Ícone opcional
 
 ### Breadcrumb
 
-Componente de navegação hierárquica com suporte a:
+* Navegação hierárquica
+* Separadores customizados
+* Itens clicáveis
 
-- Separador customizável
-- Itens clicáveis
-- Itens desabilitados
+### Button
 
-### Tooltip
+* Variantes visuais
+* Tamanhos
+* Ícones
+* Full Width
+* Outline
+* Rounded
 
-Componente de tooltip com suporte a:
+### Card
 
-- Texto simples
-- HTML formatado
-- Posição customizável
+* Conteúdo estruturado
+* Destaque visual
+* Imagem opcional
+* Footer opcional
+
+### Empty State
+
+* Ícone
+* Título
+* Descrição
+* CTA opcional
+
+### Loading
+
+* Spinner
+* Dots
+* Skeleton Text
+* Skeleton Avatar
+* Skeleton Card
+* Skeleton Table
+* Overlay
+
+### Modal
+
+* Informativo
+* Confirmação
+* Conteúdo customizado
+* Footer dinâmico
 
 ### Tabs
 
-Componente de abas com suporte a:
-
-- Conteúdo dinâmico
-- Contador
-- Estado checked
-- Estado disabled
-- Uso como navegação ou fluxo por etapas
+* Conteúdo dinâmico
+* Badge numérico
+* Status completed
+* Estado disabled
+* Fluxo por etapas
 
 ### Toast
 
-Componente de feedback com suporte a:
+* Success
+* Warning
+* Error
+* Info
+* Duração configurável
+* Posicionamento
 
-- Título
-- Texto
-- Ícone
-- Cores de status
-- Posição na tela
-- Fechamento manual
-- Duração configurável
+### Tooltip
+
+* Texto simples
+* HTML formatado
+* Posições customizadas
 
 ---
 
-## Design System
+## Design Tokens
 
-O projeto usa tokens globais para manter consistência visual.
+Todos os componentes utilizam tokens globais centralizados.
 
-Os tokens incluem:
-
-- Fontes
-- Tamanhos de fonte
-- Pesos de fonte
-- Cores
-- Espaçamentos
-- Bordas
-- Raios de borda
-- Sombras
-
-Esses tokens ficam centralizados em:
+Localização:
 
 ```txt
 src/styles/_tokens.scss
+```
+
+Tokens disponíveis:
+
+* Colors
+* Typography
+* Font Sizes
+* Font Weights
+* Spacing
+* Border Radius
+* Shadows
+
+Exemplo:
+
+```scss
+--ui-color-primary
+--ui-color-secondary
+
+--ui-font-family-title
+--ui-font-family-text
+
+--ui-space-4
+--ui-space-6
+
+--ui-radius-md
+
+--ui-shadow-md
+```
+
+---
+
+## Estrutura do Projeto
+
+```txt
+src
+│
+├── app
+│   ├── components
+│   │   ├── accordion
+│   │   ├── alert
+│   │   ├── breadcrumb
+│   │   ├── button
+│   │   ├── card
+│   │   ├── empty-state
+│   │   ├── loading
+│   │   ├── modal
+│   │   ├── tabs
+│   │   ├── toast
+│   │   └── tooltip
+│   │
+│   └── design-system
+│       └── types
+│
+├── styles
+│   ├── _reset.scss
+│   ├── _tokens.scss
+│   └── _typography.scss
+│
+└── stories
+    ├── Introduction.mdx
+    │
+    ├── Design Tokens
+    │   ├── Border Radius
+    │   ├── Colors
+    │   ├── Shadows
+    │   ├── Spacing
+    │   └── Typography
+    │
+    └── Guidelines
+        ├── Accessibility
+        ├── Component API
+        ├── Roadmap
+        └── Usage Guidelines
+```
+
+---
+
+## O que este projeto demonstra
+
+Este projeto demonstra conhecimento em:
+
+* Angular moderno
+* Arquitetura Front-End
+* Design Systems
+* Storybook
+* Componentização
+* TypeScript
+* SCSS
+* Acessibilidade
+* Documentação técnica
+* Escalabilidade de interfaces
+
+---
+
+## Próximos Passos
+
+Possíveis evoluções futuras:
+
+* Dark Mode
+* Temas customizados
+* Angular Library
+* Publicação via NPM
+* Testes unitários
+* Testes visuais
+* Integração com Figma
+* Versionamento semântico
+* CI/CD automatizado
+* Tokens exportáveis para múltiplas plataformas
+
+```
 ```

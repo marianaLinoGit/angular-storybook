@@ -1,0 +1,121 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Guidelines/Component API" />
+
+# Component API
+
+Padrões utilizados na construção dos componentes.
+
+---
+
+## Estrutura
+
+```txt
+component/
+├─ component.ts
+├─ component.html
+├─ component.scss
+└─ component.stories.ts
+```
+
+---
+
+## Inputs
+
+Utilizar Angular Input Signals.
+
+```ts
+title = input('');
+disabled = input(false);
+```
+
+---
+
+## Outputs
+
+Utilizar Output API moderna.
+
+```ts
+saved = output<void>();
+```
+
+---
+
+## Estado Interno
+
+Utilizar Signals.
+
+```ts
+isOpen = signal(false);
+```
+
+---
+
+## Computed
+
+Utilizar `computed` para estados derivados.
+
+```ts
+buttonClasses = computed(() => [
+  'ui-button',
+  this.disabled() ? 'ui-button--disabled' : '',
+].filter(Boolean).join(' '));
+```
+
+---
+
+## Templates
+
+Utilizar:
+
+```html
+@if (condition()) {
+  <span>Content</span>
+}
+```
+
+```html
+@for (item of items(); track item.id) {
+  <span>{{ item.title }}</span>
+}
+```
+
+Evitar:
+
+```html
+*ngIf
+```
+
+```html
+*ngFor
+```
+
+---
+
+## Estilos
+
+Utilizar tokens globais:
+
+```scss
+color: var(--ui-color-primary);
+padding: var(--ui-space-4);
+border-radius: var(--ui-radius-md);
+```
+
+Nunca utilizar valores hardcoded quando existir token correspondente.
+
+---
+
+## Stories
+
+Cada componente deve possuir:
+
+- Default
+- Disabled
+- Estados especiais
+- Casos de uso reais
+- Variações visuais importantes
+
+Objetivo:
+
+Documentar visualmente todas as possibilidades do componente.

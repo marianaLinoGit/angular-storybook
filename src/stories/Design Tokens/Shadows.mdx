@@ -1,0 +1,50 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Design Tokens/Shadows" />
+
+# Shadows
+
+<div style={{ display: "grid", gap: "var(--ui-space-8)" }}>
+  <div style={{ display: "flex", gap: "var(--ui-space-8)", flexWrap: "wrap" }}>
+    <div>
+      <div style={{ width: "180px", height: "120px", background: "var(--ui-color-surface)", borderRadius: "var(--ui-radius-lg)", boxShadow: "var(--ui-shadow-sm)" }} />
+      <strong style={{ display: "block", marginTop: "var(--ui-space-3)" }}>{"Shadow SM"}</strong>
+      <code>{"var(--ui-shadow-sm)"}</code>
+    </div>
+
+    <div>
+      <div style={{ width: "180px", height: "120px", background: "var(--ui-color-surface)", borderRadius: "var(--ui-radius-lg)", boxShadow: "var(--ui-shadow-md)" }} />
+      <strong style={{ display: "block", marginTop: "var(--ui-space-3)" }}>{"Shadow MD"}</strong>
+      <code>{"var(--ui-shadow-md)"}</code>
+    </div>
+
+    <div>
+      <div style={{ width: "180px", height: "120px", background: "var(--ui-color-surface)", borderRadius: "var(--ui-radius-lg)", boxShadow: "var(--ui-shadow-lg)" }} />
+      <strong style={{ display: "block", marginTop: "var(--ui-space-3)" }}>{"Shadow LG"}</strong>
+      <code>{"var(--ui-shadow-lg)"}</code>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Variable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Shadow SM</td>
+        <td><code>var(--ui-shadow-sm)</code></td>
+      </tr>
+      <tr>
+        <td>Shadow MD</td>
+        <td><code>var(--ui-shadow-md)</code></td>
+      </tr>
+      <tr>
+        <td>Shadow LG</td>
+        <td><code>var(--ui-shadow-lg)</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

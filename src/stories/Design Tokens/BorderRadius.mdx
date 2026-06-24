@@ -1,0 +1,31 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Design Tokens/Border Radius" />
+
+# Border Radius
+
+<div style={{ display: "flex", gap: "var(--ui-space-6)", flexWrap: "wrap" }}>
+  <div>
+    <div style={{ width: "100px", height: "100px", background: "var(--ui-color-primary)", borderRadius: "var(--ui-radius-sm)" }} />
+    <span style={{ display: "block", marginTop: "var(--ui-space-2)" }}>{"SM — 6px"}</span>
+    <code>{"var(--ui-radius-sm)"}</code>
+  </div>
+
+  <div>
+    <div style={{ width: "100px", height: "100px", background: "var(--ui-color-primary)", borderRadius: "var(--ui-radius-md)" }} />
+    <span style={{ display: "block", marginTop: "var(--ui-space-2)" }}>{"MD — 10px"}</span>
+    <code>{"var(--ui-radius-md)"}</code>
+  </div>
+
+  <div>
+    <div style={{ width: "100px", height: "100px", background: "var(--ui-color-primary)", borderRadius: "var(--ui-radius-lg)" }} />
+    <span style={{ display: "block", marginTop: "var(--ui-space-2)" }}>{"LG — 16px"}</span>
+    <code>{"var(--ui-radius-lg)"}</code>
+  </div>
+
+  <div>
+    <div style={{ width: "100px", height: "100px", background: "var(--ui-color-primary)", borderRadius: "var(--ui-radius-pill)" }} />
+    <span style={{ display: "block", marginTop: "var(--ui-space-2)" }}>{"Pill — 999px"}</span>
+    <code>{"var(--ui-radius-pill)"}</code>
+  </div>
+</div>

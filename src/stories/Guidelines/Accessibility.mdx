@@ -1,0 +1,108 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Guidelines/Accessibility" />
+
+# Accessibility
+
+O Model UI Kit segue princípios básicos de acessibilidade para garantir melhor experiência para todos os usuários.
+
+---
+
+## Objetivos
+
+- Navegação por teclado
+- Contraste adequado
+- Estados visuais claros
+- Compatibilidade com leitores de tela
+- Semântica HTML adequada
+
+---
+
+## Keyboard Navigation
+
+<table>
+  <thead>
+    <tr>
+      <th>Tecla</th>
+      <th>Comportamento esperado</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>Tab</td>
+      <td>Navega entre elementos focáveis</td>
+    </tr>
+    <tr>
+      <td>Shift + Tab</td>
+      <td>Navegação reversa</td>
+    </tr>
+    <tr>
+      <td>Enter</td>
+      <td>Executa ação principal</td>
+    </tr>
+    <tr>
+      <td>Space</td>
+      <td>Ativa botões e controles</td>
+    </tr>
+    <tr>
+      <td>Esc</td>
+      <td>Fecha elementos temporários, como modal, tooltip ou toast quando aplicável</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Focus Visible
+
+Todos os componentes interativos devem possuir estado de foco visível.
+
+```scss
+:focus-visible {
+  outline: 2px solid var(--ui-color-primary);
+  outline-offset: 2px;
+}
+```
+
+---
+
+## Contraste
+
+As cores devem manter boa legibilidade entre:
+
+- Texto e fundo
+- Estados de erro
+- Estados de sucesso
+- Estados desabilitados
+- Elementos focados
+
+---
+
+## ARIA
+
+Exemplos de uso:
+
+```html
+<button aria-label="Salvar">
+  Salvar
+</button>
+```
+
+```html
+<div role="alert">
+  Operação concluída com sucesso
+</div>
+```
+
+---
+
+## Screen Readers
+
+Boas práticas adotadas:
+
+- Uso de HTML semântico
+- Labels descritivas
+- Hierarquia correta de títulos
+- Feedbacks acessíveis
+- Botões com texto claro

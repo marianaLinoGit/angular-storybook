@@ -1,0 +1,106 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Guidelines/Usage Guidelines" />
+
+# Usage Guidelines
+
+Boas práticas para utilização dos componentes do Model UI Kit.
+
+---
+
+## Consistência
+
+Sempre utilize componentes do Design System antes de criar novos elementos.
+
+✅ Correto
+
+- Utilizar Button
+- Utilizar Card
+- Utilizar Modal
+- Utilizar Alert
+
+❌ Evitar
+
+- Botões criados localmente
+- Cores hardcoded
+- Espaçamentos arbitrários
+- Componentes duplicados
+
+---
+
+## Tokens
+
+Sempre utilizar os tokens globais.
+
+✅
+
+```scss
+padding: var(--ui-space-4);
+color: var(--ui-color-primary);
+border-radius: var(--ui-radius-md);
+```
+
+❌
+
+```scss
+padding: 17px;
+color: purple;
+border-radius: 11px;
+```
+
+---
+
+## Tipografia
+
+Utilizar:
+
+- Puritan para títulos
+- Pliant para conteúdo textual
+
+---
+
+## Espaçamentos
+
+Utilizar apenas os tokens disponíveis:
+
+- `var(--ui-space-1)`
+- `var(--ui-space-2)`
+- `var(--ui-space-3)`
+- `var(--ui-space-4)`
+- `var(--ui-space-5)`
+- `var(--ui-space-6)`
+- `var(--ui-space-8)`
+
+---
+
+## Componentes
+
+Os componentes devem:
+
+- Ser reutilizáveis
+- Ser configuráveis
+- Não conter regras de negócio
+- Não depender de contexto externo
+- Expor inputs e outputs claros
+- Possuir stories com variações visuais relevantes
+
+---
+
+## Angular
+
+Padrões adotados:
+
+- Standalone Components
+- Signals
+- `input()`
+- `output()`
+- `computed()`
+- `@if`
+- `@for`
+
+Evitar:
+
+- `*ngIf`
+- `*ngFor`
+- `ViewChild` sem necessidade
+- `ChangeDetectorRef` manual
