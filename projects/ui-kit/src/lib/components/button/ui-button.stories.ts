@@ -175,3 +175,34 @@ export const Loading: Story = {
     color: 'primary',
   },
 };
+
+export const AllColors: Story = {
+  render: () => ({
+    template: `
+      <div style="display: grid; gap: 16px; max-width: 320px;">
+        <ui-button label="Primary" color="primary"></ui-button>
+        <ui-button label="Secondary" color="secondary"></ui-button>
+        <ui-button label="Success" color="success"></ui-button>
+        <ui-button label="Warning" color="warning"></ui-button>
+        <ui-button label="Danger" color="danger"></ui-button>
+        <ui-button label="Info" color="info"></ui-button>
+        <ui-button label="Disabled" color="disabled" [disabled]="true"></ui-button>
+      </div>
+    `,
+  }),
+};
+
+export const AllColorsOutline: Story = {
+  render: () => ({
+    template: `
+      <div style="display: grid; gap: 16px; max-width: 320px;">
+        <ui-button label="Primary" color="primary" [outline]="true"></ui-button>
+        <ui-button label="Secondary" color="secondary" [outline]="true"></ui-button>
+        <ui-button label="Success" color="success" [outline]="true"></ui-button>
+        <ui-button label="Warning" color="warning" [outline]="true"></ui-button>
+        <ui-button label="Danger" color="danger" [outline]="true"></ui-button>
+        <ui-button label="Info" color="info" [outline]="true"></ui-button>
+      </div>
+    `,
+  }),
+};

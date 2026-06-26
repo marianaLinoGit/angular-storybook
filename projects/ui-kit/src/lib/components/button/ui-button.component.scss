@@ -28,7 +28,8 @@
     color 0.2s ease,
     transform 0.2s ease,
     box-shadow 0.2s ease,
-    opacity 0.2s ease;
+    opacity 0.2s ease,
+    border-color 0.2s ease;
 
   &:hover:not(:disabled) {
     filter: brightness(0.95);
@@ -38,6 +39,7 @@
   &:focus-visible {
     outline: 2px solid var(--ui-color-primary);
     outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--ui-color-focus);
   }
 
   &--sm {
@@ -65,38 +67,38 @@
 
   &--primary {
     background: var(--ui-color-primary);
-    color: #fff;
+    color: var(--ui-color-on-primary);
   }
 
   &--secondary {
     background: var(--ui-color-secondary);
-    color: #fff;
+    color: var(--ui-color-on-secondary);
   }
 
   &--success {
     background: var(--ui-color-success);
-    color: #fff;
+    color: var(--ui-color-on-success);
   }
 
   &--warning {
     background: var(--ui-color-warning);
-    color: #111827;
+    color: var(--ui-color-on-warning);
   }
 
   &--danger {
     background: var(--ui-color-danger);
-    color: #fff;
+    color: var(--ui-color-on-danger);
   }
 
   &--info {
     background: var(--ui-color-info);
-    color: #fff;
+    color: var(--ui-color-on-info);
   }
 
   &--disabled,
   &:disabled {
     background: var(--ui-color-disabled);
-    color: #fff;
+    color: var(--ui-color-on-disabled);
     cursor: not-allowed;
     opacity: 0.7;
   }
@@ -109,6 +111,30 @@
   &--outline {
     background: transparent;
     border: 1px solid currentColor;
+  }
+
+  &--outline.ui-button--primary {
+    color: var(--ui-color-primary);
+  }
+
+  &--outline.ui-button--secondary {
+    color: var(--ui-color-secondary);
+  }
+
+  &--outline.ui-button--success {
+    color: var(--ui-color-success);
+  }
+
+  &--outline.ui-button--warning {
+    color: var(--ui-color-warning);
+  }
+
+  &--outline.ui-button--danger {
+    color: var(--ui-color-danger);
+  }
+
+  &--outline.ui-button--info {
+    color: var(--ui-color-info);
   }
 }
 

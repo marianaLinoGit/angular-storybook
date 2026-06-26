@@ -41,7 +41,94 @@
   --ui-color-muted: #6b7280;
   --ui-color-disabled: #9ca3af;
 
+  --ui-color-link: var(--ui-color-primary);
+
+  --ui-color-panel: #ffffff;
+  --ui-color-panel-inverse: #111827;
+
+  --ui-color-input-background: var(--ui-color-surface);
+  --ui-color-input-border: var(--ui-color-border);
+
+  --ui-color-card: var(--ui-color-surface);
+  --ui-color-overlay: rgba(0, 0, 0, 0.25);
+
+  --ui-color-focus: color-mix(
+    in srgb,
+    var(--ui-color-primary),
+    transparent 80%
+  );
+
+  --ui-color-on-primary: #ffffff;
+  --ui-color-on-secondary: #ffffff;
+  --ui-color-on-success: #ffffff;
+  --ui-color-on-warning: #111827;
+  --ui-color-on-danger: #ffffff;
+  --ui-color-on-info: #ffffff;
+  --ui-color-on-disabled: #ffffff;
+
+  --ui-auth-panel-background: #ffffff;
+  --ui-auth-hero-background: #f3edff;
+
   --ui-shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.08);
   --ui-shadow-md: 0 12px 32px rgba(15, 23, 42, 0.12);
   --ui-shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.24);
+}
+
+:root[data-theme="dark"] {
+  --ui-color-primary: #d8b4fe;
+  --ui-color-secondary: #86efac;
+  --ui-color-success: #4ade80;
+  --ui-color-warning: #facc15;
+  --ui-color-danger: #f87171;
+  --ui-color-info: #93c5fd;
+
+  --ui-color-background: #101320;
+  --ui-color-surface: #171b2a;
+  --ui-color-border: #2d3348;
+  --ui-color-text: #f9fafb;
+  --ui-color-muted: #a5adbd;
+  --ui-color-disabled: #6b7280;
+
+  --ui-color-link: var(--ui-color-primary);
+
+  --ui-color-panel: #000000;
+  --ui-color-panel-inverse: #ffffff;
+
+  --ui-color-input-background: var(--ui-color-surface);
+  --ui-color-input-border: var(--ui-color-border);
+
+  --ui-color-card: var(--ui-color-surface);
+  --ui-color-overlay: rgba(0, 0, 0, 0.45);
+
+  --ui-color-focus: color-mix(
+    in srgb,
+    var(--ui-color-primary),
+    transparent 72%
+  );
+
+  --ui-color-on-primary: #111827;
+  --ui-color-on-secondary: #111827;
+  --ui-color-on-success: #111827;
+  --ui-color-on-warning: #111827;
+  --ui-color-on-danger: #111827;
+  --ui-color-on-info: #111827;
+  --ui-color-on-disabled: #ffffff;
+
+  --ui-auth-panel-background: #000000;
+  --ui-auth-hero-background: #101320;
+
+  --ui-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.24);
+  --ui-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.32);
+  --ui-shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.42);
+}
+
+html,
+body,
+.sb-show-main,
+#storybook-root,
+.docs-story,
+.docs-story > div {
+  min-height: 100%;
+  background-color: var(--ui-color-background) !important;
+  color: var(--ui-color-text);
 }
