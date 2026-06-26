@@ -25,7 +25,7 @@ export class UiAlertComponent {
   color = input<AlertColor>('info');
   variant = input<AlertVariant>('soft');
   size = input<AlertSize>('md');
-  icon = input<string | null>(null);
+  showIcon = input(true);
   closable = input(true);
   fixed = input(false);
   position = input<AlertPosition>('top');
@@ -34,6 +34,23 @@ export class UiAlertComponent {
   closed = output<void>();
 
   isVisible = signal(true);
+
+  defaultIcon = computed(() => {
+    switch (this.color()) {
+      case 'success':
+        return '✓';
+
+      case 'warning':
+        return '⚠';
+
+      case 'danger':
+        return '✕';
+
+      case 'info':
+      default:
+        return 'i';
+    }
+  });
 
   alertClasses = computed(() =>
     [

@@ -1,8 +1,8 @@
 @if (isVisible()) {
   <section [class]="alertClasses()" role="alert" aria-live="polite">
-    @if (icon()) {
+    @if (showIcon()) {
       <span class="ui-alert__icon" aria-hidden="true">
-        {{ icon() }}
+        {{ defaultIcon() }}
       </span>
     }
 
