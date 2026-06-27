@@ -1,0 +1,99 @@
+.ui-checkbox-field {
+  display: grid;
+  gap: var(--ui-space-1);
+}
+
+.ui-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ui-space-2);
+  cursor: pointer;
+  color: var(--ui-color-text);
+  font-family: var(--ui-font-family-text);
+  font-size: var(--ui-font-size-sm);
+  line-height: 1.5;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__box {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    border: 1px solid var(--ui-color-input-border);
+    border-radius: var(--ui-radius-sm);
+    background: var(--ui-color-input-background);
+    color: var(--ui-color-on-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: var(--ui-font-size-xs);
+    font-weight: var(--ui-font-weight-bold);
+    transition: 0.2s ease;
+  }
+
+  &__text {
+    a {
+      color: var(--ui-color-link);
+      font-weight: var(--ui-font-weight-semibold);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ui-color-primary);
+        outline-offset: 2px;
+        border-radius: var(--ui-radius-sm);
+      }
+    }
+  }
+
+  input:checked + &__box {
+    border-color: var(--ui-color-primary);
+    background: var(--ui-color-primary);
+  }
+
+  input:focus-visible + &__box {
+    outline: 2px solid var(--ui-color-focus);
+    outline-offset: 2px;
+  }
+
+  &:hover:not(.ui-checkbox--disabled) {
+    .ui-checkbox__box {
+      border-color: var(--ui-color-input-border-hover);
+    }
+  }
+
+  &--error {
+    .ui-checkbox__box {
+      border-color: var(--ui-color-danger);
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    color: var(--ui-color-disabled);
+
+    .ui-checkbox__box {
+      background: var(--ui-color-input-disabled-background);
+    }
+
+    a {
+      pointer-events: none;
+      color: var(--ui-color-disabled);
+    }
+  }
+}
+
+.ui-checkbox-field__error {
+  margin: var(--ui-space-1) 0 0;
+  color: var(--ui-color-danger);
+  font-size: var(--ui-font-size-xs);
+  line-height: 1.4;
+}

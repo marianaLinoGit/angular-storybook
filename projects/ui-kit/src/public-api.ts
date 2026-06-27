@@ -3,6 +3,7 @@ export * from './lib/components/alert/ui-alert.component';
 export * from './lib/components/breadcrumb/ui-breadcrumb.component';
 export * from './lib/components/button/ui-button.component';
 export * from './lib/components/card/ui-card.component';
+export * from './lib/components/checkbox/ui-checkbox.component';
 export * from './lib/components/empty-state/ui-empty-state.component';
 export * from './lib/components/input/ui-input.component';
 export * from './lib/components/label/ui-label.component';

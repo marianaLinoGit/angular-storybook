@@ -1,0 +1,44 @@
+<div class="ui-checkbox-field">
+  <label [class]="classes()" [attr.for]="id()">
+    <input
+      [id]="id()"
+      [name]="name()"
+      type="checkbox"
+      [checked]="checked()"
+      [required]="hasRequired()"
+      [disabled]="disabled() || disabledState()"
+      [attr.aria-invalid]="hasError()"
+      [attr.aria-describedby]="hasError() ? id() + '-error' : null"
+      (change)="toggle()"
+      (blur)="handleBlur()"
+    />
+
+    <span class="ui-checkbox__box" aria-hidden="true">
+      @if (checked()) {
+        <span>✓</span>
+      }
+    </span>
+
+    <span class="ui-checkbox__text">
+      {{ label() }}
+
+      @if (linkLabel() && linkUrl()) {
+        <a
+          [href]="linkUrl()"
+          [target]="linkTarget()"
+          rel="noopener noreferrer"
+          (click)="handleLinkClick($event)"
+          (mousedown)="handleLinkClick($event)"
+        >
+          {{ linkLabel() }}
+        </a>
+      }
+    </span>
+  </label>
+
+  @if (hasError()) {
+    <p class="ui-checkbox-field__error" [id]="id() + '-error'">
+      {{ errorMessage() }}
+    </p>
+  }
+</div>
