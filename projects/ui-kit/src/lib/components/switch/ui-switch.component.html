@@ -1,0 +1,49 @@
+<label [class]="classes()">
+  @if (!showSideLabels() && label()) {
+    <span class="ui-switch__label">
+      {{ label() }}
+    </span>
+  }
+
+  @if (showSideLabels() && uncheckedLabel()) {
+    <span
+      class="ui-switch__side-label"
+      [class.ui-switch__side-label--active]="!checked()"
+    >
+      {{ uncheckedLabel() }}
+    </span>
+  }
+
+  <span class="ui-switch__control">
+    <input
+      [id]="id()"
+      [name]="name()"
+      type="checkbox"
+      role="switch"
+      [checked]="checked()"
+      [disabled]="disabled() || disabledState()"
+      [attr.aria-checked]="checked()"
+      (change)="toggle()"
+      (blur)="handleBlur()"
+    />
+
+    <span class="ui-switch__track">
+      <span class="ui-switch__thumb"></span>
+    </span>
+  </span>
+
+  @if (showSideLabels() && checkedLabel()) {
+    <span
+      class="ui-switch__side-label"
+      [class.ui-switch__side-label--active]="checked()"
+    >
+      {{ checkedLabel() }}
+    </span>
+  }
+
+  @if (!showSideLabels()) {
+    <span class="ui-switch__status">
+      {{ statusLabel() }}
+    </span>
+  }
+</label>

@@ -10,6 +10,7 @@ export * from './lib/components/label/ui-label.component';
 export * from './lib/components/loading/ui-loading.component';
 export * from './lib/components/modal/ui-modal.component';
 export * from './lib/components/select/ui-select.component';
+export * from './lib/components/switch/ui-switch.component';
 export * from './lib/components/tabs/ui-tabs.component';
 export * from './lib/components/toast/ui-toast.component';
 export * from './lib/components/tooltip/ui-tooltip.component';
