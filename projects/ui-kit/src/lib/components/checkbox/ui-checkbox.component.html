@@ -1,5 +1,5 @@
 <div class="ui-checkbox-field">
-  <label [class]="classes()" [attr.for]="id()">
+  <label [class]="classes()">
     <input
       [id]="id()"
       [name]="name()"
@@ -9,7 +9,7 @@
       [disabled]="disabled() || disabledState()"
       [attr.aria-invalid]="hasError()"
       [attr.aria-describedby]="hasError() ? id() + '-error' : null"
-      (change)="toggle()"
+      (change)="handleChange($event)"
       (blur)="handleBlur()"
     />
 

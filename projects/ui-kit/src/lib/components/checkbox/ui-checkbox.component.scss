@@ -4,6 +4,7 @@
 }
 
 .ui-checkbox {
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: var(--ui-space-2);
@@ -15,8 +16,11 @@
 
   input {
     position: absolute;
+    width: 18px;
+    height: 18px;
+    margin: 2px 0 0;
     opacity: 0;
-    pointer-events: none;
+    cursor: pointer;
   }
 
   &__box {
@@ -44,12 +48,6 @@
 
       &:hover {
         text-decoration: underline;
-      }
-
-      &:focus-visible {
-        outline: 2px solid var(--ui-color-primary);
-        outline-offset: 2px;
-        border-radius: var(--ui-radius-sm);
       }
     }
   }
@@ -79,6 +77,10 @@
   &--disabled {
     cursor: not-allowed;
     color: var(--ui-color-disabled);
+
+    input {
+      cursor: not-allowed;
+    }
 
     .ui-checkbox__box {
       background: var(--ui-color-input-disabled-background);

@@ -78,16 +78,12 @@ export class UiCheckboxComponent implements ControlValueAccessor {
   onChange: (value: boolean) => void = () => {};
   onTouched: () => void = () => {};
 
-  toggle(): void {
-    if (this.disabled() || this.disabledState()) {
-      return;
-    }
+  handleChange(event: Event): void {
+    const checked = (event.target as HTMLInputElement).checked;
 
-    const next = !this.checked();
-
-    this.checked.set(next);
-    this.onChange(next);
-    this.checkedChange.emit(next);
+    this.checked.set(checked);
+    this.onChange(checked);
+    this.checkedChange.emit(checked);
   }
 
   handleLinkClick(event: Event): void {
