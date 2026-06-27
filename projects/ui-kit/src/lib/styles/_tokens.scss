@@ -53,7 +53,10 @@
   --ui-color-panel-inverse: #111827;
 
   --ui-color-input-background: var(--ui-color-surface);
-  --ui-color-input-border: var(--ui-color-border);
+  --ui-color-input-border: #cbd5e1;
+  --ui-color-input-border-hover: #94a3b8;
+  --ui-color-input-placeholder: #64748b;
+  --ui-color-input-disabled-background: #f1f5f9;
 
   --ui-color-card: var(--ui-color-surface);
   --ui-color-overlay: rgba(0, 0, 0, 0.25);
@@ -101,7 +104,10 @@
   --ui-color-panel-inverse: #ffffff;
 
   --ui-color-input-background: var(--ui-color-surface);
-  --ui-color-input-border: var(--ui-color-border);
+  --ui-color-input-border: #64748b;
+  --ui-color-input-border-hover: #cbd5e1;
+  --ui-color-input-placeholder: #cbd5e1;
+  --ui-color-input-disabled-background: #1f2937;
 
   --ui-color-card: var(--ui-color-surface);
   --ui-color-overlay: rgba(0, 0, 0, 0.45);

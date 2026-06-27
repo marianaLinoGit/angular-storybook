@@ -1,0 +1,20 @@
+.ui-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+  margin-bottom: var(--ui-space-2);
+  color: var(--ui-color-text);
+  font-family: var(--ui-font-family-text);
+  font-size: var(--ui-font-size-sm);
+  font-weight: var(--ui-font-weight-semibold);
+
+  strong {
+    color: var(--ui-color-danger);
+  }
+
+  small {
+    color: var(--ui-color-muted);
+    font-size: var(--ui-font-size-xs);
+    font-weight: var(--ui-font-weight-regular);
+  }
+}

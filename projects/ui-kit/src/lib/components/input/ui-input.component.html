@@ -1,0 +1,32 @@
+<div class="ui-input-field">
+  <ui-label
+    [label]="label()"
+    [forId]="id()"
+    [required]="hasRequired()"
+    [showOptionalText]="showOptionalText()"
+  ></ui-label>
+
+  <input
+    [id]="id()"
+    [name]="name()"
+    [type]="type()"
+    [class]="classes()"
+    [value]="value()"
+    [placeholder]="placeholder()"
+    [autocomplete]="autocomplete()"
+    [attr.inputmode]="inputMode()"
+    [required]="hasRequired()"
+    [readonly]="readonly()"
+    [disabled]="disabled() || disabledState()"
+    [attr.aria-invalid]="hasError()"
+    [attr.aria-describedby]="hasError() ? id() + '-error' : null"
+    (input)="handleInput($event)"
+    (blur)="handleBlur()"
+  />
+
+  @if (hasError()) {
+    <p class="ui-input-field__error" [id]="id() + '-error'">
+      {{ errorMessage() }}
+    </p>
+  }
+</div>

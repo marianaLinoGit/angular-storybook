@@ -1,0 +1,11 @@
+@if (label()) {
+  <label [class]="classes()" [attr.for]="forId()">
+    <span>{{ label() }}</span>
+
+    @if (required()) {
+      <strong aria-hidden="true">*</strong>
+    } @else if (showOptionalText()) {
+      <small>{{ optionalText() }}</small>
+    }
+  </label>
+}
