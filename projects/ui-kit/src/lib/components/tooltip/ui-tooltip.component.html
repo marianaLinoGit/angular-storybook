@@ -4,6 +4,7 @@
   @if (!disabled()) {
     <span
       role="tooltip"
+      [id]="tooltipId"
       [class]="tooltipClasses()"
       [style.max-width]="maxWidth()"
       [style.transition-delay]="delay()"

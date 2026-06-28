@@ -25,9 +25,12 @@ export class UiCheckboxComponent implements ControlValueAccessor {
   id = input(`ui-checkbox-${crypto.randomUUID()}`);
   name = input<string | null>(null);
   label = input('');
+  ariaLabel = input<string | null>(null);
+
   linkLabel = input<string | null>(null);
   linkUrl = input<string | null>(null);
   linkTarget = input<'_self' | '_blank'>('_blank');
+
   required = input(false);
   disabled = input(false);
   showError = input(false);
@@ -45,11 +48,19 @@ export class UiCheckboxComponent implements ControlValueAccessor {
     }
   }
 
+  isDisabled = computed(() => this.disabled() || this.disabledState());
+
+  errorId = computed(() => `${this.id()}-error`);
+
+  linkRel = computed(() =>
+    this.linkTarget() === '_blank' ? 'noopener noreferrer' : null,
+  );
+
   classes = computed(() =>
     [
       'ui-checkbox',
       this.hasError() ? 'ui-checkbox--error' : '',
-      this.disabled() || this.disabledState() ? 'ui-checkbox--disabled' : '',
+      this.isDisabled() ? 'ui-checkbox--disabled' : '',
       this.customClass(),
     ]
       .filter(Boolean)
@@ -79,6 +90,10 @@ export class UiCheckboxComponent implements ControlValueAccessor {
   onTouched: () => void = () => {};
 
   handleChange(event: Event): void {
+    if (this.isDisabled()) {
+      return;
+    }
+
     const checked = (event.target as HTMLInputElement).checked;
 
     this.checked.set(checked);

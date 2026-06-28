@@ -8,35 +8,47 @@ const meta: Meta<UiAccordionComponent> = {
   argTypes: {
     items: {
       control: 'object',
+      description:
+        'Lista de itens do accordion. Cada item deve conter id, title, content e opcionalmente icon e disabled.',
     },
     multiple: {
       control: 'boolean',
+      description: 'Permite manter vários itens abertos simultaneamente.',
     },
     showNumbers: {
       control: 'boolean',
+      description: 'Exibe numeração sequencial antes do título de cada item.',
     },
     showIcons: {
       control: 'boolean',
+      description: 'Exibe os ícones configurados em cada item.',
     },
     initialOpenedIds: {
       control: 'object',
+      description: 'Lista de IDs dos itens que devem iniciar abertos.',
     },
     size: {
       control: 'radio',
       options: ['sm', 'md', 'lg'],
+      description:
+        'Define o tamanho visual do accordion, alterando espaçamentos e proporção dos itens.',
     },
     variant: {
       control: 'radio',
       options: ['default', 'bordered', 'flush'],
+      description:
+        'Define a variação visual: padrão, com borda ou sem espaçamento entre os itens.',
     },
     customClass: {
       control: 'text',
+      description: 'Classe CSS customizada.',
     },
     itemToggle: {
       action: 'itemToggle',
       table: {
         category: 'Events',
       },
+      description: 'Evento disparado quando um item é aberto ou fechado.',
     },
   },
 };

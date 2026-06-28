@@ -34,16 +34,22 @@ export class UiInputComponent implements ControlValueAccessor {
   });
 
   label = input('');
+  ariaLabel = input<string | null>(null);
+
   id = input(`ui-input-${crypto.randomUUID()}`);
   name = input<string | null>(null);
   type = input<UiInputType>('text');
   placeholder = input('');
   autocomplete = input<string | null>(null);
   inputMode = input<string | null>(null);
+
   required = input(false);
   readonly = input(false);
   disabled = input(false);
+
+  optionalText = input('Opcional');
   showOptionalText = input(true);
+
   errorMessage = input('*Campo obrigatório');
   showError = input(false);
   customClass = input('');
@@ -59,11 +65,23 @@ export class UiInputComponent implements ControlValueAccessor {
     }
   }
 
+  isDisabled = computed(() => this.disabled() || this.disabledState());
+
+  errorId = computed(() => `${this.id()}-error`);
+
+  inputAriaLabel = computed(() => {
+    if (this.label()) {
+      return null;
+    }
+
+    return this.ariaLabel();
+  });
+
   classes = computed(() =>
     [
       'ui-input',
       this.hasError() ? 'ui-input--error' : '',
-      this.disabled() || this.disabledState() ? 'ui-input--disabled' : '',
+      this.isDisabled() ? 'ui-input--disabled' : '',
       this.customClass(),
     ]
       .filter(Boolean)
@@ -83,7 +101,7 @@ export class UiInputComponent implements ControlValueAccessor {
 
     return Boolean(
       this.showError() ||
-      (control?.hasError('required') && (control.touched || control.dirty)),
+      (control?.invalid && (control.touched || control.dirty)),
     );
   }
 
@@ -91,6 +109,10 @@ export class UiInputComponent implements ControlValueAccessor {
   onTouched: () => void = () => {};
 
   handleInput(event: Event): void {
+    if (this.isDisabled()) {
+      return;
+    }
+
     const value = (event.target as HTMLInputElement).value;
 
     this.value.set(value);

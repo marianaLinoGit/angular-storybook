@@ -12,6 +12,7 @@ export interface TabItem {
   label: string;
   content: string;
   count?: number;
+  countLabel?: string;
   checked?: boolean;
   disabled?: boolean;
 }
@@ -26,6 +27,7 @@ export interface TabItem {
 export class UiTabsComponent {
   tabs = input<TabItem[]>([]);
   initialActiveId = input<string | null>(null);
+  ariaLabel = input('Abas');
 
   private selectedId = signal<string | null>(null);
 
@@ -55,6 +57,14 @@ export class UiTabsComponent {
 
   isActive(tab: TabItem): boolean {
     return this.activeTab()?.id === tab.id;
+  }
+
+  countAriaLabel(tab: TabItem): string | null {
+    if (tab.count === undefined) {
+      return null;
+    }
+
+    return tab.countLabel || `${tab.count} itens`;
   }
 
   getTabId(tab: TabItem): string {

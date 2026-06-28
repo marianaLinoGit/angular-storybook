@@ -16,22 +16,34 @@ const meta: Meta<UiTooltipComponent> = {
   argTypes: {
     text: {
       control: 'text',
+      description:
+        'Texto exibido no tooltip. Também deve ser usado como conteúdo acessível quando não houver HTML.',
     },
     html: {
       control: 'text',
+      description:
+        'Conteúdo HTML opcional do tooltip. Use apenas com conteúdo confiável/sanitizado para evitar riscos de segurança.',
     },
     position: {
       control: 'select',
       options: ['top', 'right', 'bottom', 'left'],
+      description: 'Posição visual do tooltip em relação ao elemento alvo.',
     },
     disabled: {
       control: 'boolean',
+      description: 'Desabilita a exibição do tooltip.',
     },
     maxWidth: {
       control: 'text',
+      description: 'Largura máxima do tooltip.',
     },
     delay: {
       control: 'text',
+      description: 'Delay da transição CSS. Exemplo: 0ms, 150ms, 300ms.',
+    },
+    customClass: {
+      control: 'text',
+      description: 'Classe CSS customizada.',
     },
   },
 };
@@ -52,6 +64,7 @@ export const Text: Story = {
           [disabled]="disabled"
           [maxWidth]="maxWidth"
           [delay]="delay"
+          [customClass]="customClass"
         >
           <button style="padding: 10px 16px; border-radius: 8px; border: 1px solid #ddd;">
             Passe o mouse
@@ -67,6 +80,7 @@ export const Text: Story = {
     disabled: false,
     maxWidth: '240px',
     delay: '0ms',
+    customClass: '',
   },
 };
 
@@ -76,11 +90,13 @@ export const WithHtml: Story = {
     template: `
       <div style="padding: 80px; display: flex; justify-content: center;">
         <ui-tooltip
+          [text]="text"
           [html]="html"
           [position]="position"
           [disabled]="disabled"
           [maxWidth]="maxWidth"
           [delay]="delay"
+          [customClass]="customClass"
         >
           <button style="padding: 10px 16px; border-radius: 8px; border: 1px solid #ddd;">
             Tooltip com HTML
@@ -96,6 +112,7 @@ export const WithHtml: Story = {
     disabled: false,
     maxWidth: '260px',
     delay: '0ms',
+    customClass: '',
   },
 };
 
@@ -107,6 +124,7 @@ export const Right: Story = {
     disabled: false,
     maxWidth: '240px',
     delay: '0ms',
+    customClass: '',
   },
   render: Text.render,
 };
@@ -119,6 +137,7 @@ export const Disabled: Story = {
     disabled: true,
     maxWidth: '240px',
     delay: '0ms',
+    customClass: '',
   },
   render: Text.render,
 };

@@ -24,6 +24,7 @@ export type BreadcrumbHomeDisplay = 'icon' | 'text' | 'icon-text';
 export class UiBreadcrumbComponent {
   items = input<BreadcrumbItem[]>([]);
   separator = input('/');
+  ariaLabel = input('Breadcrumb');
   homeDisplay = input<BreadcrumbHomeDisplay>('icon-text');
   showIcons = input(true);
 

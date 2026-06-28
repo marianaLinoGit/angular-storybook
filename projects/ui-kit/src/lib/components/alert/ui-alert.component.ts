@@ -22,6 +22,8 @@ export type AlertPosition = 'top' | 'bottom';
 export class UiAlertComponent {
   title = input<string | null>(null);
   message = input('Mensagem do alerta');
+  closeAriaLabel = input('Fechar alerta');
+
   color = input<AlertColor>('info');
   variant = input<AlertVariant>('soft');
   size = input<AlertSize>('md');
@@ -39,13 +41,10 @@ export class UiAlertComponent {
     switch (this.color()) {
       case 'success':
         return '✓';
-
       case 'warning':
         return '⚠';
-
       case 'danger':
         return '✕';
-
       case 'info':
       default:
         return 'i';

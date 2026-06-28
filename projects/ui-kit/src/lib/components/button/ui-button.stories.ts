@@ -10,9 +10,14 @@ const meta: Meta<UiButtonComponent> = {
       control: 'text',
       description: 'Texto exibido no botão.',
     },
+    loadingLabel: {
+      control: 'text',
+      description: 'Texto exibido quando o botão está carregando.',
+    },
     ariaLabel: {
       control: 'text',
-      description: 'Texto utilizado por leitores de tela.',
+      description:
+        'Texto utilizado por leitores de tela quando o botão não possui texto visível suficiente, como em botões apenas com ícone.',
     },
     icon: {
       control: 'text',
@@ -81,6 +86,8 @@ const meta: Meta<UiButtonComponent> = {
       table: {
         category: 'Events',
       },
+      description:
+        'Evento disparado quando o botão é clicado. Não é emitido quando disabled ou loading estiverem ativos.',
     },
   },
 };
@@ -92,8 +99,9 @@ type Story = StoryObj<UiButtonComponent>;
 export const Default: Story = {
   args: {
     label: 'Salvar',
-    ariaLabel: '',
-    icon: '',
+    loadingLabel: 'Carregando...',
+    ariaLabel: null,
+    icon: null,
     color: 'primary',
     size: 'md',
     position: 'center',
@@ -168,10 +176,21 @@ export const Disabled: Story = {
 export const Loading: Story = {
   args: {
     ...Default.args,
-    label: 'Salvando...',
-    ariaLabel: 'Salvando informações',
+    label: 'Salvar',
+    loadingLabel: 'Salvando...',
+    ariaLabel: null,
     icon: '⏳',
     loading: true,
+    color: 'primary',
+  },
+};
+
+export const IconOnly: Story = {
+  args: {
+    ...Default.args,
+    label: '',
+    ariaLabel: 'Adicionar item',
+    icon: '+',
     color: 'primary',
   },
 };

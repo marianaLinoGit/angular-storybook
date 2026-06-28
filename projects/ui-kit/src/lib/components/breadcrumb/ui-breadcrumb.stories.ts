@@ -6,15 +6,36 @@ const meta: Meta<UiBreadcrumbComponent> = {
   component: UiBreadcrumbComponent,
   tags: ['autodocs'],
   argTypes: {
+    items: {
+      control: 'object',
+      description:
+        'Lista de itens do breadcrumb. Cada item pode conter label, icon, url e disabled.',
+    },
     separator: {
       control: 'text',
+      description: 'Separador exibido entre os itens do breadcrumb.',
+    },
+    ariaLabel: {
+      control: 'text',
+      description:
+        'Texto utilizado por leitores de tela para identificar a navegação estrutural.',
     },
     homeDisplay: {
       control: 'select',
       options: ['icon', 'text', 'icon-text'],
+      description:
+        'Define se o primeiro item do breadcrumb será exibido apenas com ícone, apenas com texto ou com ícone e texto.',
     },
     showIcons: {
       control: 'boolean',
+      description: 'Controla a exibição dos ícones dos itens do breadcrumb.',
+    },
+    itemClick: {
+      action: 'itemClick',
+      table: {
+        category: 'Events',
+      },
+      description: 'Evento disparado quando um item navegável é clicado.',
     },
   },
 };
@@ -25,6 +46,7 @@ type Story = StoryObj<UiBreadcrumbComponent>;
 
 export const Default: Story = {
   args: {
+    ariaLabel: 'Navegação estrutural',
     separator: '/',
     homeDisplay: 'icon-text',
     showIcons: true,
@@ -47,6 +69,7 @@ export const Default: Story = {
 
 export const HomeIconOnly: Story = {
   args: {
+    ariaLabel: 'Navegação estrutural',
     separator: '/',
     homeDisplay: 'icon',
     showIcons: true,
@@ -69,6 +92,7 @@ export const HomeIconOnly: Story = {
 
 export const HomeTextOnly: Story = {
   args: {
+    ariaLabel: 'Navegação estrutural',
     separator: '/',
     homeDisplay: 'text',
     showIcons: true,
@@ -91,6 +115,7 @@ export const HomeTextOnly: Story = {
 
 export const HomeIconAndText: Story = {
   args: {
+    ariaLabel: 'Navegação estrutural',
     separator: '/',
     homeDisplay: 'icon-text',
     showIcons: true,
@@ -113,6 +138,7 @@ export const HomeIconAndText: Story = {
 
 export const WithCustomSeparator: Story = {
   args: {
+    ariaLabel: 'Navegação estrutural',
     separator: '>',
     homeDisplay: 'icon-text',
     showIcons: true,
@@ -135,6 +161,7 @@ export const WithCustomSeparator: Story = {
 
 export const WithIcons: Story = {
   args: {
+    ariaLabel: 'Navegação estrutural',
     separator: '/',
     homeDisplay: 'icon-text',
     showIcons: true,
@@ -159,6 +186,7 @@ export const WithIcons: Story = {
 
 export const WithoutIcons: Story = {
   args: {
+    ariaLabel: 'Navegação estrutural',
     separator: '/',
     homeDisplay: 'text',
     showIcons: false,
@@ -183,6 +211,7 @@ export const WithoutIcons: Story = {
 
 export const WithDisabledItem: Story = {
   args: {
+    ariaLabel: 'Navegação estrutural',
     separator: '/',
     homeDisplay: 'icon-text',
     showIcons: true,

@@ -20,6 +20,7 @@ import {
 })
 export class UiButtonComponent {
   label = input('Button');
+  loadingLabel = input('Loading...');
   ariaLabel = input<string | null>(null);
 
   color = input<UiColor>('primary');
@@ -42,8 +43,6 @@ export class UiButtonComponent {
 
   buttonClick = output<void>();
 
-  accessibleLabel = computed(() => this.ariaLabel() || this.label());
-
   buttonClasses = computed(() =>
     [
       'ui-button',
@@ -65,8 +64,10 @@ export class UiButtonComponent {
   );
 
   onClick(): void {
-    if (!this.disabled() && !this.loading()) {
-      this.buttonClick.emit();
+    if (this.disabled() || this.loading()) {
+      return;
     }
+
+    this.buttonClick.emit();
   }
 }

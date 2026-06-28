@@ -23,6 +23,7 @@ export class UiEmptyStateComponent {
   title = input('Nenhum resultado encontrado');
   description = input('Tente ajustar os filtros ou criar um novo item.');
   buttonLabel = input<string | null>('Criar novo');
+  buttonAriaLabel = input<string | null>(null);
 
   size = input<UiEmptyStateSize>('md');
   align = input<UiEmptyStateAlign>('center');
@@ -56,8 +57,10 @@ export class UiEmptyStateComponent {
   );
 
   handleButtonClick(): void {
-    if (!this.buttonDisabled()) {
-      this.buttonClick.emit();
+    if (this.buttonDisabled()) {
+      return;
     }
+
+    this.buttonClick.emit();
   }
 }

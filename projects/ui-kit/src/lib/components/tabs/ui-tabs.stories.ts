@@ -8,16 +8,23 @@ const meta: Meta<UiTabsComponent> = {
   argTypes: {
     tabs: {
       control: 'object',
+      description:
+        'Lista de abas. Cada aba deve conter id, label e content. Também pode conter count, countLabel, checked e disabled.',
     },
     initialActiveId: {
       control: 'text',
       description: 'ID da aba ativa inicial.',
+    },
+    ariaLabel: {
+      control: 'text',
+      description: 'Texto acessível para identificar o conjunto de abas.',
     },
     tabChange: {
       action: 'tabChange',
       table: {
         category: 'Events',
       },
+      description: 'Evento disparado quando uma aba é selecionada.',
     },
   },
 };
@@ -28,6 +35,7 @@ type Story = StoryObj<UiTabsComponent>;
 
 export const Default: Story = {
   args: {
+    ariaLabel: 'Navegação por abas',
     initialActiveId: 'overview',
     tabs: [
       {
@@ -51,24 +59,28 @@ export const Default: Story = {
 
 export const WithCounts: Story = {
   args: {
+    ariaLabel: 'Filtros por status',
     initialActiveId: 'all',
     tabs: [
       {
         id: 'all',
         label: 'Todos',
         count: 24,
+        countLabel: '24 itens no total',
         content: 'Todos os itens.',
       },
       {
         id: 'active',
         label: 'Ativos',
         count: 12,
+        countLabel: '12 itens ativos',
         content: 'Itens ativos.',
       },
       {
         id: 'archived',
         label: 'Arquivados',
         count: 3,
+        countLabel: '3 itens arquivados',
         content: 'Itens arquivados.',
       },
     ],
@@ -77,6 +89,7 @@ export const WithCounts: Story = {
 
 export const StepperLike: Story = {
   args: {
+    ariaLabel: 'Etapas do cadastro',
     initialActiveId: 'payment',
     tabs: [
       {
@@ -108,6 +121,7 @@ export const StepperLike: Story = {
 
 export const WithDisabled: Story = {
   args: {
+    ariaLabel: 'Abas com item desabilitado',
     initialActiveId: 'available',
     tabs: [
       {
@@ -132,6 +146,7 @@ export const WithDisabled: Story = {
 
 export const InitialDisabledFallback: Story = {
   args: {
+    ariaLabel: 'Fallback de aba inicial',
     initialActiveId: 'blocked',
     tabs: [
       {

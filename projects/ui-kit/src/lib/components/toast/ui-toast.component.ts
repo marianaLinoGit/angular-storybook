@@ -14,6 +14,7 @@ type UiToastVariant = 'soft' | 'solid' | 'outline';
 type UiToastSize = 'sm' | 'md' | 'lg';
 type UiToastShadow = 'none' | 'sm' | 'md';
 type UiToastPresentationMode = 'fixed' | 'inline';
+type UiToastAriaLive = 'polite' | 'assertive';
 
 @Component({
   selector: 'ui-toast',
@@ -38,7 +39,10 @@ export class UiToastComponent {
   presentationMode = input<UiToastPresentationMode>('fixed');
 
   closable = input(true);
+  closeAriaLabel = input('Fechar notificação');
+
   duration = input(5000);
+  ariaLive = input<UiToastAriaLive>('polite');
 
   customClass = input('');
 
@@ -46,7 +50,12 @@ export class UiToastComponent {
 
   private hidden = signal(false);
 
+  titleId = `ui-toast-title-${crypto.randomUUID()}`;
+  textId = `ui-toast-text-${crypto.randomUUID()}`;
+
   visible = computed(() => !this.hidden());
+
+  role = computed(() => (this.ariaLive() === 'assertive' ? 'alert' : 'status'));
 
   classes = computed(() =>
     [

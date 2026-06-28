@@ -6,9 +6,11 @@
       type="checkbox"
       [checked]="checked()"
       [required]="hasRequired()"
-      [disabled]="disabled() || disabledState()"
-      [attr.aria-invalid]="hasError()"
-      [attr.aria-describedby]="hasError() ? id() + '-error' : null"
+      [disabled]="isDisabled()"
+      [attr.aria-label]="ariaLabel()"
+      [attr.aria-required]="hasRequired() ? 'true' : null"
+      [attr.aria-invalid]="hasError() ? 'true' : null"
+      [attr.aria-describedby]="hasError() ? errorId() : null"
       (change)="handleChange($event)"
       (blur)="handleBlur()"
     />
@@ -26,7 +28,7 @@
         <a
           [href]="linkUrl()"
           [target]="linkTarget()"
-          rel="noopener noreferrer"
+          [attr.rel]="linkRel()"
           (click)="handleLinkClick($event)"
           (mousedown)="handleLinkClick($event)"
         >
@@ -37,7 +39,7 @@
   </label>
 
   @if (hasError()) {
-    <p class="ui-checkbox-field__error" [id]="id() + '-error'">
+    <p class="ui-checkbox-field__error" [id]="errorId()">
       {{ errorMessage() }}
     </p>
   }

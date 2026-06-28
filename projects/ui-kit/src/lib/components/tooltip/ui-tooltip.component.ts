@@ -21,12 +21,16 @@ export class UiTooltipComponent {
   disabled = input(false);
   maxWidth = input('240px');
   delay = input('0ms');
+  customClass = input('');
+
+  tooltipId = `ui-tooltip-${crypto.randomUUID()}`;
 
   tooltipClasses = computed(() =>
     [
       'ui-tooltip__content',
       `ui-tooltip__content--${this.position()}`,
       this.disabled() ? 'ui-tooltip__content--disabled' : '',
+      this.customClass(),
     ]
       .filter(Boolean)
       .join(' '),

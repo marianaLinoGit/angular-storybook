@@ -1,10 +1,12 @@
 @if (isVisible()) {
-  <div [class]="backdropClasses()">
+  <div [class]="backdropClasses()" (click)="handleBackdropClick($event)">
     <section
       [class]="modalClasses()"
       role="dialog"
       aria-modal="true"
-      [attr.aria-label]="title()"
+      [attr.aria-labelledby]="titleId"
+      [attr.aria-describedby]="description() ? descriptionId : null"
+      (click)="$event.stopPropagation()"
     >
       <header class="ui-modal__header">
         <div class="ui-modal__title-wrapper">
@@ -14,14 +16,14 @@
             </span>
           }
 
-          <h2>{{ title() }}</h2>
+          <h2 [id]="titleId">{{ title() }}</h2>
         </div>
 
         @if (showCloseButton()) {
           <button
             type="button"
             class="ui-modal__icon-button"
-            aria-label="Fechar modal"
+            [attr.aria-label]="closeAriaLabel()"
             (click)="close()"
           >
             ×
@@ -31,7 +33,7 @@
 
       <main class="ui-modal__body">
         @if (description()) {
-          <p>{{ description() }}</p>
+          <p [id]="descriptionId">{{ description() }}</p>
         }
 
         <ng-content></ng-content>

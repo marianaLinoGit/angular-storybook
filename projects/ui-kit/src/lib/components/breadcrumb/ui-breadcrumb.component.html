@@ -1,19 +1,18 @@
-<nav class="ui-breadcrumb" aria-label="Breadcrumb">
+<nav class="ui-breadcrumb" [attr.aria-label]="ariaLabel()">
   <ol>
-    @for (
-      item of items();
-      track item.label;
-      let last = $last;
-      let index = $index
-    ) {
+    @for (item of items(); track $index; let last = $last; let index = $index) {
       <li>
         @if (!last && !item.disabled) {
-          <button type="button" (click)="itemClick.emit(item)">
+          <button
+            type="button"
+            [attr.aria-label]="item.label"
+            (click)="itemClick.emit(item)"
+          >
             <span class="ui-breadcrumb__content">
               @if (getIcon(item, index)) {
-                <span class="ui-breadcrumb__icon">{{
-                  getIcon(item, index)
-                }}</span>
+                <span class="ui-breadcrumb__icon" aria-hidden="true">
+                  {{ getIcon(item, index) }}
+                </span>
               }
 
               @if (shouldShowLabel(index)) {
@@ -25,12 +24,13 @@
           <span
             class="ui-breadcrumb__current"
             [class.ui-breadcrumb__current--disabled]="item.disabled"
+            [attr.aria-current]="last ? 'page' : null"
           >
             <span class="ui-breadcrumb__content">
               @if (getIcon(item, index)) {
-                <span class="ui-breadcrumb__icon">{{
-                  getIcon(item, index)
-                }}</span>
+                <span class="ui-breadcrumb__icon" aria-hidden="true">
+                  {{ getIcon(item, index) }}
+                </span>
               }
 
               @if (shouldShowLabel(index)) {
@@ -41,7 +41,9 @@
         }
 
         @if (!last) {
-          <small>{{ separator() }}</small>
+          <small class="ui-breadcrumb__separator" aria-hidden="true">
+            {{ separator() }}
+          </small>
         }
       </li>
     }

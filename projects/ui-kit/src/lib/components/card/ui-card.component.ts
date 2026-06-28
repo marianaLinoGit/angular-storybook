@@ -21,17 +21,24 @@ export class UiCardComponent {
   title = input('Título do card');
   subtitle = input<string | null>(null);
   description = input('Descrição do card');
+
   imageUrl = input<string | null>(null);
   imageAlt = input<string | null>(null);
+
+  ariaLabel = input<string | null>(null);
+
   size = input<UiSize>('md');
   shadow = input(true);
   bordered = input(false);
   clickable = input(false);
   highlighted = input(false);
   align = input<UiCardAlign>('left');
+
   footer = input<string | null>(null);
+
   linkUrl = input<string | null>(null);
   target = input<UiCardTarget>('_self');
+
   customClass = input('');
 
   cardClick = output<void>();
@@ -51,6 +58,32 @@ export class UiCardComponent {
       .join(' '),
   );
 
+  interactiveRole = computed(() => {
+    if (!this.clickable()) {
+      return null;
+    }
+
+    return this.linkUrl() ? 'link' : 'button';
+  });
+
+  accessibleLabel = computed(() => {
+    if (!this.clickable()) {
+      return null;
+    }
+
+    return this.ariaLabel() || this.title();
+  });
+
+  resolvedImageAlt = computed(() => {
+    const alt = this.imageAlt();
+
+    if (alt !== null) {
+      return alt;
+    }
+
+    return this.title();
+  });
+
   handleClick(): void {
     if (!this.clickable()) {
       return;
@@ -60,8 +93,20 @@ export class UiCardComponent {
 
     const url = this.linkUrl();
 
-    if (url) {
-      window.open(url, this.target());
+    if (!url) {
+      return;
     }
+
+    if (this.target() === '_blank') {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    window.open(url, '_self');
+  }
+
+  handleSpaceKey(event: Event): void {
+    event.preventDefault();
+    this.handleClick();
   }
 }

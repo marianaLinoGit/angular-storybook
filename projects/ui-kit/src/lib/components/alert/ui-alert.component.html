@@ -22,7 +22,7 @@
       <button
         type="button"
         class="ui-alert__close"
-        aria-label="Fechar alerta"
+        [attr.aria-label]="closeAriaLabel()"
         (click)="close()"
       >
         ×

@@ -3,6 +3,7 @@
     [label]="label()"
     [forId]="id()"
     [required]="hasRequired()"
+    [optionalText]="optionalText()"
     [showOptionalText]="showOptionalText()"
   ></ui-label>
 
@@ -12,9 +13,11 @@
     [class]="classes()"
     [value]="value()"
     [required]="hasRequired()"
-    [disabled]="disabled() || disabledState()"
-    [attr.aria-invalid]="hasError()"
-    [attr.aria-describedby]="hasError() ? id() + '-error' : null"
+    [disabled]="isDisabled()"
+    [attr.aria-label]="selectAriaLabel()"
+    [attr.aria-required]="hasRequired() ? 'true' : null"
+    [attr.aria-invalid]="hasError() ? 'true' : null"
+    [attr.aria-describedby]="hasError() ? errorId() : null"
     (change)="handleChange($event)"
     (blur)="handleBlur()"
   >
@@ -30,7 +33,7 @@
   </select>
 
   @if (hasError()) {
-    <p class="ui-select-field__error" [id]="id() + '-error'">
+    <p class="ui-select-field__error" [id]="errorId()">
       {{ errorMessage() }}
     </p>
   }

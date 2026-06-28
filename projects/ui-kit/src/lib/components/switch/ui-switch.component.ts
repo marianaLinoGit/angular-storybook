@@ -25,11 +25,18 @@ export class UiSwitchComponent implements ControlValueAccessor {
 
   id = input(`ui-switch-${crypto.randomUUID()}`);
   name = input<string | null>(null);
+
   label = input('');
+  ariaLabel = input<string | null>(null);
+
   checkedLabel = input<string | null>(null);
   uncheckedLabel = input<string | null>(null);
+  activeText = input('Ativado');
+  inactiveText = input('Desativado');
+
   showSideLabels = input(false);
   checkedInput = input(false, { alias: 'checked' });
+
   disabled = input(false);
   size = input<'sm' | 'md' | 'lg'>('md');
   customClass = input('');
@@ -49,12 +56,22 @@ export class UiSwitchComponent implements ControlValueAccessor {
     });
   }
 
+  isDisabled = computed(() => this.disabled() || this.disabledState());
+
+  switchAriaLabel = computed(() => {
+    if (this.label()) {
+      return null;
+    }
+
+    return this.ariaLabel();
+  });
+
   classes = computed(() =>
     [
       'ui-switch',
       `ui-switch--${this.size()}`,
       this.checked() ? 'ui-switch--checked' : '',
-      this.disabled() || this.disabledState() ? 'ui-switch--disabled' : '',
+      this.isDisabled() ? 'ui-switch--disabled' : '',
       this.showSideLabels() ? 'ui-switch--side-labels' : '',
       this.customClass(),
     ]
@@ -64,15 +81,15 @@ export class UiSwitchComponent implements ControlValueAccessor {
 
   statusLabel = computed(() =>
     this.checked()
-      ? this.checkedLabel() || 'Ativado'
-      : this.uncheckedLabel() || 'Desativado',
+      ? this.checkedLabel() || this.activeText()
+      : this.uncheckedLabel() || this.inactiveText(),
   );
 
   onChange: (value: boolean) => void = () => {};
   onTouched: () => void = () => {};
 
   toggle(): void {
-    if (this.disabled() || this.disabledState()) {
+    if (this.isDisabled()) {
       return;
     }
 

@@ -12,49 +12,59 @@ const meta: Meta<UiAlertComponent> = {
     },
     message: {
       control: 'text',
-      description: 'Mensagem principal do alerta.',
+      description: 'Mensagem principal exibida no alerta.',
+    },
+    closeAriaLabel: {
+      control: 'text',
+      description:
+        'Texto acessível utilizado no botão de fechar para leitores de tela.',
     },
     color: {
       control: 'select',
       options: ['success', 'warning', 'danger', 'info'],
-      description: 'Cor semântica do alerta.',
+      description:
+        'Cor semântica do alerta, usada para representar sucesso, atenção, erro ou informação.',
     },
     variant: {
       control: 'select',
       options: ['soft', 'solid', 'outline'],
-      description: 'Variação visual do alerta.',
+      description: 'Variação visual aplicada ao alerta.',
     },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
-      description: 'Tamanho do alerta.',
+      description: 'Tamanho visual do componente.',
     },
     showIcon: {
       control: 'boolean',
-      description: 'Exibe ou oculta o ícone semântico padrão.',
+      description: 'Exibe ou oculta o ícone semântico do alerta.',
     },
     closable: {
       control: 'boolean',
-      description: 'Exibe ou oculta o botão de fechar.',
+      description: 'Exibe ou oculta o botão para fechar o alerta.',
     },
     fixed: {
       control: 'boolean',
-      description: 'Define se o alerta fica fixo na tela.',
+      description:
+        'Define se o alerta deve permanecer fixo na tela ou seguir o fluxo da página.',
     },
     position: {
       control: 'radio',
       options: ['top', 'bottom'],
-      description: 'Posição do alerta fixo.',
+      description:
+        'Posição do alerta quando a propriedade fixed estiver habilitada.',
     },
     customClass: {
       control: 'text',
-      description: 'Classe CSS customizada.',
+      description: 'Classe CSS customizada adicionada ao componente.',
     },
     closed: {
       action: 'closed',
       table: {
         category: 'Events',
       },
+      description:
+        'Evento disparado quando o usuário fecha o alerta pelo botão de fechar.',
     },
   },
 };
@@ -67,6 +77,7 @@ export const Info: Story = {
   args: {
     title: 'Informação',
     message: 'Mensagem informativa para o usuário.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'info',
     variant: 'soft',
     size: 'md',
@@ -82,6 +93,7 @@ export const Success: Story = {
   args: {
     title: 'Sucesso',
     message: 'Operação realizada com sucesso.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'success',
     variant: 'soft',
     size: 'md',
@@ -97,6 +109,7 @@ export const Warning: Story = {
   args: {
     title: 'Atenção',
     message: 'Revise as informações antes de continuar.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'warning',
     variant: 'soft',
     size: 'md',
@@ -112,6 +125,7 @@ export const Danger: Story = {
   args: {
     title: 'Erro',
     message: 'Não foi possível salvar os dados.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'danger',
     variant: 'soft',
     size: 'md',
@@ -127,6 +141,7 @@ export const Solid: Story = {
   args: {
     title: 'Alerta sólido',
     message: 'Essa variação usa fundo preenchido.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'info',
     variant: 'solid',
     size: 'md',
@@ -142,6 +157,7 @@ export const Outline: Story = {
   args: {
     title: 'Alerta outline',
     message: 'Essa variação usa borda e fundo neutro.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'success',
     variant: 'outline',
     size: 'md',
@@ -157,6 +173,7 @@ export const WithoutIcon: Story = {
   args: {
     title: 'Sem ícone',
     message: 'Esse alerta é exibido sem ícone inicial.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'info',
     variant: 'soft',
     size: 'md',
@@ -172,6 +189,7 @@ export const WithoutTitle: Story = {
   args: {
     title: '',
     message: 'Esse alerta possui apenas mensagem.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'warning',
     variant: 'soft',
     size: 'md',
@@ -187,6 +205,7 @@ export const NotClosable: Story = {
   args: {
     title: 'Alerta fixo',
     message: 'Esse alerta não possui botão para fechar.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'danger',
     variant: 'soft',
     size: 'md',
@@ -202,6 +221,7 @@ export const FixedTop: Story = {
   args: {
     title: 'Topo da tela',
     message: 'Alerta fixo no topo da tela.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'info',
     variant: 'soft',
     size: 'md',
@@ -217,6 +237,7 @@ export const FixedBottom: Story = {
   args: {
     title: 'Rodapé da tela',
     message: 'Alerta fixo na parte inferior da tela.',
+    closeAriaLabel: 'Fechar alerta',
     color: 'success',
     variant: 'soft',
     size: 'md',

@@ -31,13 +31,19 @@ export class UiSelectComponent implements ControlValueAccessor {
   });
 
   label = input('');
+  ariaLabel = input<string | null>(null);
+
   id = input(`ui-select-${crypto.randomUUID()}`);
   name = input<string | null>(null);
   placeholder = input('Selecione');
   options = input<UiSelectOption[]>([]);
+
   required = input(false);
   disabled = input(false);
+
+  optionalText = input('Opcional');
   showOptionalText = input(true);
+
   errorMessage = input('*Campo obrigatório');
   showError = input(false);
   customClass = input('');
@@ -53,11 +59,23 @@ export class UiSelectComponent implements ControlValueAccessor {
     }
   }
 
+  isDisabled = computed(() => this.disabled() || this.disabledState());
+
+  errorId = computed(() => `${this.id()}-error`);
+
+  selectAriaLabel = computed(() => {
+    if (this.label()) {
+      return null;
+    }
+
+    return this.ariaLabel();
+  });
+
   classes = computed(() =>
     [
       'ui-select',
       this.hasError() ? 'ui-select--error' : '',
-      this.disabled() || this.disabledState() ? 'ui-select--disabled' : '',
+      this.isDisabled() ? 'ui-select--disabled' : '',
       this.customClass(),
     ]
       .filter(Boolean)
@@ -77,7 +95,7 @@ export class UiSelectComponent implements ControlValueAccessor {
 
     return Boolean(
       this.showError() ||
-      (control?.hasError('required') && (control.touched || control.dirty)),
+      (control?.invalid && (control.touched || control.dirty)),
     );
   }
 
@@ -85,6 +103,10 @@ export class UiSelectComponent implements ControlValueAccessor {
   onTouched: () => void = () => {};
 
   handleChange(event: Event): void {
+    if (this.isDisabled()) {
+      return;
+    }
+
     const value = (event.target as HTMLSelectElement).value;
 
     this.value.set(value);

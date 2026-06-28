@@ -6,21 +6,68 @@ const meta: Meta<UiSwitchComponent> = {
   component: UiSwitchComponent,
   tags: ['autodocs'],
   argTypes: {
-    id: { control: 'text' },
-    name: { control: 'text' },
-    label: { control: 'text' },
-    checkedLabel: { control: 'text' },
-    uncheckedLabel: { control: 'text' },
-    showSideLabels: { control: 'boolean' },
-    disabled: { control: 'boolean' },
+    id: {
+      control: 'text',
+      description: 'Identificador único do switch.',
+    },
+    name: {
+      control: 'text',
+      description: 'Nome do campo enviado em formulários HTML.',
+    },
+    label: {
+      control: 'text',
+      description: 'Texto visível associado ao switch.',
+    },
+    ariaLabel: {
+      control: 'text',
+      description:
+        'Texto acessível utilizado quando o switch não possui label visível.',
+    },
+    checkedLabel: {
+      control: 'text',
+      description: 'Texto exibido quando o switch está marcado.',
+    },
+    uncheckedLabel: {
+      control: 'text',
+      description: 'Texto exibido quando o switch está desmarcado.',
+    },
+    activeText: {
+      control: 'text',
+      description:
+        'Texto padrão usado para estado ativo quando checkedLabel não é informado.',
+    },
+    inactiveText: {
+      control: 'text',
+      description:
+        'Texto padrão usado para estado inativo quando uncheckedLabel não é informado.',
+    },
+    showSideLabels: {
+      control: 'boolean',
+      description: 'Exibe os labels nas laterais do controle.',
+    },
+    checkedInput: {
+      control: 'boolean',
+      name: 'checked',
+      description:
+        'Estado controlado do switch. Define se o componente inicia marcado ou desmarcado.',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Desabilita a interação com o switch.',
+    },
     size: {
       control: 'radio',
       options: ['sm', 'md', 'lg'],
+      description: 'Tamanho visual do switch.',
     },
-    customClass: { control: 'text' },
+    customClass: {
+      control: 'text',
+      description: 'Classe CSS customizada.',
+    },
     checkedChange: {
       action: 'checkedChange',
       table: { category: 'Events' },
+      description: 'Evento disparado quando o estado do switch muda.',
     },
   },
 };
@@ -34,12 +81,25 @@ export const Default: Story = {
     id: 'themeSwitch',
     name: 'themeSwitch',
     label: 'Tema',
-    checkedLabel: 'Dark',
-    uncheckedLabel: 'Light',
-    showSideLabels: true,
+    ariaLabel: null,
+    checkedLabel: 'Ativado',
+    uncheckedLabel: 'Desativado',
+    activeText: 'Ativado',
+    inactiveText: 'Desativado',
+    showSideLabels: false,
+    checkedInput: false,
     disabled: false,
     size: 'md',
     customClass: '',
+  },
+};
+
+export const WithSideLabels: Story = {
+  args: {
+    ...Default.args,
+    showSideLabels: true,
+    uncheckedLabel: 'Light',
+    checkedLabel: 'Dark',
   },
 };
 
@@ -59,6 +119,9 @@ export const Large: Story = {
 
 export const ThemeSwitcher: Story = {
   args: {
+    ...Default.args,
+    label: '',
+    ariaLabel: 'Alternar tema',
     showSideLabels: true,
     uncheckedLabel: '☀️ Light',
     checkedLabel: '🌙 Dark',
@@ -66,10 +129,11 @@ export const ThemeSwitcher: Story = {
   },
 };
 
-export const WithoutLabel: Story = {
+export const WithoutVisibleLabel: Story = {
   args: {
     ...Default.args,
     label: '',
+    ariaLabel: 'Ativar notificações',
     checkedLabel: 'Ativo',
     uncheckedLabel: 'Inativo',
   },

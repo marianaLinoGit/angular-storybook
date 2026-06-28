@@ -14,38 +14,88 @@ const meta: Meta<UiModalComponent> = {
     },
   },
   argTypes: {
-    open: { control: 'boolean' },
+    open: {
+      control: 'boolean',
+      description: 'Controla se o modal deve iniciar aberto.',
+    },
     type: {
       control: 'select',
       options: ['confirmation', 'informative', 'content'],
+      description:
+        'Define o comportamento do modal: confirmação, informativo ou apenas conteúdo.',
+    },
+    title: {
+      control: 'text',
+      description:
+        'Título principal do modal. Também é usado como referência acessível via aria-labelledby.',
+    },
+    description: {
+      control: 'text',
+      description:
+        'Descrição opcional do modal. Quando informada, é associada via aria-describedby.',
+    },
+    icon: {
+      control: 'text',
+      description:
+        'Ícone visual exibido ao lado do título. É decorativo e oculto de leitores de tela.',
+    },
+    confirmLabel: {
+      control: 'text',
+      description: 'Texto do botão de confirmação.',
+    },
+    cancelLabel: {
+      control: 'text',
+      description: 'Texto do botão de cancelamento.',
+    },
+    closeLabel: {
+      control: 'text',
+      description: 'Texto do botão principal em modais informativos.',
+    },
+    closeAriaLabel: {
+      control: 'text',
+      description: 'Texto acessível do botão de fechar no cabeçalho.',
+    },
+    showCloseButton: {
+      control: 'boolean',
+      description: 'Exibe ou oculta o botão de fechar no cabeçalho.',
+    },
+    closeOnBackdrop: {
+      control: 'boolean',
+      description: 'Permite fechar o modal ao clicar fora do conteúdo.',
+    },
+    closeOnEscape: {
+      control: 'boolean',
+      description: 'Permite fechar o modal pressionando a tecla Escape.',
     },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+      description: 'Tamanho visual do modal.',
     },
     presentationMode: {
       control: 'radio',
-      options: ['inline'],
+      options: ['inline', 'fixed'],
+      description:
+        'Modo de apresentação. Use inline para documentação e fixed para uso real em tela.',
     },
-    title: { control: 'text' },
-    description: { control: 'text' },
-    icon: { control: 'text' },
-    confirmLabel: { control: 'text' },
-    cancelLabel: { control: 'text' },
-    closeLabel: { control: 'text' },
-    showCloseButton: { control: 'boolean' },
-    customClass: { control: 'text' },
+    customClass: {
+      control: 'text',
+      description: 'Classe CSS customizada.',
+    },
     confirmed: {
       action: 'confirmed',
       table: { category: 'Events' },
+      description: 'Evento disparado ao confirmar uma ação.',
     },
     cancelled: {
       action: 'cancelled',
       table: { category: 'Events' },
+      description: 'Evento disparado ao cancelar uma ação.',
     },
     closed: {
       action: 'closed',
       table: { category: 'Events' },
+      description: 'Evento disparado ao fechar o modal.',
     },
   },
 };
@@ -62,9 +112,14 @@ export const Informative: Story = {
     description:
       'Esse modal exibe uma mensagem informativa com apenas um botão.',
     icon: 'ℹ️',
+    confirmLabel: 'Confirmar',
+    cancelLabel: 'Cancelar',
     closeLabel: 'Entendi',
+    closeAriaLabel: 'Fechar modal',
     size: 'md',
     showCloseButton: true,
+    closeOnBackdrop: true,
+    closeOnEscape: true,
     presentationMode: 'inline',
     customClass: '',
   },
@@ -72,7 +127,7 @@ export const Informative: Story = {
 
 export const Confirmation: Story = {
   args: {
-    open: true,
+    ...Informative.args,
     type: 'confirmation',
     title: 'Confirmar exclusão',
     description:
@@ -80,10 +135,6 @@ export const Confirmation: Story = {
     icon: '⚠️',
     confirmLabel: 'Excluir',
     cancelLabel: 'Cancelar',
-    size: 'md',
-    showCloseButton: true,
-    presentationMode: 'inline',
-    customClass: '',
   },
 };
 
@@ -97,8 +148,14 @@ export const Content: Story = {
         [title]="title"
         [description]="description"
         [icon]="icon"
+        [confirmLabel]="confirmLabel"
+        [cancelLabel]="cancelLabel"
+        [closeLabel]="closeLabel"
+        [closeAriaLabel]="closeAriaLabel"
         [size]="size"
         [showCloseButton]="showCloseButton"
+        [closeOnBackdrop]="closeOnBackdrop"
+        [closeOnEscape]="closeOnEscape"
         [presentationMode]="presentationMode"
         [customClass]="customClass"
       >
@@ -111,29 +168,21 @@ export const Content: Story = {
     `,
   }),
   args: {
-    open: true,
+    ...Informative.args,
     type: 'content',
     title: 'Modal de conteúdo',
     description: 'Modal sem footer, ideal para conteúdo customizado.',
     icon: '🧩',
     size: 'lg',
-    showCloseButton: true,
-    presentationMode: 'inline',
-    customClass: '',
   },
 };
 
 export const WithoutIcon: Story = {
   args: {
-    open: true,
-    type: 'informative',
+    ...Informative.args,
     title: 'Modal sem ícone',
     description: 'Esse exemplo não possui ícone ao lado do título.',
-    icon: '',
+    icon: null,
     closeLabel: 'Fechar',
-    size: 'md',
-    showCloseButton: true,
-    presentationMode: 'inline',
-    customClass: '',
   },
 };

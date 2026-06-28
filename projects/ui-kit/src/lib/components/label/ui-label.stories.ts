@@ -6,12 +6,30 @@ const meta: Meta<UiLabelComponent> = {
   component: UiLabelComponent,
   tags: ['autodocs'],
   argTypes: {
-    label: { control: 'text' },
-    forId: { control: 'text' },
-    required: { control: 'boolean' },
-    optionalText: { control: 'text' },
-    showOptionalText: { control: 'boolean' },
-    customClass: { control: 'text' },
+    label: {
+      control: 'text',
+      description: 'Texto visível do label.',
+    },
+    forId: {
+      control: 'text',
+      description: 'ID do campo associado ao label.',
+    },
+    required: {
+      control: 'boolean',
+      description: 'Exibe indicador visual de campo obrigatório.',
+    },
+    optionalText: {
+      control: 'text',
+      description: 'Texto exibido quando o campo é opcional.',
+    },
+    showOptionalText: {
+      control: 'boolean',
+      description: 'Controla a exibição do texto opcional.',
+    },
+    customClass: {
+      control: 'text',
+      description: 'Classe CSS customizada.',
+    },
   },
 };
 
@@ -36,6 +54,17 @@ export const Optional: Story = {
     forId: 'preferredName',
     required: false,
     optionalText: 'Opcional',
+    showOptionalText: true,
+    customClass: '',
+  },
+};
+
+export const OptionalEnglish: Story = {
+  args: {
+    label: 'Preferred name',
+    forId: 'preferredName',
+    required: false,
+    optionalText: 'Optional',
     showOptionalText: true,
     customClass: '',
   },

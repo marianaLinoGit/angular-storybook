@@ -22,6 +22,8 @@
       type="button"
       [class]="buttonClasses()"
       [disabled]="buttonDisabled()"
+      [attr.aria-label]="buttonAriaLabel()"
+      [attr.aria-disabled]="buttonDisabled() ? 'true' : null"
       (click)="handleButtonClick()"
     >
       {{ buttonLabel() }}

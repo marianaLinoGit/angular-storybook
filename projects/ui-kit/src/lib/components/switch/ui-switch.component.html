@@ -21,8 +21,10 @@
       type="checkbox"
       role="switch"
       [checked]="checked()"
-      [disabled]="disabled() || disabledState()"
-      [attr.aria-checked]="checked()"
+      [disabled]="isDisabled()"
+      [attr.aria-label]="switchAriaLabel()"
+      [attr.aria-checked]="checked() ? 'true' : 'false'"
+      [attr.aria-disabled]="isDisabled() ? 'true' : null"
       (change)="toggle()"
       (blur)="handleBlur()"
     />

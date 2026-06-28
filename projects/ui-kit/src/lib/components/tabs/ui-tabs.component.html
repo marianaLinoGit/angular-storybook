@@ -1,12 +1,13 @@
 <div class="ui-tabs">
-  <div class="ui-tabs__header" role="tablist">
+  <div class="ui-tabs__header" role="tablist" [attr.aria-label]="ariaLabel()">
     @for (tab of tabs(); track tab.id) {
       <button
         type="button"
         role="tab"
         [id]="getTabId(tab)"
-        [attr.aria-selected]="isActive(tab)"
+        [attr.aria-selected]="isActive(tab) ? 'true' : 'false'"
         [attr.aria-controls]="getPanelId(tab)"
+        [attr.tabindex]="isActive(tab) ? 0 : -1"
         [disabled]="tab.disabled"
         [class.ui-tabs__tab--active]="isActive(tab)"
         [class.ui-tabs__tab--checked]="tab.checked"
@@ -20,7 +21,9 @@
         <span>{{ tab.label }}</span>
 
         @if (tab.count !== undefined) {
-          <small>{{ tab.count }}</small>
+          <small [attr.aria-label]="countAriaLabel(tab)">
+            {{ tab.count }}
+          </small>
         }
       </button>
     }

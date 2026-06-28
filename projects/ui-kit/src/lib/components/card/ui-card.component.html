@@ -1,17 +1,17 @@
 <article
   [class]="cardClasses()"
-  [attr.role]="clickable() ? 'link' : null"
+  [attr.role]="interactiveRole()"
   [attr.tabindex]="clickable() ? 0 : null"
-  [attr.aria-label]="clickable() ? title() : null"
+  [attr.aria-label]="accessibleLabel()"
   (click)="handleClick()"
   (keydown.enter)="handleClick()"
-  (keydown.space)="handleClick()"
+  (keydown.space)="handleSpaceKey($event)"
 >
   @if (imageUrl()) {
     <img
       class="ui-card__image"
       [src]="imageUrl()!"
-      [alt]="imageAlt() || title()"
+      [alt]="resolvedImageAlt()"
     />
   }
 
