@@ -1,4 +1,4 @@
-name: Deploy Storybook
+name: Deploy Storybook and Publish UI Kit
 
 on:
   push:
@@ -9,6 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  packages: write
 
 concurrency:
   group: pages
@@ -31,9 +32,19 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: "@marianaLinoGit"
 
       - name: Install
-        run: npm install
+        run: npm ci
+
+      - name: Build UI Kit
+        run: npm run build model-ui-kit
+
+      - name: Publish UI Kit
+        run: npm publish dist/ui-kit
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Storybook
         run: npm run build-storybook
@@ -46,6 +57,6 @@ jobs:
         with:
           path: storybook-static
 
-      - name: Deploy
+      - name: Deploy Storybook
         id: deployment
         uses: actions/deploy-pages@v4
