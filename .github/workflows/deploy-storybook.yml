@@ -39,10 +39,17 @@ jobs:
         run: npm ci
 
       - name: Build UI Kit
-        run: npm run build model-ui-kit
+        run: npm run build ui-kit
+
+      - name: Check dist
+        run: |
+          pwd
+          ls -la
+          ls -la dist
+          find dist -maxdepth 3 -name package.json -print
 
       - name: Publish UI Kit
-        run: npm publish dist/ui-kit
+        run: npm publish ./dist/ui-kit
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
