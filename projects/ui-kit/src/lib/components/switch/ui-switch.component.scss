@@ -17,6 +17,16 @@
     align-items: center;
   }
 
+  &__side-icon {
+    width: var(--ui-icon-size-xs);
+    height: var(--ui-icon-size-xs);
+    display: inline-block;
+    flex: 0 0 auto;
+    background-color: currentColor;
+    mask: var(--ui-switch-icon-url) center / contain no-repeat;
+    -webkit-mask: var(--ui-switch-icon-url) center / contain no-repeat;
+  }
+
   input {
     position: absolute;
     opacity: 0;
@@ -24,10 +34,15 @@
   }
 
   &__side-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ui-space-1);
     color: var(--ui-color-muted);
     transition: 0.2s ease;
     font-size: var(--ui-font-size-sm);
     user-select: none;
+    white-space: nowrap;
 
     &--active {
       color: var(--ui-color-primary);

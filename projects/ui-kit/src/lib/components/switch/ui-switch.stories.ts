@@ -31,6 +31,14 @@ const meta: Meta<UiSwitchComponent> = {
       control: 'text',
       description: 'Texto exibido quando o switch está desmarcado.',
     },
+    checkedIcon: {
+      control: 'text',
+      description: 'Ícone exibido quando o switch está ativo.',
+    },
+    uncheckedIcon: {
+      control: 'text',
+      description: 'Ícone exibido quando o switch está inativo.',
+    },
     activeText: {
       control: 'text',
       description:
@@ -43,7 +51,12 @@ const meta: Meta<UiSwitchComponent> = {
     },
     showSideLabels: {
       control: 'boolean',
-      description: 'Exibe os labels nas laterais do controle.',
+      description: 'Exibe labels/ícones nas laterais do controle.',
+    },
+    showStatus: {
+      control: 'boolean',
+      description:
+        'Exibe texto de status ao lado do switch quando showSideLabels está falso.',
     },
     checkedInput: {
       control: 'boolean',
@@ -84,9 +97,12 @@ export const Default: Story = {
     ariaLabel: null,
     checkedLabel: 'Ativado',
     uncheckedLabel: 'Desativado',
+    checkedIcon: null,
+    uncheckedIcon: null,
     activeText: 'Ativado',
     inactiveText: 'Desativado',
     showSideLabels: false,
+    showStatus: true,
     checkedInput: false,
     disabled: false,
     size: 'md',
@@ -98,6 +114,18 @@ export const WithSideLabels: Story = {
   args: {
     ...Default.args,
     showSideLabels: true,
+    showStatus: false,
+    uncheckedLabel: 'Light',
+    checkedLabel: 'Dark',
+  },
+};
+
+export const WithoutSideLabels: Story = {
+  args: {
+    ...Default.args,
+    label: '',
+    showSideLabels: false,
+    showStatus: true,
     uncheckedLabel: 'Light',
     checkedLabel: 'Dark',
   },
@@ -123,8 +151,41 @@ export const ThemeSwitcher: Story = {
     label: '',
     ariaLabel: 'Alternar tema',
     showSideLabels: true,
+    showStatus: false,
     uncheckedLabel: '☀️ Light',
     checkedLabel: '🌙 Dark',
+    checkedIcon: null,
+    uncheckedIcon: null,
+    size: 'md',
+  },
+};
+
+export const ThemeSwitcherIconsAndText: Story = {
+  args: {
+    ...Default.args,
+    label: '',
+    ariaLabel: 'Alternar tema',
+    showSideLabels: true,
+    showStatus: false,
+    uncheckedLabel: 'Light',
+    checkedLabel: 'Dark',
+    uncheckedIcon: '/icons/icon-sun.svg',
+    checkedIcon: '/icons/icon-moon.svg',
+    size: 'md',
+  },
+};
+
+export const ThemeSwitcherIconsOnly: Story = {
+  args: {
+    ...Default.args,
+    label: '',
+    ariaLabel: 'Alternar tema',
+    showSideLabels: true,
+    showStatus: false,
+    uncheckedLabel: null,
+    checkedLabel: null,
+    uncheckedIcon: '/icons/icon-sun.svg',
+    checkedIcon: '/icons/icon-moon.svg',
     size: 'md',
   },
 };
@@ -136,6 +197,7 @@ export const WithoutVisibleLabel: Story = {
     ariaLabel: 'Ativar notificações',
     checkedLabel: 'Ativo',
     uncheckedLabel: 'Inativo',
+    showStatus: true,
   },
 };
 
@@ -143,5 +205,21 @@ export const Disabled: Story = {
   args: {
     ...Default.args,
     disabled: true,
+  },
+};
+
+export const DisabledIconsOnly: Story = {
+  args: {
+    ...Default.args,
+    label: '',
+    ariaLabel: 'Alternar tema',
+    showSideLabels: true,
+    showStatus: false,
+    uncheckedLabel: null,
+    checkedLabel: null,
+    uncheckedIcon: '/icons/icon-sun.svg',
+    checkedIcon: '/icons/icon-moon.svg',
+    disabled: true,
+    size: 'md',
   },
 };

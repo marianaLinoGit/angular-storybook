@@ -5,12 +5,28 @@
     </span>
   }
 
-  @if (showSideLabels() && uncheckedLabel()) {
+  @if (
+    showSideLabels() &&
+    (!showOnlyCurrentSide() || !checked()) &&
+    (uncheckedLabel() || uncheckedIcon())
+  ) {
     <span
       class="ui-switch__side-label"
       [class.ui-switch__side-label--active]="!checked()"
+      [attr.aria-hidden]="isIconOnly() ? 'true' : null"
     >
-      {{ uncheckedLabel() }}
+      @if (uncheckedIcon()) {
+        <span
+          class="ui-switch__side-icon"
+          [style.--ui-switch-icon-url]="'url(' + uncheckedIcon()! + ')'"
+        ></span>
+      }
+
+      @if (uncheckedLabel()) {
+        <span class="ui-switch__side-text">
+          {{ uncheckedLabel() }}
+        </span>
+      }
     </span>
   }
 
@@ -34,16 +50,32 @@
     </span>
   </span>
 
-  @if (showSideLabels() && checkedLabel()) {
+  @if (
+    showSideLabels() &&
+    (!showOnlyCurrentSide() || checked()) &&
+    (checkedLabel() || checkedIcon())
+  ) {
     <span
       class="ui-switch__side-label"
       [class.ui-switch__side-label--active]="checked()"
+      [attr.aria-hidden]="isIconOnly() ? 'true' : null"
     >
-      {{ checkedLabel() }}
+      @if (checkedIcon()) {
+        <span
+          class="ui-switch__side-icon"
+          [style.--ui-switch-icon-url]="'url(' + checkedIcon()! + ')'"
+        ></span>
+      }
+
+      @if (checkedLabel()) {
+        <span class="ui-switch__side-text">
+          {{ checkedLabel() }}
+        </span>
+      }
     </span>
   }
 
-  @if (!showSideLabels()) {
+  @if (shouldShowStatus()) {
     <span class="ui-switch__status">
       {{ statusLabel() }}
     </span>

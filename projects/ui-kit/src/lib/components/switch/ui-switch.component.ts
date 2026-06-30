@@ -31,10 +31,15 @@ export class UiSwitchComponent implements ControlValueAccessor {
 
   checkedLabel = input<string | null>(null);
   uncheckedLabel = input<string | null>(null);
+  checkedIcon = input<string | null>(null);
+  uncheckedIcon = input<string | null>(null);
+  showOnlyCurrentSide = input(false);
+
   activeText = input('Ativado');
   inactiveText = input('Desativado');
 
   showSideLabels = input(false);
+  showStatus = input(true);
   checkedInput = input(false, { alias: 'checked' });
 
   disabled = input(false);
@@ -58,12 +63,22 @@ export class UiSwitchComponent implements ControlValueAccessor {
 
   isDisabled = computed(() => this.disabled() || this.disabledState());
 
+  hasIcon = computed(() => !!this.checkedIcon() || !!this.uncheckedIcon());
+
+  isIconOnly = computed(
+    () =>
+      this.hasIcon() &&
+      !this.checkedLabel() &&
+      !this.uncheckedLabel() &&
+      !this.label(),
+  );
+
   switchAriaLabel = computed(() => {
     if (this.label()) {
       return null;
     }
 
-    return this.ariaLabel();
+    return this.ariaLabel() || this.statusLabel();
   });
 
   classes = computed(() =>
@@ -73,6 +88,7 @@ export class UiSwitchComponent implements ControlValueAccessor {
       this.checked() ? 'ui-switch--checked' : '',
       this.isDisabled() ? 'ui-switch--disabled' : '',
       this.showSideLabels() ? 'ui-switch--side-labels' : '',
+      this.isIconOnly() ? 'ui-switch--icon-only' : '',
       this.customClass(),
     ]
       .filter(Boolean)
@@ -83,6 +99,10 @@ export class UiSwitchComponent implements ControlValueAccessor {
     this.checked()
       ? this.checkedLabel() || this.activeText()
       : this.uncheckedLabel() || this.inactiveText(),
+  );
+
+  shouldShowStatus = computed(
+    () => !this.showSideLabels() && this.showStatus() && !this.isIconOnly(),
   );
 
   onChange: (value: boolean) => void = () => {};
