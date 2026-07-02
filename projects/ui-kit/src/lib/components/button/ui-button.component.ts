@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
   output,
 } from '@angular/core';
@@ -10,6 +11,7 @@ import {
   UiHorizontalPosition,
   UiSize,
 } from '@design-system/types/ui.types';
+import { RouteHistoryService } from '@services/route-history.service';
 
 @Component({
   selector: 'ui-button',
@@ -19,6 +21,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiButtonComponent {
+  private routeHistory = inject(RouteHistoryService, { optional: true });
+
   label = input('Button');
   loadingLabel = input('Loading...');
   ariaLabel = input<string | null>(null);
@@ -41,6 +45,8 @@ export class UiButtonComponent {
   iconPosition = input<'left' | 'right'>('left');
 
   appearance = input<'default' | 'back'>('default');
+  backFallbackUrl = input('/');
+
   customClass = input('');
 
   type = input<'button' | 'submit' | 'reset'>('button');
@@ -53,6 +59,8 @@ export class UiButtonComponent {
 
     const label = this.label()?.trim();
     if (label) return label;
+
+    if (this.appearance() === 'back') return 'Voltar';
 
     return null;
   });
@@ -81,6 +89,13 @@ export class UiButtonComponent {
 
   onClick(): void {
     if (this.disabled() || this.loading()) return;
+
+    if (this.appearance() === 'back') {
+      this.routeHistory?.back(this.backFallbackUrl());
+      this.buttonClick.emit();
+      return;
+    }
+
     this.buttonClick.emit();
   }
 }
