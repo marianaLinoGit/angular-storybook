@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,6 +20,7 @@ import { UiButtonComponent } from '../button/ui-button.component';
 })
 export class UiPageTitleComponent {
   private router = inject(Router);
+  private location = inject(Location);
 
   title = input.required<string>();
   subtitle = input<string | null>(null);
@@ -34,7 +36,9 @@ export class UiPageTitleComponent {
   actionName = input('');
   actionAriaLabel = input('');
   actionIcon = input('+');
+
   actionRoute = input<string | unknown[] | null>('new');
+  actionRouteMode = input<'append' | 'absolute'>('append');
 
   actionColor = input<
     'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info'
@@ -77,7 +81,6 @@ export class UiPageTitleComponent {
     this.actionClick.emit();
 
     const route = this.actionRoute();
-
     if (!route) return;
 
     if (Array.isArray(route)) {
@@ -85,6 +88,24 @@ export class UiPageTitleComponent {
       return;
     }
 
-    this.router.navigate([route]);
+    const routeText = String(route).trim();
+    if (!routeText) return;
+
+    if (routeText.startsWith('/')) {
+      this.router.navigateByUrl(routeText);
+      return;
+    }
+
+    if (this.actionRouteMode() === 'absolute') {
+      this.router.navigate([routeText]);
+      return;
+    }
+
+    const currentPath = this.location.path().split('?')[0].split('#')[0];
+    const base = currentPath.endsWith('/')
+      ? currentPath.slice(0, -1)
+      : currentPath;
+
+    this.router.navigateByUrl(`${base}/${routeText}`);
   }
 }
