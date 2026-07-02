@@ -1,0 +1,15 @@
+<article [class]="cardClasses()" [attr.aria-label]="computedAriaLabel()">
+  @if (icon()) {
+    <span class="ui-stat-card__icon" aria-hidden="true">
+      <span
+        class="ui-stat-card__mask-icon"
+        [style.--ui-stat-card-icon-url]="'url(' + icon() + ')'"
+      ></span>
+    </span>
+  }
+
+  <div class="ui-stat-card__content">
+    <strong>{{ value() }}</strong>
+    <span>{{ label() }}</span>
+  </div>
+</article>

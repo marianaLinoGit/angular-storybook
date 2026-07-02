@@ -26,6 +26,9 @@ const preview: Preview = {
 
           'Components',
           '*',
+
+          'Layout',
+          '*',
         ],
         method: 'alphabetical',
       },
