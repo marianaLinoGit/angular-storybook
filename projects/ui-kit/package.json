@@ -1,6 +1,6 @@
 {
   "name": "@marianaLinoGit/model-ui-kit",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },

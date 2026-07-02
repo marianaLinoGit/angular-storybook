@@ -11,7 +11,7 @@ import {
   UiHorizontalPosition,
   UiSize,
 } from '@design-system/types/ui.types';
-import { RouteHistoryService } from '@services/route-history.service';
+import { RouteHistoryService } from '../../services/route-history.service';
 
 @Component({
   selector: 'ui-button',
@@ -21,7 +21,7 @@ import { RouteHistoryService } from '@services/route-history.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiButtonComponent {
-  private routeHistory = inject(RouteHistoryService, { optional: true });
+  private routeHistory = inject(RouteHistoryService);
 
   label = input('Button');
   loadingLabel = input('Loading...');
@@ -91,7 +91,7 @@ export class UiButtonComponent {
     if (this.disabled() || this.loading()) return;
 
     if (this.appearance() === 'back') {
-      this.routeHistory?.back(this.backFallbackUrl());
+      this.routeHistory.back(this.backFallbackUrl());
       this.buttonClick.emit();
       return;
     }
