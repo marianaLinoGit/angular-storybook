@@ -31,14 +31,14 @@
   @if (hasAction()) {
     <div class="ui-page-title__action">
       <ui-button
-        [label]="actionLabel()"
+        [label]="resolvedActionLabel()"
         [ariaLabel]="computedActionAriaLabel()"
         [icon]="actionIcon()"
         iconMode="text"
         iconPosition="left"
         [color]="actionColor()"
         size="sm"
-        (buttonClick)="actionClick.emit()"
+        (buttonClick)="onActionClick()"
       />
     </div>
   }

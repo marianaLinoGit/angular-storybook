@@ -2,9 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
   output,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { UiButtonComponent } from '../button/ui-button.component';
 
 @Component({
@@ -16,6 +18,8 @@ import { UiButtonComponent } from '../button/ui-button.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiPageTitleComponent {
+  private router = inject(Router);
+
   title = input.required<string>();
   subtitle = input<string | null>(null);
 
@@ -25,9 +29,12 @@ export class UiPageTitleComponent {
   backIcon = input('/imgs/icons-actions/back.svg');
 
   showAction = input(false);
+
   actionLabel = input('');
+  actionName = input('');
   actionAriaLabel = input('');
   actionIcon = input('+');
+  actionRoute = input<string | unknown[] | null>('new');
 
   actionColor = input<
     'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info'
@@ -38,8 +45,15 @@ export class UiPageTitleComponent {
 
   hasSubtitle = computed(() => !!this.subtitle()?.trim());
 
+  resolvedActionLabel = computed(() => {
+    const label = this.actionLabel().trim();
+    if (label) return label;
+
+    return this.actionName().trim();
+  });
+
   hasAction = computed(
-    () => this.showAction() && this.actionLabel().trim().length > 0,
+    () => this.showAction() && this.resolvedActionLabel().length > 0,
   );
 
   computedBackAriaLabel = computed(() => {
@@ -56,6 +70,21 @@ export class UiPageTitleComponent {
     const aria = this.actionAriaLabel().trim();
     if (aria) return aria;
 
-    return this.actionLabel().trim();
+    return this.resolvedActionLabel();
   });
+
+  onActionClick(): void {
+    this.actionClick.emit();
+
+    const route = this.actionRoute();
+
+    if (!route) return;
+
+    if (Array.isArray(route)) {
+      this.router.navigate(route as any[]);
+      return;
+    }
+
+    this.router.navigate([route]);
+  }
 }

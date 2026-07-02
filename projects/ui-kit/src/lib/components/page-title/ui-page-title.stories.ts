@@ -42,6 +42,16 @@ const meta: Meta<UiPageTitleComponent> = {
       control: 'text',
       description: 'Label acessível do botão de ação.',
     },
+    actionName: {
+      control: 'text',
+      description:
+        'Nome alternativo da ação. Mantém compatibilidade com o header-page antigo.',
+    },
+    actionRoute: {
+      control: 'object',
+      description:
+        'Rota padrão executada ao clicar na ação. Pode ser string, array ou null.',
+    },
     actionIcon: {
       control: 'text',
       description: 'Ícone textual do botão de ação.',
@@ -83,6 +93,8 @@ export const Default: Story = {
     actionAriaLabel: 'Adicionar pet',
     actionIcon: '+',
     actionColor: 'primary',
+    actionName: '',
+    actionRoute: 'new',
   },
 };
 
@@ -106,6 +118,20 @@ export const WithBackAndAction: Story = {
     actionLabel: 'Salvar',
     actionAriaLabel: 'Salvar alterações',
     actionIcon: '✓',
+    actionColor: 'primary',
+  },
+};
+
+export const CompatibleWithOldHeaderPage: Story = {
+  args: {
+    title: 'Meus Pets',
+    subtitle: 'Central de alertas + gerenciamento',
+    showBack: false,
+    showAction: true,
+    actionName: 'Pet',
+    actionLabel: '',
+    actionRoute: 'new',
+    actionIcon: '+',
     actionColor: 'primary',
   },
 };
