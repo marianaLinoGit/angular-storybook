@@ -17,12 +17,17 @@ const meta: Meta<UiButtonComponent> = {
     ariaLabel: {
       control: 'text',
       description:
-        'Texto utilizado por leitores de tela quando o botão não possui texto visível suficiente, como em botões apenas com ícone.',
+        'Texto utilizado por leitores de tela quando o botão não possui texto visível suficiente.',
     },
     icon: {
       control: 'text',
       description:
-        'Ícone exibido no botão. Pode ser emoji, caractere ou texto curto.',
+        'Ícone exibido no botão. Pode ser emoji, caractere, caminho de imagem ou SVG usado como máscara.',
+    },
+    iconMode: {
+      control: 'radio',
+      options: ['text', 'image', 'mask'],
+      description: 'Define se o ícone é texto, imagem ou máscara SVG.',
     },
     color: {
       control: 'select',
@@ -52,6 +57,11 @@ const meta: Meta<UiButtonComponent> = {
       options: ['left', 'right'],
       description: 'Posição do ícone em relação ao texto.',
     },
+    appearance: {
+      control: 'select',
+      options: ['default', 'back'],
+      description: 'Preset visual do botão.',
+    },
     disabled: {
       control: 'boolean',
       description: 'Desabilita o botão.',
@@ -71,6 +81,15 @@ const meta: Meta<UiButtonComponent> = {
     outline: {
       control: 'boolean',
       description: 'Aplica estilo outline.',
+    },
+    iconOnly: {
+      control: 'boolean',
+      description:
+        'Exibe apenas o ícone, mantendo acessibilidade via ariaLabel.',
+    },
+    hideLabelOnMobile: {
+      control: 'boolean',
+      description: 'Oculta o texto em telas menores que 900px.',
     },
     customClass: {
       control: 'text',
@@ -102,15 +121,19 @@ export const Default: Story = {
     loadingLabel: 'Carregando...',
     ariaLabel: null,
     icon: null,
+    iconMode: 'text',
     color: 'primary',
     size: 'md',
     position: 'center',
     iconPosition: 'left',
+    appearance: 'default',
     disabled: false,
     loading: false,
     fullWidth: false,
     rounded: false,
     outline: false,
+    iconOnly: false,
+    hideLabelOnMobile: false,
     customClass: '',
     type: 'button',
   },
@@ -121,6 +144,7 @@ export const WithIcon: Story = {
     ...Default.args,
     label: 'Adicionar',
     icon: '+',
+    iconMode: 'text',
     iconPosition: 'left',
     color: 'secondary',
   },
@@ -131,6 +155,7 @@ export const IconRight: Story = {
     ...Default.args,
     label: 'Continuar',
     icon: '→',
+    iconMode: 'text',
     iconPosition: 'right',
     color: 'primary',
   },
@@ -178,7 +203,6 @@ export const Loading: Story = {
     ...Default.args,
     label: 'Salvar',
     loadingLabel: 'Salvando...',
-    ariaLabel: null,
     icon: '⏳',
     loading: true,
     color: 'primary',
@@ -191,37 +215,88 @@ export const IconOnly: Story = {
     label: '',
     ariaLabel: 'Adicionar item',
     icon: '+',
+    iconOnly: true,
     color: 'primary',
+  },
+};
+
+export const BackButtonDesktop: Story = {
+  args: {
+    ...Default.args,
+    label: 'Voltar',
+    ariaLabel: 'Voltar para a página anterior',
+    icon: '/icons/back.svg',
+    iconMode: 'mask',
+    iconPosition: 'left',
+    appearance: 'back',
+    color: 'primary',
+    size: 'sm',
+    outline: false,
+    hideLabelOnMobile: false,
+  },
+};
+
+export const BackButtonMobile: Story = {
+  args: {
+    ...Default.args,
+    label: 'Voltar',
+    ariaLabel: 'Voltar para a página anterior',
+    icon: '/icons/back.svg',
+    iconMode: 'mask',
+    iconPosition: 'left',
+    appearance: 'back',
+    color: 'primary',
+    size: 'sm',
+    hideLabelOnMobile: true,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
+};
+
+export const BackIconOnly: Story = {
+  args: {
+    ...Default.args,
+    label: '',
+    ariaLabel: 'Voltar',
+    icon: '/icons/back.svg',
+    iconMode: 'mask',
+    iconOnly: true,
+    appearance: 'back',
+    color: 'primary',
+    size: 'sm',
   },
 };
 
 export const AllColors: Story = {
   render: () => ({
     template: `
-      <div style="display: grid; gap: 16px; max-width: 320px;">
-        <ui-button label="Primary" color="primary"></ui-button>
-        <ui-button label="Secondary" color="secondary"></ui-button>
-        <ui-button label="Success" color="success"></ui-button>
-        <ui-button label="Warning" color="warning"></ui-button>
-        <ui-button label="Danger" color="danger"></ui-button>
-        <ui-button label="Info" color="info"></ui-button>
-        <ui-button label="Disabled" color="disabled" [disabled]="true"></ui-button>
-      </div>
-    `,
+            <div style="display: grid; gap: 16px; max-width: 320px;">
+                <ui-button label="Primary" color="primary"></ui-button>
+                <ui-button label="Secondary" color="secondary"></ui-button>
+                <ui-button label="Success" color="success"></ui-button>
+                <ui-button label="Warning" color="warning"></ui-button>
+                <ui-button label="Danger" color="danger"></ui-button>
+                <ui-button label="Info" color="info"></ui-button>
+                <ui-button label="Disabled" color="disabled" [disabled]="true"></ui-button>
+            </div>
+        `,
   }),
 };
 
 export const AllColorsOutline: Story = {
   render: () => ({
     template: `
-      <div style="display: grid; gap: 16px; max-width: 320px;">
-        <ui-button label="Primary" color="primary" [outline]="true"></ui-button>
-        <ui-button label="Secondary" color="secondary" [outline]="true"></ui-button>
-        <ui-button label="Success" color="success" [outline]="true"></ui-button>
-        <ui-button label="Warning" color="warning" [outline]="true"></ui-button>
-        <ui-button label="Danger" color="danger" [outline]="true"></ui-button>
-        <ui-button label="Info" color="info" [outline]="true"></ui-button>
-      </div>
-    `,
+            <div style="display: grid; gap: 16px; max-width: 320px;">
+                <ui-button label="Primary" color="primary" [outline]="true"></ui-button>
+                <ui-button label="Secondary" color="secondary" [outline]="true"></ui-button>
+                <ui-button label="Success" color="success" [outline]="true"></ui-button>
+                <ui-button label="Warning" color="warning" [outline]="true"></ui-button>
+                <ui-button label="Danger" color="danger" [outline]="true"></ui-button>
+                <ui-button label="Info" color="info" [outline]="true"></ui-button>
+            </div>
+        `,
   }),
 };

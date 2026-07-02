@@ -3,7 +3,7 @@
     [type]="type()"
     [class]="buttonClasses()"
     [disabled]="disabled() || loading()"
-    [attr.aria-label]="ariaLabel()"
+    [attr.aria-label]="computedAriaLabel()"
     [attr.aria-disabled]="disabled() || loading()"
     [attr.aria-busy]="loading() ? 'true' : null"
     (click)="onClick()"
@@ -14,17 +14,40 @@
 
     @if (!loading() && icon() && iconPosition() === "left") {
       <span class="ui-button__icon" aria-hidden="true">
-        {{ icon() }}
+        @if (iconMode() === "image") {
+          <img [src]="icon()!" alt="" />
+        } @else if (iconMode() === "mask") {
+          <span
+            class="ui-button__mask-icon"
+            [style.--ui-button-icon-url]="'url(' + icon() + ')'"
+          ></span>
+        } @else {
+          {{ icon() }}
+        }
       </span>
     }
 
-    <span>
-      {{ loading() ? loadingLabel() : label() }}
-    </span>
+    @if (!iconOnly()) {
+      <span
+        class="ui-button__label"
+        [class.ui-button__label--hide-mobile]="hideLabelOnMobile()"
+      >
+        {{ loading() ? loadingLabel() : label() }}
+      </span>
+    }
 
     @if (!loading() && icon() && iconPosition() === "right") {
       <span class="ui-button__icon" aria-hidden="true">
-        {{ icon() }}
+        @if (iconMode() === "image") {
+          <img [src]="icon()!" alt="" />
+        } @else if (iconMode() === "mask") {
+          <span
+            class="ui-button__mask-icon"
+            [style.--ui-button-icon-url]="'url(' + icon() + ')'"
+          ></span>
+        } @else {
+          {{ icon() }}
+        }
       </span>
     }
   </button>

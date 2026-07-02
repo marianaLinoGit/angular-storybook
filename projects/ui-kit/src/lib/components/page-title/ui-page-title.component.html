@@ -1,0 +1,45 @@
+<header class="ui-page-title">
+  <div class="ui-page-title__left">
+    @if (showBack()) {
+      <ui-button
+        class="ui-page-title__back"
+        [label]="backLabel()"
+        [ariaLabel]="computedBackAriaLabel()"
+        [icon]="backIcon()"
+        iconMode="mask"
+        iconPosition="left"
+        appearance="back"
+        color="primary"
+        size="sm"
+        [hideLabelOnMobile]="true"
+        (buttonClick)="backClick.emit()"
+      />
+    }
+
+    <div
+      class="ui-page-title__text"
+      [class.ui-page-title__text--single]="!hasSubtitle()"
+    >
+      <h1>{{ title() }}</h1>
+
+      @if (hasSubtitle()) {
+        <p>{{ subtitle() }}</p>
+      }
+    </div>
+  </div>
+
+  @if (hasAction()) {
+    <div class="ui-page-title__action">
+      <ui-button
+        [label]="actionLabel()"
+        [ariaLabel]="computedActionAriaLabel()"
+        [icon]="actionIcon()"
+        iconMode="text"
+        iconPosition="left"
+        [color]="actionColor()"
+        size="sm"
+        (buttonClick)="actionClick.emit()"
+      />
+    </div>
+  }
+</header>

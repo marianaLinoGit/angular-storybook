@@ -33,15 +33,29 @@ export class UiButtonComponent {
   fullWidth = input(false);
   rounded = input(false);
   outline = input(false);
+  iconOnly = input(false);
+  hideLabelOnMobile = input(false);
 
   icon = input<string | null>(null);
+  iconMode = input<'text' | 'image' | 'mask'>('text');
   iconPosition = input<'left' | 'right'>('left');
 
+  appearance = input<'default' | 'back'>('default');
   customClass = input('');
 
   type = input<'button' | 'submit' | 'reset'>('button');
 
   buttonClick = output<void>();
+
+  computedAriaLabel = computed(() => {
+    const aria = this.ariaLabel()?.trim();
+    if (aria) return aria;
+
+    const label = this.label()?.trim();
+    if (label) return label;
+
+    return null;
+  });
 
   buttonClasses = computed(() =>
     [
@@ -51,6 +65,8 @@ export class UiButtonComponent {
       this.outline() ? 'ui-button--outline' : '',
       this.fullWidth() ? 'ui-button--full' : '',
       this.rounded() ? 'ui-button--rounded' : '',
+      this.iconOnly() ? 'ui-button--icon-only' : '',
+      this.appearance() === 'back' ? 'ui-button--back' : '',
       this.disabled() ? 'ui-button--disabled' : '',
       this.loading() ? 'ui-button--loading' : '',
       this.customClass(),
@@ -64,10 +80,7 @@ export class UiButtonComponent {
   );
 
   onClick(): void {
-    if (this.disabled() || this.loading()) {
-      return;
-    }
-
+    if (this.disabled() || this.loading()) return;
     this.buttonClick.emit();
   }
 }
