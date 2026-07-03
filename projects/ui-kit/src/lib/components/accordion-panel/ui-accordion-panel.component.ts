@@ -24,6 +24,7 @@ export class UiAccordionPanelComponent {
   badgeType = input<UiBadgeType>('default');
   disabled = input(false);
   open = model(false);
+  allowOverflow = input(false);
 
   openedChange = output<boolean>();
 
@@ -35,6 +36,7 @@ export class UiAccordionPanelComponent {
       'ui-accordion-panel',
       this.open() ? 'ui-accordion-panel--open' : '',
       this.disabled() ? 'ui-accordion-panel--disabled' : '',
+      this.allowOverflow() ? 'ui-accordion-panel--overflow-visible' : '',
     ]
       .filter(Boolean)
       .join(' '),

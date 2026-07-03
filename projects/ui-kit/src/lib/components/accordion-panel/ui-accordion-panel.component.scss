@@ -16,6 +16,10 @@
     opacity: 0.55;
   }
 
+  &--overflow-visible {
+    overflow: visible;
+  }
+
   &__heading {
     margin: 0;
     font: inherit;
