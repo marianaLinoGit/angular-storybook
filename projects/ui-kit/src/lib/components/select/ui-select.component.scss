@@ -1,17 +1,22 @@
 .ui-select-field {
   display: grid;
   gap: var(--ui-space-1);
+  width: 100%;
+  min-width: 0;
 }
 
 .ui-select {
   position: relative;
   width: 100%;
+  min-width: 0;
   color: var(--ui-color-text);
   font-family: var(--ui-font-family-text);
   font-size: var(--ui-font-size-sm);
 
   &__trigger {
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
     height: var(--ui-control-height-field-form-md);
     min-height: var(--ui-control-height-field-form-md);
     line-height: var(--ui-control-height-field-form-md);
@@ -22,7 +27,7 @@
     color: var(--ui-color-text);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: var(--ui-space-2);
     cursor: pointer;
     transition: 0.2s ease;
@@ -39,7 +44,10 @@
   }
 
   &__value {
+    display: block;
+    flex: 1 1 auto;
     min-width: 0;
+    max-width: 100%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -56,6 +64,7 @@
     align-items: center;
     gap: var(--ui-space-2);
     flex: 0 0 auto;
+    min-width: max-content;
   }
 
   &__clear {
