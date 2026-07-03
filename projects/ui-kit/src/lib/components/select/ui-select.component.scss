@@ -5,7 +5,9 @@
 
 .ui-select {
   width: 100%;
-  min-height: 42px;
+  height: var(--ui-control-height-field-form-md);
+  min-height: var(--ui-control-height-field-form-md);
+  line-height: var(--ui-control-height-field-form-md);
   border: 1px solid var(--ui-color-input-border);
   border-radius: var(--ui-radius-md);
   padding: 0 var(--ui-space-4);
