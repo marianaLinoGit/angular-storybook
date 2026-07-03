@@ -1,5 +1,7 @@
+export * from './lib/components/accordion-panel/ui-accordion-panel.component';
 export * from './lib/components/accordion/ui-accordion.component';
 export * from './lib/components/alert/ui-alert.component';
+export * from './lib/components/badge/ui-badge.component';
 export * from './lib/components/breadcrumb/ui-breadcrumb.component';
 export * from './lib/components/button/ui-button.component';
 export * from './lib/components/card/ui-card.component';

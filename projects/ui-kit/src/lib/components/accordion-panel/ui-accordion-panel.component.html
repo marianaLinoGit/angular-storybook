@@ -1,0 +1,41 @@
+<article [class]="panelClasses()">
+  <h3 class="ui-accordion-panel__heading">
+    <button
+      type="button"
+      [id]="triggerId()"
+      [disabled]="disabled()"
+      [attr.aria-expanded]="open()"
+      [attr.aria-controls]="panelId()"
+      (click)="toggle()"
+    >
+      <span class="ui-accordion-panel__title">
+        @if (icon()) {
+          <span class="ui-accordion-panel__icon" aria-hidden="true">
+            {{ icon() }}
+          </span>
+        }
+
+        <span>{{ title() }}</span>
+
+        @if (badge() !== null && badge() !== undefined) {
+          <ui-badge [label]="badge()!" [type]="badgeType()" />
+        }
+      </span>
+
+      <span class="ui-accordion-panel__toggle" aria-hidden="true">
+        {{ open() ? "−" : "+" }}
+      </span>
+    </button>
+  </h3>
+
+  @if (open()) {
+    <div
+      class="ui-accordion-panel__content"
+      role="region"
+      [id]="panelId()"
+      [attr.aria-labelledby]="triggerId()"
+    >
+      <ng-content />
+    </div>
+  }
+</article>
