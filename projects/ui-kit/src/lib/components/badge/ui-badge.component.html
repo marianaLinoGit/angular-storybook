@@ -1,3 +1,7 @@
 <span [class]="badgeClasses()">
-  {{ label() }}
+  @if (allowHtml()) {
+    <span [innerHTML]="label()"></span>
+  } @else {
+    {{ label() }}
+  }
 </span>

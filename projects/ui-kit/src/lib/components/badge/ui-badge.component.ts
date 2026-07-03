@@ -16,6 +16,8 @@ export type UiBadgeType = 'default' | 'danger' | 'warning' | 'success' | 'info';
 })
 export class UiBadgeComponent {
   label = input.required<string | number>();
+  allowHtml = input(false);
+
   type = input<UiBadgeType>('default');
 
   badgeClasses = computed(() =>
