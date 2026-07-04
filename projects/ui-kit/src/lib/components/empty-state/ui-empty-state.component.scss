@@ -22,7 +22,9 @@
     padding: var(--ui-space-5);
 
     .ui-empty-state__icon {
-      font-size: 32px;
+      width: var(--ui-icon-size-2xl);
+      height: var(--ui-icon-size-2xl);
+      font-size: var(--ui-font-size-2xl);
     }
 
     h2 {
@@ -34,7 +36,9 @@
     padding: var(--ui-space-8);
 
     .ui-empty-state__icon {
-      font-size: 42px;
+      width: var(--ui-icon-size-3xl);
+      height: var(--ui-icon-size-3xl);
+      font-size: var(--ui-font-size-3xl);
     }
 
     h2 {
@@ -46,7 +50,9 @@
     padding: calc(var(--ui-space-8) * 1.5);
 
     .ui-empty-state__icon {
-      font-size: 56px;
+      width: var(--ui-icon-size-4xl);
+      height: var(--ui-icon-size-4xl);
+      font-size: var(--ui-font-size-4xl);
     }
 
     h2 {
@@ -56,19 +62,45 @@
 
   &--align-left {
     text-align: left;
+
+    .ui-empty-state__icon {
+      margin-left: 0;
+      margin-right: auto;
+    }
   }
 
   &--align-center {
     text-align: center;
+
+    .ui-empty-state__icon {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   &--align-right {
     text-align: right;
+
+    .ui-empty-state__icon {
+      margin-left: auto;
+      margin-right: 0;
+    }
   }
 
   &__icon {
     margin-bottom: var(--ui-space-4);
     line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ui-color-primary);
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      color: currentColor;
+    }
   }
 
   h2 {
@@ -90,6 +122,8 @@
     cursor: pointer;
     font-weight: var(--ui-font-weight-semibold);
     font-size: var(--ui-font-size-sm);
+    border: 0;
+    font-family: inherit;
 
     &:disabled {
       cursor: not-allowed;
@@ -102,13 +136,11 @@
     }
 
     &--primary {
-      border: 0;
       background: var(--ui-color-primary);
       color: var(--ui-color-surface);
     }
 
     &--secondary {
-      border: 0;
       background: var(--ui-color-secondary);
       color: var(--ui-color-surface);
     }

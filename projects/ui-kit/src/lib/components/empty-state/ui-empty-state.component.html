@@ -3,7 +3,13 @@
   [attr.aria-labelledby]="titleId"
   [attr.aria-describedby]="descriptionId"
 >
-  @if (icon()) {
+  @if (iconSvg()) {
+    <div
+      class="ui-empty-state__icon"
+      aria-hidden="true"
+      [innerHTML]="safeIconSvg()"
+    ></div>
+  } @else if (icon()) {
     <div class="ui-empty-state__icon" aria-hidden="true">
       {{ icon() }}
     </div>
@@ -22,7 +28,7 @@
       type="button"
       [class]="buttonClasses()"
       [disabled]="buttonDisabled()"
-      [attr.aria-label]="buttonAriaLabel()"
+      [attr.aria-label]="buttonAriaLabel() || buttonLabel()"
       [attr.aria-disabled]="buttonDisabled() ? 'true' : null"
       (click)="handleButtonClick()"
     >

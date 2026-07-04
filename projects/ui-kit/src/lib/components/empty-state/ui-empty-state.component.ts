@@ -2,9 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
   output,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export type UiEmptyStateSize = 'sm' | 'md' | 'lg';
 export type UiEmptyStateAlign = 'left' | 'center' | 'right';
@@ -19,10 +21,15 @@ export type UiEmptyStateButtonVariant = 'primary' | 'secondary' | 'outline';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiEmptyStateComponent {
-  icon = input('📭');
+  private sanitizer = inject(DomSanitizer);
+
+  icon = input('🐾');
+  iconSvg = input<string | null>(null);
+
   title = input('Nenhum resultado encontrado');
   description = input('Tente ajustar os filtros ou criar um novo item.');
-  buttonLabel = input<string | null>('Criar novo');
+
+  buttonLabel = input<string | null>(null);
   buttonAriaLabel = input<string | null>(null);
 
   size = input<UiEmptyStateSize>('md');
@@ -36,6 +43,14 @@ export class UiEmptyStateComponent {
 
   titleId = `ui-empty-state-title-${crypto.randomUUID()}`;
   descriptionId = `ui-empty-state-description-${crypto.randomUUID()}`;
+
+  safeIconSvg = computed(() => {
+    const svg = this.iconSvg();
+
+    if (!svg) return null;
+
+    return this.sanitizer.bypassSecurityTrustHtml(svg);
+  });
 
   classes = computed(() =>
     [
@@ -57,9 +72,7 @@ export class UiEmptyStateComponent {
   );
 
   handleButtonClick(): void {
-    if (this.buttonDisabled()) {
-      return;
-    }
+    if (this.buttonDisabled()) return;
 
     this.buttonClick.emit();
   }
