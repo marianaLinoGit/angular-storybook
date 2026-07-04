@@ -17,6 +17,8 @@ export interface UiSelectOption {
   label: string;
   value: string;
   disabled?: boolean;
+  iconSrc?: string;
+  iconAlt?: string;
 }
 
 @Component({

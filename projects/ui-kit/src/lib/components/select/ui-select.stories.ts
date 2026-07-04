@@ -10,10 +10,30 @@ const referralOptions = [
 ];
 
 const tutorOptions = [
-  { value: '1', label: 'Mariana Lino — mariana&#64;email.com' },
-  { value: '2', label: 'João Silva — joao&#64;email.com' },
-  { value: '3', label: 'Ana Souza — ana&#64;email.com' },
-  { value: '4', label: 'Pedro Santos — pedro&#64;email.com' },
+  {
+    value: '1',
+    label: 'Mariana Lino — mariana&#64;email.com',
+    iconSrc: 'icons/user.svg',
+    iconAlt: '',
+  },
+  {
+    value: '2',
+    label: 'João Silva — joao&#64;email.com',
+    iconSrc: 'icons/user.svg',
+    iconAlt: '',
+  },
+  {
+    value: '3',
+    label: 'Dra. Ana Souza — ana&#64;email.com',
+    iconSrc: 'icons/vet.svg',
+    iconAlt: '',
+  },
+  {
+    value: '4',
+    label: 'Dr. Pedro Santos — pedro&#64;email.com',
+    iconSrc: 'icons/vet.svg',
+    iconAlt: '',
+  },
 ];
 
 const meta: Meta<UiSelectComponent> = {
@@ -68,7 +88,7 @@ const meta: Meta<UiSelectComponent> = {
     options: {
       control: 'object',
       description:
-        'Lista de opções do select. Cada opção possui label, value e opcionalmente disabled.',
+        'Lista de opções do select. Cada opção possui label, value e opcionalmente disabled, iconSrc e iconAlt.',
     },
     searchable: {
       control: 'boolean',
@@ -156,11 +176,11 @@ export const Default: Story = {
 export const Searchable: Story = {
   args: {
     ...Default.args,
-    label: 'Tutor',
+    label: 'Tutor ou veterinário',
     id: 'tutor',
     name: 'tutor',
-    placeholder: 'Selecione um tutor',
-    searchPlaceholder: 'Buscar tutor...',
+    placeholder: 'Selecione um tutor ou veterinário',
+    searchPlaceholder: 'Buscar tutor ou veterinário...',
     options: tutorOptions,
     searchable: true,
     serverSearch: false,
@@ -178,6 +198,22 @@ export const ServerSearch: Story = {
     searchable: true,
     serverSearch: true,
     allowClear: true,
+  },
+};
+
+export const WithIcons: Story = {
+  args: {
+    ...Default.args,
+    label: 'Tutor ou veterinário',
+    id: 'withIcons',
+    name: 'withIcons',
+    placeholder: 'Selecione',
+    searchPlaceholder: 'Buscar...',
+    options: tutorOptions,
+    searchable: true,
+    allowClear: true,
+    required: false,
+    showOptionalText: false,
   },
 };
 

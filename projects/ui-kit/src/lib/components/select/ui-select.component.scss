@@ -44,13 +44,29 @@
   }
 
   &__value {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ui-space-2);
     flex: 1 1 auto;
     min-width: 0;
     max-width: 100%;
     overflow: hidden;
+  }
+
+  &__value-text,
+  &__option-text {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  &__icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    object-fit: contain;
   }
 
   &--placeholder {
@@ -143,6 +159,10 @@
     text-align: left;
     cursor: pointer;
     font-size: var(--ui-font-size-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--ui-space-2);
+    min-width: 0;
 
     &:hover:not(:disabled) {
       background: color-mix(in srgb, var(--ui-color-primary), transparent 92%);

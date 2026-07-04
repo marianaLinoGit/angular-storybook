@@ -25,7 +25,18 @@
       (blur)="handleBlur()"
     >
       <span class="ui-select__value">
-        {{ selectedLabel() || placeholder() }}
+        @if (selectedOption()?.iconSrc) {
+          <img
+            class="ui-select__icon"
+            [src]="selectedOption()?.iconSrc"
+            [alt]="selectedOption()?.iconAlt || ''"
+            aria-hidden="true"
+          />
+        }
+
+        <span class="ui-select__value-text">
+          {{ selectedLabel() || placeholder() }}
+        </span>
       </span>
 
       <span class="ui-select__actions">
@@ -77,7 +88,18 @@
                 [attr.aria-selected]="option.value === value()"
                 (click)="selectOption(option)"
               >
-                {{ option.label }}
+                @if (option.iconSrc) {
+                  <img
+                    class="ui-select__icon"
+                    [src]="option.iconSrc"
+                    [alt]="option.iconAlt || ''"
+                    aria-hidden="true"
+                  />
+                }
+
+                <span class="ui-select__option-text">
+                  {{ option.label }}
+                </span>
               </button>
             }
           }
