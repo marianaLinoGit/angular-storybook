@@ -14,6 +14,8 @@ export type UiStatCardType =
 
 export type UiStatCardSize = 'sm' | 'md' | 'lg';
 
+export type UiStatCardAppearance = 'solid' | 'gradient';
+
 @Component({
   selector: 'ui-stat-card',
   standalone: true,
@@ -24,6 +26,7 @@ export type UiStatCardSize = 'sm' | 'md' | 'lg';
 export class UiStatCardComponent {
   type = input<UiStatCardType>('default');
   size = input<UiStatCardSize>('md');
+  appearance = input<UiStatCardAppearance>('solid');
 
   value = input.required<string | number>();
   label = input.required<string>();
@@ -38,6 +41,7 @@ export class UiStatCardComponent {
       'ui-stat-card',
       `ui-stat-card--${this.type()}`,
       `ui-stat-card--${this.size()}`,
+      `ui-stat-card--${this.appearance()}`,
       this.fullWidth() ? 'ui-stat-card--full' : '',
     ]
       .filter(Boolean)

@@ -1,5 +1,6 @@
 .ui-stat-card {
   --ui-stat-card-color: var(--ui-color-primary);
+  --ui-stat-card-solid-text-color: var(--ui-color-on-primary, #fff);
 
   width: 100%;
   min-width: 0;
@@ -7,14 +8,8 @@
   align-items: center;
   gap: var(--ui-space-3);
   border-radius: var(--ui-radius-lg);
-  border: 1px solid
-    color-mix(in srgb, var(--ui-stat-card-color), transparent 72%);
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--ui-stat-card-color), transparent 92%),
-    color-mix(in srgb, var(--ui-stat-card-color), transparent 97%)
-  );
-  color: var(--ui-stat-card-color);
+  border: 1px solid var(--ui-stat-card-color);
+  color: var(--ui-stat-card-solid-text-color);
 
   &--default {
     --ui-stat-card-color: var(--ui-color-primary);
@@ -36,12 +31,30 @@
     --ui-stat-card-color: var(--ui-color-info);
   }
 
+  &--solid {
+    background: var(--ui-stat-card-color);
+  }
+
+  &--gradient {
+    border-color: color-mix(
+      in srgb,
+      var(--ui-stat-card-color),
+      transparent 72%
+    );
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--ui-stat-card-color), transparent 92%),
+      color-mix(in srgb, var(--ui-stat-card-color), transparent 97%)
+    );
+    color: var(--ui-stat-card-color);
+  }
+
   &--sm {
     padding: 10px 12px;
 
     .ui-stat-card__mask-icon {
-      width: 28px;
-      height: 28px;
+      width: var(--ui-icon-size-md);
+      height: var(--ui-icon-size-md);
     }
 
     .ui-stat-card__content {
@@ -59,8 +72,8 @@
     padding: 14px 16px;
 
     .ui-stat-card__mask-icon {
-      width: 34px;
-      height: 34px;
+      width: var(--ui-icon-size-lg);
+      height: var(--ui-icon-size-lg);
     }
 
     .ui-stat-card__content {
@@ -78,8 +91,8 @@
     padding: 18px 20px;
 
     .ui-stat-card__mask-icon {
-      width: 42px;
-      height: 42px;
+      width: var(--ui-icon-size-xl);
+      height: var(--ui-icon-size-xl);
     }
 
     .ui-stat-card__content {
@@ -157,8 +170,8 @@
       min-height: 104px;
 
       .ui-stat-card__mask-icon {
-        width: 28px;
-        height: 28px;
+        width: var(--ui-icon-size-md);
+        height: var(--ui-icon-size-md);
       }
 
       .ui-stat-card__content {
