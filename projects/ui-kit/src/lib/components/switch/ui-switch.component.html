@@ -16,10 +16,11 @@
       [attr.aria-hidden]="isIconOnly() ? 'true' : null"
     >
       @if (uncheckedIcon()) {
-        <span
+        <ui-icon
           class="ui-switch__side-icon"
-          [style.--ui-switch-icon-url]="'url(' + uncheckedIcon()! + ')'"
-        ></span>
+          [name]="uncheckedIcon()!"
+          size="xs"
+        />
       }
 
       @if (uncheckedLabel()) {
@@ -61,10 +62,11 @@
       [attr.aria-hidden]="isIconOnly() ? 'true' : null"
     >
       @if (checkedIcon()) {
-        <span
+        <ui-icon
           class="ui-switch__side-icon"
-          [style.--ui-switch-icon-url]="'url(' + checkedIcon()! + ')'"
-        ></span>
+          [name]="checkedIcon()!"
+          size="xs"
+        />
       }
 
       @if (checkedLabel()) {

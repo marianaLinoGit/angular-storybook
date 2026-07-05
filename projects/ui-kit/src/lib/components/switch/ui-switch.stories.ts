@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiSwitchComponent } from './ui-switch.component';
 
 const meta: Meta<UiSwitchComponent> = {
@@ -32,12 +33,21 @@ const meta: Meta<UiSwitchComponent> = {
       description: 'Texto exibido quando o switch está desmarcado.',
     },
     checkedIcon: {
-      control: 'text',
-      description: 'Ícone exibido quando o switch está ativo.',
+      control: 'select',
+      options: [null, ...UI_ICON_NAMES],
+      description:
+        'Nome do ícone exibido quando o switch está ativo. Usa o componente ui-icon.',
     },
     uncheckedIcon: {
-      control: 'text',
-      description: 'Ícone exibido quando o switch está inativo.',
+      control: 'select',
+      options: [null, ...UI_ICON_NAMES],
+      description:
+        'Nome do ícone exibido quando o switch está inativo. Usa o componente ui-icon.',
+    },
+    showOnlyCurrentSide: {
+      control: 'boolean',
+      description:
+        'Quando true, exibe apenas o label/ícone correspondente ao estado atual.',
     },
     activeText: {
       control: 'text',
@@ -99,6 +109,7 @@ export const Default: Story = {
     uncheckedLabel: 'Desativado',
     checkedIcon: null,
     uncheckedIcon: null,
+    showOnlyCurrentSide: false,
     activeText: 'Ativado',
     inactiveText: 'Desativado',
     showSideLabels: false,
@@ -152,10 +163,10 @@ export const ThemeSwitcher: Story = {
     ariaLabel: 'Alternar tema',
     showSideLabels: true,
     showStatus: false,
-    uncheckedLabel: '☀️ Light',
-    checkedLabel: '🌙 Dark',
-    checkedIcon: null,
-    uncheckedIcon: null,
+    uncheckedLabel: 'Light',
+    checkedLabel: 'Dark',
+    uncheckedIcon: 'sun',
+    checkedIcon: 'moon',
     size: 'md',
   },
 };
@@ -169,8 +180,8 @@ export const ThemeSwitcherIconsAndText: Story = {
     showStatus: false,
     uncheckedLabel: 'Light',
     checkedLabel: 'Dark',
-    uncheckedIcon: '/icons/icon-sun.svg',
-    checkedIcon: '/icons/icon-moon.svg',
+    uncheckedIcon: 'sun',
+    checkedIcon: 'moon',
     size: 'md',
   },
 };
@@ -184,8 +195,24 @@ export const ThemeSwitcherIconsOnly: Story = {
     showStatus: false,
     uncheckedLabel: null,
     checkedLabel: null,
-    uncheckedIcon: '/icons/icon-sun.svg',
-    checkedIcon: '/icons/icon-moon.svg',
+    uncheckedIcon: 'sun',
+    checkedIcon: 'moon',
+    size: 'md',
+  },
+};
+
+export const ShowOnlyCurrentSide: Story = {
+  args: {
+    ...Default.args,
+    label: '',
+    ariaLabel: 'Alternar tema',
+    showSideLabels: true,
+    showStatus: false,
+    showOnlyCurrentSide: true,
+    uncheckedLabel: 'Light',
+    checkedLabel: 'Dark',
+    uncheckedIcon: 'sun',
+    checkedIcon: 'moon',
     size: 'md',
   },
 };
@@ -217,8 +244,8 @@ export const DisabledIconsOnly: Story = {
     showStatus: false,
     uncheckedLabel: null,
     checkedLabel: null,
-    uncheckedIcon: '/icons/icon-sun.svg',
-    checkedIcon: '/icons/icon-moon.svg',
+    uncheckedIcon: 'sun',
+    checkedIcon: 'moon',
     disabled: true,
     size: 'md',
   },

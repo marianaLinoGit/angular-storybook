@@ -9,10 +9,12 @@ import {
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 @Component({
   selector: 'ui-switch',
   standalone: true,
+  imports: [UiIconComponent],
   templateUrl: './ui-switch.component.html',
   styleUrl: './ui-switch.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,8 +33,8 @@ export class UiSwitchComponent implements ControlValueAccessor {
 
   checkedLabel = input<string | null>(null);
   uncheckedLabel = input<string | null>(null);
-  checkedIcon = input<string | null>(null);
-  uncheckedIcon = input<string | null>(null);
+  checkedIcon = input<UiIconName | null>(null);
+  uncheckedIcon = input<UiIconName | null>(null);
   showOnlyCurrentSide = input(false);
 
   activeText = input('Ativado');
@@ -74,9 +76,7 @@ export class UiSwitchComponent implements ControlValueAccessor {
   );
 
   switchAriaLabel = computed(() => {
-    if (this.label()) {
-      return null;
-    }
+    if (this.label()) return null;
 
     return this.ariaLabel() || this.statusLabel();
   });
@@ -109,9 +109,7 @@ export class UiSwitchComponent implements ControlValueAccessor {
   onTouched: () => void = () => {};
 
   toggle(): void {
-    if (this.isDisabled()) {
-      return;
-    }
+    if (this.isDisabled()) return;
 
     const next = !this.checked();
 
