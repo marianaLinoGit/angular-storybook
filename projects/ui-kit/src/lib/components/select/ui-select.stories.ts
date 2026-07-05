@@ -37,12 +37,12 @@ const meta: Meta<UiSelectComponent> = {
       ...story(),
       styles: [
         `
-          :host {
-            display: block;
-            min-height: 150px;
-            padding: 24px 24px 300px;
-            max-width: 420px;
-          }
+        :host {
+          display: block;
+          max-width: 420px;
+          min-height: 420px;
+          padding: 24px;
+        }
         `,
       ],
     }),
@@ -86,10 +86,18 @@ const meta: Meta<UiSelectComponent> = {
       control: 'boolean',
       description: 'Exibe campo de busca dentro do dropdown.',
     },
+    searchAriaLabel: {
+      control: 'text',
+      description: 'Texto acessível do campo de busca interno.',
+    },
     serverSearch: {
       control: 'boolean',
       description:
         'Quando true, não filtra localmente e apenas emite searchChange.',
+    },
+    clearAriaLabel: {
+      control: 'text',
+      description: 'Texto acessível do botão de limpar seleção.',
     },
     allowClear: {
       control: 'boolean',
@@ -153,7 +161,9 @@ export const Default: Story = {
     emptyText: 'Nenhuma opção encontrada',
     options: referralOptions,
     searchable: false,
+    searchAriaLabel: 'Buscar opção',
     serverSearch: false,
+    clearAriaLabel: 'Limpar seleção',
     allowClear: false,
     required: true,
     disabled: false,
@@ -277,5 +287,23 @@ export const WithoutVisibleLabel: Story = {
     ...Default.args,
     label: '',
     ariaLabel: 'Selecione a origem do cadastro',
+  },
+};
+
+export const IconsGallery: Story = {
+  args: {
+    ...Default.args,
+    label: 'Ação',
+    searchable: true,
+    allowClear: true,
+    options: [
+      { value: 'download', label: 'Download', iconName: 'download' },
+      { value: 'upload', label: 'Upload', iconName: 'upload' },
+      { value: 'copy', label: 'Copiar', iconName: 'copy' },
+      { value: 'home', label: 'Home', iconName: 'home' },
+      { value: 'filter', label: 'Filtro', iconName: 'filter' },
+      { value: 'email', label: 'E-mail', iconName: 'email' },
+      { value: 'phone', label: 'Telefone', iconName: 'phone' },
+    ],
   },
 };
