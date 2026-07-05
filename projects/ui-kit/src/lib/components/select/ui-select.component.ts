@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   ElementRef,
   HostListener,
   inject,
@@ -61,6 +62,8 @@ export class UiSelectComponent implements ControlValueAccessor {
   showError = input(false);
   customClass = input('');
 
+  size = input<'sm' | 'md'>('md');
+
   searchable = input(false);
   serverSearch = input(false);
   allowClear = input(false);
@@ -68,6 +71,9 @@ export class UiSelectComponent implements ControlValueAccessor {
 
   valueChange = output<string>();
   searchChange = output<string>();
+
+  /** Valor controlado externamente (one-way). */
+  selectedValue = input<string | number | null>(null, { alias: 'value' });
 
   value = signal('');
   searchTerm = signal('');
@@ -78,6 +84,19 @@ export class UiSelectComponent implements ControlValueAccessor {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+
+    effect(
+      () => {
+        const external = this.selectedValue();
+        if (external == null) return;
+
+        const next = String(external);
+        if (next !== this.value()) {
+          this.value.set(next);
+        }
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   isDisabled = computed(() => this.disabled() || this.disabledState());
@@ -115,6 +134,7 @@ export class UiSelectComponent implements ControlValueAccessor {
   classes = computed(() =>
     [
       'ui-select',
+      `ui-select--${this.size()}`,
       this.hasError() ? 'ui-select--error' : '',
       this.isDisabled() ? 'ui-select--disabled' : '',
       this.opened() ? 'ui-select--open' : '',

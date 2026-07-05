@@ -1,0 +1,159 @@
+<div [class]="tableClasses()">
+  @if (showFooterTop()) {
+    <ng-container *ngTemplateOutlet="footerTpl" />
+  }
+
+  <div class="ui-table__wrapper">
+    <table [attr.aria-label]="ariaLabel()">
+      <thead>
+        <tr>
+          @for (column of columns(); track column.key) {
+            <th
+              scope="col"
+              [class]="getHeaderClasses(column)"
+              [style]="getColumnStyle(column)"
+              [attr.aria-sort]="
+                sortBy() === column.key
+                  ? sortDir() === 'asc'
+                    ? 'ascending'
+                    : 'descending'
+                  : null
+              "
+            >
+              @if (column.sortable) {
+                <button
+                  type="button"
+                  class="ui-table__sort-button"
+                  (click)="onSort(column)"
+                >
+                  <span>{{ column.label }}</span>
+
+                  <ui-icon
+                    class="ui-table__sort-icon"
+                    [class.ui-table__sort-icon--active]="
+                      sortBy() === column.key
+                    "
+                    [name]="sortIcon(column)"
+                    size="xs"
+                  />
+                </button>
+              } @else {
+                <span>{{ column.label }}</span>
+              }
+            </th>
+          }
+        </tr>
+      </thead>
+
+      @if (loading()) {
+        <tbody>
+          @for (row of skeletonRowsArray(); track row) {
+            <tr class="ui-table__skeleton-row">
+              @for (column of skeletonColumnsArray(); track column) {
+                <td>
+                  <span class="ui-table__skeleton-cell"></span>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      } @else if (!hasRows()) {
+        <tbody>
+          <tr class="ui-table__empty-row">
+            <td class="ui-table__empty-cell" [attr.colspan]="columns().length">
+              <ui-empty-state
+                variant="plain"
+                size="sm"
+                [iconName]="currentEmptyIcon()"
+                [title]="currentEmptyTitle()"
+                [description]="currentEmptyDescription()"
+              />
+            </td>
+          </tr>
+        </tbody>
+      } @else {
+        <tbody>
+          <ng-content />
+        </tbody>
+      }
+    </table>
+  </div>
+
+  @if (showFooterBottom()) {
+    <ng-container *ngTemplateOutlet="footerTpl" />
+  }
+</div>
+
+<ng-template #footerTpl>
+  <div class="ui-table__footer">
+    @if (showTotal()) {
+      <div class="ui-table__total" aria-live="polite">
+        @if (total() > 0) {
+          <span>
+            <strong>{{ firstItem() }}</strong>
+            -
+            <strong>{{ lastItem() }}</strong>
+            {{ ofLabel() }}
+            <strong>{{ total() }}</strong>
+            {{ totalLabel() }}
+          </span>
+        } @else {
+          <span>
+            <strong>0</strong>
+            {{ totalLabel() }}
+          </span>
+        }
+      </div>
+    }
+
+    @if (showPaginationControls() || (showPageSize() && hasRows())) {
+      <div class="ui-table__footer-actions">
+        @if (showPaginationControls()) {
+          <div class="ui-table__pagination-controls">
+          <ui-button
+            [label]="previousLabel()"
+            color="primary"
+            size="sm"
+            [outline]="true"
+            type="button"
+            [disabled]="isFirstPage() || loading()"
+            (buttonClick)="goToPrevious()"
+          />
+
+          <span class="ui-table__page-indicator">
+            {{ pageLabel() }}
+            <strong>{{ pageIndex() }}</strong>
+            {{ ofLabel() }}
+            <strong>{{ totalPages() }}</strong>
+          </span>
+
+          <ui-button
+            [label]="nextLabel()"
+            color="primary"
+            size="sm"
+            [outline]="true"
+            type="button"
+            [disabled]="isLastPage() || loading()"
+            (buttonClick)="goToNext()"
+          />
+        </div>
+      }
+
+      @if (showPageSize() && hasRows()) {
+        <div class="ui-table__page-size">
+          <ui-select
+            [label]="''"
+            size="sm"
+            [options]="pageSizeSelectOptions()"
+            [showOptionalText]="false"
+            [required]="false"
+            [value]="pageSize()"
+            [ariaLabel]="pageSizeSelectAriaLabel()"
+            (valueChange)="onPageSizeChange($event)"
+          />
+        </div>
+      }
+    </div>
+    }
+  </div>
+</ng-template>

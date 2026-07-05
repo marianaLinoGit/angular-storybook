@@ -228,6 +228,26 @@
     background: var(--ui-color-input-disabled-background);
     color: var(--ui-color-disabled);
   }
+
+  &--sm {
+    font-size: var(--ui-font-size-xs);
+
+    .ui-select__trigger {
+      height: 34px;
+      min-height: 34px;
+      padding: 0 var(--ui-space-2) 0 var(--ui-space-3);
+    }
+
+    .ui-select__value-text,
+    .ui-select__option-text {
+      font-size: var(--ui-font-size-xs);
+    }
+
+    .ui-select__option {
+      padding: 7px var(--ui-space-2);
+      font-size: var(--ui-font-size-xs);
+    }
+  }
 }
 
 .ui-select-field__error {
