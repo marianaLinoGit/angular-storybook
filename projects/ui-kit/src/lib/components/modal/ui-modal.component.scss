@@ -1,3 +1,14 @@
+:host {
+  display: contents;
+}
+
+:host(.ui-modal-host--portaled) {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: var(--ui-z-modal, 1200);
+}
+
 .ui-modal-backdrop {
   inset: 0;
   background: rgba(15, 23, 42, 0.58);
@@ -5,7 +16,6 @@
   align-items: center;
   justify-content: center;
   padding: var(--ui-space-6);
-  z-index: 1000;
   box-sizing: border-box;
 
   &--fixed {
@@ -17,6 +27,10 @@
     min-height: 560px;
     border-radius: var(--ui-radius-lg);
   }
+}
+
+:host(.ui-modal-host--portaled) .ui-modal-backdrop--fixed {
+  position: absolute;
 }
 
 .ui-modal {

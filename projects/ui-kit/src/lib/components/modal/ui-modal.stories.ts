@@ -154,6 +154,7 @@ export const Confirmation: Story = {
   args: {
     ...playgroundDefaults,
     type: 'confirmation',
+    presentationMode: 'fixed',
     title: 'Confirmar exclusão',
     description:
       'Tem certeza que deseja excluir este item? Essa ação não poderá ser desfeita.',
