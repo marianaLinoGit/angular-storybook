@@ -160,6 +160,12 @@
     border: 1px solid
       color-mix(in srgb, var(--ui-color-primary), transparent 70%);
     color: var(--ui-color-primary);
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    &.ui-button-lg {
+      padding: 0px var(--ui-space-4);
+    }
 
     &:hover:not(:disabled) {
       background: var(--ui-color-primary);
