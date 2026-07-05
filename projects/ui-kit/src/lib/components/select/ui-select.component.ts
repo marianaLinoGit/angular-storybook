@@ -11,20 +11,21 @@ import {
   viewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
+import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 import { UiLabelComponent } from '../label/ui-label.component';
 
 export interface UiSelectOption {
   label: string;
   value: string;
   disabled?: boolean;
-  iconSrc?: string;
-  iconAlt?: string;
+  iconName?: UiIconName;
+  iconLabel?: string | null;
 }
 
 @Component({
   selector: 'ui-select',
   standalone: true,
-  imports: [UiLabelComponent],
+  imports: [UiLabelComponent, UiIconComponent],
   templateUrl: './ui-select.component.html',
   styleUrl: './ui-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,6 +47,7 @@ export class UiSelectComponent implements ControlValueAccessor {
   name = input<string | null>(null);
   placeholder = input('Selecione');
   searchPlaceholder = input('Buscar...');
+  searchAriaLabel = input('Buscar opção');
   emptyText = input('Nenhuma opção encontrada');
   options = input<UiSelectOption[]>([]);
 
@@ -62,6 +64,7 @@ export class UiSelectComponent implements ControlValueAccessor {
   searchable = input(false);
   serverSearch = input(false);
   allowClear = input(false);
+  clearAriaLabel = input('Limpar seleção');
 
   valueChange = output<string>();
   searchChange = output<string>();
@@ -81,6 +84,10 @@ export class UiSelectComponent implements ControlValueAccessor {
 
   errorId = computed(() => `${this.id()}-error`);
   listboxId = computed(() => `${this.id()}-listbox`);
+
+  chevronIcon = computed<UiIconName>(() =>
+    this.opened() ? 'chevron-up' : 'chevron-down',
+  );
 
   selectAriaLabel = computed(() => {
     if (this.label()) return null;
@@ -112,6 +119,7 @@ export class UiSelectComponent implements ControlValueAccessor {
       this.isDisabled() ? 'ui-select--disabled' : '',
       this.opened() ? 'ui-select--open' : '',
       !this.value() ? 'ui-select--placeholder' : '',
+      this.allowClear() && this.value() ? 'ui-select--clearable' : '',
       this.customClass(),
     ]
       .filter(Boolean)
@@ -172,6 +180,7 @@ export class UiSelectComponent implements ControlValueAccessor {
     this.onChange('');
     this.valueChange.emit('');
     this.searchTerm.set('');
+    this.close();
   }
 
   handleSearch(event: Event): void {

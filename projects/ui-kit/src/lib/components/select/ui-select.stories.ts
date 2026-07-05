@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import type { UiSelectOption } from './ui-select.component';
 import { UiSelectComponent } from './ui-select.component';
 
 const referralOptions = [
@@ -9,30 +10,21 @@ const referralOptions = [
   { value: 'OUTRO', label: 'Outro' },
 ];
 
-const tutorOptions = [
+const tutorOptions: UiSelectOption[] = [
   {
-    value: '1',
-    label: 'Mariana Lino — mariana&#64;email.com',
-    iconSrc: 'icons/user.svg',
-    iconAlt: '',
+    value: 'all',
+    label: 'Todos os tutores',
+    iconName: 'users',
   },
   {
-    value: '2',
-    label: 'João Silva — joao&#64;email.com',
-    iconSrc: 'icons/user.svg',
-    iconAlt: '',
+    value: 'with-tutor',
+    label: 'Com tutor',
+    iconName: 'user',
   },
   {
-    value: '3',
-    label: 'Dra. Ana Souza — ana&#64;email.com',
-    iconSrc: 'icons/vet.svg',
-    iconAlt: '',
-  },
-  {
-    value: '4',
-    label: 'Dr. Pedro Santos — pedro&#64;email.com',
-    iconSrc: 'icons/vet.svg',
-    iconAlt: '',
+    value: 'without-tutor',
+    label: 'Sem tutor',
+    iconName: 'paw',
   },
 ];
 
@@ -88,7 +80,7 @@ const meta: Meta<UiSelectComponent> = {
     options: {
       control: 'object',
       description:
-        'Lista de opções do select. Cada opção possui label, value e opcionalmente disabled, iconSrc e iconAlt.',
+        'Lista de opções do select. Cada opção possui label, value e opcionalmente disabled, iconName e iconLabel.',
     },
     searchable: {
       control: 'boolean',
@@ -176,11 +168,11 @@ export const Default: Story = {
 export const Searchable: Story = {
   args: {
     ...Default.args,
-    label: 'Tutor ou veterinário',
+    label: 'Tutor',
     id: 'tutor',
     name: 'tutor',
-    placeholder: 'Selecione um tutor ou veterinário',
-    searchPlaceholder: 'Buscar tutor ou veterinário...',
+    placeholder: 'Selecione um tutor',
+    searchPlaceholder: 'Buscar tutor...',
     options: tutorOptions,
     searchable: true,
     serverSearch: false,
@@ -207,10 +199,11 @@ export const WithIcons: Story = {
     label: 'Tutor ou veterinário',
     id: 'withIcons',
     name: 'withIcons',
-    placeholder: 'Selecione',
+    placeholder: 'Selecione tutor ou veterinário',
     searchPlaceholder: 'Buscar...',
     options: tutorOptions,
     searchable: true,
+    serverSearch: false,
     allowClear: true,
     required: false,
     showOptionalText: false,

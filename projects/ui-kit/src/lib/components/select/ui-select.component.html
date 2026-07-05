@@ -1,4 +1,4 @@
-<div class="ui-select-field">
+<div class="ui-select">
   <ui-label
     [label]="label()"
     [forId]="id()"
@@ -8,55 +8,53 @@
   ></ui-label>
 
   <div [class]="classes()">
-    <button
-      type="button"
-      class="ui-select__trigger"
-      [id]="id()"
-      [name]="name()"
-      [disabled]="isDisabled()"
-      [attr.aria-label]="selectAriaLabel()"
-      [attr.aria-required]="hasRequired() ? 'true' : null"
-      [attr.aria-invalid]="hasError() ? 'true' : null"
-      [attr.aria-describedby]="hasError() ? errorId() : null"
-      [attr.aria-expanded]="opened()"
-      [attr.aria-controls]="listboxId()"
-      aria-haspopup="listbox"
-      (click)="toggle()"
-      (blur)="handleBlur()"
-    >
-      <span class="ui-select__value">
-        @if (selectedOption()?.iconSrc) {
-          <img
-            class="ui-select__icon"
-            [src]="selectedOption()?.iconSrc"
-            [alt]="selectedOption()?.iconAlt || ''"
-            aria-hidden="true"
-          />
-        }
+    <div class="ui-select__control">
+      <button
+        type="button"
+        class="ui-select__trigger"
+        [id]="id()"
+        [name]="name()"
+        [disabled]="isDisabled()"
+        [attr.aria-label]="selectAriaLabel()"
+        [attr.aria-required]="hasRequired() ? 'true' : null"
+        [attr.aria-invalid]="hasError() ? 'true' : null"
+        [attr.aria-describedby]="hasError() ? errorId() : null"
+        [attr.aria-expanded]="opened()"
+        [attr.aria-controls]="listboxId()"
+        aria-haspopup="listbox"
+        (click)="toggle()"
+        (blur)="handleBlur()"
+      >
+        <span class="ui-select__value">
+          @if (selectedOption()?.iconName) {
+            <ui-icon
+              class="ui-select__icon"
+              [name]="selectedOption()!.iconName!"
+              [label]="selectedOption()?.iconLabel ?? null"
+              size="sm"
+            />
+          }
 
-        <span class="ui-select__value-text">
-          {{ selectedLabel() || placeholder() }}
-        </span>
-      </span>
-
-      <span class="ui-select__actions">
-        @if (allowClear() && value()) {
-          <span
-            class="ui-select__clear"
-            role="button"
-            tabindex="-1"
-            aria-hidden="true"
-            (click)="clearValue($event)"
-          >
-            ×
+          <span class="ui-select__value-text">
+            {{ selectedLabel() || placeholder() }}
           </span>
-        }
-
-        <span class="ui-select__chevron" aria-hidden="true">
-          {{ opened() ? "⌃" : "⌄" }}
         </span>
-      </span>
-    </button>
+
+        <ui-icon class="ui-select__chevron" [name]="chevronIcon()" size="sm" />
+      </button>
+
+      @if (allowClear() && value()) {
+        <button
+          type="button"
+          class="ui-select__clear"
+          [attr.aria-label]="clearAriaLabel()"
+          [disabled]="isDisabled()"
+          (click)="clearValue($event)"
+        >
+          <ui-icon name="close" size="xs" />
+        </button>
+      }
+    </div>
 
     @if (opened()) {
       <div class="ui-select__dropdown" [id]="listboxId()" role="listbox">
@@ -65,6 +63,7 @@
             <input
               #searchInput
               type="search"
+              [attr.aria-label]="searchAriaLabel()"
               [placeholder]="searchPlaceholder()"
               [value]="searchTerm()"
               (input)="handleSearch($event)"
@@ -86,14 +85,15 @@
                 [disabled]="option.disabled"
                 role="option"
                 [attr.aria-selected]="option.value === value()"
+                [attr.aria-disabled]="option.disabled ? 'true' : null"
                 (click)="selectOption(option)"
               >
-                @if (option.iconSrc) {
-                  <img
+                @if (option.iconName) {
+                  <ui-icon
                     class="ui-select__icon"
-                    [src]="option.iconSrc"
-                    [alt]="option.iconAlt || ''"
-                    aria-hidden="true"
+                    [name]="option.iconName"
+                    [label]="option.iconLabel ?? null"
+                    size="sm"
                   />
                 }
 
