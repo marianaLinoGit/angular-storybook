@@ -24,6 +24,7 @@
                 <button
                   type="button"
                   class="ui-table__sort-button"
+                  [attr.aria-label]="getSortAriaLabel(column)"
                   (click)="onSort(column)"
                 >
                   <span>{{ column.label }}</span>
@@ -108,52 +109,26 @@
 
     @if (showPaginationControls() || (showPageSize() && hasRows())) {
       <div class="ui-table__footer-actions">
-        @if (showPaginationControls()) {
-          <div class="ui-table__pagination-controls">
-          <ui-button
-            [label]="previousLabel()"
-            color="primary"
-            size="sm"
-            [outline]="true"
-            type="button"
-            [disabled]="isFirstPage() || loading()"
-            (buttonClick)="goToPrevious()"
-          />
-
-          <span class="ui-table__page-indicator">
-            {{ pageLabel() }}
-            <strong>{{ pageIndex() }}</strong>
-            {{ ofLabel() }}
-            <strong>{{ totalPages() }}</strong>
-          </span>
-
-          <ui-button
-            [label]="nextLabel()"
-            color="primary"
-            size="sm"
-            [outline]="true"
-            type="button"
-            [disabled]="isLastPage() || loading()"
-            (buttonClick)="goToNext()"
-          />
-        </div>
-      }
-
-      @if (showPageSize() && hasRows()) {
-        <div class="ui-table__page-size">
-          <ui-select
-            [label]="''"
-            size="sm"
-            [options]="pageSizeSelectOptions()"
-            [showOptionalText]="false"
-            [required]="false"
-            [value]="pageSize()"
-            [ariaLabel]="pageSizeSelectAriaLabel()"
-            (valueChange)="onPageSizeChange($event)"
-          />
-        </div>
-      }
-    </div>
+        <ui-pagination
+          [pageIndex]="pageIndex()"
+          [totalPages]="totalPages()"
+          [showControls]="showPaginationControls()"
+          [showPageSize]="showPageSize() && hasRows()"
+          [pageSize]="pageSize()"
+          [pageSizeOptions]="pageSizeOptions()"
+          [loading]="loading()"
+          size="sm"
+          [previousLabel]="previousLabel()"
+          [nextLabel]="nextLabel()"
+          [pageLabel]="pageLabel()"
+          [ofLabel]="ofLabel()"
+          [pageSizeLabel]="''"
+          [pageSizeAriaLabel]="pageSizeSelectAriaLabel()"
+          [ariaLabel]="paginationAriaLabel()"
+          (pageIndexChange)="pageIndexChange.emit($event)"
+          (pageSizeChange)="onPageSizeChange($event)"
+        />
+      </div>
     }
   </div>
 </ng-template>

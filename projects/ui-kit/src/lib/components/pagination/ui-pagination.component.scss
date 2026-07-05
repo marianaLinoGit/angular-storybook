@@ -1,0 +1,43 @@
+.ui-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ui-space-3);
+  flex-wrap: wrap;
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--ui-space-3);
+    flex-wrap: wrap;
+  }
+
+  &__status {
+    margin: 0;
+    font-size: var(--ui-font-size-sm);
+
+    strong {
+      color: var(--ui-color-primary);
+      font-weight: var(--ui-font-weight-bold);
+    }
+  }
+
+  &__page-size {
+    min-width: 88px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 767px) {
+    align-items: stretch;
+    flex-direction: column;
+
+    &__nav {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    &__page-size {
+      width: 100%;
+    }
+  }
+}

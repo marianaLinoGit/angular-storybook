@@ -7,10 +7,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { UiButtonComponent } from '../button/ui-button.component';
 import { UiEmptyStateComponent } from '../empty-state/ui-empty-state.component';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
-import { UiSelectComponent, UiSelectOption } from '../select/ui-select.component';
+import { UiPaginationComponent } from '../pagination/ui-pagination.component';
 import { UiBadgeType } from '../badge/ui-badge.component';
 
 export type UiTableSortDir = 'asc' | 'desc';
@@ -95,10 +94,9 @@ export function getUiTableBodyCellClasses(column: UiTableColumn): string {
   standalone: true,
   imports: [
     NgTemplateOutlet,
-    UiButtonComponent,
     UiEmptyStateComponent,
     UiIconComponent,
-    UiSelectComponent,
+    UiPaginationComponent,
   ],
   templateUrl: './ui-table.component.html',
   styleUrl: './ui-table.component.scss',
@@ -144,6 +142,7 @@ export class UiTableComponent {
   noResultsDescription = input('Tente ajustar os filtros para encontrar o que procura.');
 
   ariaLabel = input('Tabela de dados');
+  paginationAriaLabel = input('Paginação da tabela');
   previousLabel = input('Anterior');
   nextLabel = input('Próxima');
   pageSizeLabel = input('Itens por página');
@@ -201,10 +200,6 @@ export class UiTableComponent {
     () => this.pageSizeAriaLabel() ?? this.pageSizeLabel(),
   );
 
-  isFirstPage = computed(() => this.pageIndex() <= 1);
-
-  isLastPage = computed(() => this.pageIndex() >= this.totalPages());
-
   showFooterTop = computed(
     () =>
       this.showFooter() &&
@@ -227,13 +222,6 @@ export class UiTableComponent {
 
   currentEmptyDescription = computed(() =>
     this.hasFilters() ? this.noResultsDescription() : this.emptyDescription(),
-  );
-
-  pageSizeSelectOptions = computed<UiSelectOption[]>(() =>
-    this.pageSizeOptions().map((value) => ({
-      label: String(value),
-      value: String(value),
-    })),
   );
 
   skeletonRowsArray = computed(() =>
@@ -279,6 +267,16 @@ export class UiTableComponent {
     return this.sortDir() === 'asc' ? 'chevron-up' : 'chevron-down';
   }
 
+  getSortAriaLabel(column: UiTableColumn): string {
+    if (this.sortBy() !== column.key) {
+      return `Ordenar por ${column.label}`;
+    }
+
+    return `Ordenar por ${column.label}, ${
+      this.sortDir() === 'asc' ? 'crescente' : 'decrescente'
+    }`;
+  }
+
   onSort(column: UiTableColumn): void {
     if (!column.sortable) return;
 
@@ -291,19 +289,8 @@ export class UiTableComponent {
     });
   }
 
-  onPageSizeChange(value: string): void {
-    const next = Number(value);
-    if (!Number.isFinite(next) || next <= 0) return;
-    this.pageSizeChange.emit(next);
-  }
-
-  goToPrevious(): void {
-    if (this.pageIndex() <= 1) return;
-    this.pageIndexChange.emit(this.pageIndex() - 1);
-  }
-
-  goToNext(): void {
-    if (this.pageIndex() >= this.totalPages()) return;
-    this.pageIndexChange.emit(this.pageIndex() + 1);
+  onPageSizeChange(value: number): void {
+    if (!Number.isFinite(value) || value <= 0) return;
+    this.pageSizeChange.emit(value);
   }
 }

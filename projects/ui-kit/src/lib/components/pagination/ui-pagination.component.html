@@ -1,0 +1,54 @@
+<div class="ui-pagination">
+  @if (showControls()) {
+    <nav class="ui-pagination__nav" [attr.aria-label]="ariaLabel()">
+      <ui-button
+        [label]="previousLabel()"
+        color="primary"
+        [size]="size()"
+        [outline]="true"
+        type="button"
+        [disabled]="isFirstPage() || isControlsDisabled()"
+        (buttonClick)="goToPrevious()"
+      />
+
+      <p
+        class="ui-pagination__status"
+        [id]="statusId"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <span class="ui-pagination__status-text">
+          {{ pageLabel() }}
+          <strong aria-current="page">{{ pageIndex() }}</strong>
+          {{ ofLabel() }}
+          <strong>{{ totalPages() }}</strong>
+        </span>
+      </p>
+
+      <ui-button
+        [label]="nextLabel()"
+        color="primary"
+        [size]="size()"
+        [outline]="true"
+        type="button"
+        [disabled]="isLastPage() || isControlsDisabled()"
+        (buttonClick)="goToNext()"
+      />
+    </nav>
+  }
+
+  @if (showPageSize()) {
+    <div class="ui-pagination__page-size">
+      <ui-select
+        [label]="pageSizeSelectLabel() ?? ''"
+        [size]="selectSize()"
+        [options]="pageSizeSelectOptions()"
+        [showOptionalText]="false"
+        [required]="false"
+        [value]="pageSize()"
+        [ariaLabel]="pageSizeSelectAriaLabel()"
+        (valueChange)="onPageSizeChange($event)"
+      />
+    </div>
+  }
+</div>
