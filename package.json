@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "storybook": "ng run model-ui-kit:storybook",
-    "build-storybook": "ng run model-ui-kit:build-storybook"
+    "build-storybook": "ng run model-ui-kit:build-storybook",
+    "test-storybook": "test-storybook --url http://localhost:6006"
   },
   "private": true,
   "dependencies": {
@@ -34,8 +35,11 @@
     "@storybook/addon-a11y": "^8.6.14",
     "@storybook/addon-docs": "^8.6.14",
     "@storybook/addon-essentials": "^8.6.18",
+    "@storybook/addon-interactions": "^8.6.18",
     "@storybook/addon-themes": "^8.6.18",
     "@storybook/angular": "^8.6.14",
+    "@storybook/test": "^8.6.18",
+    "@storybook/test-runner": "^0.22.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",

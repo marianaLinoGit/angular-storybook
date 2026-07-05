@@ -96,7 +96,14 @@
             "configDir": ".storybook",
             "browserTarget": "model-ui-kit:build",
             "compodoc": true,
-            "compodocArgs": ["-e", "json", "-d", "."],
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              ".",
+              "-p",
+              "projects/ui-kit/tsconfig.lib.json"
+            ],
             "port": 6006
           }
         },
@@ -106,7 +113,14 @@
             "configDir": ".storybook",
             "browserTarget": "model-ui-kit:build",
             "compodoc": true,
-            "compodocArgs": ["-e", "json", "-d", "."],
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              ".",
+              "-p",
+              "projects/ui-kit/tsconfig.lib.json"
+            ],
             "outputDir": "storybook-static"
           }
         }

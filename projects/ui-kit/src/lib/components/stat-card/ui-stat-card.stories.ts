@@ -1,79 +1,135 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { statCardPlaygroundPlay } from '../../storybook/play.helpers';
 import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiStatCardGridComponent } from '../stat-card-grid/ui-stat-card-grid.component';
 import { UiStatCardComponent } from './ui-stat-card.component';
+
+const playgroundDefaults = {
+  type: 'default' as const,
+  size: 'md' as const,
+  appearance: 'solid' as const,
+  value: 6,
+  label: 'Total de alertas',
+  icon: 'alert' as const,
+  ariaLabel: null as string | null,
+  fullWidth: false,
+};
 
 const meta: Meta<UiStatCardComponent> = {
   title: 'Components/Stat Card',
   component: UiStatCardComponent,
   tags: ['autodocs'],
+  includeStories:
+    /^(PlaygroundCompleto|Gradient|Danger|Warning|Success|Info|WithoutIcon)$/,
+  decorators: [
+    (story) => ({
+      ...story(),
+      styles: [
+        `
+        :host {
+          display: block;
+          max-width: 280px;
+          padding: var(--ui-space-4);
+        }
+        `,
+      ],
+    }),
+  ],
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Card compacto para exibir métricas e KPIs. Combina valor em destaque, rótulo descritivo e ícone opcional.\n\n' +
+          '**Uso:** informe `value` e `label`. Combine com `ui-stat-card-grid` para layouts responsivos.',
+      },
+    },
+  },
   argTypes: {
-    type: {
-      control: 'select',
-      options: ['default', 'danger', 'warning', 'success', 'info'],
-      description: 'Tipo visual do card.',
-    },
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Tamanho visual do card.',
-    },
-    appearance: {
-      control: 'select',
-      options: ['solid', 'gradient'],
-      description: 'Aparência do card. Por padrão é sólido.',
-    },
     value: {
       control: 'text',
-      description: 'Valor em destaque.',
+      table: { category: 'Conteúdo' },
+      description: 'Valor numérico ou textual exibido em destaque.',
     },
     label: {
       control: 'text',
-      description: 'Texto descritivo abaixo do valor.',
+      table: { category: 'Conteúdo' },
+      description: 'Texto descritivo exibido abaixo ou ao lado do valor.',
     },
     icon: {
       control: 'select',
       options: [null, ...UI_ICON_NAMES],
-      description: 'Nome do ícone exibido no card. Usa o componente ui-icon.',
+      table: { category: 'Conteúdo' },
+      description:
+        'Nome do ícone exibido no card. Usa o componente `ui-icon`. Quando `null`, o ícone não é exibido.',
     },
-    ariaLabel: {
-      control: 'text',
-      description: 'Descrição acessível opcional.',
+    type: {
+      control: 'select',
+      options: ['default', 'danger', 'warning', 'success', 'info'],
+      table: { category: 'Aparência' },
+      description: 'Variação semântica de cor do card.',
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+      table: { category: 'Aparência' },
+      description: 'Tamanho visual do card (`sm`, `md`, `lg`).',
+    },
+    appearance: {
+      control: 'select',
+      options: ['solid', 'gradient'],
+      table: { category: 'Aparência' },
+      description: 'Estilo de preenchimento: sólido ou gradiente.',
     },
     fullWidth: {
       control: 'boolean',
-      description: 'Força largura total.',
+      table: { category: 'Aparência' },
+      description: 'Faz o card ocupar 100% da largura do container.',
+    },
+    ariaLabel: {
+      control: 'text',
+      table: { category: 'Acessibilidade' },
+      description:
+        'Descrição acessível do card. Quando vazio, usa `label` e `value` como fallback.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiStatCardComponent>;
 
-export const Default: Story = {
-  args: {
-    type: 'default',
-    size: 'md',
-    appearance: 'solid',
-    value: 6,
-    label: 'Total de alertas',
-    icon: 'alert',
-    ariaLabel: null,
-    fullWidth: false,
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
+      },
+    },
   },
+  args: { ...playgroundDefaults },
+  play: statCardPlaygroundPlay,
 };
 
 export const Gradient: Story = {
-  args: {
-    ...Default.args,
-    appearance: 'gradient',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Card com aparência `gradient` para destaque visual.',
+      },
+    },
   },
+  args: { ...playgroundDefaults, appearance: 'gradient' },
 };
 
 export const Danger: Story = {
+  parameters: {
+    docs: { description: { story: 'Métrica com variação `danger`.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     type: 'danger',
     value: 2,
     label: 'Urgentes',
@@ -82,8 +138,11 @@ export const Danger: Story = {
 };
 
 export const Warning: Story = {
+  parameters: {
+    docs: { description: { story: 'Métrica com variação `warning`.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     type: 'warning',
     value: 2,
     label: 'Em breve',
@@ -92,8 +151,11 @@ export const Warning: Story = {
 };
 
 export const Success: Story = {
+  parameters: {
+    docs: { description: { story: 'Métrica com variação `success`.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     type: 'success',
     value: 12,
     label: 'Concluídos',
@@ -102,8 +164,11 @@ export const Success: Story = {
 };
 
 export const Info: Story = {
+  parameters: {
+    docs: { description: { story: 'Métrica com variação `info`.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     type: 'info',
     value: 2,
     label: 'Informativos',
@@ -112,8 +177,15 @@ export const Info: Story = {
 };
 
 export const WithoutIcon: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Card apenas com valor e label, sem ícone.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     icon: null,
     value: 6,
     label: 'Total de pets',
@@ -121,6 +193,13 @@ export const WithoutIcon: Story = {
 };
 
 export const AllTypesSolid: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Comparação de todos os tipos com aparência sólida em grid.',
+      },
+    },
+  },
   render: () => ({
     imports: [UiStatCardComponent, UiStatCardGridComponent],
     template: `
@@ -136,6 +215,13 @@ export const AllTypesSolid: Story = {
 };
 
 export const AllTypesGradient: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Comparação de todos os tipos com aparência gradiente em grid.',
+      },
+    },
+  },
   render: () => ({
     imports: [UiStatCardComponent, UiStatCardGridComponent],
     template: `
@@ -151,6 +237,13 @@ export const AllTypesGradient: Story = {
 };
 
 export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Comparação dos tamanhos `sm`, `md` e `lg` lado a lado.',
+      },
+    },
+  },
   render: () => ({
     imports: [UiStatCardComponent, UiStatCardGridComponent],
     template: `
@@ -164,6 +257,13 @@ export const Sizes: Story = {
 };
 
 export const PetsAlertsDesktop: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Exemplo de dashboard de alertas de pets em layout desktop.',
+      },
+    },
+  },
   render: () => ({
     imports: [UiStatCardComponent, UiStatCardGridComponent],
     template: `
@@ -179,8 +279,11 @@ export const PetsAlertsDesktop: Story = {
 
 export const PetsAlertsMobile: Story = {
   parameters: {
-    viewport: {
-      defaultViewport: 'mobile1',
+    viewport: { defaultViewport: 'mobile1' },
+    docs: {
+      description: {
+        story: 'Mesmo dashboard de alertas adaptado para mobile com cards menores.',
+      },
     },
   },
   render: () => ({

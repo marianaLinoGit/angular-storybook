@@ -1,106 +1,169 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { accordionPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiAccordionComponent } from './ui-accordion.component';
+
+const defaultItems = [
+  {
+    id: '1',
+    title: 'O que é um Design System?',
+    icon: '🎨',
+    content:
+      'É um conjunto de padrões, componentes e regras visuais para construir interfaces consistentes.',
+  },
+  {
+    id: '2',
+    title: 'O que é Storybook?',
+    icon: '📚',
+    content:
+      'É uma ferramenta para documentar, testar e visualizar componentes isoladamente.',
+  },
+  {
+    id: '3',
+    title: 'Item desabilitado',
+    icon: '🔒',
+    content: 'Este conteúdo não deve abrir.',
+    disabled: true,
+  },
+];
+
+const playgroundDefaults = {
+  items: defaultItems,
+  multiple: false,
+  showNumbers: false,
+  showIcons: true,
+  initialOpenedIds: [] as string[],
+  size: 'md' as const,
+  variant: 'default' as const,
+  customClass: '',
+};
 
 const meta: Meta<UiAccordionComponent> = {
   title: 'Components/Accordion',
   component: UiAccordionComponent,
   tags: ['autodocs'],
+  includeStories:
+    /^(PlaygroundCompleto|SingleOpen|MultipleOpen|WithNumbers|WithNumbersAndIcons|WithoutIcons|Flush)$/,
+  decorators: [
+    (story) => ({
+      ...story(),
+      styles: [
+        `
+        :host {
+          display: block;
+          max-width: 640px;
+          padding: var(--ui-space-4);
+        }
+        `,
+      ],
+    }),
+  ],
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Accordion para conteúdo expansível em lista. Suporta múltiplos itens abertos, numeração, ícones e variantes visuais.\n\n' +
+          '**Uso:** informe `items` (array com `id`, `title`, `content` e opcionalmente `icon`, `disabled`). Emite `itemToggle` ao abrir/fechar.',
+      },
+    },
+  },
   argTypes: {
     items: {
       control: 'object',
+      table: { category: 'Conteúdo' },
       description:
-        'Lista de itens do accordion. Cada item deve conter id, title, content e opcionalmente icon e disabled.',
-    },
-    multiple: {
-      control: 'boolean',
-      description: 'Permite manter vários itens abertos simultaneamente.',
-    },
-    showNumbers: {
-      control: 'boolean',
-      description: 'Exibe numeração sequencial antes do título de cada item.',
-    },
-    showIcons: {
-      control: 'boolean',
-      description: 'Exibe os ícones configurados em cada item.',
+        'Lista de itens. Cada item possui `id`, `title`, `content` e opcionalmente `icon` e `disabled`.',
     },
     initialOpenedIds: {
       control: 'object',
-      description: 'Lista de IDs dos itens que devem iniciar abertos.',
+      table: { category: 'Conteúdo' },
+      description: 'IDs dos itens que devem iniciar abertos.',
     },
     size: {
       control: 'radio',
       options: ['sm', 'md', 'lg'],
+      table: { category: 'Aparência' },
       description:
-        'Define o tamanho visual do accordion, alterando espaçamentos e proporção dos itens.',
+        'Tamanho visual do accordion. Altera espaçamentos e proporção dos itens.',
     },
     variant: {
       control: 'radio',
       options: ['default', 'bordered', 'flush'],
+      table: { category: 'Aparência' },
       description:
-        'Define a variação visual: padrão, com borda ou sem espaçamento entre os itens.',
+        'Variação visual: `default` (espaçado), `bordered` (com borda) ou `flush` (compacto).',
     },
     customClass: {
       control: 'text',
-      description: 'Classe CSS customizada.',
+      table: { category: 'Aparência' },
+      description: 'Classe CSS adicional aplicada ao container do accordion.',
+    },
+    multiple: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description:
+        'Quando `true`, permite manter vários itens abertos simultaneamente.',
+    },
+    showNumbers: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description: 'Exibe numeração sequencial antes do título de cada item.',
+    },
+    showIcons: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description: 'Exibe os ícones configurados em cada item.',
     },
     itemToggle: {
       action: 'itemToggle',
-      table: {
-        category: 'Events',
-      },
-      description: 'Evento disparado quando um item é aberto ou fechado.',
+      table: { category: 'Events' },
+      description:
+        'Evento disparado quando um item é aberto ou fechado. Emite `{ id, open }`.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiAccordionComponent>;
 
-export const SingleOpen: Story = {
-  args: {
-    multiple: false,
-    showNumbers: false,
-    showIcons: true,
-    initialOpenedIds: [],
-    size: 'md',
-    variant: 'default',
-    customClass: '',
-    items: [
-      {
-        id: '1',
-        title: 'O que é um Design System?',
-        icon: '🎨',
-        content:
-          'É um conjunto de padrões, componentes e regras visuais para construir interfaces consistentes.',
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
       },
-      {
-        id: '2',
-        title: 'O que é Storybook?',
-        icon: '📚',
-        content:
-          'É uma ferramenta para documentar, testar e visualizar componentes isoladamente.',
-      },
-      {
-        id: '3',
-        title: 'Item desabilitado',
-        icon: '🔒',
-        content: 'Este conteúdo não deve abrir.',
-        disabled: true,
-      },
-    ],
+    },
   },
+  args: { ...playgroundDefaults },
+  play: accordionPlaygroundPlay,
+};
+
+export const SingleOpen: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modo padrão: apenas um item aberto por vez (`multiple = false`).',
+      },
+    },
+  },
+  args: { ...playgroundDefaults },
 };
 
 export const MultipleOpen: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Vários itens podem permanecer abertos ao mesmo tempo.',
+      },
+    },
+  },
   args: {
+    ...playgroundDefaults,
     multiple: true,
-    showNumbers: false,
-    showIcons: true,
     initialOpenedIds: ['1'],
-    size: 'md',
-    variant: 'default',
-    customClass: '',
     items: [
       {
         id: '1',
@@ -112,8 +175,7 @@ export const MultipleOpen: Story = {
         id: '2',
         title: 'Componente 2',
         icon: '⚙️',
-        content:
-          'Quando multiple é true, vários itens podem abrir ao mesmo tempo.',
+        content: 'Quando multiple é true, vários itens podem abrir ao mesmo tempo.',
       },
       {
         id: '3',
@@ -126,43 +188,40 @@ export const MultipleOpen: Story = {
 };
 
 export const WithNumbers: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Itens numerados sequencialmente, sem ícones.',
+      },
+    },
+  },
   args: {
-    multiple: false,
+    ...playgroundDefaults,
     showNumbers: true,
     showIcons: false,
     initialOpenedIds: ['1'],
-    size: 'md',
-    variant: 'default',
-    customClass: '',
     items: [
-      {
-        id: '1',
-        title: 'Primeiro passo',
-        content: 'Conteúdo do primeiro item numerado.',
-      },
-      {
-        id: '2',
-        title: 'Segundo passo',
-        content: 'Conteúdo do segundo item numerado.',
-      },
-      {
-        id: '3',
-        title: 'Terceiro passo',
-        content: 'Conteúdo do terceiro item numerado.',
-      },
+      { id: '1', title: 'Primeiro passo', content: 'Conteúdo do primeiro item numerado.' },
+      { id: '2', title: 'Segundo passo', content: 'Conteúdo do segundo item numerado.' },
+      { id: '3', title: 'Terceiro passo', content: 'Conteúdo do terceiro item numerado.' },
     ],
   },
 };
 
 export const WithNumbersAndIcons: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Numeração + ícones com variante `bordered` e múltiplos itens abertos.',
+      },
+    },
+  },
   args: {
+    ...playgroundDefaults,
     multiple: true,
     showNumbers: true,
-    showIcons: true,
     initialOpenedIds: ['1', '2'],
-    size: 'md',
     variant: 'bordered',
-    customClass: '',
     items: [
       {
         id: '1',
@@ -187,20 +246,18 @@ export const WithNumbersAndIcons: Story = {
 };
 
 export const WithoutIcons: Story = {
-  args: {
-    multiple: false,
-    showNumbers: false,
-    showIcons: false,
-    initialOpenedIds: [],
-    size: 'md',
-    variant: 'default',
-    customClass: '',
-    items: [
-      {
-        id: '1',
-        title: 'Item sem ícone',
-        content: 'Accordion usando apenas texto no título.',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Layout simplificado apenas com texto nos títulos.',
       },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    showIcons: false,
+    items: [
+      { id: '1', title: 'Item sem ícone', content: 'Accordion usando apenas texto no título.' },
       {
         id: '2',
         title: 'Outro item sem ícone',
@@ -211,14 +268,17 @@ export const WithoutIcons: Story = {
 };
 
 export const Flush: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Variante `flush` sem espaçamento entre os itens.',
+      },
+    },
+  },
   args: {
-    multiple: false,
-    showNumbers: false,
-    showIcons: true,
-    initialOpenedIds: ['1'],
-    size: 'md',
+    ...playgroundDefaults,
     variant: 'flush',
-    customClass: '',
+    initialOpenedIds: ['1'],
     items: [
       {
         id: '1',

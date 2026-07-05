@@ -1,101 +1,162 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { emptyStatePlaygroundPlay } from '../../storybook/play.helpers';
+import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiEmptyStateComponent } from './ui-empty-state.component';
+
+const playgroundDefaults = {
+  iconName: 'info' as const,
+  title: 'Nenhum dado encontrado',
+  description: 'Crie um novo item para começar.',
+  buttonLabel: 'Criar item',
+  buttonAriaLabel: 'Criar novo item',
+  size: 'md' as const,
+  align: 'center' as const,
+  variant: 'dashed' as const,
+  buttonVariant: 'primary' as const,
+  buttonDisabled: false,
+  customClass: '',
+};
 
 const meta: Meta<UiEmptyStateComponent> = {
   title: 'Components/Empty State',
   component: UiEmptyStateComponent,
   tags: ['autodocs'],
-  argTypes: {
-    iconName: {
-      control: 'select',
-      options: [
-        'info',
-        'folder',
-        'list',
-        'filter',
-        'lock-blocked',
-        'alert',
-        'pet',
-        'home',
+  includeStories:
+    /^(PlaygroundCompleto|Default|Pets|WithoutButton|Plain|LeftAligned|DisabledAction)$/,
+  decorators: [
+    (story) => ({
+      ...story(),
+      styles: [
+        `
+        :host {
+          display: block;
+          max-width: 560px;
+          padding: var(--ui-space-4);
+        }
+        `,
       ],
-      description:
-        'Nome do ícone exibido no empty state. Usa o componente ui-icon.',
+    }),
+  ],
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Estado vazio para listagens, tabelas e painéis sem dados. Suporta ícone, título, descrição e botão de ação opcional.\n\n' +
+          '**Uso:** informe `title` e opcionalmente `description`, `iconName` e `buttonLabel`. Emite `buttonClick` ao clicar no botão.',
+      },
     },
+  },
+  argTypes: {
     title: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description: 'Título principal exibido no estado vazio.',
     },
     description: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description: 'Texto complementar exibido abaixo do título.',
     },
     buttonLabel: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description:
-        'Texto do botão de ação. Quando vazio, o botão não é exibido.',
+        'Texto do botão de ação. Quando vazio ou `null`, o botão não é exibido.',
     },
-    buttonAriaLabel: {
-      control: 'text',
+    iconName: {
+      control: 'select',
+      options: [null, ...UI_ICON_NAMES],
+      table: { category: 'Conteúdo' },
       description:
-        'Texto acessível do botão. Quando vazio, usa o valor de buttonLabel.',
+        'Nome do ícone exibido no topo. Usa o componente `ui-icon`. Quando `null`, o ícone não é exibido.',
     },
     size: {
       control: 'radio',
       options: ['sm', 'md', 'lg'],
-      description: 'Define o tamanho geral do empty state.',
+      table: { category: 'Aparência' },
+      description: 'Tamanho geral do empty state (`sm`, `md`, `lg`).',
     },
     align: {
       control: 'radio',
       options: ['left', 'center', 'right'],
-      description: 'Define o alinhamento do conteúdo.',
+      table: { category: 'Aparência' },
+      description: 'Alinhamento horizontal do conteúdo.',
     },
     variant: {
       control: 'radio',
       options: ['default', 'dashed', 'plain'],
-      description: 'Define a aparência visual do container.',
+      table: { category: 'Aparência' },
+      description:
+        'Aparência do container: `default` (com borda), `dashed` (tracejada) ou `plain` (sem borda).',
     },
     buttonVariant: {
       control: 'radio',
       options: ['primary', 'secondary', 'outline'],
-      description: 'Define a variação visual do botão.',
-    },
-    buttonDisabled: {
-      control: 'boolean',
-      description: 'Desabilita o botão de ação.',
+      table: { category: 'Aparência' },
+      description: 'Variação visual do botão de ação (`ui-button`).',
     },
     customClass: {
       control: 'text',
-      description: 'Classe customizada aplicada ao container principal.',
+      table: { category: 'Aparência' },
+      description: 'Classe CSS adicional aplicada ao container principal.',
+    },
+    buttonDisabled: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description: 'Desabilita o botão de ação.',
+    },
+    buttonAriaLabel: {
+      control: 'text',
+      table: { category: 'Acessibilidade' },
+      description:
+        'Texto acessível do botão. Quando vazio, usa o valor de `buttonLabel`.',
     },
     buttonClick: {
       action: 'buttonClick',
       table: { category: 'Events' },
-      description: 'Evento emitido ao clicar no botão.',
+      description: 'Evento emitido ao clicar no botão de ação.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiEmptyStateComponent>;
 
-export const Default: Story = {
-  args: {
-    iconName: 'info',
-    title: 'Nenhum dado encontrado',
-    description: 'Crie um novo item para começar.',
-    buttonLabel: 'Criar item',
-    buttonAriaLabel: 'Criar novo item',
-    size: 'md',
-    align: 'center',
-    variant: 'dashed',
-    buttonVariant: 'primary',
-    buttonDisabled: false,
-    customClass: '',
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
+      },
+    },
   },
+  args: { ...playgroundDefaults },
+  play: emptyStatePlaygroundPlay,
+};
+
+export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Empty state padrão com ícone, descrição e botão de ação.',
+      },
+    },
+  },
+  args: { ...playgroundDefaults },
 };
 
 export const Pets: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Exemplo contextual para listagem de pets sem registros.',
+      },
+    },
+  },
   args: {
     iconName: 'paw',
     title: 'Nenhum pet encontrado',
@@ -112,6 +173,13 @@ export const Pets: Story = {
 };
 
 export const WithoutButton: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Estado vazio informativo sem call-to-action.',
+      },
+    },
+  },
   args: {
     iconName: 'filter',
     title: 'Nada encontrado',
@@ -128,6 +196,13 @@ export const WithoutButton: Story = {
 };
 
 export const Plain: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Variante `plain` sem borda, ideal para uso dentro de tabelas ou cards.',
+      },
+    },
+  },
   args: {
     iconName: 'check-circle',
     title: 'Tudo pronto por aqui',
@@ -144,6 +219,13 @@ export const Plain: Story = {
 };
 
 export const LeftAligned: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Conteúdo alinhado à esquerda com botão outline.',
+      },
+    },
+  },
   args: {
     iconName: 'folder',
     title: 'Nenhum arquivo encontrado',
@@ -160,6 +242,13 @@ export const LeftAligned: Story = {
 };
 
 export const DisabledAction: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Botão de ação presente porém desabilitado.',
+      },
+    },
+  },
   args: {
     iconName: 'lock-blocked',
     title: 'Ação indisponível',

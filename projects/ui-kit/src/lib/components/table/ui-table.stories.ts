@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, effect, input, signal } from '@angular/core';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
+import { tablePlaygroundPlay } from '../../storybook/play.helpers';
 import { UiBadgeComponent } from '../badge/ui-badge.component';
 import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconName, UI_ICON_NAMES } from '../icon/ui-icon.component';
@@ -734,6 +735,7 @@ export const PlaygroundCompleto: Story = {
     />`,
   }),
   args: { ...playgroundDefaults },
+  play: tablePlaygroundPlay,
 };
 
 export const Default: Story = {

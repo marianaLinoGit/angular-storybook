@@ -1,97 +1,165 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { checkboxPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiCheckboxComponent } from './ui-checkbox.component';
+
+const playgroundDefaults = {
+  id: 'termsAccepted',
+  name: 'termsAccepted',
+  label: 'Li e aceito os',
+  ariaLabel: null as string | null,
+  linkLabel: 'termos de uso',
+  linkUrl: '/termos-de-uso',
+  linkTarget: '_blank' as const,
+  required: true,
+  disabled: false,
+  showError: false,
+  errorMessage: '*Campo obrigatório',
+  customClass: '',
+};
 
 const meta: Meta<UiCheckboxComponent> = {
   title: 'Components/Checkbox',
   component: UiCheckboxComponent,
   tags: ['autodocs'],
+  includeStories:
+    /^(PlaygroundCompleto|Default|WithoutLink|RequiredWithError|Disabled|LabelOnly|AccessibleLabelOnly)$/,
+  decorators: [
+    (story) => ({
+      ...story(),
+      styles: [
+        `
+        :host {
+          display: block;
+          max-width: 480px;
+          padding: var(--ui-space-4);
+        }
+        `,
+      ],
+    }),
+  ],
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Checkbox do design system com label, link opcional, validação e suporte a formulários reativos (`ControlValueAccessor`).\n\n' +
+          '**Uso:** informe `label` e `id`. Emite `checkedChange` ao alternar o estado.',
+      },
+    },
+  },
   argTypes: {
-    id: {
-      control: 'text',
-      description:
-        'Identificador único utilizado para associar o checkbox ao seu label.',
-    },
-    name: {
-      control: 'text',
-      description: 'Nome do campo enviado em formulários HTML.',
-    },
     label: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description: 'Texto principal exibido ao lado do checkbox.',
-    },
-    ariaLabel: {
-      control: 'text',
-      description:
-        'Texto acessível utilizado quando não houver um label visível.',
     },
     linkLabel: {
       control: 'text',
-      description: 'Texto do link exibido após o label.',
+      table: { category: 'Conteúdo' },
+      description:
+        'Texto do link exibido após o label (ex.: "termos de uso"). Quando `null`, o link não é exibido.',
+    },
+    errorMessage: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description:
+        'Mensagem de erro exibida abaixo do componente. Associada via `aria-describedby`.',
+    },
+    id: {
+      control: 'text',
+      table: { category: 'Formulário' },
+      description:
+        'Identificador único do checkbox. Usado no `for` do label associado.',
+    },
+    name: {
+      control: 'text',
+      table: { category: 'Formulário' },
+      description: 'Nome do campo enviado em formulários HTML.',
     },
     linkUrl: {
       control: 'text',
-      description: 'URL aberta ao clicar no link.',
+      table: { category: 'Formulário' },
+      description: 'URL aberta ao clicar no link. Quando `null`, o link não é exibido.',
     },
     linkTarget: {
       control: 'radio',
       options: ['_self', '_blank'],
+      table: { category: 'Formulário' },
       description:
-        'Define se o link associado ao checkbox abre na mesma aba (_self) ou em uma nova aba (_blank).',
-    },
-    required: {
-      control: 'boolean',
-      description: 'Define se o campo é obrigatório.',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Desabilita a interação com o componente.',
-    },
-    showError: {
-      control: 'boolean',
-      description:
-        'Força a exibição da mensagem de erro, independentemente da validação do formulário.',
-    },
-    errorMessage: {
-      control: 'text',
-      description:
-        'Mensagem de erro exibida abaixo do componente e associada via aria-describedby.',
+        'Define se o link abre na mesma aba (`_self`) ou em nova aba (`_blank`).',
     },
     customClass: {
       control: 'text',
-      description: 'Classe CSS customizada.',
+      table: { category: 'Aparência' },
+      description: 'Classe CSS adicional aplicada ao container do checkbox.',
+    },
+    required: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description: 'Define se o campo é obrigatório (indicador visual).',
+    },
+    disabled: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description: 'Desabilita a interação com o checkbox.',
+    },
+    showError: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description:
+        'Força a exibição da mensagem de erro independentemente da validação do formulário.',
+    },
+    ariaLabel: {
+      control: 'text',
+      table: { category: 'Acessibilidade' },
+      description:
+        'Texto acessível utilizado quando não há label visível.',
     },
     checkedChange: {
       action: 'checkedChange',
-      table: {
-        category: 'Events',
-      },
+      table: { category: 'Events' },
       description: 'Evento disparado quando o estado do checkbox é alterado.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiCheckboxComponent>;
 
-export const Default: Story = {
-  args: {
-    id: 'termsAccepted',
-    name: 'termsAccepted',
-    label: 'Li e aceito os',
-    ariaLabel: null,
-    linkLabel: 'termos de uso',
-    linkUrl: '/termos-de-uso',
-    linkTarget: '_blank',
-    required: true,
-    disabled: false,
-    showError: false,
-    errorMessage: '*Campo obrigatório',
-    customClass: '',
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
+      },
+    },
   },
+  args: { ...playgroundDefaults },
+  play: checkboxPlaygroundPlay,
+};
+
+export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkbox obrigatório com label e link para termos de uso.',
+      },
+    },
+  },
+  args: { ...playgroundDefaults },
 };
 
 export const WithoutLink: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkbox opcional apenas com label, sem link.',
+      },
+    },
+  },
   args: {
     id: 'newsletter',
     name: 'newsletter',
@@ -109,20 +177,41 @@ export const WithoutLink: Story = {
 };
 
 export const RequiredWithError: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Campo obrigatório com mensagem de erro visível.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     showError: true,
   },
 };
 
 export const Disabled: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkbox desabilitado sem interação.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     disabled: true,
   },
 };
 
 export const LabelOnly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkbox simples com label, sem link e sem obrigatoriedade.',
+      },
+    },
+  },
   args: {
     id: 'privacyAccepted',
     name: 'privacyAccepted',
@@ -140,6 +229,14 @@ export const LabelOnly: Story = {
 };
 
 export const AccessibleLabelOnly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Checkbox sem label visível, usando `ariaLabel` para acessibilidade.',
+      },
+    },
+  },
   args: {
     id: 'iconOnlyCheckbox',
     name: 'iconOnlyCheckbox',

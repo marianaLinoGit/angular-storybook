@@ -1,29 +1,81 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { buttonPlaygroundPlay } from '../../storybook/play.helpers';
 import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiButtonComponent } from './ui-button.component';
+
+const playgroundDefaults = {
+  label: 'Salvar',
+  loadingLabel: 'Carregando...',
+  ariaLabel: null as string | null,
+  icon: null as (typeof UI_ICON_NAMES)[number] | null,
+  color: 'primary' as const,
+  size: 'md' as const,
+  position: 'center' as const,
+  iconPosition: 'left' as const,
+  appearance: 'default' as const,
+  backFallbackUrl: '/',
+  disabled: false,
+  loading: false,
+  fullWidth: false,
+  rounded: false,
+  outline: false,
+  iconOnly: false,
+  hideLabelOnMobile: false,
+  customClass: '',
+  type: 'button' as const,
+};
 
 const meta: Meta<UiButtonComponent> = {
   title: 'Components/Button',
   component: UiButtonComponent,
   tags: ['autodocs'],
+  includeStories:
+    /^(PlaygroundCompleto|Default|WithIcon|IconRight|Download|Upload|Outline|Rounded|FullWidth|Disabled|Loading|IconOnly|BackButtonDesktop|BackButtonMobile|BackIconOnly)$/,
+  decorators: [
+    (story) => ({
+      ...story(),
+      styles: [
+        `
+        :host {
+          display: block;
+          padding: var(--ui-space-4);
+        }
+        `,
+      ],
+    }),
+  ],
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Botão do design system com suporte a ícones, variantes de cor, outline, loading e preset de voltar.\n\n' +
+          '**Uso:** informe `label` e `color`. Emite `buttonClick` ao clicar (exceto quando `disabled` ou `loading`).',
+      },
+    },
+  },
   argTypes: {
     label: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description: 'Texto exibido no botão.',
     },
     loadingLabel: {
       control: 'text',
-      description: 'Texto exibido quando o botão está carregando.',
-    },
-    ariaLabel: {
-      control: 'text',
-      description:
-        'Texto utilizado por leitores de tela quando o botão não possui texto visível suficiente.',
+      table: { category: 'Conteúdo' },
+      description: 'Texto exibido quando o botão está em estado de carregamento.',
     },
     icon: {
       control: 'select',
       options: [null, ...UI_ICON_NAMES],
-      description: 'Nome do ícone exibido no botão. Usa o componente ui-icon.',
+      table: { category: 'Conteúdo' },
+      description: 'Nome do ícone exibido no botão. Usa o componente `ui-icon`.',
+    },
+    iconPosition: {
+      control: 'radio',
+      options: ['left', 'right'],
+      table: { category: 'Conteúdo' },
+      description: 'Posição do ícone em relação ao texto.',
     },
     color: {
       control: 'select',
@@ -36,148 +88,175 @@ const meta: Meta<UiButtonComponent> = {
         'info',
         'disabled',
       ],
-      description: 'Variação visual do botão.',
+      table: { category: 'Aparência' },
+      description: 'Variação visual e semântica do botão.',
     },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+      table: { category: 'Aparência' },
       description: 'Tamanho do botão.',
     },
     position: {
       control: 'select',
       options: ['left', 'center', 'right'],
+      table: { category: 'Aparência' },
       description: 'Alinhamento do botão dentro do wrapper.',
-    },
-    iconPosition: {
-      control: 'radio',
-      options: ['left', 'right'],
-      description: 'Posição do ícone em relação ao texto.',
     },
     appearance: {
       control: 'select',
       options: ['default', 'back'],
+      table: { category: 'Aparência' },
       description:
-        'Preset visual do botão. Quando definido como back, usa automaticamente o ícone back caso nenhum ícone seja informado.',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Desabilita o botão.',
-    },
-    loading: {
-      control: 'boolean',
-      description: 'Exibe o botão em estado de carregamento.',
-    },
-    fullWidth: {
-      control: 'boolean',
-      description: 'Define o botão com largura total.',
-    },
-    rounded: {
-      control: 'boolean',
-      description: 'Aplica borda totalmente arredondada.',
+        'Preset visual. Com `back`, usa automaticamente o ícone `back` se nenhum ícone for informado.',
     },
     outline: {
       control: 'boolean',
-      description: 'Aplica estilo outline.',
+      table: { category: 'Aparência' },
+      description: 'Aplica estilo outline (fundo transparente com borda).',
+    },
+    rounded: {
+      control: 'boolean',
+      table: { category: 'Aparência' },
+      description: 'Aplica borda totalmente arredondada (pill).',
+    },
+    fullWidth: {
+      control: 'boolean',
+      table: { category: 'Aparência' },
+      description: 'Faz o botão ocupar 100% da largura do container.',
     },
     iconOnly: {
       control: 'boolean',
+      table: { category: 'Aparência' },
       description:
-        'Exibe apenas o ícone. Use ariaLabel para manter acessibilidade.',
+        'Exibe apenas o ícone. Use `ariaLabel` para manter acessibilidade.',
     },
     hideLabelOnMobile: {
       control: 'boolean',
-      description: 'Oculta o texto em telas menores que 900px.',
+      table: { category: 'Aparência' },
+      description: 'Oculta o texto do botão em telas menores que 900px.',
     },
     customClass: {
       control: 'text',
-      description: 'Classe CSS customizada.',
+      table: { category: 'Aparência' },
+      description: 'Classe CSS adicional aplicada ao botão.',
     },
     type: {
       control: 'select',
       options: ['button', 'submit', 'reset'],
-      description: 'Tipo nativo do botão.',
+      table: { category: 'Formulário' },
+      description: 'Tipo nativo do elemento `<button>`.',
+    },
+    backFallbackUrl: {
+      control: 'text',
+      table: { category: 'Formulário' },
+      description:
+        'URL de fallback usada pelo preset `back` quando não há histórico de navegação.',
+    },
+    disabled: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description: 'Desabilita o botão e impede cliques.',
+    },
+    loading: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description: 'Exibe spinner e `loadingLabel` no lugar do conteúdo normal.',
+    },
+    ariaLabel: {
+      control: 'text',
+      table: { category: 'Acessibilidade' },
+      description:
+        'Texto para leitores de tela quando o botão não possui texto visível suficiente.',
     },
     buttonClick: {
       action: 'buttonClick',
-      table: {
-        category: 'Events',
-      },
+      table: { category: 'Events' },
       description:
-        'Evento disparado quando o botão é clicado. Não é emitido quando disabled ou loading estiverem ativos.',
+        'Evento disparado ao clicar. Não é emitido quando `disabled` ou `loading` estão ativos.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiButtonComponent>;
 
-export const Default: Story = {
-  args: {
-    label: 'Salvar',
-    loadingLabel: 'Carregando...',
-    ariaLabel: null,
-    icon: null,
-    color: 'primary',
-    size: 'md',
-    position: 'center',
-    iconPosition: 'left',
-    appearance: 'default',
-    disabled: false,
-    loading: false,
-    fullWidth: false,
-    rounded: false,
-    outline: false,
-    iconOnly: false,
-    hideLabelOnMobile: false,
-    customClass: '',
-    type: 'button',
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
+      },
+    },
   },
+  args: { ...playgroundDefaults },
+  play: buttonPlaygroundPlay,
+};
+
+export const Default: Story = {
+  parameters: {
+    docs: { description: { story: 'Botão primário padrão sem ícone.' } },
+  },
+  args: { ...playgroundDefaults },
+  play: buttonPlaygroundPlay,
 };
 
 export const WithIcon: Story = {
+  parameters: {
+    docs: { description: { story: 'Botão com ícone à esquerda do texto.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Adicionar',
     icon: 'plus',
-    iconPosition: 'left',
     color: 'secondary',
   },
 };
 
 export const IconRight: Story = {
+  parameters: {
+    docs: { description: { story: 'Botão com ícone à direita do texto.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Continuar',
     icon: 'chevron-down',
     iconPosition: 'right',
-    color: 'primary',
   },
 };
 
 export const Download: Story = {
+  parameters: {
+    docs: { description: { story: 'Ação de download com ícone `download`.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Baixar arquivo',
     icon: 'download',
-    iconPosition: 'left',
-    color: 'primary',
   },
 };
 
 export const Upload: Story = {
+  parameters: {
+    docs: { description: { story: 'Ação de upload com ícone `upload`.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Enviar arquivo',
     icon: 'upload',
-    iconPosition: 'left',
     color: 'secondary',
   },
 };
 
 export const Outline: Story = {
+  parameters: {
+    docs: { description: { story: 'Botão outline para ações secundárias ou de cancelamento.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Cancelar',
     icon: 'close',
     color: 'danger',
@@ -186,18 +265,23 @@ export const Outline: Story = {
 };
 
 export const Rounded: Story = {
+  parameters: {
+    docs: { description: { story: 'Botão com bordas totalmente arredondadas.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Continuar',
     icon: 'check',
     rounded: true,
-    color: 'primary',
   },
 };
 
 export const FullWidth: Story = {
+  parameters: {
+    docs: { description: { story: 'Botão ocupando toda a largura disponível.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Botão largura total',
     icon: 'check-circle',
     fullWidth: true,
@@ -206,8 +290,11 @@ export const FullWidth: Story = {
 };
 
 export const Disabled: Story = {
+  parameters: {
+    docs: { description: { story: 'Botão desabilitado sem interação.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Desabilitado',
     icon: 'lock-blocked',
     disabled: true,
@@ -216,36 +303,48 @@ export const Disabled: Story = {
 };
 
 export const Loading: Story = {
+  parameters: {
+    docs: { description: { story: 'Estado de carregamento com spinner e label alternativo.' } },
+  },
   args: {
-    ...Default.args,
-    label: 'Salvar',
+    ...playgroundDefaults,
     loadingLabel: 'Salvando...',
     icon: 'check',
     loading: true,
-    color: 'primary',
   },
 };
 
 export const IconOnly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Botão apenas com ícone. Requer `ariaLabel` para acessibilidade.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: '',
     ariaLabel: 'Adicionar item',
     icon: 'plus',
     iconOnly: true,
-    color: 'primary',
   },
 };
 
 export const BackButtonDesktop: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Preset `back` com label visível em desktop.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Voltar',
     ariaLabel: 'Voltar para a página anterior',
     icon: 'back',
-    iconPosition: 'left',
     appearance: 'back',
-    color: 'primary',
     size: 'sm',
     outline: false,
     hideLabelOnMobile: false,
@@ -253,53 +352,74 @@ export const BackButtonDesktop: Story = {
 };
 
 export const BackButtonMobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' },
+    docs: {
+      description: {
+        story: 'Preset `back` com label oculto em mobile (`hideLabelOnMobile`).',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Voltar',
     ariaLabel: 'Voltar para a página anterior',
     icon: 'back',
-    iconPosition: 'left',
     appearance: 'back',
-    color: 'primary',
     size: 'sm',
     hideLabelOnMobile: true,
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'mobile1',
-    },
   },
 };
 
 export const BackIconOnly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Botão voltar apenas com ícone usando preset `back`.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: '',
     ariaLabel: 'Voltar',
     icon: 'back',
     iconOnly: true,
     appearance: 'back',
-    color: 'primary',
     size: 'sm',
   },
 };
 
 export const AllSizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Comparação dos tamanhos `sm`, `md` e `lg` com e sem ícone.',
+      },
+    },
+  },
   render: () => ({
     template: `
       <div style="display: grid; gap: 16px; max-width: 320px;">
-      <ui-button label="Primary" color="primary" icon="check" size="sm"></ui-button>
-      <ui-button label="Primary" color="primary" icon="check" size="md"></ui-button>
-      <ui-button label="Primary" color="primary" icon="check" size="lg"></ui-button>
-      <ui-button label="Primary" color="primary" size="sm"></ui-button>
-      <ui-button label="Primary" color="primary" size="md"></ui-button>
-      <ui-button label="Primary" color="primary" size="lg"></ui-button>
+        <ui-button label="Primary" color="primary" icon="check" size="sm"></ui-button>
+        <ui-button label="Primary" color="primary" icon="check" size="md"></ui-button>
+        <ui-button label="Primary" color="primary" icon="check" size="lg"></ui-button>
+        <ui-button label="Primary" color="primary" size="sm"></ui-button>
+        <ui-button label="Primary" color="primary" size="md"></ui-button>
+        <ui-button label="Primary" color="primary" size="lg"></ui-button>
       </div>
     `,
   }),
 };
 
 export const AllColors: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Comparação de todas as variações de `color` no estilo sólido.',
+      },
+    },
+  },
   render: () => ({
     template: `
       <div style="display: grid; gap: 16px; max-width: 320px;">
@@ -316,6 +436,13 @@ export const AllColors: Story = {
 };
 
 export const AllColorsOutline: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Comparação de todas as variações de `color` no estilo outline.',
+      },
+    },
+  },
   render: () => ({
     template: `
       <div style="display: grid; gap: 16px; max-width: 320px;">

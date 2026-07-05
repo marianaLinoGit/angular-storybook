@@ -40,6 +40,9 @@ const preview: Preview = {
         { name: 'dark', value: '#101320' },
       ],
     },
+    test: {
+      dangerouslyIgnoreUnhandledErrors: false,
+    },
   },
   decorators: [
     withThemeByDataAttribute({

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { selectPlaygroundPlay } from '../../storybook/play.helpers';
 import type { UiSelectOption } from './ui-select.component';
 import { UiSelectComponent } from './ui-select.component';
 
@@ -11,27 +12,46 @@ const referralOptions = [
 ];
 
 const tutorOptions: UiSelectOption[] = [
-  {
-    value: 'all',
-    label: 'Todos os tutores',
-    iconName: 'users',
-  },
-  {
-    value: 'with-tutor',
-    label: 'Com tutor',
-    iconName: 'user',
-  },
-  {
-    value: 'without-tutor',
-    label: 'Sem tutor',
-    iconName: 'paw',
-  },
+  { value: 'all', label: 'Todos os tutores', iconName: 'users' },
+  { value: 'with-tutor', label: 'Com tutor', iconName: 'user' },
+  { value: 'without-tutor', label: 'Sem tutor', iconName: 'paw' },
 ];
 
-const meta: Meta<UiSelectComponent> = {
+const playgroundDefaults = {
+  label: 'Como conheceu?',
+  ariaLabel: null as string | null,
+  id: 'referralSource',
+  name: 'referralSource',
+  placeholder: 'Selecione',
+  searchPlaceholder: 'Buscar...',
+  emptyText: 'Nenhuma opção encontrada',
+  options: referralOptions,
+  selectedValue: null as string | number | null,
+  size: 'md' as const,
+  searchable: false,
+  searchAriaLabel: 'Buscar opção',
+  serverSearch: false,
+  clearAriaLabel: 'Limpar seleção',
+  allowClear: false,
+  required: true,
+  disabled: false,
+  optionalText: 'Opcional',
+  showOptionalText: true,
+  errorMessage: '*Campo obrigatório',
+  showError: false,
+  customClass: '',
+};
+
+type UiSelectStoryArgs = UiSelectComponent & {
+  selectedValue: string | number | null;
+};
+
+const meta: Meta<UiSelectStoryArgs> = {
   title: 'Components/Select',
   component: UiSelectComponent,
   tags: ['autodocs'],
+  includeStories:
+    /^(PlaygroundCompleto|Default|Searchable|ServerSearch|WithIcons|AllowClear|RequiredWithError|Optional|Disabled|EmptyOptions|WithDisabledOption|WithoutVisibleLabel)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -41,97 +61,170 @@ const meta: Meta<UiSelectComponent> = {
           display: block;
           max-width: 420px;
           min-height: 420px;
-          padding: 24px;
+          padding: var(--ui-space-4);
         }
         `,
       ],
     }),
   ],
+  render: (args) => ({
+    props: args,
+    template: `
+      <ui-select
+        [label]="label"
+        [ariaLabel]="ariaLabel"
+        [id]="id"
+        [name]="name"
+        [placeholder]="placeholder"
+        [searchPlaceholder]="searchPlaceholder"
+        [emptyText]="emptyText"
+        [options]="options"
+        [value]="selectedValue"
+        [size]="size"
+        [searchable]="searchable"
+        [searchAriaLabel]="searchAriaLabel"
+        [serverSearch]="serverSearch"
+        [clearAriaLabel]="clearAriaLabel"
+        [allowClear]="allowClear"
+        [required]="required"
+        [disabled]="disabled"
+        [optionalText]="optionalText"
+        [showOptionalText]="showOptionalText"
+        [errorMessage]="errorMessage"
+        [showError]="showError"
+        [customClass]="customClass"
+        (valueChange)="valueChange($event)"
+        (searchChange)="searchChange($event)"
+      />
+    `,
+  }),
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Select customizado com dropdown, busca opcional, ícones nas opções e suporte a limpar seleção.\n\n' +
+          '**Uso:** informe `options` (array de `{ value, label }`) e vincule `[value]`. Emite `valueChange` e `searchChange`.',
+      },
+    },
+  },
   argTypes: {
     label: {
       control: 'text',
-      description: 'Texto exibido como label do campo.',
-    },
-    ariaLabel: {
-      control: 'text',
-      description:
-        'Texto acessível utilizado quando o select não possui label visível.',
-    },
-    id: {
-      control: 'text',
-      description: 'Identificador único do select.',
-    },
-    name: {
-      control: 'text',
-      description: 'Nome do campo enviado em formulários HTML.',
+      table: { category: 'Conteúdo' },
+      description: 'Texto exibido como label do campo via `ui-label`.',
     },
     placeholder: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description: 'Texto exibido quando nenhum valor está selecionado.',
     },
     searchPlaceholder: {
       control: 'text',
-      description: 'Placeholder do campo de busca interno.',
+      table: { category: 'Conteúdo' },
+      description: 'Placeholder do campo de busca interno do dropdown.',
     },
     emptyText: {
       control: 'text',
-      description: 'Texto exibido quando nenhuma opção é encontrada.',
+      table: { category: 'Conteúdo' },
+      description: 'Texto exibido quando nenhuma opção corresponde à busca.',
     },
     options: {
       control: 'object',
+      table: { category: 'Conteúdo' },
       description:
-        'Lista de opções do select. Cada opção possui label, value e opcionalmente disabled, iconName e iconLabel.',
+        'Lista de opções. Cada item possui `value`, `label` e opcionalmente `disabled`, `iconName` e `iconLabel`.',
+    },
+    optionalText: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description: 'Texto exibido pelo label quando o campo é opcional.',
+    },
+    errorMessage: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description: 'Mensagem de erro exibida abaixo do campo.',
+    },
+    id: {
+      control: 'text',
+      table: { category: 'Formulário' },
+      description: 'Identificador único do select.',
+    },
+    name: {
+      control: 'text',
+      table: { category: 'Formulário' },
+      description: 'Nome do campo enviado em formulários HTML.',
+    },
+    selectedValue: {
+      control: 'text',
+      name: 'value',
+      table: { category: 'Formulário' },
+      description:
+        'Valor atualmente selecionado. No uso real, vincule via `[value]`.',
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'md'],
+      table: { category: 'Aparência' },
+      description: 'Tamanho visual do select (`sm` ou `md`).',
+    },
+    customClass: {
+      control: 'text',
+      table: { category: 'Aparência' },
+      description: 'Classe CSS adicional aplicada ao container.',
     },
     searchable: {
       control: 'boolean',
+      table: { category: 'Estado' },
       description: 'Exibe campo de busca dentro do dropdown.',
-    },
-    searchAriaLabel: {
-      control: 'text',
-      description: 'Texto acessível do campo de busca interno.',
     },
     serverSearch: {
       control: 'boolean',
+      table: { category: 'Estado' },
       description:
-        'Quando true, não filtra localmente e apenas emite searchChange.',
-    },
-    clearAriaLabel: {
-      control: 'text',
-      description: 'Texto acessível do botão de limpar seleção.',
+        'Quando `true`, não filtra localmente e apenas emite `searchChange` para busca remota.',
     },
     allowClear: {
       control: 'boolean',
-      description: 'Permite limpar o valor selecionado.',
+      table: { category: 'Estado' },
+      description: 'Exibe botão para limpar a seleção atual.',
     },
     required: {
       control: 'boolean',
+      table: { category: 'Estado' },
       description: 'Define se o campo é obrigatório.',
     },
     disabled: {
       control: 'boolean',
+      table: { category: 'Estado' },
       description: 'Desabilita a interação com o select.',
-    },
-    optionalText: {
-      control: 'text',
-      description:
-        'Texto exibido pelo componente Label quando o campo é opcional.',
     },
     showOptionalText: {
       control: 'boolean',
-      description: 'Controla a exibição do texto opcional.',
-    },
-    errorMessage: {
-      control: 'text',
-      description: 'Mensagem de erro exibida e associada via aria-describedby.',
+      table: { category: 'Estado' },
+      description: 'Controla a exibição do texto opcional no label.',
     },
     showError: {
       control: 'boolean',
+      table: { category: 'Estado' },
       description:
-        'Força a exibição da mensagem de erro independentemente da validação do formulário.',
+        'Força a exibição da mensagem de erro independentemente da validação.',
     },
-    customClass: {
+    ariaLabel: {
       control: 'text',
-      description: 'Classe CSS customizada.',
+      table: { category: 'Acessibilidade' },
+      description:
+        'Texto acessível utilizado quando o select não possui label visível.',
+    },
+    searchAriaLabel: {
+      control: 'text',
+      table: { category: 'Acessibilidade' },
+      description: 'Texto acessível do campo de busca interno.',
+    },
+    clearAriaLabel: {
+      control: 'text',
+      table: { category: 'Acessibilidade' },
+      description: 'Texto acessível do botão de limpar seleção.',
     },
     valueChange: {
       action: 'valueChange',
@@ -144,40 +237,39 @@ const meta: Meta<UiSelectComponent> = {
       description: 'Evento disparado quando o usuário digita na busca.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
-type Story = StoryObj<UiSelectComponent>;
+type Story = StoryObj<UiSelectStoryArgs>;
+
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
+      },
+    },
+  },
+  args: { ...playgroundDefaults },
+  play: selectPlaygroundPlay,
+};
 
 export const Default: Story = {
-  args: {
-    label: 'Como conheceu?',
-    ariaLabel: null,
-    id: 'referralSource',
-    name: 'referralSource',
-    placeholder: 'Selecione',
-    searchPlaceholder: 'Buscar...',
-    emptyText: 'Nenhuma opção encontrada',
-    options: referralOptions,
-    searchable: false,
-    searchAriaLabel: 'Buscar opção',
-    serverSearch: false,
-    clearAriaLabel: 'Limpar seleção',
-    allowClear: false,
-    required: true,
-    disabled: false,
-    optionalText: 'Opcional',
-    showOptionalText: true,
-    errorMessage: '*Campo obrigatório',
-    showError: false,
-    customClass: '',
+  parameters: {
+    docs: { description: { story: 'Select simples sem busca, com opções estáticas.' } },
   },
+  args: { ...playgroundDefaults },
 };
 
 export const Searchable: Story = {
+  parameters: {
+    docs: { description: { story: 'Select com busca local nas opções.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Tutor',
     id: 'tutor',
     name: 'tutor',
@@ -185,7 +277,6 @@ export const Searchable: Story = {
     searchPlaceholder: 'Buscar tutor...',
     options: tutorOptions,
     searchable: true,
-    serverSearch: false,
     allowClear: true,
     required: false,
     showOptionalText: false,
@@ -193,27 +284,44 @@ export const Searchable: Story = {
 };
 
 export const ServerSearch: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Busca remota: filtro local desativado, emite `searchChange` a cada digitação.',
+      },
+    },
+  },
   args: {
-    ...Searchable.args,
+    ...playgroundDefaults,
+    label: 'Tutor',
     id: 'serverTutor',
     name: 'serverTutor',
+    placeholder: 'Selecione um tutor',
+    options: tutorOptions,
     searchable: true,
     serverSearch: true,
     allowClear: true,
+    required: false,
+    showOptionalText: false,
   },
 };
 
 export const WithIcons: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Opções com ícones (`iconName`) exibidos no dropdown.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Tutor ou veterinário',
     id: 'withIcons',
     name: 'withIcons',
     placeholder: 'Selecione tutor ou veterinário',
-    searchPlaceholder: 'Buscar...',
     options: tutorOptions,
     searchable: true,
-    serverSearch: false,
     allowClear: true,
     required: false,
     showOptionalText: false,
@@ -221,8 +329,11 @@ export const WithIcons: Story = {
 };
 
 export const AllowClear: Story = {
+  parameters: {
+    docs: { description: { story: 'Select opcional com botão para limpar seleção.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Categoria',
     placeholder: 'Selecione uma categoria',
     allowClear: true,
@@ -231,35 +342,48 @@ export const AllowClear: Story = {
 };
 
 export const RequiredWithError: Story = {
+  parameters: {
+    docs: { description: { story: 'Campo obrigatório com mensagem de erro visível.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     showError: true,
   },
 };
 
 export const Optional: Story = {
+  parameters: {
+    docs: { description: { story: 'Campo opcional com texto "Opcional" no label.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Categoria',
     required: false,
-    optionalText: 'Opcional',
   },
 };
 
 export const Disabled: Story = {
+  parameters: {
+    docs: { description: { story: 'Select desabilitado sem interação.' } },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     disabled: true,
   },
 };
 
 export const EmptyOptions: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Lista vazia exibindo `emptyText` ao abrir o dropdown.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Tutor',
     placeholder: 'Selecione um tutor',
-    searchPlaceholder: 'Buscar tutor...',
-    emptyText: 'Nenhum tutor encontrado',
     options: [],
     searchable: true,
     allowClear: true,
@@ -268,8 +392,15 @@ export const EmptyOptions: Story = {
 };
 
 export const WithDisabledOption: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Opção individual desabilitada dentro da lista.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Status',
     placeholder: 'Selecione um status',
     options: [
@@ -283,23 +414,38 @@ export const WithDisabledOption: Story = {
 };
 
 export const WithoutVisibleLabel: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Select sem label visível, usando `ariaLabel` para acessibilidade.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: '',
     ariaLabel: 'Selecione a origem do cadastro',
   },
 };
 
 export const IconsGallery: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Galeria de opções com diferentes ícones disponíveis.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: 'Ação',
     searchable: true,
     allowClear: true,
+    required: false,
     options: [
       { value: 'download', label: 'Download', iconName: 'download' },
       { value: 'upload', label: 'Upload', iconName: 'upload' },
-      { value: 'copy', label: 'Copiar', iconName: 'copy' },
+      { value: 'copy', label: 'Copy', iconName: 'copy' },
       { value: 'home', label: 'Home', iconName: 'home' },
       { value: 'filter', label: 'Filtro', iconName: 'filter' },
       { value: 'email', label: 'E-mail', iconName: 'email' },

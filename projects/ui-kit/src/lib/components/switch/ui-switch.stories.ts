@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { switchPlaygroundPlay } from '../../storybook/play.helpers';
 import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiSwitchComponent } from './ui-switch.component';
 
@@ -6,10 +7,55 @@ type UiSwitchStoryArgs = UiSwitchComponent & {
   checkedValue: boolean;
 };
 
+const playgroundDefaults = {
+  id: 'themeSwitch',
+  name: 'themeSwitch',
+  label: 'Tema',
+  ariaLabel: null as string | null,
+  checkedValue: false,
+  checkedLabel: 'Ativado',
+  uncheckedLabel: 'Desativado',
+  checkedIcon: null as (typeof UI_ICON_NAMES)[number] | null,
+  uncheckedIcon: null as (typeof UI_ICON_NAMES)[number] | null,
+  showOnlyCurrentSide: false,
+  activeText: 'Ativado',
+  inactiveText: 'Desativado',
+  showSideLabels: false,
+  showStatus: true,
+  disabled: false,
+  size: 'md' as const,
+  customClass: '',
+};
+
 const meta: Meta<UiSwitchStoryArgs> = {
   title: 'Components/Switch',
   component: UiSwitchComponent,
   tags: ['autodocs'],
+  includeStories:
+    /^(PlaygroundCompleto|Default|Checked|WithSideLabels|WithSideLabelsChecked|WithoutSideLabels|Small|Medium|Large|ThemeSwitcher|ThemeSwitcherChecked|ThemeSwitcherIconsOnly|ThemeSwitcherIconsOnlyChecked|ShowOnlyCurrentSide|ShowOnlyCurrentSideChecked|WithoutVisibleLabel|Disabled|DisabledChecked|DisabledIconsOnly)$/,
+  decorators: [
+    (story) => ({
+      ...story(),
+      styles: [
+        `
+        :host {
+          display: block;
+          padding: var(--ui-space-4);
+        }
+        `,
+      ],
+    }),
+  ],
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Switch toggle para estados binários. Suporta labels laterais, ícones, texto de status e tamanhos variados.\n\n' +
+          '**Uso:** vincule `[checked]` e escute `checkedChange`. No Storybook, use o controle `checked` (`checkedValue`).',
+      },
+    },
+  },
   render: (args) => ({
     props: args,
     template: `
@@ -36,86 +82,101 @@ const meta: Meta<UiSwitchStoryArgs> = {
     `,
   }),
   argTypes: {
-    id: {
-      control: 'text',
-      description: 'Identificador único do switch.',
-    },
-    name: {
-      control: 'text',
-      description: 'Nome do campo enviado em formulários HTML.',
-    },
     label: {
       control: 'text',
-      description: 'Texto visível associado ao switch.',
-    },
-    ariaLabel: {
-      control: 'text',
-      description:
-        'Texto acessível utilizado quando o switch não possui label visível.',
-    },
-    checkedValue: {
-      control: 'boolean',
-      name: 'checked',
-      description:
-        'Estado visual inicial do switch no Storybook. No uso real, utilize o input [checked].',
+      table: { category: 'Conteúdo' },
+      description: 'Texto visível associado ao switch acima ou ao lado do controle.',
     },
     checkedLabel: {
       control: 'text',
-      description: 'Texto exibido quando o switch está marcado.',
+      table: { category: 'Conteúdo' },
+      description: 'Label ou texto exibido para o estado ativo (lateral ou status).',
     },
     uncheckedLabel: {
       control: 'text',
-      description: 'Texto exibido quando o switch está desmarcado.',
+      table: { category: 'Conteúdo' },
+      description: 'Label ou texto exibido para o estado inativo (lateral ou status).',
+    },
+    activeText: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description:
+        'Texto padrão do estado ativo usado quando `checkedLabel` não é informado.',
+    },
+    inactiveText: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description:
+        'Texto padrão do estado inativo usado quando `uncheckedLabel` não é informado.',
     },
     checkedIcon: {
       control: 'select',
       options: [null, ...UI_ICON_NAMES],
-      description:
-        'Nome do ícone exibido quando o switch está ativo. Usa o componente ui-icon.',
+      table: { category: 'Conteúdo' },
+      description: 'Ícone exibido no estado ativo. Usa o componente `ui-icon`.',
     },
     uncheckedIcon: {
       control: 'select',
       options: [null, ...UI_ICON_NAMES],
-      description:
-        'Nome do ícone exibido quando o switch está inativo. Usa o componente ui-icon.',
+      table: { category: 'Conteúdo' },
+      description: 'Ícone exibido no estado inativo. Usa o componente `ui-icon`.',
     },
-    showOnlyCurrentSide: {
-      control: 'boolean',
-      description:
-        'Quando true, exibe apenas o label ou ícone correspondente ao estado atual.',
-    },
-    activeText: {
+    id: {
       control: 'text',
-      description:
-        'Texto padrão usado para estado ativo quando checkedLabel não é informado.',
+      table: { category: 'Formulário' },
+      description: 'Identificador único do switch.',
     },
-    inactiveText: {
+    name: {
       control: 'text',
-      description:
-        'Texto padrão usado para estado inativo quando uncheckedLabel não é informado.',
-    },
-    showSideLabels: {
-      control: 'boolean',
-      description:
-        'Exibe labels ou ícones nas laterais do controle, útil para alternância entre dois estados nomeados.',
-    },
-    showStatus: {
-      control: 'boolean',
-      description:
-        'Exibe texto de status ao lado do switch quando showSideLabels está falso.',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Desabilita a interação com o switch.',
+      table: { category: 'Formulário' },
+      description: 'Nome do campo enviado em formulários HTML.',
     },
     size: {
       control: 'radio',
       options: ['sm', 'md', 'lg'],
+      table: { category: 'Aparência' },
       description: 'Tamanho visual do switch.',
     },
     customClass: {
       control: 'text',
-      description: 'Classe CSS customizada aplicada ao elemento raiz.',
+      table: { category: 'Aparência' },
+      description: 'Classe CSS adicional aplicada ao elemento raiz.',
+    },
+    checkedValue: {
+      control: 'boolean',
+      name: 'checked',
+      table: { category: 'Estado' },
+      description:
+        'Estado do switch no Storybook. No uso real, utilize o input `[checked]`.',
+    },
+    showSideLabels: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description:
+        'Exibe labels ou ícones nas laterais do controle para alternância entre dois estados.',
+    },
+    showStatus: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description:
+        'Exibe texto de status ao lado do switch quando `showSideLabels` é `false`.',
+    },
+    showOnlyCurrentSide: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description:
+        'Quando `true`, exibe apenas o label ou ícone correspondente ao estado atual.',
+    },
+    disabled: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description: 'Desabilita a interação com o switch.',
+    },
+    ariaLabel: {
+      control: 'text',
+      table: { category: 'Acessibilidade' },
+      description:
+        'Texto acessível utilizado quando o switch não possui label visível.',
     },
     checkedChange: {
       action: 'checkedChange',
@@ -123,47 +184,52 @@ const meta: Meta<UiSwitchStoryArgs> = {
       description: 'Evento disparado quando o estado do switch muda.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiSwitchStoryArgs>;
 
-export const Default: Story = {
-  args: {
-    id: 'themeSwitch',
-    name: 'themeSwitch',
-    label: 'Tema',
-    ariaLabel: null,
-    checkedValue: false,
-    checkedLabel: 'Ativado',
-    uncheckedLabel: 'Desativado',
-    checkedIcon: null,
-    uncheckedIcon: null,
-    showOnlyCurrentSide: false,
-    activeText: 'Ativado',
-    inactiveText: 'Desativado',
-    showSideLabels: false,
-    showStatus: true,
-    disabled: false,
-    size: 'md',
-    customClass: '',
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
+      },
+    },
   },
+  args: { ...playgroundDefaults },
+  play: switchPlaygroundPlay,
+};
+
+export const Default: Story = {
+  parameters: {
+    docs: { description: { story: 'Switch padrão desmarcado com label e status.' } },
+  },
+  args: { ...playgroundDefaults },
 };
 
 export const Checked: Story = {
-  args: {
-    ...Default.args,
-    checkedValue: true,
+  parameters: {
+    docs: { description: { story: 'Switch no estado ativo (`checked = true`).' } },
   },
+  args: { ...playgroundDefaults, checkedValue: true },
 };
 
 export const WithSideLabels: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Alternância Light/Dark com labels nas laterais do controle.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: '',
     ariaLabel: 'Alternar tema',
-    checkedValue: false,
     showSideLabels: true,
     showStatus: false,
     uncheckedLabel: 'Light',
@@ -172,6 +238,9 @@ export const WithSideLabels: Story = {
 };
 
 export const WithSideLabelsChecked: Story = {
+  parameters: {
+    docs: { description: { story: 'Labels laterais com switch ativo (Dark).' } },
+  },
   args: {
     ...WithSideLabels.args,
     checkedValue: true,
@@ -179,8 +248,15 @@ export const WithSideLabelsChecked: Story = {
 };
 
 export const WithoutSideLabels: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modo escuro com texto de status ao lado, sem labels laterais.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: '',
     ariaLabel: 'Ativar modo escuro',
     showSideLabels: false,
@@ -191,78 +267,94 @@ export const WithoutSideLabels: Story = {
 };
 
 export const Small: Story = {
-  args: {
-    ...Default.args,
-    size: 'sm',
+  parameters: {
+    docs: { description: { story: 'Switch no tamanho `sm`.' } },
   },
+  args: { ...playgroundDefaults, size: 'sm' },
 };
 
 export const Medium: Story = {
-  args: {
-    ...Default.args,
-    size: 'md',
+  parameters: {
+    docs: { description: { story: 'Switch no tamanho `md` (padrão).' } },
   },
+  args: { ...playgroundDefaults, size: 'md' },
 };
 
 export const Large: Story = {
-  args: {
-    ...Default.args,
-    size: 'lg',
+  parameters: {
+    docs: { description: { story: 'Switch no tamanho `lg`.' } },
   },
+  args: { ...playgroundDefaults, size: 'lg' },
 };
 
 export const ThemeSwitcher: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Seletor de tema com labels e ícones sol/lua nas laterais.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: '',
     ariaLabel: 'Alternar tema',
-    checkedValue: false,
     showSideLabels: true,
     showStatus: false,
     uncheckedLabel: 'Light',
     checkedLabel: 'Dark',
     uncheckedIcon: 'sun',
     checkedIcon: 'moon',
-    size: 'md',
   },
 };
 
 export const ThemeSwitcherChecked: Story = {
-  args: {
-    ...ThemeSwitcher.args,
-    checkedValue: true,
+  parameters: {
+    docs: { description: { story: 'Seletor de tema ativo (modo escuro).' } },
   },
+  args: { ...ThemeSwitcher.args, checkedValue: true },
 };
 
 export const ThemeSwitcherIconsOnly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Seletor de tema apenas com ícones, sem labels textuais.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: '',
     ariaLabel: 'Alternar tema',
-    checkedValue: false,
     showSideLabels: true,
     showStatus: false,
     uncheckedLabel: null,
     checkedLabel: null,
     uncheckedIcon: 'sun',
     checkedIcon: 'moon',
-    size: 'md',
   },
 };
 
 export const ThemeSwitcherIconsOnlyChecked: Story = {
-  args: {
-    ...ThemeSwitcherIconsOnly.args,
-    checkedValue: true,
+  parameters: {
+    docs: { description: { story: 'Ícones sol/lua com switch ativo.' } },
   },
+  args: { ...ThemeSwitcherIconsOnly.args, checkedValue: true },
 };
 
 export const ShowOnlyCurrentSide: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Exibe apenas o label/ícone do estado atual (`showOnlyCurrentSide`).',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: '',
     ariaLabel: 'Alternar tema',
-    checkedValue: false,
     showSideLabels: true,
     showStatus: false,
     showOnlyCurrentSide: true,
@@ -270,23 +362,28 @@ export const ShowOnlyCurrentSide: Story = {
     checkedLabel: 'Dark',
     uncheckedIcon: 'sun',
     checkedIcon: 'moon',
-    size: 'md',
   },
 };
 
 export const ShowOnlyCurrentSideChecked: Story = {
-  args: {
-    ...ShowOnlyCurrentSide.args,
-    checkedValue: true,
+  parameters: {
+    docs: { description: { story: '`showOnlyCurrentSide` com switch ativo.' } },
   },
+  args: { ...ShowOnlyCurrentSide.args, checkedValue: true },
 };
 
 export const WithoutVisibleLabel: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Switch sem label visível, usando `ariaLabel` e texto de status.',
+      },
+    },
+  },
   args: {
-    ...Default.args,
+    ...playgroundDefaults,
     label: '',
     ariaLabel: 'Ativar notificações',
-    checkedValue: false,
     checkedLabel: 'Ativo',
     uncheckedLabel: 'Inativo',
     showStatus: true,
@@ -294,23 +391,26 @@ export const WithoutVisibleLabel: Story = {
 };
 
 export const Disabled: Story = {
-  args: {
-    ...Default.args,
-    disabled: true,
+  parameters: {
+    docs: { description: { story: 'Switch desabilitado no estado inativo.' } },
   },
+  args: { ...playgroundDefaults, disabled: true },
 };
 
 export const DisabledChecked: Story = {
-  args: {
-    ...Default.args,
-    checkedValue: true,
-    disabled: true,
+  parameters: {
+    docs: { description: { story: 'Switch desabilitado no estado ativo.' } },
   },
+  args: { ...playgroundDefaults, checkedValue: true, disabled: true },
 };
 
 export const DisabledIconsOnly: Story = {
-  args: {
-    ...ThemeSwitcherIconsOnly.args,
-    disabled: true,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Seletor de tema com ícones desabilitado.',
+      },
+    },
   },
+  args: { ...ThemeSwitcherIconsOnly.args, disabled: true },
 };
