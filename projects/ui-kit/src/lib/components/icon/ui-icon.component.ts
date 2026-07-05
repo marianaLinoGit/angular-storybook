@@ -110,8 +110,10 @@ export type UiIconSize = (typeof UI_ICON_SIZES)[number];
 })
 export class UiIconComponent {
   name = input.required<UiIconName>();
-  size = input<UiIconSize>('md');
   label = input<string | null>(null);
+  size = input<UiIconSize>('md');
+  color = input<string | null>(null);
+  customSize = input<string | null>(null);
   customClass = input('');
 
   isDecorative = computed(() => !this.label());
@@ -121,4 +123,11 @@ export class UiIconComponent {
       .filter(Boolean)
       .join(' '),
   );
+
+  iconStyles = computed(() => ({
+    ...(this.color() ? { color: this.color() } : {}),
+    ...(this.customSize()
+      ? { '--ui-icon-custom-size': this.customSize() }
+      : {}),
+  }));
 }

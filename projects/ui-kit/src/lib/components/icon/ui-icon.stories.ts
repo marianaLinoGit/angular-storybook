@@ -25,6 +25,15 @@ const meta: Meta<UiIconComponent> = {
       description:
         'Texto acessível para leitores de tela. Quando vazio, o ícone é decorativo.',
     },
+    color: {
+      control: 'color',
+      description: 'Define a cor do ícone via CSS color/currentColor.',
+    },
+    customSize: {
+      control: 'text',
+      description:
+        'Define tamanho para ícone acima dos tamanhos "size" pré-definidos.',
+    },
     customClass: {
       control: 'text',
       description: 'Classe CSS adicional para customizações específicas.',
@@ -41,6 +50,16 @@ export const Playground: Story = {
     name: 'paw',
     size: 'xl',
     label: null,
+    customClass: '',
+  },
+};
+
+export const CustomSize: Story = {
+  args: {
+    name: 'logo',
+    label: null,
+    color: 'var(--ui-color-primary)',
+    customSize: '180px',
     customClass: '',
   },
 };

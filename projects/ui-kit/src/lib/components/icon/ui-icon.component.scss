@@ -1,10 +1,14 @@
 .ui-icon {
+  --ui-icon-size-current: var(--ui-icon-size-md);
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
   color: currentColor;
   line-height: 1;
+  width: var(--ui-icon-custom-size, var(--ui-icon-size-current));
+  height: var(--ui-icon-custom-size, var(--ui-icon-size-current));
 
   svg {
     width: 100%;
@@ -13,42 +17,34 @@
   }
 
   &--xs {
-    width: var(--ui-icon-size-xs);
-    height: var(--ui-icon-size-xs);
+    --ui-icon-size-current: var(--ui-icon-size-xs);
   }
 
   &--sm {
-    width: var(--ui-icon-size-sm);
-    height: var(--ui-icon-size-sm);
+    --ui-icon-size-current: var(--ui-icon-size-sm);
   }
 
   &--md {
-    width: var(--ui-icon-size-md);
-    height: var(--ui-icon-size-md);
+    --ui-icon-size-current: var(--ui-icon-size-md);
   }
 
   &--lg {
-    width: var(--ui-icon-size-lg);
-    height: var(--ui-icon-size-lg);
+    --ui-icon-size-current: var(--ui-icon-size-lg);
   }
 
   &--xl {
-    width: var(--ui-icon-size-xl);
-    height: var(--ui-icon-size-xl);
+    --ui-icon-size-current: var(--ui-icon-size-xl);
   }
 
   &--2xl {
-    width: var(--ui-icon-size-2xl);
-    height: var(--ui-icon-size-2xl);
+    --ui-icon-size-current: var(--ui-icon-size-2xl);
   }
 
   &--3xl {
-    width: var(--ui-icon-size-3xl);
-    height: var(--ui-icon-size-3xl);
+    --ui-icon-size-current: var(--ui-icon-size-3xl);
   }
 
   &--4xl {
-    width: var(--ui-icon-size-4xl);
-    height: var(--ui-icon-size-4xl);
+    --ui-icon-size-current: var(--ui-icon-size-4xl);
   }
 }
