@@ -32,7 +32,7 @@ const meta: Meta<UiIconComponent> = {
     customSize: {
       control: 'text',
       description:
-        'Define tamanho para ícone acima dos tamanhos "size" pré-definidos.',
+        'Define um tamanho customizado para o ícone. Aceita qualquer valor CSS válido (ex.: 180px, 12rem, clamp(150px, 20vw, 180px), calc(100px + 2vw)).',
     },
     customClass: {
       control: 'text',
