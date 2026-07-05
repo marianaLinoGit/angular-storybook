@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { UiButtonComponent } from '../button/ui-button.component';
+import { UiIconName } from '../icon/ui-icon.component';
 
 @Component({
   selector: 'ui-page-title',
@@ -28,14 +29,13 @@ export class UiPageTitleComponent {
   showBack = input(false);
   backLabel = input('');
   backAriaLabel = input('');
-  backIcon = input('/imgs/icons-actions/back.svg');
 
   showAction = input(false);
 
   actionLabel = input('');
   actionName = input('');
   actionAriaLabel = input('');
-  actionIcon = input('+');
+  actionIcon = input<UiIconName | null>('plus');
 
   actionRoute = input<string | unknown[] | null>('new');
   actionRouteMode = input<'append' | 'absolute'>('append');

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiPageTitleComponent } from './ui-page-title.component';
 
 const meta: Meta<UiPageTitleComponent> = {
@@ -16,7 +17,8 @@ const meta: Meta<UiPageTitleComponent> = {
     },
     showBack: {
       control: 'boolean',
-      description: 'Exibe o botão de voltar.',
+      description:
+        'Exibe o botão de voltar. O ícone é fixo pelo ui-button quando appearance="back".',
     },
     backLabel: {
       control: 'text',
@@ -25,10 +27,6 @@ const meta: Meta<UiPageTitleComponent> = {
     backAriaLabel: {
       control: 'text',
       description: 'Label acessível do botão de voltar.',
-    },
-    backIcon: {
-      control: 'text',
-      description: 'Caminho do ícone SVG usado como máscara.',
     },
     showAction: {
       control: 'boolean',
@@ -52,9 +50,16 @@ const meta: Meta<UiPageTitleComponent> = {
       description:
         'Rota padrão executada ao clicar na ação. Pode ser string, array ou null.',
     },
+    actionRouteMode: {
+      control: 'radio',
+      options: ['append', 'absolute'],
+      description:
+        'Define se a rota textual será anexada à rota atual ou tratada como absoluta.',
+    },
     actionIcon: {
-      control: 'text',
-      description: 'Ícone textual do botão de ação.',
+      control: 'select',
+      options: [null, ...UI_ICON_NAMES],
+      description: 'Nome do ícone do botão de ação. Usa o componente ui-icon.',
     },
     actionColor: {
       control: 'select',
@@ -87,14 +92,14 @@ export const Default: Story = {
     showBack: false,
     backLabel: 'Voltar',
     backAriaLabel: 'Voltar para a página anterior',
-    backIcon: '/icons/back.svg',
     showAction: true,
     actionLabel: 'Pet',
     actionAriaLabel: 'Adicionar pet',
-    actionIcon: '+',
+    actionIcon: 'plus',
     actionColor: 'primary',
     actionName: '',
     actionRoute: 'new',
+    actionRouteMode: 'append',
   },
 };
 
@@ -117,7 +122,7 @@ export const WithBackAndAction: Story = {
     showAction: true,
     actionLabel: 'Salvar',
     actionAriaLabel: 'Salvar alterações',
-    actionIcon: '✓',
+    actionIcon: 'check',
     actionColor: 'primary',
   },
 };
@@ -131,7 +136,8 @@ export const CompatibleWithOldHeaderPage: Story = {
     actionName: 'Pet',
     actionLabel: '',
     actionRoute: 'new',
-    actionIcon: '+',
+    actionRouteMode: 'append',
+    actionIcon: 'plus',
     actionColor: 'primary',
   },
 };
@@ -162,6 +168,7 @@ export const LongTitle: Story = {
     showAction: true,
     actionLabel: 'Novo registro',
     actionAriaLabel: 'Criar novo registro',
+    actionIcon: 'plus',
   },
 };
 
