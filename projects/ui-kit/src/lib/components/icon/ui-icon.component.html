@@ -1,0 +1,1599 @@
+<span
+  [class]="classes()"
+  [attr.aria-hidden]="isDecorative() ? 'true' : null"
+  [attr.role]="isDecorative() ? null : 'img'"
+  [attr.aria-label]="label()"
+>
+  @switch (name()) {
+    @case ("activate") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M12 2v8"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M7 4.8a8 8 0 1 0 10 0"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("add-note") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M14 3v6h6"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M12 12v6M9 15h6"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("admin") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M4 21V7l8-4 8 4v14"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9 21v-7h6v7M8 9h.01M12 9h.01M16 9h.01"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("alert") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M15 18.5a3 3 0 0 1-6 0"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M5.75 17h12.5c.9 0 1.42-1.02.9-1.75l-.9-1.25a4.2 4.2 0 0 1-.78-2.43V9.5a5.47 5.47 0 0 0-10.94 0v2.07A4.2 4.2 0 0 1 5.75 14l-.9 1.25c-.52.73 0 1.75.9 1.75Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M12 3.25V2"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("alert-filled") {
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path
+          fill="currentColor"
+          d="M12 22a3.25 3.25 0 0 0 3.12-2.35H8.88A3.25 3.25 0 0 0 12 22Zm8.05-5.82-.92-1.3a4.45 4.45 0 0 1-.83-2.6V9.7a6.3 6.3 0 0 0-5.35-6.22V2.4a.95.95 0 1 0-1.9 0v1.08A6.3 6.3 0 0 0 5.7 9.7v2.58c0 .94-.29 1.85-.83 2.6l-.92 1.3A1.55 1.55 0 0 0 5.2 18.6h13.6a1.55 1.55 0 0 0 1.25-2.42Z"
+        />
+      </svg>
+    }
+
+    @case ("back") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M19 12H5"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="m12 5-7 7 7 7"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("calendar") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <rect
+          x="3"
+          y="5"
+          width="18"
+          height="16"
+          rx="2"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="M3 9h18M8 3v4M16 3v4"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01M16 17h.01"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("check") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="m5 12.5 4.25 4.25L19 7"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("check-circle") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="m8 12.3 2.55 2.55L16.5 9"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("chevron-down") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="m6 9 6 6 6-6"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("chevron-up") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="m6 15 6-6 6 6"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("clear") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M4 20h16"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M16.5 4.5 20 8l-9.5 9.5H7L4 14.5l9.5-9.5a2.12 2.12 0 0 1 3 0Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="m12 7 5 5"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("clinical-conditions") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8 12h2l1-2 2 5 1-3h2"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("close") {
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path
+          d="M6.3 5.3a1 1 0 0 1 1.4 0L12 9.59l4.3-4.3a1 1 0 1 1 1.4 1.42L13.41 11l4.3 4.3a1 1 0 0 1-1.42 1.4L12 12.41l-4.3 4.3a1 1 0 0 1-1.4-1.42L10.59 11l-4.3-4.3a1 1 0 0 1 0-1.4Z"
+        />
+      </svg>
+    }
+
+    @case ("config") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5z"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+        <path
+          d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.05.05a2 2 0 1 1-2.83 2.83l-.05-.05A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6V20a2 2 0 1 1-4 0v-.08a1.7 1.7 0 0 0-1-.6 1.7 1.7 0 0 0-1.88.34l-.05.05a2 2 0 1 1-2.83-2.83l.05-.05A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-.6-1H4a2 2 0 1 1 0-4h.08a1.7 1.7 0 0 0 .6-1 1.7 1.7 0 0 0-.34-1.88l-.05-.05a2 2 0 1 1 2.83-2.83l.05.05A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-.6V4a2 2 0 1 1 4 0v.08a1.7 1.7 0 0 0 1 .6 1.7 1.7 0 0 0 1.88-.34l.05-.05a2 2 0 1 1 2.83 2.83l-.05.05A1.7 1.7 0 0 0 19.4 9c.22.36.42.7.6 1H20a2 2 0 1 1 0 4h-.08a1.7 1.7 0 0 0-.52 1z"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("consultation") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M6 4h12v17H6V4z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9 8h6M12 11v6M9 14h6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("copy") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <rect
+          x="8"
+          y="8"
+          width="11"
+          height="11"
+          rx="2"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="M5 16V7a2 2 0 0 1 2-2h9"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("delete") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M4 7h16"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M10 11v6M14 11v6"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M6 7l1 14h10l1-14"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9 7V4h6v3"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("download") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M12 3v11"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="m7.5 10.5 4.5 4.5 4.5-4.5"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5 18.5h14"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("duplicate") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <g
+          fill="none"
+          fill-rule="evenodd"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          transform="translate(2 2)"
+        >
+          <path
+            d="m12.5 14.5v-8c0-1.1045695-.8954305-2-2-2h-8c-1.1045695 0-2 .8954305-2 2v8c0 1.1045695.8954305 2 2 2h8c1.1045695 0 2-.8954305 2-2z"
+          />
+
+          <path
+            d="m12.5 12.5h2c1.1045695 0 2-.8954305 2-2v-7.99654173c0-1.1045695-.8954305-2-2-2-.0011518 0-.0023035 0-.0034553 0l-7.99999998.01382415c-1.10321873.00190597-1.99654472.89677664-1.99654472 1.99999701v1.98272057"
+          />
+
+          <path d="m6.5 7.5v6" />
+
+          <path d="m6.5 7.5v6" transform="matrix(0 1 -1 0 17 4)" />
+        </g>
+      </svg>
+    }
+
+    @case ("edit") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4zM13.5 6.5l4 4"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("email") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <rect
+          x="3.5"
+          y="5.5"
+          width="17"
+          height="13"
+          rx="2"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="m5 8 7 5 7-5"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("exam") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M7 3h8l4 4v14H7V3z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M15 3v5h5M10 13h6M13 10v6M10 18h6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("exam-comparison") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M4 20V4M4 20h16M8 16l3-4 3 2 5-7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8 7h3M8 10h2"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("eye") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle
+          cx="12"
+          cy="12"
+          r="3"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+      </svg>
+    }
+
+    @case ("eye-off") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M3 3l18 18"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M10.6 10.6a2 2 0 0 0 2.8 2.8"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9.4 5.4A8.7 8.7 0 0 1 12 5c5.2 0 8.6 4.4 9.5 7-.35.98-1.08 2.1-2.1 3.12"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M6.1 6.9C4.3 8.2 3.08 10.1 2.5 12c.9 2.6 4.3 7 9.5 7 1.6 0 3.03-.42 4.25-1.1"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("filter") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M4 6h16"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M7 12h10"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M10 18h4"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("finish") {
+      <svg viewBox="0 0 32 32" focusable="false" fill="currentColor">
+        <polyline
+          style="
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+          "
+          points="6,28 6,5 26,5 26,19 6,19 "
+        />
+        <rect x="22" y="5" width="4" height="4" />
+        <rect x="19" y="15" width="3" height="4" />
+        <rect x="19" y="9" width="3" height="3" />
+        <rect x="13" y="15" width="3" height="4" />
+        <rect x="13" y="9" width="3" height="3" />
+        <rect x="6" y="15" width="4" height="4" />
+        <rect x="6" y="9" width="4" height="3" />
+        <rect x="22" y="12" width="4" height="3" />
+        <rect x="16" y="12" width="3" height="3" />
+        <rect x="10" y="12" width="3" height="3" />
+        <rect x="16" y="5" width="3" height="4" />
+        <rect x="10" y="5" width="3" height="4" />
+      </svg>
+    }
+
+    @case ("flag-en") {
+      <svg
+        viewBox="0 0 64 48"
+        focusable="false"
+        role="img"
+        aria-label="Bandeira dos Estados Unidos"
+      >
+        <rect width="64" height="48" rx="6" fill="#FFFFFF" />
+        <g fill="#B22234">
+          <rect y="0" width="64" height="4" />
+          <rect y="8" width="64" height="4" />
+          <rect y="16" width="64" height="4" />
+          <rect y="24" width="64" height="4" />
+          <rect y="32" width="64" height="4" />
+          <rect y="40" width="64" height="4" />
+        </g>
+        <rect width="28" height="22" rx="6" fill="#3C3B6E" />
+        <g fill="#FFFFFF" opacity="0.95">
+          <circle cx="4" cy="4" r="1" />
+          <circle cx="10" cy="4" r="1" />
+          <circle cx="16" cy="4" r="1" />
+          <circle cx="22" cy="4" r="1" />
+          <circle cx="6" cy="9" r="1" />
+          <circle cx="12" cy="9" r="1" />
+          <circle cx="18" cy="9" r="1" />
+          <circle cx="24" cy="9" r="1" />
+          <circle cx="4" cy="14" r="1" />
+          <circle cx="10" cy="14" r="1" />
+          <circle cx="16" cy="14" r="1" />
+          <circle cx="22" cy="14" r="1" />
+          <circle cx="6" cy="19" r="1" />
+          <circle cx="12" cy="19" r="1" />
+          <circle cx="18" cy="19" r="1" />
+          <circle cx="24" cy="19" r="1" />
+        </g>
+      </svg>
+    }
+
+    @case ("flag-es") {
+      <svg
+        viewBox="0 0 64 48"
+        focusable="false"
+        role="img"
+        aria-label="Bandeira da Espanha"
+      >
+        <rect width="64" height="48" rx="6" fill="#AA151B" />
+        <rect y="12" width="64" height="24" fill="#F1BF00" />
+      </svg>
+    }
+
+    @case ("flag-fr") {
+      <svg
+        viewBox="0 0 64 48"
+        focusable="false"
+        role="img"
+        aria-label="Bandeira da França"
+      >
+        <rect width="64" height="48" rx="6" fill="#FFFFFF" />
+        <rect width="21.34" height="48" rx="6" fill="#0055A4" />
+        <rect x="42.66" width="21.34" height="48" rx="6" fill="#EF4135" />
+      </svg>
+    }
+
+    @case ("flag-pt") {
+      <svg
+        viewBox="0 0 64 48"
+        focusable="false"
+        role="img"
+        aria-label="Bandeira do Brasil"
+      >
+        <rect width="64" height="48" rx="6" fill="#009B3A" />
+        <polygon points="32,8 56,24 32,40 8,24" fill="#FFDF00" />
+        <circle cx="32" cy="24" r="9" fill="#002776" />
+        <path
+          d="M20 23c6-4 18-4 24 0"
+          fill="none"
+          stroke="#FFFFFF"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("folder") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M3 6.5A2.5 2.5 0 0 1 5.5 4H10l2 2h6.5A2.5 2.5 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5v-11Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M3 9h18"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("glucose") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9 15h6M12 12v6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("glucose-comparison") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M5 20V4M5 20h16"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M8 16c2-6 4 1 6-5 1.2-3.5 3-2 5-5"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9 6s2 2 2 3.5a2 2 0 0 1-4 0C7 8 9 6 9 6z"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("home") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M3.5 10.8 12 4l8.5 6.8"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5.5 9.8V20h13V9.8"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9.5 20v-6h5v6"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("info") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="M12 10.8v5.2"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M12 7.7h.01"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("link") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L11 4.93"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M14 11a5 5 0 0 0-7.07 0L4.81 13.12a5 5 0 0 0 7.07 7.07L13 19.07"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("list") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M8 6h13M8 12h13M8 18h13"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("lock-blocked") {
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M8 11V8a4 4 0 0 1 8 0v3"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <rect
+          x="6"
+          y="11"
+          width="12"
+          height="10"
+          rx="2"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+        <path
+          d="M12 16v2"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("lock-unblocked") {
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M8 11V9a4 4 0 0 1 7.2-2.4"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <rect
+          x="6"
+          y="11"
+          width="12"
+          height="10"
+          rx="2"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+        <path
+          d="M12 16v2"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("logo") {
+      <svg viewBox="0 0 1024 1024">
+        <path
+          d="M 551.00 766.44 C538.62,770.60 527.15,773.95 525.50,773.90 C523.85,773.84 520.25,773.14 517.50,772.34 C448.10,752.16 405.02,736.03 358.96,712.99 C266.91,666.93 210.03,614.52 175.03,543.50 C165.65,524.47 161.33,513.43 155.95,494.83 C149.07,471.02 146.54,456.80 144.99,433.37 C141.35,378.27 156.46,327.25 186.18,294.31 C200.68,278.24 217.90,266.53 237.00,259.78 C276.06,245.96 318.00,253.73 357.64,282.14 C376.70,295.80 383.63,307.52 387.43,332.50 C389.49,346.04 391.10,351.26 396.35,361.50 C400.77,370.11 413.52,384.21 419.76,387.40 C421.56,388.32 431.49,391.04 441.83,393.46 C471.09,400.30 480.01,403.80 489.32,412.09 C500.02,421.63 502.06,433.40 495.97,450.50 C489.01,470.06 480.20,483.79 465.76,497.60 C446.18,516.32 423.70,522.97 403.28,516.09 C399.93,514.97 391.78,511.09 385.18,507.47 C368.39,498.29 363.36,496.59 353.00,496.55 C340.66,496.51 336.10,499.42 325.64,514.00 C321.75,519.42 318.09,520.37 314.40,516.90 C310.23,512.98 311.47,507.56 318.71,498.00 C323.25,492.02 328.50,487.95 336.18,484.47 C341.63,482.00 343.74,481.61 351.50,481.61 C365.82,481.60 375.39,484.79 397.02,496.76 C411.16,504.59 421.17,505.55 434.88,500.39 C455.44,492.65 476.70,466.45 483.46,440.50 C485.46,432.83 484.20,427.84 479.03,422.92 C473.64,417.78 465.39,414.69 440.72,408.54 C412.85,401.60 409.86,400.21 399.02,389.21 C384.11,374.09 376.39,358.68 373.43,338.18 C370.90,320.64 367.12,311.25 359.17,302.75 C349.45,292.36 320.59,276.11 304.56,272.02 C246.83,257.25 194.34,287.20 171.05,348.18 C167.18,358.31 163.54,372.60 161.39,386.07 C159.30,399.19 159.02,434.34 160.89,448.00 C166.94,492.17 182.74,532.81 209.29,572.50 C242.86,622.69 293.26,663.67 365.50,699.51 C410.58,721.87 453.45,738.24 508.08,753.95 L 525.67 759.01 L 544.58 752.60 C572.73,743.06 575.67,741.97 598.50,732.74 C679.48,699.98 747.81,657.90 792.67,613.16 C830.44,575.50 854.15,530.53 862.37,481.00 C870.98,429.06 861.88,376.11 838.13,340.00 C829.75,327.25 806.35,301.47 790.50,287.51 C779.70,278.00 760.36,266.31 758.50,268.16 C758.25,268.41 758.71,274.22 759.52,281.06 C762.98,310.47 760.72,332.17 751.72,355.88 C746.94,368.46 746.20,368.70 728.84,363.19 C723.53,361.51 713.41,358.94 706.34,357.48 C695.15,355.18 691.62,354.88 678.92,355.17 C664.99,355.49 664.09,355.63 658.42,358.53 C653.82,360.88 651.70,362.78 648.92,367.03 C636.47,386.04 632.79,390.93 626.55,396.71 C614.13,408.20 604.76,412.71 583.22,417.54 C570.01,420.50 562.38,423.43 560.96,426.07 C559.17,429.43 559.99,435.78 563.55,446.00 C568.45,460.09 573.57,470.20 577.87,474.26 C579.87,476.15 584.20,478.74 587.50,480.01 C592.69,482.01 595.20,484.06 606.00,495.10 C623.16,512.65 633.10,518.59 652.12,522.69 C663.15,525.07 685.08,525.07 697.09,522.69 C720.60,518.04 738.91,508.63 749.51,495.75 C753.94,490.37 754.52,490.00 758.57,490.00 C763.25,490.00 766.00,492.42 766.00,496.55 C766.00,503.17 751.74,516.68 736.27,524.73 C698.10,544.58 651.03,544.94 618.50,525.61 C610.07,520.61 602.30,513.89 594.88,505.20 C588.44,497.66 586.96,496.51 578.47,492.46 C567.49,487.22 564.32,483.88 557.66,470.47 C546.64,448.28 542.82,432.00 546.42,422.58 C549.92,413.40 558.10,407.99 574.00,404.32 C586.37,401.46 598.08,398.00 601.78,396.11 C613.63,390.06 623.78,379.54 633.73,363.00 C639.62,353.22 642.31,350.44 650.13,346.08 C657.82,341.80 667.08,340.04 682.08,340.02 C689.00,340.01 694.90,339.77 695.18,339.49 C696.05,338.62 693.20,320.96 690.67,311.50 C689.34,306.55 686.62,296.94 684.63,290.15 C680.16,274.96 679.14,265.98 681.30,260.82 C684.74,252.61 694.39,251.88 708.24,258.78 C716.10,262.69 733.76,274.03 740.76,279.65 L 744.02 282.27 L 743.39 269.39 C742.75,256.52 742.75,256.50 745.33,253.75 C749.70,249.09 758.62,250.25 772.58,257.30 C785.45,263.80 796.95,272.95 815.57,291.50 C841.06,316.89 852.10,331.26 861.28,351.00 C868.84,367.27 873.09,381.32 877.16,403.50 C879.75,417.58 880.80,453.80 879.07,469.08 C872.33,528.68 846.73,580.70 802.60,624.50 C747.27,679.42 654.93,731.52 551.00,766.44 ZM 290.82 468.86 C266.69,475.17 249.14,469.86 238.52,453.03 C232.31,443.19 229.69,431.26 227.54,403.00 C226.68,391.73 225.54,379.58 225.01,376.00 C224.48,372.42 224.03,368.94 224.02,368.25 C223.98,365.98 220.05,363.00 217.08,363.00 C215.39,363.00 212.85,361.90 211.08,360.41 C207.23,357.18 207.01,353.28 210.47,350.03 C212.66,347.97 213.55,347.79 218.54,348.38 C229.36,349.65 235.98,355.05 237.96,364.22 C239.92,373.28 241.79,388.98 242.47,402.00 C244.13,433.98 249.49,448.66 261.50,454.13 C266.52,456.42 278.29,456.60 286.31,454.51 C314.63,447.13 319.14,426.24 300.35,389.50 C296.69,382.35 291.85,372.94 289.60,368.58 C285.52,360.71 285.50,360.60 285.50,349.58 C285.50,340.52 285.95,337.13 287.96,331.00 C291.00,321.68 293.65,318.76 298.66,319.19 C301.16,319.40 302.89,320.29 304.18,322.03 C306.04,324.53 306.03,324.66 303.03,333.75 C300.83,340.42 300.00,344.85 300.00,349.88 C300.00,356.23 300.39,357.53 304.55,365.16 C311.89,378.62 320.67,397.03 322.86,403.55 C323.97,406.87 325.45,413.51 326.14,418.31 C329.82,443.72 317.04,461.99 290.82,468.86 ZM 726.00 346.75 C731.78,348.39 736.94,349.65 737.48,349.54 C740.33,348.97 746.01,321.79 745.96,309.00 L 745.93 302.50 L 738.76 297.00 C718.73,281.66 703.65,271.91 697.61,270.43 C694.75,269.72 694.73,269.75 695.40,273.32 C695.77,275.30 698.49,284.93 701.44,294.71 C706.73,312.29 709.21,323.51 710.53,335.82 C710.82,338.49 710.84,340.07 711.55,341.22 C712.77,343.18 715.99,343.90 726.00,346.75 Z"
+          fill="currentColor"
+          stroke="currentColor"
+          stroke-width="40"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+        />
+        <path
+          d="M 0.00 512.00 L 0.00 0.00 L 512.00 0.00 L 1024.00 0.00 L 1024.00 512.00 L 1024.00 1024.00 L 512.00 1024.00 L 0.00 1024.00 L 0.00 512.00 ZM 551.00 766.44 C654.93,731.52 747.27,679.42 802.60,624.50 C846.73,580.70 872.33,528.68 879.07,469.08 C880.80,453.80 879.75,417.58 877.16,403.50 C873.09,381.32 868.84,367.27 861.28,351.00 C852.10,331.26 841.06,316.89 815.57,291.50 C796.95,272.95 785.45,263.80 772.58,257.30 C758.62,250.25 749.70,249.09 745.33,253.75 C742.75,256.50 742.75,256.52 743.39,269.39 L 744.02 282.27 L 740.76 279.65 C733.76,274.03 716.10,262.69 708.24,258.78 C694.39,251.88 684.74,252.61 681.30,260.82 C679.14,265.98 680.16,274.96 684.63,290.15 C686.62,296.94 689.34,306.55 690.67,311.50 C693.20,320.96 696.05,338.62 695.18,339.49 C694.90,339.77 689.00,340.01 682.08,340.02 C667.08,340.04 657.82,341.80 650.13,346.08 C642.31,350.44 639.62,353.22 633.73,363.00 C623.78,379.54 613.63,390.06 601.78,396.11 C598.08,398.00 586.37,401.46 574.00,404.32 C558.10,407.99 549.92,413.40 546.42,422.58 C542.82,432.00 546.64,448.28 557.66,470.47 C564.32,483.88 567.49,487.22 578.47,492.46 C586.96,496.51 588.44,497.66 594.88,505.20 C602.30,513.89 610.07,520.61 618.50,525.61 C651.03,544.94 698.10,544.58 736.27,524.73 C751.74,516.68 766.00,503.17 766.00,496.55 C766.00,492.42 763.25,490.00 758.57,490.00 C754.52,490.00 753.94,490.37 749.51,495.75 C738.91,508.63 720.60,518.04 697.09,522.69 C685.08,525.07 663.15,525.07 652.12,522.69 C633.10,518.59 623.16,512.65 606.00,495.10 C595.20,484.06 592.69,482.01 587.50,480.01 C584.20,478.74 579.87,476.15 577.87,474.26 C573.57,470.20 568.45,460.09 563.55,446.00 C559.99,435.78 559.17,429.43 560.96,426.07 C562.38,423.43 570.01,420.50 583.22,417.54 C604.76,412.71 614.13,408.20 626.55,396.71 C632.79,390.93 636.47,386.04 648.92,367.03 C651.70,362.78 653.82,360.88 658.42,358.53 C664.09,355.63 664.99,355.49 678.92,355.17 C691.62,354.88 695.15,355.18 706.34,357.48 C713.41,358.94 723.53,361.51 728.84,363.19 C746.20,368.70 746.94,368.46 751.72,355.88 C760.72,332.17 762.98,310.47 759.52,281.06 C758.71,274.22 758.25,268.41 758.50,268.16 C760.36,266.31 779.70,278.00 790.50,287.51 C806.35,301.47 829.75,327.25 838.13,340.00 C861.88,376.11 870.98,429.06 862.37,481.00 C854.15,530.53 830.44,575.50 792.67,613.16 C747.81,657.90 679.48,699.98 598.50,732.74 C575.67,741.97 572.73,743.06 544.58,752.60 L 525.67 759.01 L 508.08 753.95 C453.45,738.24 410.58,721.87 365.50,699.51 C293.26,663.67 242.86,622.69 209.29,572.50 C182.74,532.81 166.94,492.17 160.89,448.00 C159.02,434.34 159.30,399.19 161.39,386.07 C163.54,372.60 167.18,358.31 171.05,348.18 C194.34,287.20 246.83,257.25 304.56,272.02 C320.59,276.11 349.45,292.36 359.17,302.75 C367.12,311.25 370.90,320.64 373.43,338.18 C376.39,358.68 384.11,374.09 399.02,389.21 C409.86,400.21 412.85,401.60 440.72,408.54 C465.39,414.69 473.64,417.78 479.03,422.92 C484.20,427.84 485.46,432.83 483.46,440.50 C476.70,466.45 455.44,492.65 434.88,500.39 C421.17,505.55 411.16,504.59 397.02,496.76 C375.39,484.79 365.82,481.60 351.50,481.61 C343.74,481.61 341.63,482.00 336.18,484.47 C328.50,487.95 323.25,492.02 318.71,498.00 C311.47,507.56 310.23,512.98 314.40,516.90 C318.09,520.37 321.75,519.42 325.64,514.00 C336.10,499.42 340.66,496.51 353.00,496.55 C363.36,496.59 368.39,498.29 385.18,507.47 C391.78,511.09 399.93,514.97 403.28,516.09 C423.70,522.97 446.18,516.32 465.76,497.60 C480.20,483.79 489.01,470.06 495.97,450.50 C502.06,433.40 500.02,421.63 489.32,412.09 C480.01,403.80 471.09,400.30 441.83,393.46 C431.49,391.04 421.56,388.32 419.76,387.40 C413.52,384.21 400.77,370.11 396.35,361.50 C391.10,351.26 389.49,346.04 387.43,332.50 C383.63,307.52 376.70,295.80 357.64,282.14 C318.00,253.73 276.06,245.96 237.00,259.78 C217.90,266.53 200.68,278.24 186.18,294.31 C156.46,327.25 141.35,378.27 144.99,433.37 C146.54,456.80 149.07,471.02 155.95,494.83 C161.33,513.43 165.65,524.47 175.03,543.50 C210.03,614.52 266.91,666.93 358.96,712.99 C405.02,736.03 448.10,752.16 517.50,772.34 C520.25,773.14 523.85,773.84 525.50,773.90 C527.15,773.95 538.62,770.60 551.00,766.44 ZM 290.82 468.86 C317.04,461.99 329.82,443.72 326.14,418.31 C325.45,413.51 323.97,406.87 322.86,403.55 C320.67,397.03 311.89,378.62 304.55,365.16 C300.39,357.53 300.00,356.23 300.00,349.88 C300.00,344.85 300.83,340.42 303.03,333.75 C306.03,324.66 306.04,324.53 304.18,322.03 C302.89,320.29 301.16,319.40 298.66,319.19 C293.65,318.76 291.00,321.68 287.96,331.00 C285.95,337.13 285.50,340.52 285.50,349.58 C285.50,360.60 285.52,360.71 289.60,368.58 C291.85,372.94 296.69,382.35 300.35,389.50 C319.14,426.24 314.63,447.13 286.31,454.51 C278.29,456.60 266.52,456.42 261.50,454.13 C249.49,448.66 244.13,433.98 242.47,402.00 C241.79,388.98 239.92,373.28 237.96,364.22 C235.98,355.05 229.36,349.65 218.54,348.38 C213.55,347.79 212.66,347.97 210.47,350.03 C207.01,353.28 207.23,357.18 211.08,360.41 C212.85,361.90 215.39,363.00 217.08,363.00 C220.05,363.00 223.98,365.98 224.02,368.25 C224.03,368.94 224.48,372.42 225.01,376.00 C225.54,379.58 226.68,391.73 227.54,403.00 C229.69,431.26 232.31,443.19 238.52,453.03 C249.14,469.86 266.69,475.17 290.82,468.86 ZM 726.00 346.75 C710.14,342.24 711.31,343.06 710.53,335.82 C709.21,323.51 706.73,312.29 701.44,294.71 C698.49,284.93 695.77,275.30 695.40,273.32 C694.73,269.75 694.75,269.72 697.61,270.43 C703.65,271.91 718.73,281.66 738.76,297.00 L 745.93 302.50 L 745.96 309.00 C746.01,321.79 740.33,348.97 737.48,349.54 C736.94,349.65 731.78,348.39 726.00,346.75 Z"
+          fill="none"
+        />
+      </svg>
+    }
+
+    @case ("logout") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M10 17l5-5-5-5M15 12H3M21 3v18h-8"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("menu-close") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M15 5l-7 7 7 7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M20 5v14"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("menu-open") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M9 5l7 7-7 7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M4 5v14"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("moon") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M20.25 15.4C18.92 18.2 16.08 20.14 12.8 20.14C8.24 20.14 4.55 16.45 4.55 11.89C4.55 8.25 6.91 5.16 10.18 4.06C9.69 5.05 9.42 6.17 9.42 7.35C9.42 11.46 12.75 14.79 16.86 14.79C18.07 14.79 19.22 14.5 20.25 15.4Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("overview") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M4 13h6V4H4v9zM14 20h6V4h-6v16zM4 20h6v-3H4v3z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("package") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M12 11v10"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("pause") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M8 5v14M16 5v14"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("paw") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M8.4 9.5C8.4 10.47 7.82 11.25 7.1 11.25C6.38 11.25 5.8 10.47 5.8 9.5C5.8 8.53 6.38 7.75 7.1 7.75C7.82 7.75 8.4 8.53 8.4 9.5Z"
+          stroke="currentColor"
+          stroke-width="1.6"
+        />
+        <path
+          d="M12.9 7.8C12.9 8.88 12.27 9.75 11.5 9.75C10.73 9.75 10.1 8.88 10.1 7.8C10.1 6.72 10.73 5.85 11.5 5.85C12.27 5.85 12.9 6.72 12.9 7.8Z"
+          stroke="currentColor"
+          stroke-width="1.6"
+        />
+        <path
+          d="M17.2 9.5C17.2 10.47 16.62 11.25 15.9 11.25C15.18 11.25 14.6 10.47 14.6 9.5C14.6 8.53 15.18 7.75 15.9 7.75C16.62 7.75 17.2 8.53 17.2 9.5Z"
+          stroke="currentColor"
+          stroke-width="1.6"
+        />
+        <path
+          d="M11.5 11.25C13.05 11.25 15.4 13.6 16.15 15.05C16.78 16.28 15.93 17.8 14.55 17.8C13.35 17.8 12.7 17.15 11.5 17.15C10.3 17.15 9.65 17.8 8.45 17.8C7.07 17.8 6.22 16.28 6.85 15.05C7.6 13.6 9.95 11.25 11.5 11.25Z"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("pet-adoption") {
+      <svg
+        viewBox="0 0 24 24"
+        focusable="false"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          d="M12 21s-6-3.8-8.5-7A4.8 4.8 0 0 1 11 8l1 1 1-1a4.8 4.8 0 0 1 7.5 6c-2.5 3.2-8.5 7-8.5 7z"
+        />
+        <path
+          d="M7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm10 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+        />
+      </svg>
+    }
+
+    @case ("pet-birth") {
+      <svg
+        viewBox="0 0 24 24"
+        focusable="false"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <rect x="3" y="4" width="18" height="17" rx="2" />
+        <path d="M8 2v4M16 2v4M3 9h18" />
+        <circle cx="12" cy="15" r="3" />
+      </svg>
+    }
+
+    @case ("phone") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M8.2 4.5 10 8.6a1.5 1.5 0 0 1-.38 1.7l-1.2 1.08a10.8 10.8 0 0 0 4.2 4.2l1.08-1.2a1.5 1.5 0 0 1 1.7-.38l4.1 1.8a1.5 1.5 0 0 1 .9 1.55V20a1.5 1.5 0 0 1-1.62 1.5C9.8 20.9 3.1 14.2 2.5 5.22A1.5 1.5 0 0 1 4 3.6h2.65a1.5 1.5 0 0 1 1.55.9Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("plus") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M12 5v14M5 12h14"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("plus-circle") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="M12 8v8M8 12h8"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("preventive") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7l7-4z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9 12l2 2 4-5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("reactive") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="m7 5 7 7-7 7"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="m14 5 7 7-7 7"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("search") {
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path
+          d="M10.5 4a6.5 6.5 0 0 1 5.14 10.48l4.44 4.44a1 1 0 0 1-1.42 1.42l-4.44-4.44A6.5 6.5 0 1 1 10.5 4Zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Z"
+        />
+      </svg>
+    }
+
+    @case ("search-bigger") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <circle
+          cx="11"
+          cy="11"
+          r="7"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="m16.5 16.5 4 4"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("sun") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M12 4V2"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M12 22V20"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M4 12H2"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M22 12H20"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M5.64 5.64L4.22 4.22"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M19.78 19.78L18.36 18.36"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M18.36 5.64L19.78 4.22"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M4.22 19.78L5.64 18.36"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <circle
+          cx="12"
+          cy="12"
+          r="4.25"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+      </svg>
+    }
+
+    @case ("time-clock") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="M12 7v5l3 2"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("treatment") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M10 21l-7-7 8-8 7 7-8 8zM14 3l7 7-3 3-7-7 3-3z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M7 11l6 6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("upload") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M12 21V10"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M7.5 13.5 12 9l4.5 4.5"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5 5.5h14"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("user") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("user-block") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M14 20v-1.2c0-2.4-2.6-3.8-5.2-3.8S3.6 16.4 3.6 18.8V20"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.8 12a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M16.2 16.2v-1.1a2.3 2.3 0 0 1 4.6 0v1.1"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M15.2 16.2h6.6v4.6h-6.6v-4.6Z"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M18.5 18.2v1.2"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("user-delete") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M14 20v-1.2c0-2.4-2.6-3.8-5.2-3.8S3.6 16.4 3.6 18.8V20"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.8 12a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <path
+          d="M15.6 14.6h5.8"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M16.6 14.6v-1.2c0-.7.6-1.3 1.3-1.3h1.2c.7 0 1.3.6 1.3 1.3v1.2"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M16.2 14.6l.5 6.1h3.6l.5-6.1"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M18 16.4v2.9"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M19.9 16.4v2.9"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("user-disable") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M16 20v-1.2c0-2.4-3-3.8-6-3.8s-6 1.4-6 3.8V20"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M10 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle
+          cx="18"
+          cy="12"
+          r="3.2"
+          stroke="currentColor"
+          stroke-width="1.2"
+        />
+        <path
+          d="M15.7 14.3l4.6-4.6"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("user-enable") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M16 20v-1.2c0-2.4-3-3.8-6-3.8s-6 1.4-6 3.8V20"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M10 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M15.6 12.7l1.6 1.6 3.4-3.4"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("user-restore") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M14 20v-1.2c0-2.4-2.6-3.8-5.2-3.8S3.6 16.4 3.6 18.8V20"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.8 12a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <path
+          d="M21.2 16.2a4.3 4.3 0 0 1-7.4 2.6"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M14.3 18.8l-2.5-.1.1-2.5"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("user-unblock") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M14 20v-1.2c0-2.4-2.6-3.8-5.2-3.8S3.6 16.4 3.6 18.8V20"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.8 12a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <path
+          d="M19.2 15v-1.1a2.3 2.3 0 0 0-4.6 0"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M15.2 15h6.6v4.6h-6.6V15Z"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M18.5 16.9v1.2"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("user-filled") {
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path
+          d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.42 0-8 2.24-8 5v1a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1c0-2.76-3.58-5-8-5Z"
+        />
+      </svg>
+    }
+
+    @case ("users") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM21 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("vaccine") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M18 3l3 3M14 7l3 3M5 19l5-5M9 10l5 5M12 6l6 6-7 7-6-6 7-7z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    @case ("vet") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M7 3H5.8C5.36 3 5 3.36 5 3.8V8.5C5 11.54 7.46 14 10.5 14C13.54 14 16 11.54 16 8.5V3.8C16 3.36 15.64 3 15.2 3H14"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M8 3H7M13 3H14"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+        />
+        <path
+          d="M10.5 14V16.2C10.5 18.85 12.65 21 15.3 21C17.67 21 19.6 19.08 19.6 16.7V15.8"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <circle
+          cx="19.6"
+          cy="13.7"
+          r="2.1"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+      </svg>
+    }
+
+    @case ("vet-briefcase") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M10 6V4h4v2"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M4 7h16a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a2 2 0 0 1 2-2Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M12 11v6M9 14h6"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("warning") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M10.44 4.2 2.8 17.45A1.7 1.7 0 0 0 4.27 20h15.46a1.7 1.7 0 0 0 1.47-2.55L13.56 4.2a1.8 1.8 0 0 0-3.12 0Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M12 8.5v5"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M12 17h.01"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+
+    @case ("weight") {
+      <svg viewBox="0 0 24 24" focusable="false" fill="none">
+        <path
+          d="M5 21h14l-1.5-14h-11L5 21z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9 7a3 3 0 0 1 6 0M12 12l2-2"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+  }
+</span>
