@@ -55,6 +55,7 @@ export const UI_ICON_NAMES = [
   'overview',
   'package',
   'paw',
+  'paw-plus',
   'pause',
   'pet-adoption',
   'pet-birth',
