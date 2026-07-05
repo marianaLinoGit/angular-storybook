@@ -77,6 +77,8 @@ As cores devem manter boa legibilidade entre:
 - Estados desabilitados
 - Elementos focados
 
+Use o painel **Accessibility** do Storybook (addon `@storybook/addon-a11y`) para auditar cada story em tempo real.
+
 ---
 
 ## ARIA
@@ -95,6 +97,18 @@ Exemplos de uso:
 </div>
 ```
 
+```html
+<nav aria-label="Paginação de resultados">
+  <!-- ui-pagination -->
+</nav>
+```
+
+```html
+<table aria-label="Tabela de dados">
+  <th aria-sort="ascending">…</th>
+</table>
+```
+
 ---
 
 ## Screen Readers
@@ -104,5 +118,54 @@ Boas práticas adotadas:
 - Uso de HTML semântico
 - Labels descritivas
 - Hierarquia correta de títulos
-- Feedbacks acessíveis
-- Botões com texto claro
+- Feedbacks acessíveis (`aria-live`, `role="status"`)
+- Botões com texto claro ou `aria-label`
+- Regiões nomeadas (`nav`, `table`, accordion com `aria-expanded`)
+
+---
+
+## Testes de acessibilidade
+
+### No Storybook (manual)
+
+1. Abra uma story
+2. Painel **Accessibility** → revisar violações e warnings
+3. Teste tema claro e escuro (toolbar Themes)
+
+Configuração global em `.storybook/preview.ts`:
+
+```ts
+a11y: { test: 'todo' }
+```
+
+### Testes automatizados (CI / local)
+
+Com Storybook rodando:
+
+```bash
+npm run test-storybook
+```
+
+O Test Runner executa:
+
+1. Funções `play` das stories (interação)
+2. Auditoria **axe** em cada story (`.storybook/test-runner.ts` + `axe-playwright`)
+
+Para pular a auditoria em uma story específica, adicione a tag `skip-a11y` no meta.
+
+### Helpers de interação
+
+`projects/ui-kit/src/lib/storybook/play.helpers.ts` valida roles e labels esperados (`button`, `navigation`, `table`, `checkbox`, etc.).
+
+---
+
+## Checklist por componente
+
+Ao criar ou revisar um componente:
+
+- [ ] Foco visível em todos os controles
+- [ ] Nome acessível (texto visível ou `aria-label`)
+- [ ] Estados comunicados (`aria-disabled`, `aria-expanded`, `aria-sort`, `aria-current`)
+- [ ] Story **Playground completo** com função `play`
+- [ ] Sem violações críticas no painel a11y
+- [ ] Testado em tema claro e escuro

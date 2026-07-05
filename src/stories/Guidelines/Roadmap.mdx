@@ -10,47 +10,52 @@ Possíveis evoluções para o Model UI Kit.
 
 ## Design System
 
-- Suporte a tema claro e escuro
-- Theme switching
-- Tokens exportáveis para outros formatos
-- Tokens integráveis com Figma
-- Documentação de grid e layout
+- Tokens exportáveis para JSON / Style Dictionary
+- Sincronização de tokens com Figma (Tokens Studio)
+- Documentação de grid e layout responsivo
 - Documentação de motion e transitions
+- Modo de alto contraste (`prefers-contrast`)
+- Redução de movimento (`prefers-reduced-motion`)
 
 ---
 
 ## Componentes
 
 - Textarea
-- Checkbox
-- Radio
-- Badge
+- Radio / Radio Group
 - Avatar
-- Pagination
-- Table
-- Dropdown
+- Dropdown / Menu
 - Stepper
+- Date Picker
+- File Upload
+- Combobox (select com busca)
+- Paginação com salto direto para página (input numérico)
+
+---
+
+## Acessibilidade
+
+- Auditoria a11y automatizada no CI (`test-storybook` + axe)
+- Checklist de a11y por componente no Storybook
+- Revisão de contraste em tema claro e escuro
+- Documentação de padrões ARIA por tipo de componente
+- Testes de navegação por teclado nas stories interativas
 
 ---
 
 ## Engenharia
 
-- Publicação como Angular Library
-- Publicação como pacote NPM
-- Versionamento semântico
-- Changelog
-- CI/CD
-- Testes unitários
-- Testes de acessibilidade
-- Testes visuais
-- Visual regression testing
+- Changelog automatizado (Conventional Commits)
+- Testes unitários por componente (Jest / Vitest)
+- Visual regression testing (Chromatic ou Loki)
+- Storybook deploy preview por PR
+- Reduzir violações axe a zero nas stories `PlaygroundCompleto`
 
 ---
 
 ## Documentação
 
-- Página de boas práticas por componente
-- Guidelines de acessibilidade por componente
-- Exemplos de composição
-- Guia de contribuição
-- Guia de uso em projetos Angular
+- Padrões de composição (formulário, listagem, feedback)
+- Referência completa de tokens semânticos para devs
+- Exemplos de integração em apps Angular reais
+- Atualizar `ComponentApi.mdx` com convenção `PlaygroundCompleto`

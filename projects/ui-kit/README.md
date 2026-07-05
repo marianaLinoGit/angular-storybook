@@ -1,162 +1,136 @@
-# Model UI Kit Library
+# @marianaLinoGit/model-ui-kit
 
-Biblioteca Angular contendo os componentes reutilizáveis do Design System.
+Biblioteca Angular com os componentes reutilizáveis do Model UI Kit.
+
+Versão atual: ver `package.json` neste diretório.
 
 ---
 
-# Build
-
-Gerar build da library:
+## Build
 
 ```bash
 ng build ui-kit
 ```
 
-Resultado:
-
-```txt
-dist/ui-kit
-```
+Resultado: `dist/ui-kit/`
 
 ---
 
-# Gerar pacote instalável
-
-Após o build:
+## Gerar pacote instalável
 
 ```bash
 cd dist/ui-kit
 npm pack
 ```
 
-Será gerado:
+Gera: `marianaLinoGit-model-ui-kit-x.x.x.tgz`
+
+---
+
+## Instalação
+
+### Arquivo local
+
+```bash
+npm install ./marianaLinoGit-model-ui-kit-0.0.36.tgz
+```
+
+### GitHub Packages
+
+`.npmrc` do projeto consumidor:
 
 ```txt
-model-ui-kit-0.0.1.tgz
+@marianaLinoGit:registry=https://npm.pkg.github.com
+```
+
+```bash
+npm install @marianaLinoGit/model-ui-kit
 ```
 
 ---
 
-# Instalação em outro projeto
+## Estilos globais
 
-Instalar o pacote:
-
-```bash
-npm install ./model-ui-kit-0.0.1.tgz
-```
-
-ou
-
-```bash
-npm install ../path/model-ui-kit-0.0.1.tgz
-```
-
----
-
-# Importando estilos globais
-
-No projeto consumidor:
-
-```scss
-@use "model-ui-kit/styles/index";
-```
-
-Exemplo:
+Obrigatório para que tokens e tipografia funcionem:
 
 ```scss
 /* src/styles.scss */
-
-@use "model-ui-kit/styles/index";
+@use "@marianaLinoGit/model-ui-kit/styles/index";
 ```
 
 ---
 
-# Utilizando componentes
-
-Exemplo:
+## Utilizando componentes
 
 ```ts
-import { Component } from "@angular/core";
-
-import { UiButtonComponent } from "model-ui-kit";
+import { Component } from '@angular/core';
+import { UiButtonComponent } from '@marianaLinoGit/model-ui-kit';
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   standalone: true,
   imports: [UiButtonComponent],
-  templateUrl: "./app.component.html",
+  template: `<ui-button label="Salvar" color="primary" />`,
 })
 export class AppComponent {}
 ```
 
----
+### Table (projeção de linhas)
 
-Template:
-
-```html
-<ui-button label="Salvar" variant="primary" />
+```ts
+import {
+  UiTableComponent,
+  UiTableColumn,
+} from '@marianaLinoGit/model-ui-kit';
 ```
 
+```html
+<ui-table
+  [columns]="columns"
+  [total]="total"
+  [pageIndex]="page"
+  [pageSize]="pageSize"
+  (pageIndexChange)="onPageChange($event)"
+>
+  @for (row of rows; track row.id) {
+    <tr>
+      <td>{{ row.name }}</td>
+    </tr>
+  }
+</ui-table>
+```
+
+Helpers exportados: `resolveUiTableBadge`, `getUiTableBodyCellClasses`.
+
 ---
 
-# Public API
+## Public API
 
-Todos os exports da library são centralizados em:
+Exports centralizados em:
 
 ```txt
-projects/ui-kit/src/public-api.ts
+src/public-api.ts
 ```
 
 Ao criar um novo componente:
 
-1. Criar componente
-2. Exportar no public-api.ts
-3. Executar build novamente
+1. Implementar em `src/lib/components/`
+2. Criar `*.stories.ts`
+3. Adicionar export em `public-api.ts`
+4. Executar `ng build ui-kit`
 
 ---
 
-# Atualizando versão
+## Atualizando versão
 
-Alterar:
-
-```json
-{
-  "version": "0.0.1"
-}
-```
-
-em:
-
-```txt
-projects/ui-kit/package.json
-```
-
-Depois:
-
-```bash
-ng build ui-kit
-
-cd dist/ui-kit
-
-npm pack
-```
-
-Gerará um novo pacote:
-
-```txt
-model-ui-kit-0.0.2.tgz
-```
+1. Alterar `"version"` em `package.json`
+2. `ng build ui-kit`
+3. `cd dist/ui-kit && npm pack` (ou publicar)
 
 ---
 
-# Requisitos
+## Requisitos
 
-Compatível com:
-
-- Angular 18+
+- Angular >= 18.2 < 21
 - Standalone Components
 - TypeScript 5.5+
-
-```
-
-```
