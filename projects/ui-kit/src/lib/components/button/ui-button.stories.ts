@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiButtonComponent } from './ui-button.component';
 
 const meta: Meta<UiButtonComponent> = {
@@ -20,14 +21,9 @@ const meta: Meta<UiButtonComponent> = {
         'Texto utilizado por leitores de tela quando o botão não possui texto visível suficiente.',
     },
     icon: {
-      control: 'text',
-      description:
-        'Ícone exibido no botão. Pode ser emoji, caractere, caminho de imagem ou SVG usado como máscara.',
-    },
-    iconMode: {
-      control: 'radio',
-      options: ['text', 'image', 'mask'],
-      description: 'Define se o ícone é texto, imagem ou máscara SVG.',
+      control: 'select',
+      options: [null, ...UI_ICON_NAMES],
+      description: 'Nome do ícone exibido no botão. Usa o componente ui-icon.',
     },
     color: {
       control: 'select',
@@ -60,7 +56,8 @@ const meta: Meta<UiButtonComponent> = {
     appearance: {
       control: 'select',
       options: ['default', 'back'],
-      description: 'Preset visual do botão.',
+      description:
+        'Preset visual do botão. Quando definido como back, usa automaticamente o ícone back caso nenhum ícone seja informado.',
     },
     disabled: {
       control: 'boolean',
@@ -85,7 +82,7 @@ const meta: Meta<UiButtonComponent> = {
     iconOnly: {
       control: 'boolean',
       description:
-        'Exibe apenas o ícone, mantendo acessibilidade via ariaLabel.',
+        'Exibe apenas o ícone. Use ariaLabel para manter acessibilidade.',
     },
     hideLabelOnMobile: {
       control: 'boolean',
@@ -121,7 +118,6 @@ export const Default: Story = {
     loadingLabel: 'Carregando...',
     ariaLabel: null,
     icon: null,
-    iconMode: 'text',
     color: 'primary',
     size: 'md',
     position: 'center',
@@ -143,8 +139,7 @@ export const WithIcon: Story = {
   args: {
     ...Default.args,
     label: 'Adicionar',
-    icon: '+',
-    iconMode: 'text',
+    icon: 'plus',
     iconPosition: 'left',
     color: 'secondary',
   },
@@ -154,10 +149,29 @@ export const IconRight: Story = {
   args: {
     ...Default.args,
     label: 'Continuar',
-    icon: '→',
-    iconMode: 'text',
+    icon: 'chevron-down',
     iconPosition: 'right',
     color: 'primary',
+  },
+};
+
+export const Download: Story = {
+  args: {
+    ...Default.args,
+    label: 'Baixar arquivo',
+    icon: 'download',
+    iconPosition: 'left',
+    color: 'primary',
+  },
+};
+
+export const Upload: Story = {
+  args: {
+    ...Default.args,
+    label: 'Enviar arquivo',
+    icon: 'upload',
+    iconPosition: 'left',
+    color: 'secondary',
   },
 };
 
@@ -165,6 +179,7 @@ export const Outline: Story = {
   args: {
     ...Default.args,
     label: 'Cancelar',
+    icon: 'close',
     color: 'danger',
     outline: true,
   },
@@ -174,6 +189,7 @@ export const Rounded: Story = {
   args: {
     ...Default.args,
     label: 'Continuar',
+    icon: 'check',
     rounded: true,
     color: 'primary',
   },
@@ -183,6 +199,7 @@ export const FullWidth: Story = {
   args: {
     ...Default.args,
     label: 'Botão largura total',
+    icon: 'check-circle',
     fullWidth: true,
     color: 'info',
   },
@@ -192,7 +209,7 @@ export const Disabled: Story = {
   args: {
     ...Default.args,
     label: 'Desabilitado',
-    icon: '🔒',
+    icon: 'lock-blocked',
     disabled: true,
     color: 'disabled',
   },
@@ -203,7 +220,7 @@ export const Loading: Story = {
     ...Default.args,
     label: 'Salvar',
     loadingLabel: 'Salvando...',
-    icon: '⏳',
+    icon: 'check',
     loading: true,
     color: 'primary',
   },
@@ -214,7 +231,7 @@ export const IconOnly: Story = {
     ...Default.args,
     label: '',
     ariaLabel: 'Adicionar item',
-    icon: '+',
+    icon: 'plus',
     iconOnly: true,
     color: 'primary',
   },
@@ -225,8 +242,7 @@ export const BackButtonDesktop: Story = {
     ...Default.args,
     label: 'Voltar',
     ariaLabel: 'Voltar para a página anterior',
-    icon: '/icons/back.svg',
-    iconMode: 'mask',
+    icon: 'back',
     iconPosition: 'left',
     appearance: 'back',
     color: 'primary',
@@ -241,8 +257,7 @@ export const BackButtonMobile: Story = {
     ...Default.args,
     label: 'Voltar',
     ariaLabel: 'Voltar para a página anterior',
-    icon: '/icons/back.svg',
-    iconMode: 'mask',
+    icon: 'back',
     iconPosition: 'left',
     appearance: 'back',
     color: 'primary',
@@ -261,8 +276,7 @@ export const BackIconOnly: Story = {
     ...Default.args,
     label: '',
     ariaLabel: 'Voltar',
-    icon: '/icons/back.svg',
-    iconMode: 'mask',
+    icon: 'back',
     iconOnly: true,
     appearance: 'back',
     color: 'primary',
@@ -273,30 +287,30 @@ export const BackIconOnly: Story = {
 export const AllColors: Story = {
   render: () => ({
     template: `
-            <div style="display: grid; gap: 16px; max-width: 320px;">
-                <ui-button label="Primary" color="primary"></ui-button>
-                <ui-button label="Secondary" color="secondary"></ui-button>
-                <ui-button label="Success" color="success"></ui-button>
-                <ui-button label="Warning" color="warning"></ui-button>
-                <ui-button label="Danger" color="danger"></ui-button>
-                <ui-button label="Info" color="info"></ui-button>
-                <ui-button label="Disabled" color="disabled" [disabled]="true"></ui-button>
-            </div>
-        `,
+      <div style="display: grid; gap: 16px; max-width: 320px;">
+        <ui-button label="Primary" color="primary" icon="check"></ui-button>
+        <ui-button label="Secondary" color="secondary" icon="plus"></ui-button>
+        <ui-button label="Success" color="success" icon="check-circle"></ui-button>
+        <ui-button label="Warning" color="warning" icon="warning"></ui-button>
+        <ui-button label="Danger" color="danger" icon="delete"></ui-button>
+        <ui-button label="Info" color="info" icon="info"></ui-button>
+        <ui-button label="Disabled" color="disabled" icon="lock-blocked" [disabled]="true"></ui-button>
+      </div>
+    `,
   }),
 };
 
 export const AllColorsOutline: Story = {
   render: () => ({
     template: `
-            <div style="display: grid; gap: 16px; max-width: 320px;">
-                <ui-button label="Primary" color="primary" [outline]="true"></ui-button>
-                <ui-button label="Secondary" color="secondary" [outline]="true"></ui-button>
-                <ui-button label="Success" color="success" [outline]="true"></ui-button>
-                <ui-button label="Warning" color="warning" [outline]="true"></ui-button>
-                <ui-button label="Danger" color="danger" [outline]="true"></ui-button>
-                <ui-button label="Info" color="info" [outline]="true"></ui-button>
-            </div>
-        `,
+      <div style="display: grid; gap: 16px; max-width: 320px;">
+        <ui-button label="Primary" color="primary" icon="check" [outline]="true"></ui-button>
+        <ui-button label="Secondary" color="secondary" icon="plus" [outline]="true"></ui-button>
+        <ui-button label="Success" color="success" icon="check-circle" [outline]="true"></ui-button>
+        <ui-button label="Warning" color="warning" icon="warning" [outline]="true"></ui-button>
+        <ui-button label="Danger" color="danger" icon="delete" [outline]="true"></ui-button>
+        <ui-button label="Info" color="info" icon="info" [outline]="true"></ui-button>
+      </div>
+    `,
   }),
 };

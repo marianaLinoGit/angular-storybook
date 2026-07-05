@@ -12,10 +12,12 @@ import {
   UiSize,
 } from '@design-system/types/ui.types';
 import { RouteHistoryService } from '../../services/route-history.service';
+import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 @Component({
   selector: 'ui-button',
   standalone: true,
+  imports: [UiIconComponent],
   templateUrl: './ui-button.component.html',
   styleUrl: './ui-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,8 +42,7 @@ export class UiButtonComponent {
   iconOnly = input(false);
   hideLabelOnMobile = input(false);
 
-  icon = input<string | null>(null);
-  iconMode = input<'text' | 'image' | 'mask'>('text');
+  icon = input<UiIconName | null>(null);
   iconPosition = input<'left' | 'right'>('left');
 
   appearance = input<'default' | 'back'>('default');
@@ -52,6 +53,14 @@ export class UiButtonComponent {
   type = input<'button' | 'submit' | 'reset'>('button');
 
   buttonClick = output<void>();
+
+  buttonIcon = computed<UiIconName | null>(() => {
+    if (this.icon()) return this.icon();
+
+    if (this.appearance() === 'back') return 'back';
+
+    return null;
+  });
 
   computedAriaLabel = computed(() => {
     const aria = this.ariaLabel()?.trim();

@@ -12,19 +12,8 @@
       <span class="ui-button__loading" aria-hidden="true"></span>
     }
 
-    @if (!loading() && icon() && iconPosition() === "left") {
-      <span class="ui-button__icon" aria-hidden="true">
-        @if (iconMode() === "image") {
-          <img [src]="icon()!" alt="" />
-        } @else if (iconMode() === "mask") {
-          <span
-            class="ui-button__mask-icon"
-            [style.--ui-button-icon-url]="'url(' + icon() + ')'"
-          ></span>
-        } @else {
-          {{ icon() }}
-        }
-      </span>
+    @if (!loading() && buttonIcon() && iconPosition() === "left") {
+      <ui-icon class="ui-button__icon" [name]="buttonIcon()!" size="sm" />
     }
 
     @if (!iconOnly()) {
@@ -36,19 +25,8 @@
       </span>
     }
 
-    @if (!loading() && icon() && iconPosition() === "right") {
-      <span class="ui-button__icon" aria-hidden="true">
-        @if (iconMode() === "image") {
-          <img [src]="icon()!" alt="" />
-        } @else if (iconMode() === "mask") {
-          <span
-            class="ui-button__mask-icon"
-            [style.--ui-button-icon-url]="'url(' + icon() + ')'"
-          ></span>
-        } @else {
-          {{ icon() }}
-        }
-      </span>
+    @if (!loading() && buttonIcon() && iconPosition() === "right") {
+      <ui-icon class="ui-button__icon" [name]="buttonIcon()!" size="sm" />
     }
   </button>
 </div>
