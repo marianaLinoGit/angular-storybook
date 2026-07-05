@@ -1,6 +1,6 @@
 <div [class]="tableClasses()">
   @if (showFooterTop()) {
-    <ng-container *ngTemplateOutlet="footerTpl" />
+    <ng-container *ngTemplateOutlet="footerTpl; context: { position: 'top' }" />
   }
 
   <div class="ui-table__wrapper">
@@ -81,11 +81,11 @@
   </div>
 
   @if (showFooterBottom()) {
-    <ng-container *ngTemplateOutlet="footerTpl" />
+    <ng-container *ngTemplateOutlet="footerTpl; context: { position: 'bottom' }" />
   }
 </div>
 
-<ng-template #footerTpl>
+<ng-template #footerTpl let-position="position">
   <div class="ui-table__footer">
     @if (showTotal()) {
       <div class="ui-table__total" aria-live="polite">
@@ -122,9 +122,9 @@
           [nextLabel]="nextLabel()"
           [pageLabel]="pageLabel()"
           [ofLabel]="ofLabel()"
-          [pageSizeLabel]="''"
+          [pageSizeLabel]="pageSizeLabel()"
           [pageSizeAriaLabel]="pageSizeSelectAriaLabel()"
-          [ariaLabel]="paginationAriaLabel()"
+          [ariaLabel]="paginationNavAriaLabel(position)"
           (pageIndexChange)="pageIndexChange.emit($event)"
           (pageSizeChange)="onPageSizeChange($event)"
         />

@@ -1,12 +1,34 @@
-<article
-  [class]="cardClasses()"
-  [attr.role]="interactiveRole()"
-  [attr.tabindex]="clickable() ? 0 : null"
-  [attr.aria-label]="accessibleLabel()"
-  (click)="handleClick()"
-  (keydown.enter)="handleClick()"
-  (keydown.space)="handleSpaceKey($event)"
->
+@if (clickable() && linkUrl()) {
+  <a
+    [class]="cardClasses()"
+    [href]="linkUrl()!"
+    [attr.target]="target() === '_blank' ? '_blank' : null"
+    [attr.rel]="target() === '_blank' ? 'noopener noreferrer' : null"
+    [attr.aria-label]="accessibleLabel()"
+    (click)="handleLinkClick($event)"
+    (keydown.space)="handleSpaceKey($event)"
+  >
+    <ng-container *ngTemplateOutlet="cardBody" />
+  </a>
+} @else if (clickable()) {
+  <div
+    [class]="cardClasses()"
+    role="button"
+    tabindex="0"
+    [attr.aria-label]="accessibleLabel()"
+    (click)="handleClick()"
+    (keydown.enter)="handleClick()"
+    (keydown.space)="handleSpaceKey($event)"
+  >
+    <ng-container *ngTemplateOutlet="cardBody" />
+  </div>
+} @else {
+  <article [class]="cardClasses()">
+    <ng-container *ngTemplateOutlet="cardBody" />
+  </article>
+}
+
+<ng-template #cardBody>
   @if (imageUrl()) {
     <img
       class="ui-card__image"
@@ -32,4 +54,4 @@
       {{ footer() }}
     </footer>
   }
-</article>
+</ng-template>

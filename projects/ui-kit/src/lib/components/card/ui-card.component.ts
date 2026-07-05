@@ -5,6 +5,7 @@ import {
   input,
   output,
 } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 import { UiSize } from '@design-system/types/ui.types';
 
 export type UiCardAlign = 'left' | 'center' | 'right';
@@ -13,6 +14,7 @@ export type UiCardTarget = '_self' | '_blank';
 @Component({
   selector: 'ui-card',
   standalone: true,
+  imports: [NgTemplateOutlet],
   templateUrl: './ui-card.component.html',
   styleUrl: './ui-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,14 +60,6 @@ export class UiCardComponent {
       .join(' '),
   );
 
-  interactiveRole = computed(() => {
-    if (!this.clickable()) {
-      return null;
-    }
-
-    return this.linkUrl() ? 'link' : 'button';
-  });
-
   accessibleLabel = computed(() => {
     if (!this.clickable()) {
       return null;
@@ -85,24 +79,24 @@ export class UiCardComponent {
   });
 
   handleClick(): void {
+    if (!this.clickable() || this.linkUrl()) {
+      return;
+    }
+
+    this.cardClick.emit();
+  }
+
+  handleLinkClick(event: MouseEvent): void {
     if (!this.clickable()) {
       return;
     }
 
     this.cardClick.emit();
 
-    const url = this.linkUrl();
-
-    if (!url) {
-      return;
-    }
-
     if (this.target() === '_blank') {
-      window.open(url, '_blank', 'noopener,noreferrer');
-      return;
+      event.preventDefault();
+      window.open(this.linkUrl()!, '_blank', 'noopener,noreferrer');
     }
-
-    window.open(url, '_self');
   }
 
   handleSpaceKey(event: Event): void {

@@ -7,6 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { UiColor, UiToastPosition } from '@design-system/types/ui.types';
+import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 type UiToastColor = Extract<UiColor, 'success' | 'danger' | 'warning' | 'info'>;
 
@@ -19,6 +20,7 @@ type UiToastAriaLive = 'polite' | 'assertive';
 @Component({
   selector: 'ui-toast',
   standalone: true,
+  imports: [UiIconComponent],
   templateUrl: './ui-toast.component.html',
   styleUrl: './ui-toast.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,7 +35,8 @@ export class UiToastComponent {
   size = input<UiToastSize>('md');
   shadow = input<UiToastShadow>('sm');
 
-  icon = input<string | null>('ℹ️');
+  icon = input<UiIconName | null>(null);
+  showIcon = input(true);
 
   position = input<UiToastPosition>('top-right');
   presentationMode = input<UiToastPresentationMode>('fixed');
@@ -54,6 +57,25 @@ export class UiToastComponent {
   textId = `ui-toast-text-${crypto.randomUUID()}`;
 
   visible = computed(() => !this.hidden());
+
+  resolvedIcon = computed<UiIconName>(() => {
+    const customIcon = this.icon();
+    if (customIcon) {
+      return customIcon;
+    }
+
+    switch (this.color()) {
+      case 'success':
+        return 'check-circle';
+      case 'warning':
+        return 'warning';
+      case 'danger':
+        return 'alert';
+      case 'info':
+      default:
+        return 'info';
+    }
+  });
 
   role = computed(() => (this.ariaLive() === 'assertive' ? 'alert' : 'status'));
 

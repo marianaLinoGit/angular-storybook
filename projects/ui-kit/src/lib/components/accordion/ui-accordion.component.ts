@@ -6,12 +6,13 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 export interface AccordionItem {
   id: string;
   title: string;
   content: string;
-  icon?: string;
+  icon?: UiIconName;
   disabled?: boolean;
 }
 
@@ -27,6 +28,7 @@ export interface AccordionToggleEvent {
 @Component({
   selector: 'ui-accordion',
   standalone: true,
+  imports: [UiIconComponent],
   templateUrl: './ui-accordion.component.html',
   styleUrl: './ui-accordion.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

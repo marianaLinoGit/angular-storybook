@@ -9,10 +9,13 @@
       (click)="toggle()"
     >
       <span class="ui-accordion-panel__title">
-        @if (icon()) {
-          <span class="ui-accordion-panel__icon" aria-hidden="true">
-            {{ icon() }}
-          </span>
+        @if (icon(); as iconName) {
+          <ui-icon
+            class="ui-accordion-panel__icon"
+            [name]="iconName"
+            size="sm"
+            aria-hidden="true"
+          />
         }
 
         <span>{{ title() }}</span>
@@ -22,9 +25,12 @@
         }
       </span>
 
-      <span class="ui-accordion-panel__toggle" aria-hidden="true">
-        {{ open() ? "−" : "+" }}
-      </span>
+      <ui-icon
+        class="ui-accordion-panel__toggle"
+        [name]="open() ? 'chevron-up' : 'chevron-down'"
+        size="sm"
+        aria-hidden="true"
+      />
     </button>
   </h3>
 

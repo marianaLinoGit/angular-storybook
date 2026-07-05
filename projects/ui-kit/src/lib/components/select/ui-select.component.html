@@ -1,21 +1,26 @@
 <div class="ui-select">
-  <ui-label
-    [label]="label()"
-    [forId]="id()"
-    [required]="hasRequired()"
-    [optionalText]="optionalText()"
-    [showOptionalText]="showOptionalText()"
-  ></ui-label>
+  @if (label()) {
+    <ui-label
+      [label]="label()"
+      [forId]="id()"
+      [labelId]="labelId()"
+      [required]="hasRequired()"
+      [optionalText]="optionalText()"
+      [showOptionalText]="showOptionalText()"
+    ></ui-label>
+  }
 
   <div [class]="classes()">
     <div class="ui-select__control">
       <button
         type="button"
+        role="combobox"
         class="ui-select__trigger"
         [id]="id()"
         [name]="name()"
         [disabled]="isDisabled()"
         [attr.aria-label]="selectAriaLabel()"
+        [attr.aria-labelledby]="label() ? labelId() : null"
         [attr.aria-required]="hasRequired() ? 'true' : null"
         [attr.aria-invalid]="hasError() ? 'true' : null"
         [attr.aria-describedby]="hasError() ? errorId() : null"
@@ -57,7 +62,12 @@
     </div>
 
     @if (opened()) {
-      <div class="ui-select__dropdown" [id]="listboxId()" role="listbox">
+      <div
+        class="ui-select__dropdown"
+        [id]="listboxId()"
+        role="listbox"
+        [attr.aria-labelledby]="label() ? labelId() : selectAriaLabel()"
+      >
         @if (searchable()) {
           <div class="ui-select__search">
             <input

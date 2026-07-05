@@ -43,6 +43,10 @@ const preview: Preview = {
     test: {
       dangerouslyIgnoreUnhandledErrors: false,
     },
+    a11y: {
+      // Evita conflito "Axe is already running" com o test-runner.
+      test: 'off',
+    },
   },
   decorators: [
     withThemeByDataAttribute({

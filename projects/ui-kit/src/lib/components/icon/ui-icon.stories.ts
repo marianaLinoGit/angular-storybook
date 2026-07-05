@@ -19,7 +19,7 @@ const meta: Meta<UiIconComponent> = {
   title: 'Components/Icon',
   component: UiIconComponent,
   tags: ['autodocs'],
-  includeStories: /^(PlaygroundCompleto|CustomSize)$/,
+  includeStories: /^(PlaygroundCompleto|CustomSize|AllIcons)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -119,8 +119,12 @@ export const CustomSize: Story = {
 };
 
 export const AllIcons: Story = {
+  name: 'Todos os ícones',
   parameters: {
     docs: {
+      story: {
+        height: '600px',
+      },
       description: {
         story: 'Galeria com todos os ícones disponíveis em `UI_ICON_NAMES`.',
       },

@@ -9,10 +9,13 @@
             (click)="itemClick.emit(item)"
           >
             <span class="ui-breadcrumb__content">
-              @if (getIcon(item, index)) {
-                <span class="ui-breadcrumb__icon" aria-hidden="true">
-                  {{ getIcon(item, index) }}
-                </span>
+              @if (getIcon(item, index); as iconName) {
+                <ui-icon
+                  class="ui-breadcrumb__icon"
+                  [name]="iconName"
+                  size="sm"
+                  aria-hidden="true"
+                />
               }
 
               @if (shouldShowLabel(index)) {
@@ -27,10 +30,13 @@
             [attr.aria-current]="last ? 'page' : null"
           >
             <span class="ui-breadcrumb__content">
-              @if (getIcon(item, index)) {
-                <span class="ui-breadcrumb__icon" aria-hidden="true">
-                  {{ getIcon(item, index) }}
-                </span>
+              @if (getIcon(item, index); as iconName) {
+                <ui-icon
+                  class="ui-breadcrumb__icon"
+                  [name]="iconName"
+                  size="sm"
+                  aria-hidden="true"
+                />
               }
 
               @if (shouldShowLabel(index)) {

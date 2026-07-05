@@ -7,19 +7,20 @@ import {
   output,
 } from '@angular/core';
 import { UiBadgeComponent, UiBadgeType } from '../badge/ui-badge.component';
+import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 @Component({
   selector: 'ui-accordion-panel',
   standalone: true,
   templateUrl: './ui-accordion-panel.component.html',
   styleUrl: './ui-accordion-panel.component.scss',
-  imports: [UiBadgeComponent],
+  imports: [UiBadgeComponent, UiIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiAccordionPanelComponent {
   id = input.required<string>();
   title = input.required<string>();
-  icon = input<string | null>(null);
+  icon = input<UiIconName | null>(null);
   badge = input<string | number | null>(null);
   badgeType = input<UiBadgeType>('default');
   disabled = input(false);

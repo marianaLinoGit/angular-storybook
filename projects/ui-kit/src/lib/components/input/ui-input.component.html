@@ -1,11 +1,13 @@
 <div class="ui-input-field">
-  <ui-label
-    [label]="label()"
-    [forId]="id()"
-    [required]="hasRequired()"
-    [optionalText]="optionalText()"
-    [showOptionalText]="showOptionalText()"
-  ></ui-label>
+  @if (label()) {
+    <ui-label
+      [label]="label()"
+      [forId]="id()"
+      [required]="hasRequired()"
+      [optionalText]="optionalText()"
+      [showOptionalText]="showOptionalText()"
+    ></ui-label>
+  }
 
   <input
     [id]="id()"

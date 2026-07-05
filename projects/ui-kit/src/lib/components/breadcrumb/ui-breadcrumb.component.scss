@@ -45,7 +45,9 @@
   }
 
   &__icon {
-    line-height: 1;
+    display: inline-flex;
+    flex-shrink: 0;
+    color: currentColor;
   }
 
   &__current {

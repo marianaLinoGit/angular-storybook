@@ -44,12 +44,13 @@ export async function expectCheckbox(
   toggle = true,
 ): Promise<void> {
   const canvas = await canvasOf(canvasElement);
-  const checkbox = canvas.getByRole('checkbox', { name });
+  const checkbox = canvas.getByRole('checkbox', { name, hidden: true });
 
-  await expect(checkbox).toBeVisible();
+  await expect(checkbox).toBeInTheDocument();
 
   if (toggle) {
-    await userEvent.click(checkbox);
+    const label = canvas.getByText(name);
+    await userEvent.click(label);
     await expect(checkbox).toBeChecked();
   }
 }
@@ -60,7 +61,9 @@ export async function expectInput(
   value: string,
 ): Promise<void> {
   const canvas = await canvasOf(canvasElement);
-  const input = canvas.getByLabelText(label);
+  const nameMatcher =
+    typeof label === 'string' ? new RegExp(label, 'i') : label;
+  const input = canvas.getByRole('textbox', { name: nameMatcher });
 
   await expect(input).toBeVisible();
   await userEvent.clear(input);
@@ -73,7 +76,7 @@ export async function expectSelectTrigger(
   name: string | RegExp,
 ): Promise<void> {
   const canvas = await canvasOf(canvasElement);
-  const trigger = canvas.getByRole('button', { name });
+  const trigger = canvas.getByRole('combobox', { name });
 
   await expect(trigger).toBeVisible();
   await userEvent.click(trigger);
@@ -85,12 +88,18 @@ export async function expectSwitch(
   name?: string | RegExp,
 ): Promise<void> {
   const canvas = await canvasOf(canvasElement);
-  const switchEl = name
-    ? canvas.getByRole('switch', { name })
-    : canvas.getByRole('switch');
+  const nameMatcher =
+    typeof name === 'string' ? new RegExp(name, 'i') : name;
+  const switchEl = nameMatcher
+    ? canvas.getByRole('switch', { name: nameMatcher, hidden: true })
+    : canvas.getByRole('switch', { hidden: true });
 
-  await expect(switchEl).toBeVisible();
-  await userEvent.click(switchEl);
+  if (nameMatcher) {
+    await userEvent.click(canvas.getByText(nameMatcher));
+  } else {
+    await userEvent.click(switchEl);
+  }
+
   await expect(switchEl).toBeChecked();
 }
 
@@ -125,7 +134,7 @@ export const checkboxPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => 
 
 export const emptyStatePlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
   await expectHeading(canvasElement, 'Nenhum dado encontrado');
-  await expectButton(canvasElement, 'Criar item');
+  await expectButton(canvasElement, 'Criar novo item');
 };
 
 export const inputPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
@@ -155,7 +164,7 @@ export const loadingPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
 
 export const pageTitlePlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
   await expectHeading(canvasElement, 'Meus Pets');
-  await expectButton(canvasElement, 'Pet');
+  await expectButton(canvasElement, 'Adicionar pet');
 };
 
 export const statCardPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
@@ -177,5 +186,100 @@ export const accordionPanelPlaygroundPlay: StoryPlayFn = async ({ canvasElement 
 
 export const tablePlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
   await expectTableCell(canvasElement, 'Dino');
+  const canvas = await canvasOf(canvasElement);
+  const navigations = canvas.getAllByRole('navigation', {
+    name: /Paginação da tabela/i,
+  });
+  await expect(navigations.length).toBeGreaterThan(0);
+
+  const previousButtons = canvas.getAllByRole('button', { name: 'Anterior' });
+  await expect(previousButtons.length).toBeGreaterThan(0);
+  await expect(previousButtons[0]).toBeDisabled();
+};
+
+export async function expectNavigation(
+  canvasElement: HTMLElement,
+  name: string | RegExp,
+): Promise<void> {
+  const canvas = await canvasOf(canvasElement);
+  await expect(canvas.getByRole('navigation', { name })).toBeVisible();
+}
+
+export const paginationPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
+  await expectNavigation(canvasElement, 'Paginação de resultados');
   await expectButton(canvasElement, 'Anterior', false);
+  await expectButton(canvasElement, 'Próxima', true);
+};
+
+export async function expectAlert(
+  canvasElement: HTMLElement,
+  name?: string | RegExp,
+): Promise<void> {
+  const canvas = await canvasOf(canvasElement);
+  const alert = name
+    ? canvas.getByRole('alert', { name })
+    : canvas.getByRole('alert');
+
+  await expect(alert).toBeVisible();
+}
+
+export const alertPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
+  await expectAlert(canvasElement);
+  await expectText(canvasElement, /Mensagem informativa/i);
+  await expectButton(canvasElement, 'Fechar alerta', true);
+};
+
+export const breadcrumbPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
+  await expectNavigation(canvasElement, 'Navegação estrutural');
+};
+
+export const cardPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
+  await expectHeading(canvasElement, 'Design System');
+};
+
+export async function expectDialog(
+  canvasElement: HTMLElement,
+  name?: string | RegExp,
+): Promise<void> {
+  const canvas = await canvasOf(canvasElement);
+  const dialog = name
+    ? canvas.getByRole('dialog', { name })
+    : canvas.getByRole('dialog');
+
+  await expect(dialog).toBeVisible();
+}
+
+export const modalPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
+  await expectDialog(canvasElement, /Informação importante/i);
+  await expectButton(canvasElement, 'Entendi', true);
+};
+
+export const tabsPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
+  const canvas = await canvasOf(canvasElement);
+  await expect(canvas.getByRole('tablist')).toBeVisible();
+  const detailsTab = canvas.getByRole('tab', { name: 'Detalhes' });
+  await expect(detailsTab).toBeVisible();
+  await userEvent.click(detailsTab);
+  await expectText(canvasElement, /Conteúdo da aba Detalhes/i);
+};
+
+export const toastPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
+  await expectText(canvasElement, 'Informação');
+  await expectButton(canvasElement, 'Fechar notificação', true);
+};
+
+export const tooltipPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
+  const canvas = await canvasOf(canvasElement);
+  const trigger = canvas.getByRole('button', { name: /Passe o mouse/i });
+
+  await expect(trigger).toBeVisible();
+  await userEvent.hover(trigger);
+  await expect(await canvas.findByRole('tooltip')).toBeVisible();
+};
+
+export const statCardGridPlaygroundPlay: StoryPlayFn = async ({
+  canvasElement,
+}) => {
+  await expectText(canvasElement, 'Total de alertas');
+  await expectText(canvasElement, 'Urgentes');
 };

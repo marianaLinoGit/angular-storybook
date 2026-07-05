@@ -54,26 +54,30 @@
 
   &--success {
     --toast-color: var(--ui-color-success);
-    --toast-bg: #dcfce7;
-    --toast-text: #166534;
+    --toast-bg: var(--ui-color-success-soft-bg);
+    --toast-text: var(--ui-color-success-soft-text);
+    --toast-on-color: var(--ui-color-on-success);
   }
 
   &--warning {
     --toast-color: var(--ui-color-warning);
-    --toast-bg: #fef3c7;
-    --toast-text: #92400e;
+    --toast-bg: var(--ui-color-warning-soft-bg);
+    --toast-text: var(--ui-color-warning-soft-text);
+    --toast-on-color: var(--ui-color-on-warning);
   }
 
   &--danger {
     --toast-color: var(--ui-color-danger);
-    --toast-bg: #fee2e2;
-    --toast-text: #991b1b;
+    --toast-bg: var(--ui-color-danger-soft-bg);
+    --toast-text: var(--ui-color-danger-soft-text);
+    --toast-on-color: var(--ui-color-on-danger);
   }
 
   &--info {
     --toast-color: var(--ui-color-info);
-    --toast-bg: #dbeafe;
-    --toast-text: #1e40af;
+    --toast-bg: var(--ui-color-info-soft-bg);
+    --toast-text: var(--ui-color-info-soft-text);
+    --toast-on-color: var(--ui-color-on-info);
   }
 
   &--soft {
@@ -83,12 +87,12 @@
 
   &--solid {
     background: var(--toast-color);
-    color: white;
+    color: var(--toast-on-color);
   }
 
   &--outline {
-    background: white;
-    color: var(--toast-color);
+    background: var(--ui-color-surface);
+    color: var(--toast-text);
     border-color: var(--toast-color);
   }
 
@@ -126,9 +130,7 @@
 
   &__icon {
     flex-shrink: 0;
-
-    font-size: 22px;
-    line-height: 1;
+    color: currentColor;
   }
 
   &__content {
@@ -152,26 +154,29 @@
   }
 
   &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-left: auto;
 
     border: 0;
 
     background: transparent;
 
-    color: inherit;
+    color: var(--toast-text, inherit);
 
     cursor: pointer;
 
-    font-size: 24px;
-
-    line-height: 1;
-
-    opacity: 0.75;
+    opacity: 1;
 
     transition: 0.2s;
 
     &:hover {
-      opacity: 1;
+      filter: brightness(0.85);
     }
+  }
+
+  &--solid &__close {
+    color: var(--toast-on-color);
   }
 }

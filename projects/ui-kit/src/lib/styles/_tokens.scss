@@ -82,6 +82,31 @@
   --ui-color-on-info: #ffffff;
   --ui-color-on-disabled: #ffffff;
 
+  --ui-color-success-soft-bg: color-mix(
+    in srgb,
+    var(--ui-color-success),
+    transparent 88%
+  );
+  --ui-color-success-soft-text: var(--ui-color-success);
+  --ui-color-warning-soft-bg: color-mix(
+    in srgb,
+    var(--ui-color-warning),
+    transparent 88%
+  );
+  --ui-color-warning-soft-text: var(--ui-color-warning);
+  --ui-color-danger-soft-bg: color-mix(
+    in srgb,
+    var(--ui-color-danger),
+    transparent 88%
+  );
+  --ui-color-danger-soft-text: var(--ui-color-danger);
+  --ui-color-info-soft-bg: color-mix(
+    in srgb,
+    var(--ui-color-info),
+    transparent 88%
+  );
+  --ui-color-info-soft-text: var(--ui-color-info);
+
   --ui-auth-panel-background: #ffffff;
   --ui-auth-hero-background: #f3edff;
 

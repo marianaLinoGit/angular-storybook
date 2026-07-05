@@ -7,6 +7,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 export type UiModalType = 'confirmation' | 'informative' | 'content';
 export type UiModalSize = 'sm' | 'md' | 'lg';
@@ -15,6 +16,7 @@ export type UiModalPresentationMode = 'fixed' | 'inline';
 @Component({
   selector: 'ui-modal',
   standalone: true,
+  imports: [UiIconComponent],
   templateUrl: './ui-modal.component.html',
   styleUrl: './ui-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,7 +27,7 @@ export class UiModalComponent {
 
   title = input('Título do modal');
   description = input<string | null>('Descrição do modal');
-  icon = input<string | null>(null);
+  icon = input<UiIconName | null>(null);
 
   confirmLabel = input('Confirmar');
   cancelLabel = input('Cancelar');

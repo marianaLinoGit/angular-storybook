@@ -1,7 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
+import { statCardGridPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiStatCardComponent } from '../stat-card/ui-stat-card.component';
 import { UiStatCardGridComponent } from './ui-stat-card-grid.component';
+
+const playgroundDefaults = {
+  minCardWidth: '180px',
+  gap: '16px',
+};
 
 const meta: Meta<UiStatCardGridComponent> = {
   title: 'Layout/Stat Card Grid',
@@ -12,37 +18,58 @@ const meta: Meta<UiStatCardGridComponent> = {
     }),
   ],
   tags: ['autodocs'],
+  includeStories:
+    /^(PlaygroundCompleto|Default|TwoCards|SixCards|Gradient|MixedSizes|WithoutIcons|MobilePetsExample)$/,
   argTypes: {
     minCardWidth: {
       control: 'text',
+      table: { category: 'Layout' },
       description: 'Largura mínima utilizada no desktop >= 900px.',
     },
     gap: {
       control: 'text',
+      table: { category: 'Layout' },
       description: 'Espaçamento entre os cards.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiStatCardGridComponent>;
 
-export const Default: Story = {
-  args: {
-    minCardWidth: '180px',
-    gap: '16px',
+const defaultGridTemplate = `
+  <ui-stat-card-grid [minCardWidth]="minCardWidth" [gap]="gap">
+    <ui-stat-card type="default" [value]="6" label="Total de alertas" icon="alert" />
+    <ui-stat-card type="danger" [value]="2" label="Urgentes" icon="warning" />
+    <ui-stat-card type="warning" [value]="2" label="Em breve" icon="calendar" />
+    <ui-stat-card type="info" [value]="2" label="Informativos" icon="info" />
+  </ui-stat-card-grid>
+`;
+
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
+      },
+    },
   },
+  args: { ...playgroundDefaults },
   render: (args) => ({
     props: args,
-    template: `
-      <ui-stat-card-grid [minCardWidth]="minCardWidth" [gap]="gap">
-        <ui-stat-card type="default" [value]="6" label="Total de alertas" icon="alert" />
-        <ui-stat-card type="danger" [value]="2" label="Urgentes" icon="warning" />
-        <ui-stat-card type="warning" [value]="2" label="Em breve" icon="calendar" />
-        <ui-stat-card type="info" [value]="2" label="Informativos" icon="info" />
-      </ui-stat-card-grid>
-    `,
+    template: defaultGridTemplate,
+  }),
+  play: statCardGridPlaygroundPlay,
+};
+
+export const Default: Story = {
+  args: { ...playgroundDefaults },
+  render: (args) => ({
+    props: args,
+    template: defaultGridTemplate,
   }),
 };
 

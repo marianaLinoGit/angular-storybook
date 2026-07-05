@@ -42,7 +42,7 @@ export class UiSwitchComponent implements ControlValueAccessor {
 
   showSideLabels = input(false);
   showStatus = input(true);
-  checkedValue = input(false, { alias: 'checked' });
+  checkedInput = input(false, { alias: 'checked' });
 
   disabled = input(false);
   size = input<'sm' | 'md' | 'lg'>('md');
@@ -58,11 +58,14 @@ export class UiSwitchComponent implements ControlValueAccessor {
       this.ngControl.valueAccessor = this;
     }
 
-    effect(() => {
-      if (!this.ngControl) {
-        this.checked.set(this.checkedValue());
-      }
-    });
+    effect(
+      () => {
+        if (!this.ngControl) {
+          this.checked.set(this.checkedInput());
+        }
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   isDisabled = computed(() => this.disabled() || this.disabledState());

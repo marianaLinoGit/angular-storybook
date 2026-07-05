@@ -6,6 +6,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 export type AlertColor = 'success' | 'warning' | 'danger' | 'info';
 export type AlertVariant = 'soft' | 'solid' | 'outline';
@@ -15,6 +16,7 @@ export type AlertPosition = 'top' | 'bottom';
 @Component({
   selector: 'ui-alert',
   standalone: true,
+  imports: [UiIconComponent],
   templateUrl: './ui-alert.component.html',
   styleUrl: './ui-alert.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,17 +39,17 @@ export class UiAlertComponent {
 
   isVisible = signal(true);
 
-  defaultIcon = computed(() => {
+  defaultIcon = computed<UiIconName>(() => {
     switch (this.color()) {
       case 'success':
-        return '✓';
+        return 'check-circle';
       case 'warning':
-        return '⚠';
+        return 'warning';
       case 'danger':
-        return '✕';
+        return 'alert';
       case 'info':
       default:
-        return 'i';
+        return 'info';
     }
   });
 

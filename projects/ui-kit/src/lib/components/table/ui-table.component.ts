@@ -145,7 +145,7 @@ export class UiTableComponent {
   paginationAriaLabel = input('Paginação da tabela');
   previousLabel = input('Anterior');
   nextLabel = input('Próxima');
-  pageSizeLabel = input('Itens por página');
+  pageSizeLabel = input<string | null>(null);
   pageSizeAriaLabel = input<string | null>(null);
   totalLabel = input('registro(s)');
   pageLabel = input('Página');
@@ -196,9 +196,15 @@ export class UiTableComponent {
       (this.showPageSize() && this.hasRows()),
   );
 
-  pageSizeSelectAriaLabel = computed(
-    () => this.pageSizeAriaLabel() ?? this.pageSizeLabel(),
-  );
+  pageSizeSelectAriaLabel = computed(() => {
+    const explicit = this.pageSizeAriaLabel()?.trim();
+    if (explicit) return explicit;
+
+    const visibleLabel = this.pageSizeLabel()?.trim();
+    if (visibleLabel) return visibleLabel;
+
+    return 'Itens por página';
+  });
 
   showFooterTop = computed(
     () =>
@@ -211,6 +217,18 @@ export class UiTableComponent {
       this.showFooter() &&
       (this.paginationPosition() === 'bottom' || this.paginationPosition() === 'both'),
   );
+
+  paginationNavAriaLabel(position: 'top' | 'bottom'): string {
+    const base = this.paginationAriaLabel();
+
+    if (this.showFooterTop() && this.showFooterBottom()) {
+      return position === 'top'
+        ? `${base} (superior)`
+        : `${base} (inferior)`;
+    }
+
+    return base;
+  }
 
   currentEmptyIcon = computed(() =>
     this.hasFilters() ? this.noResultsIcon() : this.emptyIcon(),

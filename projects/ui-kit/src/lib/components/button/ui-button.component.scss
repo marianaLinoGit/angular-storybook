@@ -159,45 +159,27 @@
   &--outline.ui-button--disabled {
     background: transparent;
     cursor: not-allowed;
-    opacity: 0.55;
+    opacity: 1;
     filter: none;
     transform: none;
+    color: var(--ui-color-disabled);
+    border-color: var(--ui-color-disabled);
   }
 
   &--outline.ui-button--primary:disabled,
-  &--outline.ui-button--primary.ui-button--disabled {
-    color: color-mix(in srgb, var(--ui-color-primary), transparent 45%);
-    border-color: color-mix(in srgb, var(--ui-color-primary), transparent 55%);
-  }
-
+  &--outline.ui-button--primary.ui-button--disabled,
   &--outline.ui-button--secondary:disabled,
-  &--outline.ui-button--secondary.ui-button--disabled {
-    color: color-mix(in srgb, var(--ui-color-secondary), transparent 45%);
-    border-color: color-mix(in srgb, var(--ui-color-secondary), transparent 55%);
-  }
-
+  &--outline.ui-button--secondary.ui-button--disabled,
   &--outline.ui-button--success:disabled,
-  &--outline.ui-button--success.ui-button--disabled {
-    color: color-mix(in srgb, var(--ui-color-success), transparent 45%);
-    border-color: color-mix(in srgb, var(--ui-color-success), transparent 55%);
-  }
-
+  &--outline.ui-button--success.ui-button--disabled,
   &--outline.ui-button--warning:disabled,
-  &--outline.ui-button--warning.ui-button--disabled {
-    color: color-mix(in srgb, var(--ui-color-warning), transparent 45%);
-    border-color: color-mix(in srgb, var(--ui-color-warning), transparent 55%);
-  }
-
+  &--outline.ui-button--warning.ui-button--disabled,
   &--outline.ui-button--danger:disabled,
-  &--outline.ui-button--danger.ui-button--disabled {
-    color: color-mix(in srgb, var(--ui-color-danger), transparent 45%);
-    border-color: color-mix(in srgb, var(--ui-color-danger), transparent 55%);
-  }
-
+  &--outline.ui-button--danger.ui-button--disabled,
   &--outline.ui-button--info:disabled,
   &--outline.ui-button--info.ui-button--disabled {
-    color: color-mix(in srgb, var(--ui-color-info), transparent 45%);
-    border-color: color-mix(in srgb, var(--ui-color-info), transparent 55%);
+    color: var(--ui-color-disabled);
+    border-color: var(--ui-color-disabled);
   }
 
   &--back {

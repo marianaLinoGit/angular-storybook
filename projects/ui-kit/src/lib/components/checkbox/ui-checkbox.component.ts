@@ -8,10 +8,12 @@ import {
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
+import { UiIconComponent } from '../icon/ui-icon.component';
 
 @Component({
   selector: 'ui-checkbox',
   standalone: true,
+  imports: [UiIconComponent],
   templateUrl: './ui-checkbox.component.html',
   styleUrl: './ui-checkbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

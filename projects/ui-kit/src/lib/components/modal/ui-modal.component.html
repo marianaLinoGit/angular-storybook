@@ -10,10 +10,13 @@
     >
       <header class="ui-modal__header">
         <div class="ui-modal__title-wrapper">
-          @if (icon()) {
-            <span class="ui-modal__title-icon" aria-hidden="true">
-              {{ icon() }}
-            </span>
+          @if (icon(); as iconName) {
+            <ui-icon
+              class="ui-modal__title-icon"
+              [name]="iconName"
+              size="md"
+              aria-hidden="true"
+            />
           }
 
           <h2 [id]="titleId">{{ title() }}</h2>
@@ -26,7 +29,7 @@
             [attr.aria-label]="closeAriaLabel()"
             (click)="close()"
           >
-            ×
+            <ui-icon name="close" size="sm" aria-hidden="true" />
           </button>
         }
       </header>

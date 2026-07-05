@@ -32,6 +32,12 @@
       opacity 0.2s ease,
       visibility 0.2s ease;
 
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
     &--top {
       bottom: calc(100% + var(--ui-space-2));
       left: 50%;

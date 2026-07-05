@@ -1,15 +1,18 @@
 @if (visible()) {
-  <article
+  <div
     [class]="classes()"
     [attr.role]="role()"
     [attr.aria-live]="ariaLive()"
     [attr.aria-labelledby]="titleId"
     [attr.aria-describedby]="textId"
   >
-    @if (icon()) {
-      <span class="ui-toast__icon" aria-hidden="true">
-        {{ icon() }}
-      </span>
+    @if (showIcon()) {
+      <ui-icon
+        class="ui-toast__icon"
+        [name]="resolvedIcon()"
+        size="sm"
+        aria-hidden="true"
+      />
     }
 
     <div class="ui-toast__content">
@@ -25,8 +28,8 @@
         [attr.aria-label]="closeAriaLabel()"
         (click)="close()"
       >
-        ×
+        <ui-icon name="close" size="sm" aria-hidden="true" />
       </button>
     }
-  </article>
+  </div>
 }

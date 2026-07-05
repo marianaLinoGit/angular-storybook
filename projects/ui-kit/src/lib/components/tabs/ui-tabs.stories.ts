@@ -1,60 +1,80 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { tabsPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiTabsComponent } from './ui-tabs.component';
+
+const playgroundDefaults = {
+  ariaLabel: 'Navegação por abas',
+  initialActiveId: 'overview',
+  tabs: [
+    {
+      id: 'overview',
+      label: 'Overview',
+      content: 'Conteúdo da aba Overview.',
+    },
+    {
+      id: 'details',
+      label: 'Detalhes',
+      content: 'Conteúdo da aba Detalhes.',
+    },
+    {
+      id: 'settings',
+      label: 'Configurações',
+      content: 'Conteúdo da aba Configurações.',
+    },
+  ],
+};
 
 const meta: Meta<UiTabsComponent> = {
   title: 'Components/Tabs',
   component: UiTabsComponent,
   tags: ['autodocs'],
+  includeStories:
+    /^(PlaygroundCompleto|Default|WithCounts|StepperLike|WithDisabled|InitialDisabledFallback)$/,
   argTypes: {
     tabs: {
       control: 'object',
+      table: { category: 'Conteúdo' },
       description:
-        'Lista de abas. Cada aba deve conter id, label e content. Também pode conter count, countLabel, checked e disabled.',
+        'Lista de abas. Cada aba deve conter id, label e content. Também pode conter count, checked e disabled.',
     },
     initialActiveId: {
       control: 'text',
+      table: { category: 'Estado' },
       description: 'ID da aba ativa inicial.',
     },
     ariaLabel: {
       control: 'text',
+      table: { category: 'Acessibilidade' },
       description: 'Texto acessível para identificar o conjunto de abas.',
     },
     tabChange: {
       action: 'tabChange',
-      table: {
-        category: 'Events',
-      },
+      table: { category: 'Events' },
       description: 'Evento disparado quando uma aba é selecionada.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiTabsComponent>;
 
-export const Default: Story = {
-  args: {
-    ariaLabel: 'Navegação por abas',
-    initialActiveId: 'overview',
-    tabs: [
-      {
-        id: 'overview',
-        label: 'Overview',
-        content: 'Conteúdo da aba Overview.',
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
       },
-      {
-        id: 'details',
-        label: 'Detalhes',
-        content: 'Conteúdo da aba Detalhes.',
-      },
-      {
-        id: 'settings',
-        label: 'Configurações',
-        content: 'Conteúdo da aba Configurações.',
-      },
-    ],
+    },
   },
+  args: { ...playgroundDefaults },
+  play: tabsPlaygroundPlay,
+};
+
+export const Default: Story = {
+  args: { ...playgroundDefaults },
 };
 
 export const WithCounts: Story = {
@@ -66,21 +86,18 @@ export const WithCounts: Story = {
         id: 'all',
         label: 'Todos',
         count: 24,
-        countLabel: '24 itens no total',
         content: 'Todos os itens.',
       },
       {
         id: 'active',
         label: 'Ativos',
         count: 12,
-        countLabel: '12 itens ativos',
         content: 'Itens ativos.',
       },
       {
         id: 'archived',
         label: 'Arquivados',
         count: 3,
-        countLabel: '3 itens arquivados',
         content: 'Itens arquivados.',
       },
     ],

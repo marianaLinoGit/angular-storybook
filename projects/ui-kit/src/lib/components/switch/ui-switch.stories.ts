@@ -3,8 +3,25 @@ import { switchPlaygroundPlay } from '../../storybook/play.helpers';
 import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiSwitchComponent } from './ui-switch.component';
 
-type UiSwitchStoryArgs = UiSwitchComponent & {
-  checkedValue: boolean;
+type UiSwitchStoryArgs = {
+  id: string;
+  name: string;
+  label: string;
+  ariaLabel: string | null;
+  checked: boolean;
+  checkedLabel: string | null;
+  uncheckedLabel: string | null;
+  checkedIcon: (typeof UI_ICON_NAMES)[number] | null;
+  uncheckedIcon: (typeof UI_ICON_NAMES)[number] | null;
+  showOnlyCurrentSide: boolean;
+  activeText: string;
+  inactiveText: string;
+  showSideLabels: boolean;
+  showStatus: boolean;
+  disabled: boolean;
+  size: 'sm' | 'md' | 'lg';
+  customClass: string;
+  checkedChange?: (value: boolean) => void;
 };
 
 const playgroundDefaults = {
@@ -12,7 +29,7 @@ const playgroundDefaults = {
   name: 'themeSwitch',
   label: 'Tema',
   ariaLabel: null as string | null,
-  checkedValue: false,
+  checked: false,
   checkedLabel: 'Ativado',
   uncheckedLabel: 'Desativado',
   checkedIcon: null as (typeof UI_ICON_NAMES)[number] | null,
@@ -52,7 +69,7 @@ const meta: Meta<UiSwitchStoryArgs> = {
       description: {
         component:
           'Switch toggle para estados binários. Suporta labels laterais, ícones, texto de status e tamanhos variados.\n\n' +
-          '**Uso:** vincule `[checked]` e escute `checkedChange`. No Storybook, use o controle `checked` (`checkedValue`).',
+          '**Uso:** vincule `[checked]` e escute `checkedChange`. No Storybook, use o controle `checked`.',
       },
     },
   },
@@ -64,7 +81,7 @@ const meta: Meta<UiSwitchStoryArgs> = {
         [name]="name"
         [label]="label"
         [ariaLabel]="ariaLabel"
-        [checked]="checkedValue"
+        [checked]="checked"
         [checkedLabel]="checkedLabel"
         [uncheckedLabel]="uncheckedLabel"
         [checkedIcon]="checkedIcon"
@@ -142,9 +159,8 @@ const meta: Meta<UiSwitchStoryArgs> = {
       table: { category: 'Aparência' },
       description: 'Classe CSS adicional aplicada ao elemento raiz.',
     },
-    checkedValue: {
+    checked: {
       control: 'boolean',
-      name: 'checked',
       table: { category: 'Estado' },
       description:
         'Estado do switch no Storybook. No uso real, utilize o input `[checked]`.',
@@ -215,7 +231,7 @@ export const Checked: Story = {
   parameters: {
     docs: { description: { story: 'Switch no estado ativo (`checked = true`).' } },
   },
-  args: { ...playgroundDefaults, checkedValue: true },
+  args: { ...playgroundDefaults, checked: true },
 };
 
 export const WithSideLabels: Story = {
@@ -243,7 +259,7 @@ export const WithSideLabelsChecked: Story = {
   },
   args: {
     ...WithSideLabels.args,
-    checkedValue: true,
+    checked: true,
   },
 };
 
@@ -312,7 +328,7 @@ export const ThemeSwitcherChecked: Story = {
   parameters: {
     docs: { description: { story: 'Seletor de tema ativo (modo escuro).' } },
   },
-  args: { ...ThemeSwitcher.args, checkedValue: true },
+  args: { ...ThemeSwitcher.args, checked: true },
 };
 
 export const ThemeSwitcherIconsOnly: Story = {
@@ -340,7 +356,7 @@ export const ThemeSwitcherIconsOnlyChecked: Story = {
   parameters: {
     docs: { description: { story: 'Ícones sol/lua com switch ativo.' } },
   },
-  args: { ...ThemeSwitcherIconsOnly.args, checkedValue: true },
+  args: { ...ThemeSwitcherIconsOnly.args, checked: true },
 };
 
 export const ShowOnlyCurrentSide: Story = {
@@ -369,7 +385,7 @@ export const ShowOnlyCurrentSideChecked: Story = {
   parameters: {
     docs: { description: { story: '`showOnlyCurrentSide` com switch ativo.' } },
   },
-  args: { ...ShowOnlyCurrentSide.args, checkedValue: true },
+  args: { ...ShowOnlyCurrentSide.args, checked: true },
 };
 
 export const WithoutVisibleLabel: Story = {
@@ -401,7 +417,7 @@ export const DisabledChecked: Story = {
   parameters: {
     docs: { description: { story: 'Switch desabilitado no estado ativo.' } },
   },
-  args: { ...playgroundDefaults, checkedValue: true, disabled: true },
+  args: { ...playgroundDefaults, checked: true, disabled: true },
 };
 
 export const DisabledIconsOnly: Story = {

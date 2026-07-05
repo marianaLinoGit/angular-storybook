@@ -5,7 +5,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { tablePlaygroundPlay } from '../../storybook/play.helpers';
 import { UiBadgeComponent } from '../badge/ui-badge.component';
 import { UiButtonComponent } from '../button/ui-button.component';
-import { UiIconName, UI_ICON_NAMES } from '../icon/ui-icon.component';
+import { UI_ICON_NAMES, UiIconName } from '../icon/ui-icon.component';
 import {
   getUiTableBodyCellClasses,
   resolveUiTableBadge,
@@ -284,7 +284,7 @@ class UiTablePlaygroundComponent {
   ariaLabel = input('Tabela de convites veterinários');
   previousLabel = input('Anterior');
   nextLabel = input('Próxima');
-  pageSizeLabel = input('Itens por página');
+  pageSizeLabel = input<string | null>(null);
   pageSizeAriaLabel = input<string | null>(null);
   totalLabel = input('registro(s)');
   pageLabel = input('Página');
@@ -388,7 +388,7 @@ const playgroundDefaults = {
   ariaLabel: 'Tabela de convites veterinários',
   previousLabel: 'Anterior',
   nextLabel: 'Próxima',
-  pageSizeLabel: 'Itens por página',
+  pageSizeLabel: null as string | null,
   pageSizeAriaLabel: null as string | null,
   totalLabel: 'registro(s)',
   pageLabel: 'Página',
@@ -410,7 +410,6 @@ const meta: Meta<UiTablePlaygroundComponent> = {
         `
         :host {
           display: block;
-          width: 100%;
           padding: var(--ui-space-4);
         }
         `,
@@ -611,13 +610,13 @@ const meta: Meta<UiTablePlaygroundComponent> = {
       control: 'text',
       table: { category: 'Textos / i18n' },
       description:
-        'Rótulo usado como fallback de acessibilidade do seletor de itens por página quando `pageSizeAriaLabel` não é informado.',
+        'Rótulo visível do seletor de itens por página. Quando vazio ou omitido, nenhum rótulo é exibido.',
     },
     pageSizeAriaLabel: {
       control: 'text',
       table: { category: 'Textos / i18n' },
       description:
-        'Texto acessível do seletor de itens por página. Quando vazio, usa o valor de `pageSizeLabel`.',
+        'Texto acessível do seletor de itens por página. Quando vazio, usa `pageSizeLabel` ou "Itens por página".',
     },
     totalLabel: {
       control: 'text',

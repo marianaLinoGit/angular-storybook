@@ -15,7 +15,7 @@ const playgroundDefaults = {
   readonly: false,
   disabled: false,
   optionalText: 'Opcional',
-  showOptionalText: true,
+  showOptionalText: false,
   errorMessage: '*Campo obrigatório',
   showError: false,
   customClass: '',

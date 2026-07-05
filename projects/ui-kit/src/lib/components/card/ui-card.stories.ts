@@ -1,10 +1,31 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { cardPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiCardComponent } from './ui-card.component';
+
+const playgroundDefaults = {
+  title: 'Design System',
+  subtitle: 'Angular + Storybook',
+  description: 'Card reutilizável para apresentar conteúdo de forma visual.',
+  imageUrl: null as string | null,
+  imageAlt: null as string | null,
+  ariaLabel: null as string | null,
+  size: 'md' as const,
+  shadow: true,
+  bordered: false,
+  clickable: false,
+  highlighted: false,
+  align: 'left' as const,
+  footer: null as string | null,
+  linkUrl: null as string | null,
+  target: '_self' as const,
+  customClass: '',
+};
 
 const meta: Meta<UiCardComponent> = {
   title: 'Components/Card',
   component: UiCardComponent,
   tags: ['autodocs'],
+  includeStories: /^PlaygroundCompleto|Default|WithImage|Clickable|Highlighted|Bordered|WithoutShadow|CenterAligned|WithFooter|ExternalLink$/,
   argTypes: {
     title: {
       control: 'text',
@@ -84,31 +105,21 @@ const meta: Meta<UiCardComponent> = {
       description: 'Evento disparado quando o card clicável é acionado.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiCardComponent>;
 
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  args: { ...playgroundDefaults },
+  play: cardPlaygroundPlay,
+};
+
 export const Default: Story = {
-  args: {
-    title: 'Design System',
-    subtitle: 'Angular + Storybook',
-    description: 'Card reutilizável para apresentar conteúdo de forma visual.',
-    imageUrl: null,
-    imageAlt: null,
-    ariaLabel: null,
-    size: 'md',
-    shadow: true,
-    bordered: false,
-    clickable: false,
-    highlighted: false,
-    align: 'left',
-    footer: null,
-    linkUrl: null,
-    target: '_self',
-    customClass: '',
-  },
+  args: { ...playgroundDefaults },
 };
 
 export const WithImage: Story = {

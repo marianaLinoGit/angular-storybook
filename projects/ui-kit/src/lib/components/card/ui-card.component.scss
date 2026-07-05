@@ -4,6 +4,8 @@
   overflow: hidden;
   transition: 0.2s ease;
   color: var(--ui-color-text);
+  text-decoration: none;
+  display: block;
 
   &--shadow {
     box-shadow: var(--ui-shadow-md);
@@ -90,7 +92,7 @@
   &__footer {
     padding: var(--ui-space-4) var(--ui-space-5);
     background: var(--ui-color-background);
-    color: var(--ui-color-muted);
+    color: var(--ui-color-text);
     font-size: var(--ui-font-size-sm);
   }
 }

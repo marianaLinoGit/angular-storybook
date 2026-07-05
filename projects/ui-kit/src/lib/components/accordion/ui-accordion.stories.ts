@@ -1,26 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { accordionPlaygroundPlay } from '../../storybook/play.helpers';
+import type { AccordionItem } from './ui-accordion.component';
 import { UiAccordionComponent } from './ui-accordion.component';
 
-const defaultItems = [
+const defaultItems: AccordionItem[] = [
   {
     id: '1',
     title: 'O que é um Design System?',
-    icon: '🎨',
+    icon: 'config',
     content:
       'É um conjunto de padrões, componentes e regras visuais para construir interfaces consistentes.',
   },
   {
     id: '2',
     title: 'O que é Storybook?',
-    icon: '📚',
+    icon: 'folder',
     content:
       'É uma ferramenta para documentar, testar e visualizar componentes isoladamente.',
   },
   {
     id: '3',
     title: 'Item desabilitado',
-    icon: '🔒',
+    icon: 'lock-blocked',
     content: 'Este conteúdo não deve abrir.',
     disabled: true,
   },
@@ -168,22 +169,22 @@ export const MultipleOpen: Story = {
       {
         id: '1',
         title: 'Componente 1',
-        icon: '🧩',
+        icon: 'package',
         content: 'Este item pode ficar aberto junto com outros.',
       },
       {
         id: '2',
         title: 'Componente 2',
-        icon: '⚙️',
+        icon: 'config',
         content: 'Quando multiple é true, vários itens podem abrir ao mesmo tempo.',
       },
       {
         id: '3',
         title: 'Componente 3',
-        icon: '✅',
+        icon: 'check-circle',
         content: 'Útil para FAQs e documentações.',
       },
-    ],
+    ] as AccordionItem[],
   },
 };
 
@@ -226,22 +227,22 @@ export const WithNumbersAndIcons: Story = {
       {
         id: '1',
         title: 'Planejamento',
-        icon: '📝',
+        icon: 'add-note',
         content: 'Definição dos padrões, tokens e componentes base.',
       },
       {
         id: '2',
         title: 'Implementação',
-        icon: '💻',
+        icon: 'overview',
         content: 'Criação dos componentes reutilizáveis em Angular.',
       },
       {
         id: '3',
         title: 'Documentação',
-        icon: '📖',
+        icon: 'folder',
         content: 'Documentação visual e interativa usando Storybook.',
       },
-    ],
+    ] as AccordionItem[],
   },
 };
 
@@ -283,15 +284,15 @@ export const Flush: Story = {
       {
         id: '1',
         title: 'Accordion flush',
-        icon: '📄',
+        icon: 'add-note',
         content: 'Variação sem espaçamento entre os itens.',
       },
       {
         id: '2',
         title: 'Segundo item',
-        icon: '📌',
+        icon: 'filter',
         content: 'Útil para layouts mais compactos.',
       },
-    ],
+    ] as AccordionItem[],
   },
 };

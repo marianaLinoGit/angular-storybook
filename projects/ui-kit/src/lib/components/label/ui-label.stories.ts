@@ -76,6 +76,22 @@ const meta: Meta<UiLabelComponent> = {
     },
   },
   args: { ...playgroundDefaults },
+  render: (args) => ({
+    props: args,
+    template: `
+      <div style="display: grid; gap: 8px; max-width: 320px;">
+        <ui-label
+          [label]="label"
+          [forId]="forId"
+          [required]="required"
+          [optionalText]="optionalText"
+          [showOptionalText]="showOptionalText"
+          [customClass]="customClass"
+        />
+        <input [id]="forId" type="text" />
+      </div>
+    `,
+  }),
 };
 
 export default meta;

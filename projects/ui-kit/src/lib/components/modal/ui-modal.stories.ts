@@ -1,10 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { modalPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiModalComponent } from './ui-modal.component';
+
+const playgroundDefaults = {
+  open: true,
+  type: 'informative' as const,
+  title: 'Informação importante',
+  description:
+    'Esse modal exibe uma mensagem informativa com apenas um botão.',
+  icon: 'info' as const,
+  confirmLabel: 'Confirmar',
+  cancelLabel: 'Cancelar',
+  closeLabel: 'Entendi',
+  closeAriaLabel: 'Fechar modal',
+  size: 'md' as const,
+  showCloseButton: true,
+  closeOnBackdrop: true,
+  closeOnEscape: true,
+  presentationMode: 'inline' as const,
+  customClass: '',
+};
 
 const meta: Meta<UiModalComponent> = {
   title: 'Components/Modal',
   component: UiModalComponent,
   tags: ['autodocs'],
+  includeStories:
+    /^(PlaygroundCompleto|Informative|Confirmation|Content|WithoutIcon)$/,
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -16,21 +38,25 @@ const meta: Meta<UiModalComponent> = {
   argTypes: {
     open: {
       control: 'boolean',
+      table: { category: 'Estado' },
       description: 'Controla se o modal deve iniciar aberto.',
     },
     type: {
       control: 'select',
       options: ['confirmation', 'informative', 'content'],
+      table: { category: 'Comportamento' },
       description:
         'Define o comportamento do modal: confirmação, informativo ou apenas conteúdo.',
     },
     title: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description:
         'Título principal do modal. Também é usado como referência acessível via aria-labelledby.',
     },
     description: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description:
         'Descrição opcional do modal. Quando informada, é associada via aria-describedby.',
     },
@@ -98,41 +124,40 @@ const meta: Meta<UiModalComponent> = {
       description: 'Evento disparado ao fechar o modal.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiModalComponent>;
 
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
+      },
+    },
+  },
+  args: { ...playgroundDefaults },
+  play: modalPlaygroundPlay,
+};
+
 export const Informative: Story = {
   args: {
-    open: true,
-    type: 'informative',
-    title: 'Informação importante',
-    description:
-      'Esse modal exibe uma mensagem informativa com apenas um botão.',
-    icon: 'ℹ️',
-    confirmLabel: 'Confirmar',
-    cancelLabel: 'Cancelar',
-    closeLabel: 'Entendi',
-    closeAriaLabel: 'Fechar modal',
-    size: 'md',
-    showCloseButton: true,
-    closeOnBackdrop: true,
-    closeOnEscape: true,
-    presentationMode: 'inline',
-    customClass: '',
+    ...playgroundDefaults,
   },
 };
 
 export const Confirmation: Story = {
   args: {
-    ...Informative.args,
+    ...playgroundDefaults,
     type: 'confirmation',
     title: 'Confirmar exclusão',
     description:
       'Tem certeza que deseja excluir este item? Essa ação não poderá ser desfeita.',
-    icon: '⚠️',
+    icon: 'warning' as const,
     confirmLabel: 'Excluir',
     cancelLabel: 'Cancelar',
   },
@@ -172,7 +197,7 @@ export const Content: Story = {
     type: 'content',
     title: 'Modal de conteúdo',
     description: 'Modal sem footer, ideal para conteúdo customizado.',
-    icon: '🧩',
+    icon: 'package' as const,
     size: 'lg',
   },
 };

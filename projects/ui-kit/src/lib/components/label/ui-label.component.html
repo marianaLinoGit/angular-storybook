@@ -1,5 +1,5 @@
 @if (label()) {
-  <label [class]="classes()" [attr.for]="forId()">
+  <label [class]="classes()" [attr.for]="forId()" [id]="labelId()">
     <span>{{ label() }}</span>
 
     @if (required()) {

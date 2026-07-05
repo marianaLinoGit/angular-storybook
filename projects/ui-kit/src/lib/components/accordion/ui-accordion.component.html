@@ -22,17 +22,23 @@
             }
 
             @if (showIcons() && item.icon) {
-              <span class="ui-accordion__icon" aria-hidden="true">
-                {{ item.icon }}
-              </span>
+              <ui-icon
+                class="ui-accordion__icon"
+                [name]="item.icon"
+                size="sm"
+                aria-hidden="true"
+              />
             }
 
             <span>{{ item.title }}</span>
           </span>
 
-          <span class="ui-accordion__toggle" aria-hidden="true">
-            {{ isOpen(item.id) ? "−" : "+" }}
-          </span>
+          <ui-icon
+            class="ui-accordion__toggle"
+            [name]="isOpen(item.id) ? 'chevron-up' : 'chevron-down'"
+            size="xs"
+            aria-hidden="true"
+          />
         </button>
       </h3>
 

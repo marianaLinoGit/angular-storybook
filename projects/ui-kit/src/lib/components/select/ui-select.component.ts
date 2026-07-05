@@ -102,6 +102,7 @@ export class UiSelectComponent implements ControlValueAccessor {
   isDisabled = computed(() => this.disabled() || this.disabledState());
 
   errorId = computed(() => `${this.id()}-error`);
+  labelId = computed(() => `${this.id()}-label`);
   listboxId = computed(() => `${this.id()}-listbox`);
 
   chevronIcon = computed<UiIconName>(() =>

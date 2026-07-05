@@ -1,6 +1,6 @@
 .ui-stat-card {
   --ui-stat-card-color: var(--ui-color-primary);
-  --ui-stat-card-solid-text-color: var(--ui-color-on-primary, #fff);
+  --ui-stat-card-solid-text-color: var(--ui-color-on-primary);
 
   width: 100%;
   min-width: 0;
@@ -17,18 +17,22 @@
 
   &--danger {
     --ui-stat-card-color: var(--ui-color-danger);
+    --ui-stat-card-solid-text-color: var(--ui-color-on-danger);
   }
 
   &--warning {
     --ui-stat-card-color: var(--ui-color-warning);
+    --ui-stat-card-solid-text-color: var(--ui-color-on-warning);
   }
 
   &--success {
     --ui-stat-card-color: var(--ui-color-success);
+    --ui-stat-card-solid-text-color: var(--ui-color-on-success);
   }
 
   &--info {
     --ui-stat-card-color: var(--ui-color-info);
+    --ui-stat-card-solid-text-color: var(--ui-color-on-info);
   }
 
   &--solid {

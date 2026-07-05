@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { accordionPanelPlaygroundPlay } from '../../storybook/play.helpers';
+import type { UiIconName } from '../icon/ui-icon.component';
 import { UiAccordionPanelComponent } from './ui-accordion-panel.component';
 
 const panelDemoContent = `
@@ -28,7 +29,7 @@ const panelDemoContent = `
 const playgroundDefaults = {
   id: 'filters',
   title: 'Filtros',
-  icon: '🔎',
+  icon: 'search' as UiIconName,
   badge: '12 pets',
   badgeType: 'default' as const,
   disabled: false,
@@ -265,7 +266,7 @@ export const MultiplePanelsExample: Story = {
         <ui-accordion-panel
           id="pet-filters"
           title="Filtros de pets"
-          icon="🔎"
+          icon="search"
           badge="12 pets"
           badgeType="default"
           [open]="true"

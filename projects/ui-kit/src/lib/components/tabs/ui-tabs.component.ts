@@ -6,6 +6,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { UiIconComponent } from '../icon/ui-icon.component';
 
 export interface TabItem {
   id: string;
@@ -20,6 +21,7 @@ export interface TabItem {
 @Component({
   selector: 'ui-tabs',
   standalone: true,
+  imports: [UiIconComponent],
   templateUrl: './ui-tabs.component.html',
   styleUrl: './ui-tabs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -57,14 +59,6 @@ export class UiTabsComponent {
 
   isActive(tab: TabItem): boolean {
     return this.activeTab()?.id === tab.id;
-  }
-
-  countAriaLabel(tab: TabItem): string | null {
-    if (tab.count === undefined) {
-      return null;
-    }
-
-    return tab.countLabel || `${tab.count} itens`;
   }
 
   getTabId(tab: TabItem): string {

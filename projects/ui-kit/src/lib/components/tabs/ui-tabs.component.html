@@ -15,13 +15,18 @@
         (click)="selectTab(tab)"
       >
         @if (tab.checked) {
-          <span class="ui-tabs__check" aria-hidden="true">✓</span>
+          <ui-icon
+            class="ui-tabs__check"
+            name="check"
+            size="xs"
+            aria-hidden="true"
+          />
         }
 
         <span>{{ tab.label }}</span>
 
         @if (tab.count !== undefined) {
-          <small [attr.aria-label]="countAriaLabel(tab)">
+          <small aria-hidden="true">
             {{ tab.count }}
           </small>
         }

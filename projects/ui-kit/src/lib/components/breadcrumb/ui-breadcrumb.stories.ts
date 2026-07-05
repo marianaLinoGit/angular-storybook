@@ -1,10 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { breadcrumbPlaygroundPlay } from '../../storybook/play.helpers';
+import type { BreadcrumbItem } from './ui-breadcrumb.component';
 import { UiBreadcrumbComponent } from './ui-breadcrumb.component';
+
+const defaultItems: BreadcrumbItem[] = [
+  { label: 'Home', icon: 'home', url: '/' },
+  { label: 'Componentes', url: '/components' },
+  { label: 'Breadcrumb' },
+];
+
+const playgroundDefaults = {
+  ariaLabel: 'Navegação estrutural',
+  separator: '/',
+  homeDisplay: 'icon-text' as const,
+  showIcons: true,
+  items: defaultItems,
+};
 
 const meta: Meta<UiBreadcrumbComponent> = {
   title: 'Components/Breadcrumb',
   component: UiBreadcrumbComponent,
   tags: ['autodocs'],
+  includeStories: /^(PlaygroundCompleto|Default|HomeIconOnly|WithoutIcons|LongPath|DisabledItem|SingleItem|CustomSeparator)$/,
   argTypes: {
     items: {
       control: 'object',
@@ -38,33 +55,21 @@ const meta: Meta<UiBreadcrumbComponent> = {
       description: 'Evento disparado quando um item navegável é clicado.',
     },
   },
+  args: { ...playgroundDefaults },
 };
 
 export default meta;
 
 type Story = StoryObj<UiBreadcrumbComponent>;
 
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  args: { ...playgroundDefaults },
+  play: breadcrumbPlaygroundPlay,
+};
+
 export const Default: Story = {
-  args: {
-    ariaLabel: 'Navegação estrutural',
-    separator: '/',
-    homeDisplay: 'icon-text',
-    showIcons: true,
-    items: [
-      {
-        label: 'Home',
-        icon: '🏠',
-        url: '/',
-      },
-      {
-        label: 'Componentes',
-        url: '/components',
-      },
-      {
-        label: 'Breadcrumb',
-      },
-    ],
-  },
+  args: { ...playgroundDefaults },
 };
 
 export const HomeIconOnly: Story = {
@@ -76,7 +81,7 @@ export const HomeIconOnly: Story = {
     items: [
       {
         label: 'Home',
-        icon: '🏠',
+        icon: 'home',
         url: '/',
       },
       {
@@ -99,7 +104,7 @@ export const HomeTextOnly: Story = {
     items: [
       {
         label: 'Home',
-        icon: '🏠',
+        icon: 'home',
         url: '/',
       },
       {
@@ -122,7 +127,7 @@ export const HomeIconAndText: Story = {
     items: [
       {
         label: 'Home',
-        icon: '🏠',
+        icon: 'home',
         url: '/',
       },
       {
@@ -145,7 +150,7 @@ export const WithCustomSeparator: Story = {
     items: [
       {
         label: 'Home',
-        icon: '🏠',
+        icon: 'home',
         url: '/',
       },
       {
@@ -168,17 +173,17 @@ export const WithIcons: Story = {
     items: [
       {
         label: 'Home',
-        icon: '🏠',
+        icon: 'home',
         url: '/',
       },
       {
         label: 'Design Tokens',
-        icon: '🎨',
+        icon: 'config',
         url: '/design-tokens',
       },
       {
         label: 'Colors',
-        icon: '🌈',
+        icon: 'overview',
       },
     ],
   },
@@ -193,17 +198,17 @@ export const WithoutIcons: Story = {
     items: [
       {
         label: 'Home',
-        icon: '🏠',
+        icon: 'home',
         url: '/',
       },
       {
         label: 'Componentes',
-        icon: '🧩',
+        icon: 'package',
         url: '/components',
       },
       {
         label: 'Breadcrumb',
-        icon: '📍',
+        icon: 'link',
       },
     ],
   },
@@ -218,12 +223,12 @@ export const WithDisabledItem: Story = {
     items: [
       {
         label: 'Home',
-        icon: '🏠',
+        icon: 'home',
         url: '/',
       },
       {
         label: 'Área bloqueada',
-        icon: '🔒',
+        icon: 'lock-blocked',
         disabled: true,
       },
       {

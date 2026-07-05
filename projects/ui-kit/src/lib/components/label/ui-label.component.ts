@@ -19,6 +19,7 @@ export class UiLabelComponent {
   optionalText = input('Opcional');
   showOptionalText = input(true);
   customClass = input('');
+  labelId = input<string | null>(null);
 
   classes = computed(() =>
     ['ui-label', this.customClass()].filter(Boolean).join(' '),
