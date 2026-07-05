@@ -1,0 +1,24 @@
+<div [class]="classes()">
+  @if (label()) {
+    <ui-label
+      [label]="label()"
+      [forId]="controlId()"
+      [labelId]="labelIdAttr()"
+      [required]="hasRequired()"
+      [optionalText]="optionalText()"
+      [showOptionalText]="showOptionalText()"
+    />
+  }
+
+  <div class="ui-form-field__control">
+    <ng-content />
+  </div>
+
+  @if (hint()) {
+    <p class="ui-form-field__hint" [id]="hintId()">{{ hint() }}</p>
+  }
+
+  @if (hasErrorState() && errorMessage()) {
+    <p class="ui-form-field__error" [id]="errorId()">{{ errorMessage() }}</p>
+  }
+</div>

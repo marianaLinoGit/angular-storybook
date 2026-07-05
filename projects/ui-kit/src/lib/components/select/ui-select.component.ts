@@ -12,6 +12,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
+import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 import { UiLabelComponent } from '../label/ui-label.component';
 
@@ -38,11 +39,14 @@ export class UiSelectComponent implements ControlValueAccessor {
     self: true,
     optional: true,
   });
+  private readonly formField = inject(UI_FORM_FIELD, { optional: true });
 
   searchInput = viewChild<ElementRef<HTMLInputElement>>('searchInput');
 
   label = input('');
   ariaLabel = input<string | null>(null);
+  hideLabel = input(false);
+  hideError = input(false);
 
   id = input(`ui-select-${crypto.randomUUID()}`);
   name = input<string | null>(null);
@@ -110,8 +114,27 @@ export class UiSelectComponent implements ControlValueAccessor {
   );
 
   selectAriaLabel = computed(() => {
-    if (this.label()) return null;
+    if ((this.label() && !this.hideLabel()) || this.formField?.labelId()) {
+      return null;
+    }
+
     return this.ariaLabel();
+  });
+
+  selectAriaLabelledBy = computed(() => {
+    if (this.label() && !this.hideLabel()) {
+      return this.labelId();
+    }
+
+    return this.formField?.labelId() ?? null;
+  });
+
+  describedBy = computed(() => {
+    if (this.formField) {
+      return this.formField.describedBy();
+    }
+
+    return this.hasError() ? this.errorId() : null;
   });
 
   selectedOption = computed(
@@ -156,6 +179,10 @@ export class UiSelectComponent implements ControlValueAccessor {
   }
 
   hasError(): boolean {
+    if (this.formField) {
+      return this.formField.hasError();
+    }
+
     const control = this.ngControl?.control;
 
     return Boolean(

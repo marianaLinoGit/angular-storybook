@@ -8,6 +8,7 @@ import {
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
+import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
 import { UiLabelComponent } from '../label/ui-label.component';
 
 export type UiInputType =
@@ -32,9 +33,12 @@ export class UiInputComponent implements ControlValueAccessor {
     self: true,
     optional: true,
   });
+  private readonly formField = inject(UI_FORM_FIELD, { optional: true });
 
   label = input('');
   ariaLabel = input<string | null>(null);
+  hideLabel = input(false);
+  hideError = input(false);
 
   id = input(`ui-input-${crypto.randomUUID()}`);
   name = input<string | null>(null);
@@ -70,11 +74,23 @@ export class UiInputComponent implements ControlValueAccessor {
   errorId = computed(() => `${this.id()}-error`);
 
   inputAriaLabel = computed(() => {
-    if (this.label()) {
+    if ((this.label() && !this.hideLabel()) || this.formField?.labelId()) {
       return null;
     }
 
     return this.ariaLabel();
+  });
+
+  inputAriaLabelledBy = computed(
+    () => this.formField?.labelId() ?? null,
+  );
+
+  describedBy = computed(() => {
+    if (this.formField) {
+      return this.formField.describedBy();
+    }
+
+    return this.hasError() ? this.errorId() : null;
   });
 
   classes = computed(() =>
@@ -97,6 +113,10 @@ export class UiInputComponent implements ControlValueAccessor {
   }
 
   hasError(): boolean {
+    if (this.formField) {
+      return this.formField.hasError();
+    }
+
     const control = this.ngControl?.control;
 
     return Boolean(

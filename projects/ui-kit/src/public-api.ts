@@ -7,6 +7,8 @@ export * from './lib/components/button/ui-button.component';
 export * from './lib/components/card/ui-card.component';
 export * from './lib/components/checkbox/ui-checkbox.component';
 export * from './lib/components/empty-state/ui-empty-state.component';
+export * from './lib/components/form-field/ui-form-field.component';
+export * from './lib/components/form-field/ui-form-field.context';
 export * from './lib/components/icon/ui-icon.component';
 export * from './lib/components/input/ui-input.component';
 export * from './lib/components/label/ui-label.component';

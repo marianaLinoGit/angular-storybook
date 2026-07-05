@@ -8,6 +8,7 @@ import {
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
+import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
 import { UiIconComponent } from '../icon/ui-icon.component';
 
 @Component({
@@ -23,11 +24,13 @@ export class UiCheckboxComponent implements ControlValueAccessor {
     self: true,
     optional: true,
   });
+  private readonly formField = inject(UI_FORM_FIELD, { optional: true });
 
   id = input(`ui-checkbox-${crypto.randomUUID()}`);
   name = input<string | null>(null);
   label = input('');
   ariaLabel = input<string | null>(null);
+  hideError = input(false);
 
   linkLabel = input<string | null>(null);
   linkUrl = input<string | null>(null);
@@ -53,6 +56,14 @@ export class UiCheckboxComponent implements ControlValueAccessor {
   isDisabled = computed(() => this.disabled() || this.disabledState());
 
   errorId = computed(() => `${this.id()}-error`);
+
+  describedBy = computed(() => {
+    if (this.formField) {
+      return this.formField.describedBy();
+    }
+
+    return this.hasError() ? this.errorId() : null;
+  });
 
   linkRel = computed(() =>
     this.linkTarget() === '_blank' ? 'noopener noreferrer' : null,
@@ -80,6 +91,10 @@ export class UiCheckboxComponent implements ControlValueAccessor {
   }
 
   hasError(): boolean {
+    if (this.formField) {
+      return this.formField.hasError();
+    }
+
     const control = this.ngControl?.control;
 
     return Boolean(
