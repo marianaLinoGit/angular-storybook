@@ -4,7 +4,7 @@ import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiEmptyStateComponent } from './ui-empty-state.component';
 
 const playgroundDefaults = {
-  iconName: 'info' as const,
+  iconName: 'paw' as const,
   title: 'Nenhum dado encontrado',
   description: 'Crie um novo item para começar.',
   buttonLabel: 'Criar item',

@@ -21,7 +21,7 @@ export type UiEmptyStateButtonVariant = 'primary' | 'secondary' | 'outline';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiEmptyStateComponent {
-  iconName = input<UiIconName | null>('info');
+  iconName = input<UiIconName | null>('paw');
 
   title = input('Nenhum resultado encontrado');
   description = input('Tente ajustar os filtros ou criar um novo item.');
