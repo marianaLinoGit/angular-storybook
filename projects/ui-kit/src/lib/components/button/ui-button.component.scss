@@ -18,7 +18,7 @@
   border: 0;
   cursor: pointer;
   font-weight: var(--ui-font-weight-semibold);
-  border-radius: var(--ui-radius-md);
+  border-radius: var(--ui-radius-lg);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -45,16 +45,28 @@
   &--sm {
     padding: var(--ui-space-2) var(--ui-space-3);
     font-size: var(--ui-font-size-xs);
+
+    &.ui-button-with-icon {
+      padding: 0px var(--ui-space-3);
+    }
   }
 
   &--md {
     padding: var(--ui-space-2) var(--ui-space-4);
     font-size: var(--ui-font-size-sm);
+
+    &.ui-button-with-icon {
+      padding: 0px var(--ui-space-4);
+    }
   }
 
   &--lg {
-    padding: var(--ui-space-4) var(--ui-space-6);
+    padding: var(--ui-space-2) var(--ui-space-6);
     font-size: var(--ui-font-size-md);
+
+    &.ui-button-with-icon {
+      padding: var(--ui-space-1) var(--ui-space-4);
+    }
   }
 
   &--full {

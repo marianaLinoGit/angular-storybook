@@ -284,6 +284,21 @@ export const BackIconOnly: Story = {
   },
 };
 
+export const AllSizes: Story = {
+  render: () => ({
+    template: `
+      <div style="display: grid; gap: 16px; max-width: 320px;">
+      <ui-button label="Primary" color="primary" icon="check" size="sm"></ui-button>
+      <ui-button label="Primary" color="primary" icon="check" size="md"></ui-button>
+      <ui-button label="Primary" color="primary" icon="check" size="lg"></ui-button>
+      <ui-button label="Primary" color="primary" size="sm"></ui-button>
+      <ui-button label="Primary" color="primary" size="md"></ui-button>
+      <ui-button label="Primary" color="primary" size="lg"></ui-button>
+      </div>
+    `,
+  }),
+};
+
 export const AllColors: Story = {
   render: () => ({
     template: `

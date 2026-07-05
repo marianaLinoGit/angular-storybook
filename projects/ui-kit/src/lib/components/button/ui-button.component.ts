@@ -86,6 +86,7 @@ export class UiButtonComponent {
       this.appearance() === 'back' ? 'ui-button--back' : '',
       this.disabled() ? 'ui-button--disabled' : '',
       this.loading() ? 'ui-button--loading' : '',
+      this.icon() ? 'ui-button-with-icon' : '',
       this.customClass(),
     ]
       .filter(Boolean)
