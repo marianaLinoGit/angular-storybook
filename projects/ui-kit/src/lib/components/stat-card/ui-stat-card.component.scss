@@ -50,16 +50,11 @@
   }
 
   &--sm {
-    padding: 10px 12px;
-
-    .ui-stat-card__mask-icon {
-      width: var(--ui-icon-size-md);
-      height: var(--ui-icon-size-md);
-    }
+    padding: var(--ui-space-2) var(--ui-space-3);
 
     .ui-stat-card__content {
       strong {
-        font-size: 22px;
+        font-size: var(--ui-font-size-lg);
       }
 
       span {
@@ -69,16 +64,11 @@
   }
 
   &--md {
-    padding: 14px 16px;
-
-    .ui-stat-card__mask-icon {
-      width: var(--ui-icon-size-lg);
-      height: var(--ui-icon-size-lg);
-    }
+    padding: var(--ui-space-3) var(--ui-space-4);
 
     .ui-stat-card__content {
       strong {
-        font-size: 28px;
+        font-size: var(--ui-font-size-xl);
       }
 
       span {
@@ -88,16 +78,11 @@
   }
 
   &--lg {
-    padding: 18px 20px;
-
-    .ui-stat-card__mask-icon {
-      width: var(--ui-icon-size-xl);
-      height: var(--ui-icon-size-xl);
-    }
+    padding: var(--ui-space-4) var(--ui-space-5);
 
     .ui-stat-card__content {
       strong {
-        font-size: 34px;
+        font-size: var(--ui-font-size-2xl);
       }
 
       span {
@@ -112,24 +97,7 @@
 
   &__icon {
     flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__mask-icon {
-    display: block;
-    background-color: currentColor;
-
-    mask-image: var(--ui-stat-card-icon-url);
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: contain;
-
-    -webkit-mask-image: var(--ui-stat-card-icon-url);
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    -webkit-mask-size: contain;
+    color: currentColor;
   }
 
   &__content {
@@ -144,7 +112,7 @@
     }
 
     span {
-      margin-top: 4px;
+      margin-top: var(--ui-space-1);
       font-weight: var(--ui-font-weight-semibold);
       color: currentColor;
     }
@@ -166,17 +134,12 @@
     &--sm,
     &--md,
     &--lg {
-      padding: 12px 8px;
+      padding: var(--ui-space-3) var(--ui-space-2);
       min-height: 104px;
-
-      .ui-stat-card__mask-icon {
-        width: var(--ui-icon-size-md);
-        height: var(--ui-icon-size-md);
-      }
 
       .ui-stat-card__content {
         strong {
-          font-size: 24px;
+          font-size: var(--ui-font-size-xl);
         }
 
         span {

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiStatCardGridComponent } from '../stat-card-grid/ui-stat-card-grid.component';
 import { UiStatCardComponent } from './ui-stat-card.component';
 
@@ -31,9 +32,9 @@ const meta: Meta<UiStatCardComponent> = {
       description: 'Texto descritivo abaixo do valor.',
     },
     icon: {
-      control: 'text',
-      description:
-        'Caminho do SVG usado como máscara. A cor segue o contraste do card.',
+      control: 'select',
+      options: [null, ...UI_ICON_NAMES],
+      description: 'Nome do ícone exibido no card. Usa o componente ui-icon.',
     },
     ariaLabel: {
       control: 'text',
@@ -57,7 +58,7 @@ export const Default: Story = {
     appearance: 'solid',
     value: 6,
     label: 'Total de alertas',
-    icon: '/icons/logo.svg',
+    icon: 'alert',
     ariaLabel: null,
     fullWidth: false,
   },
@@ -76,7 +77,7 @@ export const Danger: Story = {
     type: 'danger',
     value: 2,
     label: 'Urgentes',
-    icon: '/icons/alert.svg',
+    icon: 'warning',
   },
 };
 
@@ -86,7 +87,7 @@ export const Warning: Story = {
     type: 'warning',
     value: 2,
     label: 'Em breve',
-    icon: '/icons/calendar.svg',
+    icon: 'calendar',
   },
 };
 
@@ -96,7 +97,7 @@ export const Success: Story = {
     type: 'success',
     value: 12,
     label: 'Concluídos',
-    icon: '/icons/success.svg',
+    icon: 'check-circle',
   },
 };
 
@@ -106,7 +107,7 @@ export const Info: Story = {
     type: 'info',
     value: 2,
     label: 'Informativos',
-    icon: '/icons/info.svg',
+    icon: 'info',
   },
 };
 
@@ -124,11 +125,11 @@ export const AllTypesSolid: Story = {
     imports: [UiStatCardComponent, UiStatCardGridComponent],
     template: `
       <ui-stat-card-grid minCardWidth="180px" gap="16px">
-        <ui-stat-card type="default" appearance="solid" [value]="6" label="Total de alertas" icon="/icons/logo.svg" />
-        <ui-stat-card type="danger" appearance="solid" [value]="2" label="Urgentes" icon="/icons/alert.svg" />
-        <ui-stat-card type="warning" appearance="solid" [value]="2" label="Em breve" icon="/icons/calendar.svg" />
-        <ui-stat-card type="success" appearance="solid" [value]="12" label="Concluídos" icon="/icons/success.svg" />
-        <ui-stat-card type="info" appearance="solid" [value]="2" label="Informativos" icon="/icons/info.svg" />
+        <ui-stat-card type="default" appearance="solid" [value]="6" label="Total de alertas" icon="alert" />
+        <ui-stat-card type="danger" appearance="solid" [value]="2" label="Urgentes" icon="warning" />
+        <ui-stat-card type="warning" appearance="solid" [value]="2" label="Em breve" icon="calendar" />
+        <ui-stat-card type="success" appearance="solid" [value]="12" label="Concluídos" icon="check-circle" />
+        <ui-stat-card type="info" appearance="solid" [value]="2" label="Informativos" icon="info" />
       </ui-stat-card-grid>
     `,
   }),
@@ -139,11 +140,11 @@ export const AllTypesGradient: Story = {
     imports: [UiStatCardComponent, UiStatCardGridComponent],
     template: `
       <ui-stat-card-grid minCardWidth="180px" gap="16px">
-        <ui-stat-card type="default" appearance="gradient" [value]="6" label="Total de alertas" icon="/icons/logo.svg" />
-        <ui-stat-card type="danger" appearance="gradient" [value]="2" label="Urgentes" icon="/icons/alert.svg" />
-        <ui-stat-card type="warning" appearance="gradient" [value]="2" label="Em breve" icon="/icons/calendar.svg" />
-        <ui-stat-card type="success" appearance="gradient" [value]="12" label="Concluídos" icon="/icons/success.svg" />
-        <ui-stat-card type="info" appearance="gradient" [value]="2" label="Informativos" icon="/icons/info.svg" />
+        <ui-stat-card type="default" appearance="gradient" [value]="6" label="Total de alertas" icon="alert" />
+        <ui-stat-card type="danger" appearance="gradient" [value]="2" label="Urgentes" icon="warning" />
+        <ui-stat-card type="warning" appearance="gradient" [value]="2" label="Em breve" icon="calendar" />
+        <ui-stat-card type="success" appearance="gradient" [value]="12" label="Concluídos" icon="check-circle" />
+        <ui-stat-card type="info" appearance="gradient" [value]="2" label="Informativos" icon="info" />
       </ui-stat-card-grid>
     `,
   }),
@@ -154,9 +155,9 @@ export const Sizes: Story = {
     imports: [UiStatCardComponent, UiStatCardGridComponent],
     template: `
       <ui-stat-card-grid minCardWidth="180px" gap="16px">
-        <ui-stat-card size="sm" type="default" [value]="6" label="Pequeno" icon="/icons/logo.svg" />
-        <ui-stat-card size="md" type="default" [value]="6" label="Médio" icon="/icons/logo.svg" />
-        <ui-stat-card size="lg" type="default" [value]="6" label="Grande" icon="/icons/logo.svg" />
+        <ui-stat-card size="sm" type="default" [value]="6" label="Pequeno" icon="alert" />
+        <ui-stat-card size="md" type="default" [value]="6" label="Médio" icon="alert" />
+        <ui-stat-card size="lg" type="default" [value]="6" label="Grande" icon="alert" />
       </ui-stat-card-grid>
     `,
   }),
@@ -167,10 +168,10 @@ export const PetsAlertsDesktop: Story = {
     imports: [UiStatCardComponent, UiStatCardGridComponent],
     template: `
       <ui-stat-card-grid minCardWidth="190px" gap="14px">
-        <ui-stat-card type="default" [value]="6" label="Total de alertas" icon="/icons/logo.svg" />
-        <ui-stat-card type="danger" [value]="2" label="Urgentes" icon="/icons/alert.svg" />
-        <ui-stat-card type="warning" [value]="2" label="Em breve" icon="/icons/calendar.svg" />
-        <ui-stat-card type="info" [value]="2" label="Informativos" icon="/icons/info.svg" />
+        <ui-stat-card type="default" [value]="6" label="Total de alertas" icon="alert" />
+        <ui-stat-card type="danger" [value]="2" label="Urgentes" icon="warning" />
+        <ui-stat-card type="warning" [value]="2" label="Em breve" icon="calendar" />
+        <ui-stat-card type="info" [value]="2" label="Informativos" icon="info" />
       </ui-stat-card-grid>
     `,
   }),
@@ -186,10 +187,10 @@ export const PetsAlertsMobile: Story = {
     imports: [UiStatCardComponent, UiStatCardGridComponent],
     template: `
       <ui-stat-card-grid minCardWidth="140px" gap="10px">
-        <ui-stat-card size="sm" type="default" [value]="6" label="Total" icon="/icons/logo.svg" />
-        <ui-stat-card size="sm" type="danger" [value]="2" label="Urgentes" icon="/icons/alert.svg" />
-        <ui-stat-card size="sm" type="warning" [value]="2" label="Em breve" icon="/icons/calendar.svg" />
-        <ui-stat-card size="sm" type="info" [value]="2" label="Informativos" icon="/icons/info.svg" />
+        <ui-stat-card size="sm" type="default" [value]="6" label="Total" icon="alert" />
+        <ui-stat-card size="sm" type="danger" [value]="2" label="Urgentes" icon="warning" />
+        <ui-stat-card size="sm" type="warning" [value]="2" label="Em breve" icon="calendar" />
+        <ui-stat-card size="sm" type="info" [value]="2" label="Informativos" icon="info" />
       </ui-stat-card-grid>
     `,
   }),
