@@ -30,7 +30,7 @@
     h1 {
       margin: 0;
       color: var(--ui-color-primary);
-      font-size: clamp(20px, 2vw, 28px);
+      font-size: clamp(var(--ui-font-size-lg), 2vw, var(--ui-font-size-2xl));
       line-height: 1.1;
       font-weight: var(--ui-font-weight-bold);
       letter-spacing: -0.02em;
@@ -64,7 +64,7 @@
 
     &__text {
       h1 {
-        font-size: 22px;
+        font-size: var(--ui-font-size-xl);
       }
 
       p {
@@ -79,7 +79,7 @@
   .ui-page-title {
     &__text {
       h1 {
-        font-size: 20px;
+        font-size: var(--ui-font-size-lg);
       }
     }
   }
