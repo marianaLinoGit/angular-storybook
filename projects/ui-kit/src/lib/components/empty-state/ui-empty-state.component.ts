@@ -2,11 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  inject,
   input,
   output,
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 export type UiEmptyStateSize = 'sm' | 'md' | 'lg';
 export type UiEmptyStateAlign = 'left' | 'center' | 'right';
@@ -16,15 +15,13 @@ export type UiEmptyStateButtonVariant = 'primary' | 'secondary' | 'outline';
 @Component({
   selector: 'ui-empty-state',
   standalone: true,
+  imports: [UiIconComponent],
   templateUrl: './ui-empty-state.component.html',
   styleUrl: './ui-empty-state.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiEmptyStateComponent {
-  private sanitizer = inject(DomSanitizer);
-
-  icon = input('🐾');
-  iconSvg = input<string | null>(null);
+  iconName = input<UiIconName | null>('info');
 
   title = input('Nenhum resultado encontrado');
   description = input('Tente ajustar os filtros ou criar um novo item.');
@@ -43,14 +40,6 @@ export class UiEmptyStateComponent {
 
   titleId = `ui-empty-state-title-${crypto.randomUUID()}`;
   descriptionId = `ui-empty-state-description-${crypto.randomUUID()}`;
-
-  safeIconSvg = computed(() => {
-    const svg = this.iconSvg();
-
-    if (!svg) return null;
-
-    return this.sanitizer.bypassSecurityTrustHtml(svg);
-  });
 
   classes = computed(() =>
     [

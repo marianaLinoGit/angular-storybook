@@ -3,15 +3,9 @@
   [attr.aria-labelledby]="titleId"
   [attr.aria-describedby]="descriptionId"
 >
-  @if (iconSvg()) {
-    <div
-      class="ui-empty-state__icon"
-      aria-hidden="true"
-      [innerHTML]="safeIconSvg()"
-    ></div>
-  } @else if (icon()) {
+  @if (iconName()) {
     <div class="ui-empty-state__icon" aria-hidden="true">
-      {{ icon() }}
+      <ui-icon [name]="iconName()" size="4xl"></ui-icon>
     </div>
   }
 
