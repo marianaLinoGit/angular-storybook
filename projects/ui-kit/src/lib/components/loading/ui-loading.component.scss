@@ -80,6 +80,7 @@
 
 .ui-skeleton-text,
 .ui-skeleton-card,
+.ui-skeleton-card-text,
 .ui-skeleton-table,
 .ui-skeleton-avatar {
   width: min(var(--skeleton-width), 100%);
@@ -158,6 +159,53 @@
   }
 }
 
+.ui-skeleton-card-text {
+  position: relative;
+  overflow: hidden;
+  padding: var(--ui-space-4);
+  border: 1px solid var(--ui-color-border);
+  border-radius: var(--ui-radius-lg);
+  background: var(--ui-color-surface);
+}
+
+.ui-skeleton-card-text__accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  border-radius: 0 !important;
+  background: color-mix(in srgb, var(--ui-color-primary) 24%, var(--ui-color-border)) !important;
+}
+
+.ui-skeleton-card-text__content {
+  display: grid;
+  gap: var(--ui-space-2);
+  padding-left: var(--ui-space-2);
+}
+
+.ui-skeleton-card-text__line {
+  &--label {
+    width: 42%;
+    height: 12px;
+  }
+
+  &--value {
+    width: 56%;
+    height: 28px;
+  }
+
+  &--meta {
+    width: 38%;
+    height: 13px;
+  }
+
+  &--body {
+    width: 68%;
+    height: 14px;
+  }
+}
+
 .ui-skeleton-table {
   display: grid;
   gap: var(--ui-space-2);
@@ -228,6 +276,7 @@
   .ui-loading__dots span,
   .ui-skeleton-text span,
   .ui-skeleton-card span,
+  .ui-skeleton-card-text span,
   .ui-skeleton-table span,
   .ui-skeleton-avatar span {
     animation: none;

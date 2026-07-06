@@ -6,7 +6,7 @@ const playgroundDefaults = {
   type: 'spinner' as const,
   size: 'md' as const,
   message: 'Carregando...',
-  skeletonRows: 4,
+  skeletonRows: 3,
   overlay: false,
   overlayMode: 'fixed' as const,
   ariaLabel: 'Carregando conteúdo',
@@ -17,7 +17,7 @@ const meta: Meta<UiLoadingComponent> = {
   component: UiLoadingComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Spinner|Dots|SkeletonText|SkeletonCard|SkeletonTable|SkeletonAvatar|SkeletonRows)$/,
+    /^(PlaygroundCompleto|Spinner|Dots|SkeletonText|SkeletonCard|SkeletonCardText|SkeletonCardTextTwoLines|SkeletonCardTextFourLines|SkeletonTable|SkeletonAvatar|SkeletonRows)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -49,12 +49,13 @@ const meta: Meta<UiLoadingComponent> = {
         'dots',
         'skeleton-text',
         'skeleton-card',
+        'skeleton-card-text',
         'skeleton-table',
         'skeleton-avatar',
       ],
       table: { category: 'Conteúdo' },
       description:
-        'Tipo de indicador: `spinner`, `dots` ou variações de skeleton (`skeleton-text`, `skeleton-card`, `skeleton-table`, `skeleton-avatar`).',
+        'Tipo de indicador: `spinner`, `dots` ou variações de skeleton (`skeleton-text`, `skeleton-card`, `skeleton-card-text`, `skeleton-table`, `skeleton-avatar`).',
     },
     message: {
       control: 'text',
@@ -66,7 +67,7 @@ const meta: Meta<UiLoadingComponent> = {
       control: { type: 'number', min: 1, max: 12, step: 1 },
       table: { category: 'Conteúdo' },
       description:
-        'Quantidade de linhas nos skeletons de texto, card, tabela e avatar.',
+        'Quantidade de linhas nos skeletons. Padrão: 3. Nos cards (`skeleton-card` e `skeleton-card-text`), controla as linhas de texto abaixo da mídia ou dentro do card.',
     },
     size: {
       control: 'select',
@@ -148,14 +149,74 @@ export const SkeletonText: Story = {
 
 export const SkeletonCard: Story = {
   parameters: {
-    docs: { description: { story: 'Skeleton simulando um card.' } },
+    docs: {
+      description: {
+        story:
+          'Skeleton de card com área de mídia/imagem e linhas de texto abaixo. Padrão: 3 linhas via `skeletonRows`.',
+      },
+    },
   },
   args: {
     ...playgroundDefaults,
     type: 'skeleton-card',
     message: null,
     skeletonRows: 3,
-    ariaLabel: 'Carregando card',
+    ariaLabel: 'Carregando card com imagem',
+  },
+};
+
+export const SkeletonCardText: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Skeleton de card apenas textual (rótulo, valor e metadado). Ideal para stat cards, resumos e KPIs. Padrão: 3 linhas via `skeletonRows`.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    type: 'skeleton-card-text',
+    message: null,
+    skeletonRows: 3,
+    ariaLabel: 'Carregando resumo',
+  },
+};
+
+export const SkeletonCardTextTwoLines: Story = {
+  name: 'Skeleton card text (2 linhas)',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Variação compacta com `skeletonRows` = 2 (rótulo + metadado).',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    type: 'skeleton-card-text',
+    message: null,
+    skeletonRows: 2,
+    ariaLabel: 'Carregando resumo compacto',
+  },
+};
+
+export const SkeletonCardTextFourLines: Story = {
+  name: 'Skeleton card text (4 linhas)',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Variação com `skeletonRows` = 4 (rótulo, valor, linha extra e metadado).',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    type: 'skeleton-card-text',
+    message: null,
+    skeletonRows: 4,
+    ariaLabel: 'Carregando resumo detalhado',
   },
 };
 

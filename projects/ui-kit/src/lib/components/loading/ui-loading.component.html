@@ -38,6 +38,18 @@
     </div>
   }
 
+  @if (type() === "skeleton-card-text") {
+    <div class="ui-skeleton-card-text" aria-hidden="true">
+      <span class="ui-skeleton-card-text__accent"></span>
+
+      <div class="ui-skeleton-card-text__content">
+        @for (row of skeletonRowsArray(); track row) {
+          <span [class]="skeletonCardTextLineClass(row)"></span>
+        }
+      </div>
+    </div>
+  }
+
   @if (type() === "skeleton-table") {
     <div class="ui-skeleton-table" aria-hidden="true">
       @for (row of skeletonRowsArray(); track row) {
