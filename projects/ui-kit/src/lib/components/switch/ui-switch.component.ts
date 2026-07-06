@@ -58,14 +58,11 @@ export class UiSwitchComponent implements ControlValueAccessor {
       this.ngControl.valueAccessor = this;
     }
 
-    effect(
-      () => {
-        if (!this.ngControl) {
-          this.checked.set(this.checkedInput());
-        }
-      },
-      { allowSignalWrites: true },
-    );
+    effect(() => {
+      if (!this.ngControl) {
+        this.checked.set(this.checkedInput());
+      }
+    });
   }
 
   isDisabled = computed(() => this.disabled() || this.disabledState());

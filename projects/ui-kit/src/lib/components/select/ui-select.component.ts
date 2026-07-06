@@ -89,18 +89,15 @@ export class UiSelectComponent implements ControlValueAccessor {
       this.ngControl.valueAccessor = this;
     }
 
-    effect(
-      () => {
-        const external = this.selectedValue();
-        if (external == null) return;
+    effect(() => {
+      const external = this.selectedValue();
+      if (external == null) return;
 
-        const next = String(external);
-        if (next !== this.value()) {
-          this.value.set(next);
-        }
-      },
-      { allowSignalWrites: true },
-    );
+      const next = String(external);
+      if (next !== this.value()) {
+        this.value.set(next);
+      }
+    });
   }
 
   isDisabled = computed(() => this.disabled() || this.disabledState());

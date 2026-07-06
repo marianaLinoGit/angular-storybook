@@ -314,16 +314,13 @@ class UiTablePlaygroundComponent {
   statusLabel = statusLabel;
 
   constructor() {
-    effect(
-      () => {
-        this.initialPageSize();
-        this.forceEmpty();
-        this.data();
-        this.pageSize.set(this.initialPageSize());
-        this.pageIndex.set(1);
-      },
-      { allowSignalWrites: true },
-    );
+    effect(() => {
+      this.initialPageSize();
+      this.forceEmpty();
+      this.data();
+      this.pageSize.set(this.initialPageSize());
+      this.pageIndex.set(1);
+    });
   }
 
   onPageIndexChange(value: number): void {
