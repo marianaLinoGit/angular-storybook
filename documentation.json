@@ -4888,11 +4888,12 @@
         },
         {
             "name": "UiModalComponent",
-            "id": "component-UiModalComponent-3b91e407301d87a6bbbb4a5607f8134535ef6c1f3648821f27b22167b2df8c069131776d27c4bb68f5afa7680e10702e635b5484df8edf31d862e47df50428bf",
+            "id": "component-UiModalComponent-4f32c83479910dd689d6fc8128c0e1171b61452fe7a666b56a29f55668aa3f4b156c3045735106752902ffb40c80c742bd5964fedd02b328dec012dbf58e02f5",
             "file": "projects/ui-kit/src/lib/components/modal/ui-modal.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
+            "host": {},
             "inputs": [],
             "outputs": [],
             "providers": [],
@@ -4913,7 +4914,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 33,
+                    "line": 49,
                     "required": false
                 },
                 {
@@ -4924,7 +4925,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 35,
+                    "line": 51,
                     "required": false
                 },
                 {
@@ -4935,7 +4936,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 34,
+                    "line": 50,
                     "required": false
                 },
                 {
@@ -4946,7 +4947,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 38,
+                    "line": 54,
                     "required": false
                 },
                 {
@@ -4957,7 +4958,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 39,
+                    "line": 55,
                     "required": false
                 },
                 {
@@ -4968,7 +4969,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 32,
+                    "line": 48,
                     "required": false
                 },
                 {
@@ -4979,7 +4980,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 43,
+                    "line": 59,
                     "required": false
                 },
                 {
@@ -4991,7 +4992,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 29,
+                    "line": 45,
                     "required": false
                 },
                 {
@@ -5003,7 +5004,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 30,
+                    "line": 46,
                     "required": false
                 },
                 {
@@ -5014,7 +5015,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 25,
+                    "line": 41,
                     "required": false
                 },
                 {
@@ -5026,7 +5027,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 42,
+                    "line": 58,
                     "required": false
                 },
                 {
@@ -5037,7 +5038,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 37,
+                    "line": 53,
                     "required": false
                 },
                 {
@@ -5049,7 +5050,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 41,
+                    "line": 57,
                     "required": false
                 },
                 {
@@ -5060,7 +5061,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 28,
+                    "line": 44,
                     "required": false
                 },
                 {
@@ -5072,7 +5073,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 26,
+                    "line": 42,
                     "required": false
                 }
             ],
@@ -5085,7 +5086,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 46,
+                    "line": 62,
                     "required": false
                 },
                 {
@@ -5096,7 +5097,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 47,
+                    "line": 63,
                     "required": false
                 },
                 {
@@ -5107,7 +5108,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 45,
+                    "line": 61,
                     "required": false
                 }
             ],
@@ -5121,7 +5122,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 56
+                    "line": 76
                 },
                 {
                     "name": "descriptionId",
@@ -5132,7 +5133,52 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 52
+                    "line": 72
+                },
+                {
+                    "name": "destroyRef",
+                    "defaultValue": "inject(DestroyRef)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                },
+                {
+                    "name": "document",
+                    "defaultValue": "inject(DOCUMENT)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 36,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                },
+                {
+                    "name": "elementRef",
+                    "defaultValue": "inject(ElementRef<HTMLElement>)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 37,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
                 },
                 {
                     "name": "internalClosed",
@@ -5143,9 +5189,23 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 49,
+                    "line": 65,
                     "modifierKind": [
                         123
+                    ]
+                },
+                {
+                    "name": "isPortaled",
+                    "defaultValue": "signal(false)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 69,
+                    "modifierKind": [
+                        148
                     ]
                 },
                 {
@@ -5157,7 +5217,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 54
+                    "line": 74
                 },
                 {
                     "name": "modalClasses",
@@ -5168,7 +5228,65 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 62
+                    "line": 82
+                },
+                {
+                    "name": "openFixedCount",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 34,
+                    "modifierKind": [
+                        123,
+                        126
+                    ]
+                },
+                {
+                    "name": "originalNextSibling",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChildNode | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 67,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "originalParent",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "HTMLElement | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 66,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "renderer",
+                    "defaultValue": "inject(Renderer2)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 38,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
                 },
                 {
                     "name": "titleId",
@@ -5179,7 +5297,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 51
+                    "line": 71
                 }
             ],
             "methodsClass": [
@@ -5189,7 +5307,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 97,
+                    "line": 141,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5199,7 +5317,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 87,
+                    "line": 131,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5209,7 +5327,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 92,
+                    "line": 136,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5228,7 +5346,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 77,
+                    "line": 121,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5251,7 +5369,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 69,
+                    "line": 113,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "decorators": [
@@ -5262,6 +5380,58 @@
                     ],
                     "modifierKind": [
                         171
+                    ]
+                },
+                {
+                    "name": "lockBodyScroll",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 179,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "portalToBody",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 146,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "restoreFromBody",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 160,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "unlockBodyScroll",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 191,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
                     ]
                 }
             ],
@@ -5275,7 +5445,7 @@
                     "argsDecorator": [],
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 69
+                    "line": 113
                 }
             ],
             "standalone": true,
@@ -5288,11 +5458,19 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  HostListener,\r\n  computed,\r\n  input,\r\n  output,\r\n  signal,\r\n} from '@angular/core';\r\nimport { UiIconComponent, UiIconName } from '../icon/ui-icon.component';\r\n\r\nexport type UiModalType = 'confirmation' | 'informative' | 'content';\r\nexport type UiModalSize = 'sm' | 'md' | 'lg';\r\nexport type UiModalPresentationMode = 'fixed' | 'inline';\r\n\r\n@Component({\r\n  selector: 'ui-modal',\r\n  standalone: true,\r\n  imports: [UiIconComponent],\r\n  templateUrl: './ui-modal.component.html',\r\n  styleUrl: './ui-modal.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class UiModalComponent {\r\n  open = input(true);\r\n  type = input<UiModalType>('informative');\r\n\r\n  title = input('Título do modal');\r\n  description = input<string | null>('Descrição do modal');\r\n  icon = input<UiIconName | null>(null);\r\n\r\n  confirmLabel = input('Confirmar');\r\n  cancelLabel = input('Cancelar');\r\n  closeLabel = input('Fechar');\r\n  closeAriaLabel = input('Fechar modal');\r\n\r\n  showCloseButton = input(true);\r\n  closeOnBackdrop = input(true);\r\n  closeOnEscape = input(true);\r\n\r\n  size = input<UiModalSize>('md');\r\n  presentationMode = input<UiModalPresentationMode>('fixed');\r\n  customClass = input('');\r\n\r\n  confirmed = output<void>();\r\n  cancelled = output<void>();\r\n  closed = output<void>();\r\n\r\n  private internalClosed = signal(false);\r\n\r\n  titleId = `ui-modal-title-${crypto.randomUUID()}`;\r\n  descriptionId = `ui-modal-description-${crypto.randomUUID()}`;\r\n\r\n  isVisible = computed(() => this.open() && !this.internalClosed());\r\n\r\n  backdropClasses = computed(() =>\r\n    ['ui-modal-backdrop', `ui-modal-backdrop--${this.presentationMode()}`]\r\n      .filter(Boolean)\r\n      .join(' '),\r\n  );\r\n\r\n  modalClasses = computed(() =>\r\n    ['ui-modal', `ui-modal--${this.size()}`, this.customClass()]\r\n      .filter(Boolean)\r\n      .join(' '),\r\n  );\r\n\r\n  @HostListener('document:keydown.escape')\r\n  handleEscape(): void {\r\n    if (!this.isVisible() || !this.closeOnEscape()) {\r\n      return;\r\n    }\r\n\r\n    this.close();\r\n  }\r\n\r\n  handleBackdropClick(event: MouseEvent): void {\r\n    if (!this.closeOnBackdrop()) {\r\n      return;\r\n    }\r\n\r\n    if (event.target === event.currentTarget) {\r\n      this.close();\r\n    }\r\n  }\r\n\r\n  close(): void {\r\n    this.internalClosed.set(true);\r\n    this.closed.emit();\r\n  }\r\n\r\n  confirm(): void {\r\n    this.confirmed.emit();\r\n    this.close();\r\n  }\r\n\r\n  cancel(): void {\r\n    this.cancelled.emit();\r\n    this.close();\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  DestroyRef,\r\n  ElementRef,\r\n  HostListener,\r\n  Renderer2,\r\n  computed,\r\n  effect,\r\n  inject,\r\n  input,\r\n  output,\r\n  signal,\r\n} from '@angular/core';\r\nimport { DOCUMENT } from '@angular/common';\r\nimport { UiIconComponent, UiIconName } from '../icon/ui-icon.component';\r\n\r\nexport type UiModalType = 'confirmation' | 'informative' | 'content';\r\nexport type UiModalSize = 'sm' | 'md' | 'lg';\r\nexport type UiModalPresentationMode = 'fixed' | 'inline';\r\n\r\n@Component({\r\n  selector: 'ui-modal',\r\n  standalone: true,\r\n  imports: [UiIconComponent],\r\n  templateUrl: './ui-modal.component.html',\r\n  styleUrl: './ui-modal.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  host: {\r\n    '[class.ui-modal-host--portaled]': 'isPortaled()',\r\n  },\r\n})\r\nexport class UiModalComponent {\r\n  private static openFixedCount = 0;\r\n\r\n  private readonly document = inject(DOCUMENT);\r\n  private readonly elementRef = inject(ElementRef<HTMLElement>);\r\n  private readonly renderer = inject(Renderer2);\r\n  private readonly destroyRef = inject(DestroyRef);\r\n\r\n  open = input(true);\r\n  type = input<UiModalType>('informative');\r\n\r\n  title = input('Título do modal');\r\n  description = input<string | null>('Descrição do modal');\r\n  icon = input<UiIconName | null>(null);\r\n\r\n  confirmLabel = input('Confirmar');\r\n  cancelLabel = input('Cancelar');\r\n  closeLabel = input('Fechar');\r\n  closeAriaLabel = input('Fechar modal');\r\n\r\n  showCloseButton = input(true);\r\n  closeOnBackdrop = input(true);\r\n  closeOnEscape = input(true);\r\n\r\n  size = input<UiModalSize>('md');\r\n  presentationMode = input<UiModalPresentationMode>('fixed');\r\n  customClass = input('');\r\n\r\n  confirmed = output<void>();\r\n  cancelled = output<void>();\r\n  closed = output<void>();\r\n\r\n  private internalClosed = signal(false);\r\n  private originalParent: HTMLElement | null = null;\r\n  private originalNextSibling: ChildNode | null = null;\r\n\r\n  readonly isPortaled = signal(false);\r\n\r\n  titleId = `ui-modal-title-${crypto.randomUUID()}`;\r\n  descriptionId = `ui-modal-description-${crypto.randomUUID()}`;\r\n\r\n  isVisible = computed(() => this.open() && !this.internalClosed());\r\n\r\n  backdropClasses = computed(() =>\r\n    ['ui-modal-backdrop', `ui-modal-backdrop--${this.presentationMode()}`]\r\n      .filter(Boolean)\r\n      .join(' '),\r\n  );\r\n\r\n  modalClasses = computed(() =>\r\n    ['ui-modal', `ui-modal--${this.size()}`, this.customClass()]\r\n      .filter(Boolean)\r\n      .join(' '),\r\n  );\r\n\r\n  constructor() {\r\n    effect(() => {\r\n      if (this.open()) {\r\n        this.internalClosed.set(false);\r\n      }\r\n    });\r\n\r\n    effect(() => {\r\n      const shouldPortal =\r\n        this.presentationMode() === 'fixed' && this.isVisible();\r\n\r\n      if (shouldPortal) {\r\n        this.portalToBody();\r\n        return;\r\n      }\r\n\r\n      this.restoreFromBody();\r\n    });\r\n\r\n    this.destroyRef.onDestroy(() => {\r\n      this.restoreFromBody();\r\n    });\r\n  }\r\n\r\n  @HostListener('document:keydown.escape')\r\n  handleEscape(): void {\r\n    if (!this.isVisible() || !this.closeOnEscape()) {\r\n      return;\r\n    }\r\n\r\n    this.close();\r\n  }\r\n\r\n  handleBackdropClick(event: MouseEvent): void {\r\n    if (!this.closeOnBackdrop()) {\r\n      return;\r\n    }\r\n\r\n    if (event.target === event.currentTarget) {\r\n      this.close();\r\n    }\r\n  }\r\n\r\n  close(): void {\r\n    this.internalClosed.set(true);\r\n    this.closed.emit();\r\n  }\r\n\r\n  confirm(): void {\r\n    this.confirmed.emit();\r\n    this.close();\r\n  }\r\n\r\n  cancel(): void {\r\n    this.cancelled.emit();\r\n    this.close();\r\n  }\r\n\r\n  private portalToBody(): void {\r\n    const host = this.elementRef.nativeElement;\r\n\r\n    if (host.parentElement === this.document.body) {\r\n      return;\r\n    }\r\n\r\n    this.originalParent = host.parentElement;\r\n    this.originalNextSibling = host.nextSibling;\r\n    this.document.body.appendChild(host);\r\n    this.isPortaled.set(true);\r\n    this.lockBodyScroll();\r\n  }\r\n\r\n  private restoreFromBody(): void {\r\n    const host = this.elementRef.nativeElement;\r\n\r\n    if (host.parentElement !== this.document.body || !this.originalParent) {\r\n      return;\r\n    }\r\n\r\n    if (this.originalNextSibling) {\r\n      this.originalParent.insertBefore(host, this.originalNextSibling);\r\n    } else {\r\n      this.originalParent.appendChild(host);\r\n    }\r\n\r\n    this.originalParent = null;\r\n    this.originalNextSibling = null;\r\n    this.isPortaled.set(false);\r\n    this.unlockBodyScroll();\r\n  }\r\n\r\n  private lockBodyScroll(): void {\r\n    if (this.presentationMode() !== 'fixed') {\r\n      return;\r\n    }\r\n\r\n    UiModalComponent.openFixedCount += 1;\r\n\r\n    if (UiModalComponent.openFixedCount === 1) {\r\n      this.renderer.setStyle(this.document.body, 'overflow', 'hidden');\r\n    }\r\n  }\r\n\r\n  private unlockBodyScroll(): void {\r\n    if (this.presentationMode() !== 'fixed') {\r\n      return;\r\n    }\r\n\r\n    UiModalComponent.openFixedCount = Math.max(\r\n      0,\r\n      UiModalComponent.openFixedCount - 1,\r\n    );\r\n\r\n    if (UiModalComponent.openFixedCount === 0) {\r\n      this.renderer.removeStyle(this.document.body, 'overflow');\r\n    }\r\n  }\r\n}\r\n",
             "styleUrl": "./ui-modal.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 86
+            },
             "extends": [],
             "templateData": "@if (isVisible()) {\r\n  <div [class]=\"backdropClasses()\" (click)=\"handleBackdropClick($event)\">\r\n    <section\r\n      [class]=\"modalClasses()\"\r\n      role=\"dialog\"\r\n      aria-modal=\"true\"\r\n      [attr.aria-labelledby]=\"titleId\"\r\n      [attr.aria-describedby]=\"description() ? descriptionId : null\"\r\n      (click)=\"$event.stopPropagation()\"\r\n    >\r\n      <header class=\"ui-modal__header\">\r\n        <div class=\"ui-modal__title-wrapper\">\r\n          @if (icon(); as iconName) {\r\n            <ui-icon\r\n              class=\"ui-modal__title-icon\"\r\n              [name]=\"iconName\"\r\n              size=\"md\"\r\n              aria-hidden=\"true\"\r\n            />\r\n          }\r\n\r\n          <h2 [id]=\"titleId\">{{ title() }}</h2>\r\n        </div>\r\n\r\n        @if (showCloseButton()) {\r\n          <button\r\n            type=\"button\"\r\n            class=\"ui-modal__icon-button\"\r\n            [attr.aria-label]=\"closeAriaLabel()\"\r\n            (click)=\"close()\"\r\n          >\r\n            <ui-icon name=\"close\" size=\"sm\" aria-hidden=\"true\" />\r\n          </button>\r\n        }\r\n      </header>\r\n\r\n      <main class=\"ui-modal__body\">\r\n        @if (description()) {\r\n          <p [id]=\"descriptionId\">{{ description() }}</p>\r\n        }\r\n\r\n        <ng-content></ng-content>\r\n      </main>\r\n\r\n      @if (type() !== \"content\") {\r\n        <footer class=\"ui-modal__footer\">\r\n          @if (type() === \"confirmation\") {\r\n            <button\r\n              type=\"button\"\r\n              class=\"ui-modal__button ui-modal__button--secondary\"\r\n              (click)=\"cancel()\"\r\n            >\r\n              {{ cancelLabel() }}\r\n            </button>\r\n          }\r\n\r\n          <button\r\n            type=\"button\"\r\n            class=\"ui-modal__button ui-modal__button--primary\"\r\n            (click)=\"type() === 'confirmation' ? confirm() : close()\"\r\n          >\r\n            {{ type() === \"confirmation\" ? confirmLabel() : closeLabel() }}\r\n          </button>\r\n        </footer>\r\n      }\r\n    </section>\r\n  </div>\r\n}\r\n"
         },
@@ -10679,7 +10857,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    ...playgroundDefaults,\r\n    type: 'confirmation',\r\n    title: 'Confirmar exclusão',\r\n    description:\r\n      'Tem certeza que deseja excluir este item? Essa ação não poderá ser desfeita.',\r\n    icon: 'warning' as const,\r\n    confirmLabel: 'Excluir',\r\n    cancelLabel: 'Cancelar',\r\n  },\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    ...playgroundDefaults,\r\n    type: 'confirmation',\r\n    presentationMode: 'fixed',\r\n    title: 'Confirmar exclusão',\r\n    description:\r\n      'Tem certeza que deseja excluir este item? Essa ação não poderá ser desfeita.',\r\n    icon: 'warning' as const,\r\n    confirmLabel: 'Excluir',\r\n    cancelLabel: 'Cancelar',\r\n  },\r\n}"
             },
             {
                 "name": "Content",
@@ -10795,21 +10973,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Checkbox obrigatório com label e link para termos de uso.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/card/ui-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: { ...playgroundDefaults },\r\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Checkbox obrigatório com label e link para termos de uso.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
             },
             {
                 "name": "Default",
@@ -10865,6 +11043,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: { ...playgroundDefaults },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: defaultGridTemplate,\r\n  }),\r\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/switch/ui-switch.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -10880,16 +11068,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  render: (args) => ({\r\n    props: { ...args, initialPageSize: 5, paginationPosition: 'bottom', striped: false, stickyHeader: false, showPaginationWhenSinglePage: false },\r\n    template: `<ui-table-playground\r\n      [initialPageSize]=\"initialPageSize\"\r\n      [paginationPosition]=\"paginationPosition\"\r\n      [striped]=\"striped\"\r\n      [stickyHeader]=\"stickyHeader\"\r\n      [showPaginationWhenSinglePage]=\"showPaginationWhenSinglePage\"\r\n    />`,\r\n  }),\r\n  args: { ...playgroundDefaults },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Uso padrão com ordenação, paginação e colunas responsivas.',\r\n      },\r\n    },\r\n  },\r\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: { ...playgroundDefaults },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: defaultGridTemplate,\r\n  }),\r\n}"
             },
             {
                 "name": "Default",
@@ -11475,16 +11653,6 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<UiAlertComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Alert',\r\n  component: UiAlertComponent,\r\n  tags: ['autodocs'],\r\n  includeStories: /^(PlaygroundCompleto|Info|Success|Warning|Danger|Solid|Outline|WithoutIcon|WithoutTitle|NotClosable|FixedTop|FixedBottom)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          max-width: 480px;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  argTypes: {\r\n    title: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Título opcional do alerta.',\r\n    },\r\n    message: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Mensagem principal exibida no alerta.',\r\n    },\r\n    closeAriaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto acessível utilizado no botão de fechar para leitores de tela.',\r\n    },\r\n    color: {\r\n      control: 'select',\r\n      table: { category: 'Aparência' },\r\n      options: ['success', 'warning', 'danger', 'info'],\r\n      description:\r\n        'Cor semântica do alerta, usada para representar sucesso, atenção, erro ou informação.',\r\n    },\r\n    variant: {\r\n      control: 'select',\r\n      table: { category: 'Aparência' },\r\n      options: ['soft', 'solid', 'outline'],\r\n      description: 'Variação visual aplicada ao alerta.',\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      table: { category: 'Aparência' },\r\n      options: ['sm', 'md', 'lg'],\r\n      description: 'Tamanho visual do componente.',\r\n    },\r\n    showIcon: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe ou oculta o ícone semântico do alerta.',\r\n    },\r\n    closable: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe ou oculta o botão para fechar o alerta.',\r\n    },\r\n    fixed: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Define se o alerta deve permanecer fixo na tela ou seguir o fluxo da página.',\r\n    },\r\n    position: {\r\n      control: 'radio',\r\n      table: { category: 'Estado' },\r\n      options: ['top', 'bottom'],\r\n      description:\r\n        'Posição do alerta quando a propriedade fixed estiver habilitada.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS customizada adicionada ao componente.',\r\n    },\r\n    closed: {\r\n      action: 'closed',\r\n      table: {\r\n        category: 'Events',\r\n      },\r\n      description:\r\n        'Evento disparado quando o usuário fecha o alerta pelo botão de fechar.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/accordion/ui-accordion.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -11500,6 +11668,16 @@
                 "deprecationMessage": "",
                 "type": "Meta<UiAccordionPanelComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Accordion Panel',\r\n  component: UiAccordionPanelComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|Closed|WithoutBadge|WithoutIcon|Disabled)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          max-width: 480px;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Painel expansível individual com título, ícone, badge e conteúdo projetado via `ng-content`.\\n\\n' +\r\n          '**Uso:** informe `id` e `title`. Vincule `[(open)]` para controlar o estado. Emite `openedChange` ao alternar.',\r\n      },\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <ui-accordion-panel\r\n        [id]=\"id\"\r\n        [title]=\"title\"\r\n        [icon]=\"icon\"\r\n        [badge]=\"badge\"\r\n        [badgeType]=\"badgeType\"\r\n        [disabled]=\"disabled\"\r\n        [allowOverflow]=\"allowOverflow\"\r\n        [(open)]=\"open\"\r\n        (openedChange)=\"openedChange($event)\"\r\n      >\r\n        ${panelDemoContent}\r\n      </ui-accordion-panel>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    id: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Identificador único do painel. Usado nos IDs de acessibilidade do trigger e do painel.',\r\n    },\r\n    title: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Título exibido no cabeçalho clicável do painel.',\r\n    },\r\n    icon: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Ícone ou emoji opcional exibido antes do título.',\r\n    },\r\n    badge: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Texto ou número exibido como badge (`ui-badge`) ao lado do título. Quando `null`, não é exibido.',\r\n    },\r\n    badgeType: {\r\n      control: 'select',\r\n      options: ['default', 'danger', 'warning', 'success', 'info'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Variação semântica de cor do badge.',\r\n    },\r\n    open: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Estado aberto/fechado do painel. Suporta two-way binding com `[(open)]`.',\r\n    },\r\n    disabled: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Impede abrir ou fechar o painel.',\r\n    },\r\n    allowOverflow: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Quando `true`, permite que dropdowns e popovers dentro do painel ultrapassem os limites do container.',\r\n    },\r\n    openedChange: {\r\n      action: 'openedChange',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado quando o painel é aberto ou fechado.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<UiAlertComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Alert',\r\n  component: UiAlertComponent,\r\n  tags: ['autodocs'],\r\n  includeStories: /^(PlaygroundCompleto|Info|Success|Warning|Danger|Solid|Outline|WithoutIcon|WithoutTitle|NotClosable|FixedTop|FixedBottom)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          max-width: 480px;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  argTypes: {\r\n    title: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Título opcional do alerta.',\r\n    },\r\n    message: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Mensagem principal exibida no alerta.',\r\n    },\r\n    closeAriaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto acessível utilizado no botão de fechar para leitores de tela.',\r\n    },\r\n    color: {\r\n      control: 'select',\r\n      table: { category: 'Aparência' },\r\n      options: ['success', 'warning', 'danger', 'info'],\r\n      description:\r\n        'Cor semântica do alerta, usada para representar sucesso, atenção, erro ou informação.',\r\n    },\r\n    variant: {\r\n      control: 'select',\r\n      table: { category: 'Aparência' },\r\n      options: ['soft', 'solid', 'outline'],\r\n      description: 'Variação visual aplicada ao alerta.',\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      table: { category: 'Aparência' },\r\n      options: ['sm', 'md', 'lg'],\r\n      description: 'Tamanho visual do componente.',\r\n    },\r\n    showIcon: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe ou oculta o ícone semântico do alerta.',\r\n    },\r\n    closable: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe ou oculta o botão para fechar o alerta.',\r\n    },\r\n    fixed: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Define se o alerta deve permanecer fixo na tela ou seguir o fluxo da página.',\r\n    },\r\n    position: {\r\n      control: 'radio',\r\n      table: { category: 'Estado' },\r\n      options: ['top', 'bottom'],\r\n      description:\r\n        'Posição do alerta quando a propriedade fixed estiver habilitada.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS customizada adicionada ao componente.',\r\n    },\r\n    closed: {\r\n      action: 'closed',\r\n      table: {\r\n        category: 'Events',\r\n      },\r\n      description:\r\n        'Evento disparado quando o usuário fecha o alerta pelo botão de fechar.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
             },
             {
                 "name": "meta",
@@ -11535,21 +11713,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<UiCheckboxComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Checkbox',\r\n  component: UiCheckboxComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|WithoutLink|RequiredWithError|Disabled|LabelOnly|AccessibleLabelOnly)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          max-width: 480px;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Checkbox do design system com label, link opcional, validação e suporte a formulários reativos (`ControlValueAccessor`).\\n\\n' +\r\n          '**Uso:** informe `label` e `id`. Emite `checkedChange` ao alternar o estado.',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    label: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto principal exibido ao lado do checkbox.',\r\n    },\r\n    linkLabel: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Texto do link exibido após o label (ex.: \"termos de uso\"). Quando `null`, o link não é exibido.',\r\n    },\r\n    errorMessage: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Mensagem de erro exibida abaixo do componente. Associada via `aria-describedby`.',\r\n    },\r\n    id: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Identificador único do checkbox. Usado no `for` do label associado.',\r\n    },\r\n    name: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description: 'Nome do campo enviado em formulários HTML.',\r\n    },\r\n    linkUrl: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description: 'URL aberta ao clicar no link. Quando `null`, o link não é exibido.',\r\n    },\r\n    linkTarget: {\r\n      control: 'radio',\r\n      options: ['_self', '_blank'],\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Define se o link abre na mesma aba (`_self`) ou em nova aba (`_blank`).',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS adicional aplicada ao container do checkbox.',\r\n    },\r\n    required: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Define se o campo é obrigatório (indicador visual).',\r\n    },\r\n    disabled: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Desabilita a interação com o checkbox.',\r\n    },\r\n    showError: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Força a exibição da mensagem de erro independentemente da validação do formulário.',\r\n    },\r\n    ariaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto acessível utilizado quando não há label visível.',\r\n    },\r\n    checkedChange: {\r\n      action: 'checkedChange',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado quando o estado do checkbox é alterado.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/card/ui-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<UiCardComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Card',\r\n  component: UiCardComponent,\r\n  tags: ['autodocs'],\r\n  includeStories: /^PlaygroundCompleto|Default|WithImage|Clickable|Highlighted|Bordered|WithoutShadow|CenterAligned|WithFooter|ExternalLink$/,\r\n  argTypes: {\r\n    title: {\r\n      control: 'text',\r\n      description: 'Título principal exibido no card.',\r\n    },\r\n    subtitle: {\r\n      control: 'text',\r\n      description: 'Subtítulo opcional exibido abaixo do título.',\r\n    },\r\n    description: {\r\n      control: 'text',\r\n      description: 'Descrição ou conteúdo textual principal do card.',\r\n    },\r\n    imageUrl: {\r\n      control: 'text',\r\n      description: 'URL da imagem exibida no topo do card.',\r\n    },\r\n    imageAlt: {\r\n      control: 'text',\r\n      description:\r\n        'Texto alternativo da imagem. Use string vazia quando a imagem for decorativa.',\r\n    },\r\n    ariaLabel: {\r\n      control: 'text',\r\n      description: 'Texto acessível usado quando o card é clicável.',\r\n    },\r\n    footer: {\r\n      control: 'text',\r\n      description: 'Texto opcional exibido no rodapé do card.',\r\n    },\r\n    linkUrl: {\r\n      control: 'text',\r\n      description:\r\n        'URL aberta quando o card é clicável. Se vazio, o card apenas emite o evento cardClick.',\r\n    },\r\n    target: {\r\n      control: 'radio',\r\n      options: ['_self', '_blank'],\r\n      description:\r\n        'Define se o link do card abre na mesma aba (_self) ou em uma nova aba (_blank).',\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['sm', 'md', 'lg'],\r\n      description: 'Tamanho visual do card.',\r\n    },\r\n    align: {\r\n      control: 'radio',\r\n      options: ['left', 'center', 'right'],\r\n      description: 'Alinhamento do conteúdo textual do card.',\r\n    },\r\n    shadow: {\r\n      control: 'boolean',\r\n      description: 'Exibe ou remove sombra do card.',\r\n    },\r\n    bordered: {\r\n      control: 'boolean',\r\n      description: 'Exibe ou remove borda do card.',\r\n    },\r\n    clickable: {\r\n      control: 'boolean',\r\n      description: 'Define se o card pode ser clicado ou acessado via teclado.',\r\n    },\r\n    highlighted: {\r\n      control: 'boolean',\r\n      description: 'Aplica estilo visual de destaque ao card.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      description: 'Classe CSS customizada.',\r\n    },\r\n    cardClick: {\r\n      action: 'cardClick',\r\n      table: {\r\n        category: 'Events',\r\n      },\r\n      description: 'Evento disparado quando o card clicável é acionado.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<UiCheckboxComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Checkbox',\r\n  component: UiCheckboxComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|WithoutLink|RequiredWithError|Disabled|LabelOnly|AccessibleLabelOnly)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          max-width: 480px;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Checkbox do design system com label, link opcional, validação e suporte a formulários reativos (`ControlValueAccessor`).\\n\\n' +\r\n          '**Uso:** informe `label` e `id`. Emite `checkedChange` ao alternar o estado.',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    label: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto principal exibido ao lado do checkbox.',\r\n    },\r\n    linkLabel: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Texto do link exibido após o label (ex.: \"termos de uso\"). Quando `null`, o link não é exibido.',\r\n    },\r\n    errorMessage: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Mensagem de erro exibida abaixo do componente. Associada via `aria-describedby`.',\r\n    },\r\n    id: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Identificador único do checkbox. Usado no `for` do label associado.',\r\n    },\r\n    name: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description: 'Nome do campo enviado em formulários HTML.',\r\n    },\r\n    linkUrl: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description: 'URL aberta ao clicar no link. Quando `null`, o link não é exibido.',\r\n    },\r\n    linkTarget: {\r\n      control: 'radio',\r\n      options: ['_self', '_blank'],\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Define se o link abre na mesma aba (`_self`) ou em nova aba (`_blank`).',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS adicional aplicada ao container do checkbox.',\r\n    },\r\n    required: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Define se o campo é obrigatório (indicador visual).',\r\n    },\r\n    disabled: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Desabilita a interação com o checkbox.',\r\n    },\r\n    showError: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Força a exibição da mensagem de erro independentemente da validação do formulário.',\r\n    },\r\n    ariaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto acessível utilizado quando não há label visível.',\r\n    },\r\n    checkedChange: {\r\n      action: 'checkedChange',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado quando o estado do checkbox é alterado.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
             },
             {
                 "name": "meta",
@@ -11615,21 +11793,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<UiPageTitleComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Page Title',\r\n  component: UiPageTitleComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|WithBack|WithBackAndAction|CompatibleWithOldHeaderPage|WithoutSubtitle|WithoutAction|LongTitle|MobilePreview)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Cabeçalho de página com título, subtítulo opcional, botão voltar e ação principal.\\n\\n' +\r\n          '**Uso:** informe `title`. Configure `showBack` e/ou `showAction` conforme a tela. Emite `backClick` e `actionClick`.',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    title: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Título principal exibido no cabeçalho da página.',\r\n    },\r\n    subtitle: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Subtítulo opcional exibido abaixo do título. Quando vazio ou `null`, não é renderizado.',\r\n    },\r\n    backLabel: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto do botão voltar exibido ao lado do ícone.',\r\n    },\r\n    actionLabel: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Texto do botão de ação principal. Quando vazio, usa `actionName` como fallback.',\r\n    },\r\n    actionName: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Nome alternativo da ação. Mantém compatibilidade com o header-page antigo.',\r\n    },\r\n    actionIcon: {\r\n      control: 'select',\r\n      options: [null, ...UI_ICON_NAMES],\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Ícone do botão de ação. Usa o componente `ui-icon`.',\r\n    },\r\n    actionColor: {\r\n      control: 'select',\r\n      options: ['primary', 'secondary', 'success', 'warning', 'danger', 'info'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Variação de cor do botão de ação (`ui-button`).',\r\n    },\r\n    actionRoute: {\r\n      control: 'object',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Rota executada ao clicar na ação quando nenhum handler customizado é usado. Aceita string, array ou `null`.',\r\n    },\r\n    actionRouteMode: {\r\n      control: 'radio',\r\n      options: ['append', 'absolute'],\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Define se `actionRoute` é anexada à rota atual (`append`) ou tratada como rota absoluta.',\r\n    },\r\n    showBack: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Exibe o botão voltar com preset `back` do `ui-button`.',\r\n    },\r\n    showAction: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe o botão de ação principal à direita do cabeçalho.',\r\n    },\r\n    backAriaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description: 'Texto acessível do botão voltar.',\r\n    },\r\n    actionAriaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto acessível do botão de ação. Quando vazio, usa o label resolvido.',\r\n    },\r\n    backClick: {\r\n      action: 'backClick',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado ao clicar no botão voltar.',\r\n    },\r\n    actionClick: {\r\n      action: 'actionClick',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado ao clicar no botão de ação.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/modal/ui-modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<UiModalComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Modal',\r\n  component: UiModalComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Informative|Confirmation|Content|WithoutIcon)$/,\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    docs: {\r\n      story: {\r\n        height: '640px',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    open: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Controla se o modal deve iniciar aberto.',\r\n    },\r\n    type: {\r\n      control: 'select',\r\n      options: ['confirmation', 'informative', 'content'],\r\n      table: { category: 'Comportamento' },\r\n      description:\r\n        'Define o comportamento do modal: confirmação, informativo ou apenas conteúdo.',\r\n    },\r\n    title: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Título principal do modal. Também é usado como referência acessível via aria-labelledby.',\r\n    },\r\n    description: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Descrição opcional do modal. Quando informada, é associada via aria-describedby.',\r\n    },\r\n    icon: {\r\n      control: 'text',\r\n      description:\r\n        'Ícone visual exibido ao lado do título. É decorativo e oculto de leitores de tela.',\r\n    },\r\n    confirmLabel: {\r\n      control: 'text',\r\n      description: 'Texto do botão de confirmação.',\r\n    },\r\n    cancelLabel: {\r\n      control: 'text',\r\n      description: 'Texto do botão de cancelamento.',\r\n    },\r\n    closeLabel: {\r\n      control: 'text',\r\n      description: 'Texto do botão principal em modais informativos.',\r\n    },\r\n    closeAriaLabel: {\r\n      control: 'text',\r\n      description: 'Texto acessível do botão de fechar no cabeçalho.',\r\n    },\r\n    showCloseButton: {\r\n      control: 'boolean',\r\n      description: 'Exibe ou oculta o botão de fechar no cabeçalho.',\r\n    },\r\n    closeOnBackdrop: {\r\n      control: 'boolean',\r\n      description: 'Permite fechar o modal ao clicar fora do conteúdo.',\r\n    },\r\n    closeOnEscape: {\r\n      control: 'boolean',\r\n      description: 'Permite fechar o modal pressionando a tecla Escape.',\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['sm', 'md', 'lg'],\r\n      description: 'Tamanho visual do modal.',\r\n    },\r\n    presentationMode: {\r\n      control: 'radio',\r\n      options: ['inline', 'fixed'],\r\n      description:\r\n        'Modo de apresentação. Use inline para documentação e fixed para uso real em tela.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      description: 'Classe CSS customizada.',\r\n    },\r\n    confirmed: {\r\n      action: 'confirmed',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado ao confirmar uma ação.',\r\n    },\r\n    cancelled: {\r\n      action: 'cancelled',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado ao cancelar uma ação.',\r\n    },\r\n    closed: {\r\n      action: 'closed',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado ao fechar o modal.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<UiPageTitleComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Page Title',\r\n  component: UiPageTitleComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|WithBack|WithBackAndAction|CompatibleWithOldHeaderPage|WithoutSubtitle|WithoutAction|LongTitle|MobilePreview)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Cabeçalho de página com título, subtítulo opcional, botão voltar e ação principal.\\n\\n' +\r\n          '**Uso:** informe `title`. Configure `showBack` e/ou `showAction` conforme a tela. Emite `backClick` e `actionClick`.',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    title: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Título principal exibido no cabeçalho da página.',\r\n    },\r\n    subtitle: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Subtítulo opcional exibido abaixo do título. Quando vazio ou `null`, não é renderizado.',\r\n    },\r\n    backLabel: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto do botão voltar exibido ao lado do ícone.',\r\n    },\r\n    actionLabel: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Texto do botão de ação principal. Quando vazio, usa `actionName` como fallback.',\r\n    },\r\n    actionName: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Nome alternativo da ação. Mantém compatibilidade com o header-page antigo.',\r\n    },\r\n    actionIcon: {\r\n      control: 'select',\r\n      options: [null, ...UI_ICON_NAMES],\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Ícone do botão de ação. Usa o componente `ui-icon`.',\r\n    },\r\n    actionColor: {\r\n      control: 'select',\r\n      options: ['primary', 'secondary', 'success', 'warning', 'danger', 'info'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Variação de cor do botão de ação (`ui-button`).',\r\n    },\r\n    actionRoute: {\r\n      control: 'object',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Rota executada ao clicar na ação quando nenhum handler customizado é usado. Aceita string, array ou `null`.',\r\n    },\r\n    actionRouteMode: {\r\n      control: 'radio',\r\n      options: ['append', 'absolute'],\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Define se `actionRoute` é anexada à rota atual (`append`) ou tratada como rota absoluta.',\r\n    },\r\n    showBack: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Exibe o botão voltar com preset `back` do `ui-button`.',\r\n    },\r\n    showAction: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe o botão de ação principal à direita do cabeçalho.',\r\n    },\r\n    backAriaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description: 'Texto acessível do botão voltar.',\r\n    },\r\n    actionAriaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto acessível do botão de ação. Quando vazio, usa o label resolvido.',\r\n    },\r\n    backClick: {\r\n      action: 'backClick',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado ao clicar no botão voltar.',\r\n    },\r\n    actionClick: {\r\n      action: 'actionClick',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado ao clicar no botão de ação.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
             },
             {
                 "name": "meta",
@@ -11665,6 +11843,16 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<UiStatCardGridComponent>",
+                "defaultValue": "{\r\n  title: 'Layout/Stat Card Grid',\r\n  component: UiStatCardGridComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [UiStatCardGridComponent, UiStatCardComponent],\r\n    }),\r\n  ],\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|TwoCards|SixCards|Gradient|MixedSizes|WithoutIcons|MobilePetsExample)$/,\r\n  argTypes: {\r\n    minCardWidth: {\r\n      control: 'text',\r\n      table: { category: 'Layout' },\r\n      description: 'Largura mínima utilizada no desktop >= 900px.',\r\n    },\r\n    gap: {\r\n      control: 'text',\r\n      table: { category: 'Layout' },\r\n      description: 'Espaçamento entre os cards.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/switch/ui-switch.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -11680,16 +11868,6 @@
                 "deprecationMessage": "",
                 "type": "Meta<UiTablePlaygroundComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Table',\r\n  component: UiTablePlaygroundComponent,\r\n  tags: ['autodocs'],\r\n  includeStories: /^(PlaygroundCompleto|Default|Loading|EmptyWithoutFilters|EmptyWithFilters|OnePage|MultiplePages|WithoutPagination|StripedAndSticky|Sizes|Mobile)$/,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [UiTablePlaygroundComponent, UiTableComponent],\r\n    }),\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Tabela do design system para listagens e CRUDs. Usa tokens de `--ui-space-*`, `--ui-font-size-*`, `--ui-radius-*` e `--ui-color-*`. Inclui header com cor primária translúcida, divisórias verticais/horizontais, rodapé unificado (total + paginação + itens por página), ordenação, skeleton, empty states, responsividade, zebrado, hover, sticky header, larguras e alinhamento.\\n\\n' +\r\n          '**Uso:** declare `[columns]` e projete as linhas (`<tr>`) via conteúdo. O `thead` é gerado automaticamente.\\n\\n' +\r\n          '**Colunas (`UiTableColumn`):** `key`, `label`, `sortable`, `hideMobile`, `width`, `minWidth`, `align`, `headerAlign`, `isActions`, `badge` (mapa valor → `ui-badge`).\\n\\n' +\r\n          '**Helpers exportados:** `resolveUiTableBadge()`, `getUiTableBodyCellClasses()`.\\n\\n' +\r\n          '**Eventos:** `pageIndexChange`, `pageSizeChange`, `sortChange`.',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    columns: {\r\n      control: 'object',\r\n      table: { category: 'Dados (demo)' },\r\n      description:\r\n        'Definição das colunas exibidas no demo. Cada coluna possui `key`, `label` e opcionalmente `sortable`, `hideMobile`, `width`, `minWidth`, `align`, `headerAlign`, `isActions` e `badge`.',\r\n    },\r\n    data: {\r\n      control: 'object',\r\n      table: { category: 'Dados (demo)' },\r\n      description: 'Lista de registros mockados usada pelo playground para simular paginação e ordenação.',\r\n    },\r\n    forceEmpty: {\r\n      control: 'boolean',\r\n      table: { category: 'Dados (demo)' },\r\n      description:\r\n        'Força a lista vazia no demo, permitindo testar empty states mesmo com dados mockados disponíveis.',\r\n    },\r\n    initialPageSize: {\r\n      control: { type: 'number', min: 1, max: 50, step: 1 },\r\n      table: { category: 'Dados (demo)' },\r\n      description:\r\n        'Quantidade inicial de itens por página no playground. Reseta a paginação ao alterar.',\r\n    },\r\n    loading: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Exibe skeleton no corpo da tabela. Header e rodapé (total, paginação e itens por página) permanecem visíveis.',\r\n    },\r\n    hasFilters: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Quando `true` e não há registros, exibe empty state de busca sem resultados. Quando `false`, exibe empty state de cadastro vazio.',\r\n    },\r\n    showPagination: {\r\n      control: 'boolean',\r\n      table: { category: 'Paginação' },\r\n      description:\r\n        'Exibe os controles de navegação (Anterior / Próxima) e o indicador de página atual.',\r\n    },\r\n    showPaginationWhenSinglePage: {\r\n      control: 'boolean',\r\n      table: { category: 'Paginação' },\r\n      description:\r\n        'Mantém a paginação visível mesmo quando todos os registros cabem em uma única página.',\r\n    },\r\n    showPageSize: {\r\n      control: 'boolean',\r\n      table: { category: 'Paginação' },\r\n      description:\r\n        'Exibe o seletor de quantidade de itens por página (`ui-select`, tamanho `sm`).',\r\n    },\r\n    showTotal: {\r\n      control: 'boolean',\r\n      table: { category: 'Paginação' },\r\n      description:\r\n        'Exibe a contagem de registros no rodapé (ex.: \"1 - 5 de 25 registro(s)\").',\r\n    },\r\n    paginationPosition: {\r\n      control: 'select',\r\n      options: ['top', 'bottom', 'both'],\r\n      table: { category: 'Paginação' },\r\n      description:\r\n        'Posição do rodapé unificado (total + paginação + itens por página): acima da tabela, abaixo ou nos dois lados.',\r\n    },\r\n    pageSizeOptions: {\r\n      control: 'object',\r\n      table: { category: 'Paginação' },\r\n      description:\r\n        'Lista numérica de opções exibidas no seletor de itens por página.',\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['sm', 'md', 'lg'],\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Densidade visual da tabela. Altera padding das células e tamanho da fonte via tokens.',\r\n    },\r\n    striped: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Aplica fundo alternado nas linhas pares (zebrado).',\r\n    },\r\n    hover: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Destaca a linha ao passar o mouse. Não afeta linhas de skeleton nem empty state.',\r\n    },\r\n    stickyHeader: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Mantém o cabeçalho fixo ao rolar o conteúdo dentro do container da tabela.',\r\n    },\r\n    bordered: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Exibe borda externa ao redor da tabela.',\r\n    },\r\n    fullWidth: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Faz a tabela ocupar 100% da largura disponível do container.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS adicional aplicada ao container principal da tabela.',\r\n    },\r\n    skeletonRows: {\r\n      control: { type: 'number', min: 1, max: 20, step: 1 },\r\n      table: { category: 'Skeleton' },\r\n      description: 'Quantidade de linhas skeleton exibidas durante o loading.',\r\n    },\r\n    skeletonColumns: {\r\n      control: { type: 'number', min: 1, max: 12, step: 1 },\r\n      table: { category: 'Skeleton' },\r\n      description:\r\n        'Quantidade de colunas skeleton durante o loading. Quando `null`, usa o número de colunas definidas em `columns`.',\r\n    },\r\n    emptyIcon: {\r\n      control: 'select',\r\n      options: [null, ...UI_ICON_NAMES],\r\n      table: { category: 'Empty state' },\r\n      description:\r\n        'Ícone do empty state exibido quando não há registros e nenhum filtro está ativo. Usa o componente `ui-icon`.',\r\n    },\r\n    emptyTitle: {\r\n      control: 'text',\r\n      table: { category: 'Empty state' },\r\n      description:\r\n        'Título do empty state inicial (sem filtros aplicados).',\r\n    },\r\n    emptyDescription: {\r\n      control: 'text',\r\n      table: { category: 'Empty state' },\r\n      description:\r\n        'Texto complementar do empty state inicial (sem filtros aplicados).',\r\n    },\r\n    noResultsIcon: {\r\n      control: 'select',\r\n      options: [null, ...UI_ICON_NAMES],\r\n      table: { category: 'Empty state' },\r\n      description:\r\n        'Ícone do empty state exibido quando a busca/filtros não retornam registros.',\r\n    },\r\n    noResultsTitle: {\r\n      control: 'text',\r\n      table: { category: 'Empty state' },\r\n      description:\r\n        'Título do empty state de busca sem resultados (`hasFilters = true`).',\r\n    },\r\n    noResultsDescription: {\r\n      control: 'text',\r\n      table: { category: 'Empty state' },\r\n      description:\r\n        'Texto complementar do empty state de busca sem resultados.',\r\n    },\r\n    ariaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Textos / i18n' },\r\n      description:\r\n        'Texto acessível que identifica a tabela para leitores de tela (`aria-label`).',\r\n    },\r\n    previousLabel: {\r\n      control: 'text',\r\n      table: { category: 'Textos / i18n' },\r\n      description: 'Texto do botão que navega para a página anterior.',\r\n    },\r\n    nextLabel: {\r\n      control: 'text',\r\n      table: { category: 'Textos / i18n' },\r\n      description: 'Texto do botão que navega para a próxima página.',\r\n    },\r\n    pageSizeLabel: {\r\n      control: 'text',\r\n      table: { category: 'Textos / i18n' },\r\n      description:\r\n        'Rótulo visível do seletor de itens por página. Quando vazio ou omitido, nenhum rótulo é exibido.',\r\n    },\r\n    pageSizeAriaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Textos / i18n' },\r\n      description:\r\n        'Texto acessível do seletor de itens por página. Quando vazio, usa `pageSizeLabel` ou \"Itens por página\".',\r\n    },\r\n    totalLabel: {\r\n      control: 'text',\r\n      table: { category: 'Textos / i18n' },\r\n      description:\r\n        'Sufixo exibido após o total de registros (ex.: \"registro(s)\").',\r\n    },\r\n    pageLabel: {\r\n      control: 'text',\r\n      table: { category: 'Textos / i18n' },\r\n      description:\r\n        'Rótulo exibido antes do número da página atual (ex.: \"Página 1 de 3\").',\r\n    },\r\n    ofLabel: {\r\n      control: 'text',\r\n      table: { category: 'Textos / i18n' },\r\n      description:\r\n        'Preposição usada na paginação e no total (ex.: \"1 - 5 **de** 25\", \"Página 1 **de** 3\").',\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<ui-table-playground\r\n      [columns]=\"columns\"\r\n      [data]=\"data\"\r\n      [loading]=\"loading\"\r\n      [hasFilters]=\"hasFilters\"\r\n      [forceEmpty]=\"forceEmpty\"\r\n      [showPagination]=\"showPagination\"\r\n      [showPaginationWhenSinglePage]=\"showPaginationWhenSinglePage\"\r\n      [showPageSize]=\"showPageSize\"\r\n      [showTotal]=\"showTotal\"\r\n      [paginationPosition]=\"paginationPosition\"\r\n      [pageSizeOptions]=\"pageSizeOptions\"\r\n      [initialPageSize]=\"initialPageSize\"\r\n      [size]=\"size\"\r\n      [striped]=\"striped\"\r\n      [hover]=\"hover\"\r\n      [stickyHeader]=\"stickyHeader\"\r\n      [bordered]=\"bordered\"\r\n      [fullWidth]=\"fullWidth\"\r\n      [customClass]=\"customClass\"\r\n      [skeletonRows]=\"skeletonRows\"\r\n      [skeletonColumns]=\"skeletonColumns\"\r\n      [emptyIcon]=\"emptyIcon\"\r\n      [emptyTitle]=\"emptyTitle\"\r\n      [emptyDescription]=\"emptyDescription\"\r\n      [noResultsIcon]=\"noResultsIcon\"\r\n      [noResultsTitle]=\"noResultsTitle\"\r\n      [noResultsDescription]=\"noResultsDescription\"\r\n      [ariaLabel]=\"ariaLabel\"\r\n      [previousLabel]=\"previousLabel\"\r\n      [nextLabel]=\"nextLabel\"\r\n      [pageSizeLabel]=\"pageSizeLabel\"\r\n      [pageSizeAriaLabel]=\"pageSizeAriaLabel\"\r\n      [totalLabel]=\"totalLabel\"\r\n      [pageLabel]=\"pageLabel\"\r\n      [ofLabel]=\"ofLabel\"\r\n    />`,\r\n  }),\r\n  args: { ...playgroundDefaults },\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<UiStatCardGridComponent>",
-                "defaultValue": "{\r\n  title: 'Layout/Stat Card Grid',\r\n  component: UiStatCardGridComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [UiStatCardGridComponent, UiStatCardComponent],\r\n    }),\r\n  ],\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|TwoCards|SixCards|Gradient|MixedSizes|WithoutIcons|MobilePetsExample)$/,\r\n  argTypes: {\r\n    minCardWidth: {\r\n      control: 'text',\r\n      table: { category: 'Layout' },\r\n      description: 'Largura mínima utilizada no desktop >= 900px.',\r\n    },\r\n    gap: {\r\n      control: 'text',\r\n      table: { category: 'Layout' },\r\n      description: 'Espaçamento entre os cards.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
             },
             {
                 "name": "meta",
@@ -12005,16 +12183,6 @@
                 "name": "PlaygroundCompleto",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: alertPlaygroundPlay,\r\n}"
-            },
-            {
-                "name": "PlaygroundCompleto",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/accordion/ui-accordion.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -12030,6 +12198,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: accordionPanelPlaygroundPlay,\r\n}"
+            },
+            {
+                "name": "PlaygroundCompleto",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: alertPlaygroundPlay,\r\n}"
             },
             {
                 "name": "PlaygroundCompleto",
@@ -12065,21 +12243,21 @@
                 "name": "PlaygroundCompleto",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: checkboxPlaygroundPlay,\r\n}"
-            },
-            {
-                "name": "PlaygroundCompleto",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/card/ui-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  name: 'Playground completo',\r\n  args: { ...playgroundDefaults },\r\n  play: cardPlaygroundPlay,\r\n}"
+            },
+            {
+                "name": "PlaygroundCompleto",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: checkboxPlaygroundPlay,\r\n}"
             },
             {
                 "name": "PlaygroundCompleto",
@@ -12145,21 +12323,21 @@
                 "name": "PlaygroundCompleto",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: pageTitlePlaygroundPlay,\r\n}"
-            },
-            {
-                "name": "PlaygroundCompleto",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/modal/ui-modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: modalPlaygroundPlay,\r\n}"
+            },
+            {
+                "name": "PlaygroundCompleto",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: pageTitlePlaygroundPlay,\r\n}"
             },
             {
                 "name": "PlaygroundCompleto",
@@ -12195,6 +12373,16 @@
                 "name": "PlaygroundCompleto",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: defaultGridTemplate,\r\n  }),\r\n  play: statCardGridPlaygroundPlay,\r\n}"
+            },
+            {
+                "name": "PlaygroundCompleto",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/switch/ui-switch.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -12210,16 +12398,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story:\r\n          'Modelo com **todas as opções** disponíveis nos controles: rodapé top/bottom, zebrado, hover, sticky, ordenação, empty states, loading e labels customizados.',\r\n      },\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<ui-table-playground\r\n      [columns]=\"columns\"\r\n      [data]=\"data\"\r\n      [loading]=\"loading\"\r\n      [hasFilters]=\"hasFilters\"\r\n      [forceEmpty]=\"forceEmpty\"\r\n      [showPagination]=\"showPagination\"\r\n      [showPaginationWhenSinglePage]=\"showPaginationWhenSinglePage\"\r\n      [showPageSize]=\"showPageSize\"\r\n      [showTotal]=\"showTotal\"\r\n      [paginationPosition]=\"paginationPosition\"\r\n      [pageSizeOptions]=\"pageSizeOptions\"\r\n      [initialPageSize]=\"initialPageSize\"\r\n      [size]=\"size\"\r\n      [striped]=\"striped\"\r\n      [hover]=\"hover\"\r\n      [stickyHeader]=\"stickyHeader\"\r\n      [bordered]=\"bordered\"\r\n      [fullWidth]=\"fullWidth\"\r\n      [customClass]=\"customClass\"\r\n      [skeletonRows]=\"skeletonRows\"\r\n      [skeletonColumns]=\"skeletonColumns\"\r\n      [emptyIcon]=\"emptyIcon\"\r\n      [emptyTitle]=\"emptyTitle\"\r\n      [emptyDescription]=\"emptyDescription\"\r\n      [noResultsIcon]=\"noResultsIcon\"\r\n      [noResultsTitle]=\"noResultsTitle\"\r\n      [noResultsDescription]=\"noResultsDescription\"\r\n      [ariaLabel]=\"ariaLabel\"\r\n      [previousLabel]=\"previousLabel\"\r\n      [nextLabel]=\"nextLabel\"\r\n      [pageSizeLabel]=\"pageSizeLabel\"\r\n      [pageSizeAriaLabel]=\"pageSizeAriaLabel\"\r\n      [totalLabel]=\"totalLabel\"\r\n      [pageLabel]=\"pageLabel\"\r\n      [ofLabel]=\"ofLabel\"\r\n    />`,\r\n  }),\r\n  args: { ...playgroundDefaults },\r\n  play: tablePlaygroundPlay,\r\n}"
-            },
-            {
-                "name": "PlaygroundCompleto",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: defaultGridTemplate,\r\n  }),\r\n  play: statCardGridPlaygroundPlay,\r\n}"
             },
             {
                 "name": "PlaygroundCompleto",
@@ -12255,16 +12433,6 @@
                 "name": "playgroundDefaults",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  title: 'Informação',\r\n  message: 'Mensagem informativa para o usuário.',\r\n  closeAriaLabel: 'Fechar alerta',\r\n  color: 'info' as const,\r\n  variant: 'soft' as const,\r\n  size: 'md' as const,\r\n  showIcon: true,\r\n  closable: true,\r\n  fixed: false,\r\n  position: 'top' as const,\r\n  customClass: '',\r\n}"
-            },
-            {
-                "name": "playgroundDefaults",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/accordion/ui-accordion.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -12280,6 +12448,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  id: 'filters',\r\n  title: 'Filtros',\r\n  icon: 'search' as UiIconName,\r\n  badge: '12 pets',\r\n  badgeType: 'default' as const,\r\n  disabled: false,\r\n  open: true,\r\n  allowOverflow: false,\r\n}"
+            },
+            {
+                "name": "playgroundDefaults",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  title: 'Informação',\r\n  message: 'Mensagem informativa para o usuário.',\r\n  closeAriaLabel: 'Fechar alerta',\r\n  color: 'info' as const,\r\n  variant: 'soft' as const,\r\n  size: 'md' as const,\r\n  showIcon: true,\r\n  closable: true,\r\n  fixed: false,\r\n  position: 'top' as const,\r\n  customClass: '',\r\n}"
             },
             {
                 "name": "playgroundDefaults",
@@ -12315,21 +12493,21 @@
                 "name": "playgroundDefaults",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  id: 'termsAccepted',\r\n  name: 'termsAccepted',\r\n  label: 'Li e aceito os',\r\n  ariaLabel: null as string | null,\r\n  linkLabel: 'termos de uso',\r\n  linkUrl: '/termos-de-uso',\r\n  linkTarget: '_blank' as const,\r\n  required: true,\r\n  disabled: false,\r\n  showError: false,\r\n  errorMessage: '*Campo obrigatório',\r\n  customClass: '',\r\n}"
-            },
-            {
-                "name": "playgroundDefaults",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/card/ui-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  title: 'Design System',\r\n  subtitle: 'Angular + Storybook',\r\n  description: 'Card reutilizável para apresentar conteúdo de forma visual.',\r\n  imageUrl: null as string | null,\r\n  imageAlt: null as string | null,\r\n  ariaLabel: null as string | null,\r\n  size: 'md' as const,\r\n  shadow: true,\r\n  bordered: false,\r\n  clickable: false,\r\n  highlighted: false,\r\n  align: 'left' as const,\r\n  footer: null as string | null,\r\n  linkUrl: null as string | null,\r\n  target: '_self' as const,\r\n  customClass: '',\r\n}"
+            },
+            {
+                "name": "playgroundDefaults",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  id: 'termsAccepted',\r\n  name: 'termsAccepted',\r\n  label: 'Li e aceito os',\r\n  ariaLabel: null as string | null,\r\n  linkLabel: 'termos de uso',\r\n  linkUrl: '/termos-de-uso',\r\n  linkTarget: '_blank' as const,\r\n  required: true,\r\n  disabled: false,\r\n  showError: false,\r\n  errorMessage: '*Campo obrigatório',\r\n  customClass: '',\r\n}"
             },
             {
                 "name": "playgroundDefaults",
@@ -12385,21 +12563,21 @@
                 "name": "playgroundDefaults",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  title: 'Meus Pets',\r\n  subtitle: 'Central de alertas + gerenciamento',\r\n  showBack: false,\r\n  backLabel: 'Voltar',\r\n  backAriaLabel: 'Voltar para a página anterior',\r\n  showAction: true,\r\n  actionLabel: 'Pet',\r\n  actionAriaLabel: 'Adicionar pet',\r\n  actionIcon: 'plus' as const,\r\n  actionColor: 'primary' as const,\r\n  actionName: '',\r\n  actionRoute: 'new' as string | unknown[] | null,\r\n  actionRouteMode: 'append' as const,\r\n}"
-            },
-            {
-                "name": "playgroundDefaults",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/modal/ui-modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  open: true,\r\n  type: 'informative' as const,\r\n  title: 'Informação importante',\r\n  description:\r\n    'Esse modal exibe uma mensagem informativa com apenas um botão.',\r\n  icon: 'info' as const,\r\n  confirmLabel: 'Confirmar',\r\n  cancelLabel: 'Cancelar',\r\n  closeLabel: 'Entendi',\r\n  closeAriaLabel: 'Fechar modal',\r\n  size: 'md' as const,\r\n  showCloseButton: true,\r\n  closeOnBackdrop: true,\r\n  closeOnEscape: true,\r\n  presentationMode: 'inline' as const,\r\n  customClass: '',\r\n}"
+            },
+            {
+                "name": "playgroundDefaults",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  title: 'Meus Pets',\r\n  subtitle: 'Central de alertas + gerenciamento',\r\n  showBack: false,\r\n  backLabel: 'Voltar',\r\n  backAriaLabel: 'Voltar para a página anterior',\r\n  showAction: true,\r\n  actionLabel: 'Pet',\r\n  actionAriaLabel: 'Adicionar pet',\r\n  actionIcon: 'plus' as const,\r\n  actionColor: 'primary' as const,\r\n  actionName: '',\r\n  actionRoute: 'new' as string | unknown[] | null,\r\n  actionRouteMode: 'append' as const,\r\n}"
             },
             {
                 "name": "playgroundDefaults",
@@ -12435,6 +12613,16 @@
                 "name": "playgroundDefaults",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  minCardWidth: '180px',\r\n  gap: '16px',\r\n}"
+            },
+            {
+                "name": "playgroundDefaults",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/switch/ui-switch.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -12450,16 +12638,6 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  columns: inviteColumns,\r\n  data: inviteRows,\r\n  loading: false,\r\n  hasFilters: false,\r\n  forceEmpty: false,\r\n  showPagination: true,\r\n  showPaginationWhenSinglePage: true,\r\n  showPageSize: true,\r\n  showTotal: true,\r\n  paginationPosition: 'both' as UiTablePaginationPosition,\r\n  pageSizeOptions: [3, 5, 10, 20, 50],\r\n  initialPageSize: 3,\r\n  size: 'md' as UiTableSize,\r\n  striped: true,\r\n  hover: true,\r\n  stickyHeader: true,\r\n  bordered: true,\r\n  fullWidth: true,\r\n  customClass: '',\r\n  skeletonRows: 5,\r\n  skeletonColumns: null as number | null,\r\n  emptyIcon: 'folder' as UiIconName,\r\n  emptyTitle: 'Nenhum convite cadastrado',\r\n  emptyDescription:\r\n    'Quando um tutor compartilhar um pet com você, ele aparecerá aqui.',\r\n  noResultsIcon: 'filter' as UiIconName,\r\n  noResultsTitle: 'Nenhum convite encontrado',\r\n  noResultsDescription: 'Tente ajustar os filtros para encontrar o que procura.',\r\n  ariaLabel: 'Tabela de convites veterinários',\r\n  previousLabel: 'Anterior',\r\n  nextLabel: 'Próxima',\r\n  pageSizeLabel: null as string | null,\r\n  pageSizeAriaLabel: null as string | null,\r\n  totalLabel: 'registro(s)',\r\n  pageLabel: 'Página',\r\n  ofLabel: 'de',\r\n}"
-            },
-            {
-                "name": "playgroundDefaults",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  minCardWidth: '180px',\r\n  gap: '16px',\r\n}"
             },
             {
                 "name": "playgroundDefaults",
@@ -13275,21 +13453,21 @@
                 "name": "WithoutIcon",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    title: 'Sem ícone',\r\n    message: 'Esse alerta é exibido sem ícone inicial.',\r\n    closeAriaLabel: 'Fechar alerta',\r\n    color: 'info',\r\n    variant: 'soft',\r\n    size: 'md',\r\n    showIcon: false,\r\n    closable: true,\r\n    fixed: false,\r\n    position: 'top',\r\n    customClass: '',\r\n  },\r\n}"
-            },
-            {
-                "name": "WithoutIcon",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  parameters: {\r\n    docs: { description: { story: 'Painel apenas com título e badge.' } },\r\n  },\r\n  args: {\r\n    ...playgroundDefaults,\r\n    id: 'without-icon',\r\n    title: 'Sem ícone',\r\n    icon: null,\r\n  },\r\n}"
+            },
+            {
+                "name": "WithoutIcon",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    title: 'Sem ícone',\r\n    message: 'Esse alerta é exibido sem ícone inicial.',\r\n    closeAriaLabel: 'Fechar alerta',\r\n    color: 'info',\r\n    variant: 'soft',\r\n    size: 'md',\r\n    showIcon: false,\r\n    closable: true,\r\n    fixed: false,\r\n    position: 'top',\r\n    customClass: '',\r\n  },\r\n}"
             },
             {
                 "name": "WithoutIcon",
@@ -14337,17 +14515,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<UiAlertComponent>",
-                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 184
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<UiAccordionComponent>",
                 "file": "projects/ui-kit/src/lib/components/accordion/ui-accordion.stories.ts",
                 "deprecated": false,
@@ -14361,6 +14528,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<UiAccordionPanelComponent>",
                 "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<UiAlertComponent>",
+                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -14403,8 +14581,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<UiCheckboxComponent>",
-                "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
+                "rawtype": "StoryObj<UiCardComponent>",
+                "file": "projects/ui-kit/src/lib/components/card/ui-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -14414,8 +14592,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<UiCardComponent>",
-                "file": "projects/ui-kit/src/lib/components/card/ui-card.stories.ts",
+                "rawtype": "StoryObj<UiCheckboxComponent>",
+                "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -14491,8 +14669,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<UiPageTitleComponent>",
-                "file": "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts",
+                "rawtype": "StoryObj<UiModalComponent>",
+                "file": "projects/ui-kit/src/lib/components/modal/ui-modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -14502,8 +14680,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<UiModalComponent>",
-                "file": "projects/ui-kit/src/lib/components/modal/ui-modal.stories.ts",
+                "rawtype": "StoryObj<UiPageTitleComponent>",
+                "file": "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -14546,6 +14724,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<UiStatCardGridComponent>",
+                "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<UiSwitchStoryArgs>",
                 "file": "projects/ui-kit/src/lib/components/switch/ui-switch.stories.ts",
                 "deprecated": false,
@@ -14559,17 +14748,6 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<UiTablePlaygroundComponent>",
                 "file": "projects/ui-kit/src/lib/components/table/ui-table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 184
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<UiStatCardGridComponent>",
-                "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -16735,7 +16913,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    ...playgroundDefaults,\r\n    type: 'confirmation',\r\n    title: 'Confirmar exclusão',\r\n    description:\r\n      'Tem certeza que deseja excluir este item? Essa ação não poderá ser desfeita.',\r\n    icon: 'warning' as const,\r\n    confirmLabel: 'Excluir',\r\n    cancelLabel: 'Cancelar',\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    ...playgroundDefaults,\r\n    type: 'confirmation',\r\n    presentationMode: 'fixed',\r\n    title: 'Confirmar exclusão',\r\n    description:\r\n      'Tem certeza que deseja excluir este item? Essa ação não poderá ser desfeita.',\r\n    icon: 'warning' as const,\r\n    confirmLabel: 'Excluir',\r\n    cancelLabel: 'Cancelar',\r\n  },\r\n}"
                 },
                 {
                     "name": "Content",
@@ -17450,6 +17628,118 @@
                     "defaultValue": "{\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Campo sem label visível, usando `ariaLabel` para acessibilidade.',\r\n      },\r\n    },\r\n  },\r\n  args: {\r\n    ...playgroundDefaults,\r\n    label: '',\r\n    ariaLabel: 'Pesquisar componentes',\r\n    id: 'searchComponents',\r\n    name: 'searchComponents',\r\n    type: 'search',\r\n    placeholder: 'Buscar...',\r\n    autocomplete: 'off',\r\n    inputMode: 'search',\r\n    required: false,\r\n  },\r\n}"
                 }
             ],
+            "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: { ...playgroundDefaults },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: defaultGridTemplate,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "defaultGridTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "defaultValue": "`\r\n  <ui-stat-card-grid [minCardWidth]=\"minCardWidth\" [gap]=\"gap\">\r\n    <ui-stat-card type=\"default\" [value]=\"6\" label=\"Total de alertas\" icon=\"alert\" />\r\n    <ui-stat-card type=\"danger\" [value]=\"2\" label=\"Urgentes\" icon=\"warning\" />\r\n    <ui-stat-card type=\"warning\" [value]=\"2\" label=\"Em breve\" icon=\"calendar\" />\r\n    <ui-stat-card type=\"info\" [value]=\"2\" label=\"Informativos\" icon=\"info\" />\r\n  </ui-stat-card-grid>\r\n`"
+                },
+                {
+                    "name": "Gradient",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid minCardWidth=\"180px\" gap=\"16px\">\r\n        <ui-stat-card appearance=\"gradient\" type=\"default\" [value]=\"6\" label=\"Total\" icon=\"alert\" />\r\n        <ui-stat-card appearance=\"gradient\" type=\"danger\" [value]=\"2\" label=\"Urgentes\" icon=\"warning\" />\r\n        <ui-stat-card appearance=\"gradient\" type=\"warning\" [value]=\"5\" label=\"Em breve\" icon=\"calendar\" />\r\n        <ui-stat-card appearance=\"gradient\" type=\"info\" [value]=\"7\" label=\"Informativos\" icon=\"info\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<UiStatCardGridComponent>",
+                    "defaultValue": "{\r\n  title: 'Layout/Stat Card Grid',\r\n  component: UiStatCardGridComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [UiStatCardGridComponent, UiStatCardComponent],\r\n    }),\r\n  ],\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|TwoCards|SixCards|Gradient|MixedSizes|WithoutIcons|MobilePetsExample)$/,\r\n  argTypes: {\r\n    minCardWidth: {\r\n      control: 'text',\r\n      table: { category: 'Layout' },\r\n      description: 'Largura mínima utilizada no desktop >= 900px.',\r\n    },\r\n    gap: {\r\n      control: 'text',\r\n      table: { category: 'Layout' },\r\n      description: 'Espaçamento entre os cards.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
+                },
+                {
+                    "name": "MixedSizes",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid minCardWidth=\"180px\" gap=\"16px\">\r\n        <ui-stat-card size=\"sm\" type=\"default\" [value]=\"6\" label=\"Pequeno\" icon=\"alert\" />\r\n        <ui-stat-card size=\"md\" type=\"info\" [value]=\"12\" label=\"Médio\" icon=\"info\" />\r\n        <ui-stat-card size=\"lg\" type=\"success\" [value]=\"21\" label=\"Grande\" icon=\"check-circle\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "MobilePetsExample",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  parameters: {\r\n    viewport: {\r\n      defaultViewport: 'mobile1',\r\n    },\r\n  },\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid>\r\n        <ui-stat-card size=\"sm\" type=\"default\" [value]=\"6\" label=\"Total\" icon=\"alert\" />\r\n        <ui-stat-card size=\"sm\" type=\"danger\" [value]=\"2\" label=\"Urgentes\" icon=\"warning\" />\r\n        <ui-stat-card size=\"sm\" type=\"warning\" [value]=\"2\" label=\"Em breve\" icon=\"calendar\" />\r\n        <ui-stat-card size=\"sm\" type=\"info\" [value]=\"2\" label=\"Informativos\" icon=\"info\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "PlaygroundCompleto",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: defaultGridTemplate,\r\n  }),\r\n  play: statCardGridPlaygroundPlay,\r\n}"
+                },
+                {
+                    "name": "playgroundDefaults",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  minCardWidth: '180px',\r\n  gap: '16px',\r\n}"
+                },
+                {
+                    "name": "SixCards",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid>\r\n        <ui-stat-card type=\"default\" [value]=\"6\" label=\"Total\" icon=\"alert\" />\r\n        <ui-stat-card type=\"danger\" [value]=\"2\" label=\"Urgentes\" icon=\"warning\" />\r\n        <ui-stat-card type=\"warning\" [value]=\"5\" label=\"Em breve\" icon=\"calendar\" />\r\n        <ui-stat-card type=\"info\" [value]=\"7\" label=\"Info\" icon=\"info\" />\r\n        <ui-stat-card type=\"success\" [value]=\"21\" label=\"Resolvidos\" icon=\"check-circle\" />\r\n        <ui-stat-card type=\"default\" [value]=\"4\" label=\"Outros\" icon=\"folder\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "TwoCards",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid>\r\n        <ui-stat-card type=\"success\" [value]=\"18\" label=\"Concluídos\" icon=\"check-circle\" />\r\n        <ui-stat-card type=\"danger\" [value]=\"3\" label=\"Pendentes\" icon=\"warning\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
+                },
+                {
+                    "name": "WithoutIcons",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid>\r\n        <ui-stat-card type=\"default\" [value]=\"6\" label=\"Total\" />\r\n        <ui-stat-card type=\"danger\" [value]=\"2\" label=\"Urgentes\" />\r\n        <ui-stat-card type=\"warning\" [value]=\"5\" label=\"Em breve\" />\r\n        <ui-stat-card type=\"info\" [value]=\"7\" label=\"Info\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
+                }
+            ],
             "projects/ui-kit/src/lib/components/table/ui-table.stories.ts": [
                 {
                     "name": "Default",
@@ -17600,118 +17890,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  name: 'Sem paginação (lista simples)',\r\n  render: (args) => ({\r\n    props: {\r\n      ...args,\r\n      showPagination: false,\r\n      showPageSize: false,\r\n      initialPageSize: 999,\r\n    },\r\n    template: `<ui-table-playground\r\n      [showPagination]=\"showPagination\"\r\n      [showPageSize]=\"showPageSize\"\r\n      [initialPageSize]=\"initialPageSize\"\r\n    />`,\r\n  }),\r\n  args: { ...playgroundDefaults },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Lista simples sem paginação — ideal para painéis como vet-invites.',\r\n      },\r\n    },\r\n  },\r\n}"
-                }
-            ],
-            "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: { ...playgroundDefaults },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: defaultGridTemplate,\r\n  }),\r\n}"
-                },
-                {
-                    "name": "defaultGridTemplate",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "unknown",
-                    "defaultValue": "`\r\n  <ui-stat-card-grid [minCardWidth]=\"minCardWidth\" [gap]=\"gap\">\r\n    <ui-stat-card type=\"default\" [value]=\"6\" label=\"Total de alertas\" icon=\"alert\" />\r\n    <ui-stat-card type=\"danger\" [value]=\"2\" label=\"Urgentes\" icon=\"warning\" />\r\n    <ui-stat-card type=\"warning\" [value]=\"2\" label=\"Em breve\" icon=\"calendar\" />\r\n    <ui-stat-card type=\"info\" [value]=\"2\" label=\"Informativos\" icon=\"info\" />\r\n  </ui-stat-card-grid>\r\n`"
-                },
-                {
-                    "name": "Gradient",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid minCardWidth=\"180px\" gap=\"16px\">\r\n        <ui-stat-card appearance=\"gradient\" type=\"default\" [value]=\"6\" label=\"Total\" icon=\"alert\" />\r\n        <ui-stat-card appearance=\"gradient\" type=\"danger\" [value]=\"2\" label=\"Urgentes\" icon=\"warning\" />\r\n        <ui-stat-card appearance=\"gradient\" type=\"warning\" [value]=\"5\" label=\"Em breve\" icon=\"calendar\" />\r\n        <ui-stat-card appearance=\"gradient\" type=\"info\" [value]=\"7\" label=\"Informativos\" icon=\"info\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<UiStatCardGridComponent>",
-                    "defaultValue": "{\r\n  title: 'Layout/Stat Card Grid',\r\n  component: UiStatCardGridComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [UiStatCardGridComponent, UiStatCardComponent],\r\n    }),\r\n  ],\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|TwoCards|SixCards|Gradient|MixedSizes|WithoutIcons|MobilePetsExample)$/,\r\n  argTypes: {\r\n    minCardWidth: {\r\n      control: 'text',\r\n      table: { category: 'Layout' },\r\n      description: 'Largura mínima utilizada no desktop >= 900px.',\r\n    },\r\n    gap: {\r\n      control: 'text',\r\n      table: { category: 'Layout' },\r\n      description: 'Espaçamento entre os cards.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
-                },
-                {
-                    "name": "MixedSizes",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid minCardWidth=\"180px\" gap=\"16px\">\r\n        <ui-stat-card size=\"sm\" type=\"default\" [value]=\"6\" label=\"Pequeno\" icon=\"alert\" />\r\n        <ui-stat-card size=\"md\" type=\"info\" [value]=\"12\" label=\"Médio\" icon=\"info\" />\r\n        <ui-stat-card size=\"lg\" type=\"success\" [value]=\"21\" label=\"Grande\" icon=\"check-circle\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
-                },
-                {
-                    "name": "MobilePetsExample",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  parameters: {\r\n    viewport: {\r\n      defaultViewport: 'mobile1',\r\n    },\r\n  },\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid>\r\n        <ui-stat-card size=\"sm\" type=\"default\" [value]=\"6\" label=\"Total\" icon=\"alert\" />\r\n        <ui-stat-card size=\"sm\" type=\"danger\" [value]=\"2\" label=\"Urgentes\" icon=\"warning\" />\r\n        <ui-stat-card size=\"sm\" type=\"warning\" [value]=\"2\" label=\"Em breve\" icon=\"calendar\" />\r\n        <ui-stat-card size=\"sm\" type=\"info\" [value]=\"2\" label=\"Informativos\" icon=\"info\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
-                },
-                {
-                    "name": "PlaygroundCompleto",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: defaultGridTemplate,\r\n  }),\r\n  play: statCardGridPlaygroundPlay,\r\n}"
-                },
-                {
-                    "name": "playgroundDefaults",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\r\n  minCardWidth: '180px',\r\n  gap: '16px',\r\n}"
-                },
-                {
-                    "name": "SixCards",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid>\r\n        <ui-stat-card type=\"default\" [value]=\"6\" label=\"Total\" icon=\"alert\" />\r\n        <ui-stat-card type=\"danger\" [value]=\"2\" label=\"Urgentes\" icon=\"warning\" />\r\n        <ui-stat-card type=\"warning\" [value]=\"5\" label=\"Em breve\" icon=\"calendar\" />\r\n        <ui-stat-card type=\"info\" [value]=\"7\" label=\"Info\" icon=\"info\" />\r\n        <ui-stat-card type=\"success\" [value]=\"21\" label=\"Resolvidos\" icon=\"check-circle\" />\r\n        <ui-stat-card type=\"default\" [value]=\"4\" label=\"Outros\" icon=\"folder\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
-                },
-                {
-                    "name": "TwoCards",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid>\r\n        <ui-stat-card type=\"success\" [value]=\"18\" label=\"Concluídos\" icon=\"check-circle\" />\r\n        <ui-stat-card type=\"danger\" [value]=\"3\" label=\"Pendentes\" icon=\"warning\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
-                },
-                {
-                    "name": "WithoutIcons",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <ui-stat-card-grid>\r\n        <ui-stat-card type=\"default\" [value]=\"6\" label=\"Total\" />\r\n        <ui-stat-card type=\"danger\" [value]=\"2\" label=\"Urgentes\" />\r\n        <ui-stat-card type=\"warning\" [value]=\"5\" label=\"Em breve\" />\r\n        <ui-stat-card type=\"info\" [value]=\"7\" label=\"Info\" />\r\n      </ui-stat-card-grid>\r\n    `,\r\n  }),\r\n}"
                 }
             ],
             "projects/ui-kit/src/lib/components/tabs/ui-tabs.stories.ts": [
@@ -19095,19 +19273,6 @@
                     "kind": 188
                 }
             ],
-            "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<UiAlertComponent>",
-                    "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
             "projects/ui-kit/src/lib/components/accordion/ui-accordion.stories.ts": [
                 {
                     "name": "Story",
@@ -19128,6 +19293,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<UiAccordionPanelComponent>",
                     "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<UiAlertComponent>",
+                    "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -19173,19 +19351,6 @@
                     "kind": 184
                 }
             ],
-            "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<UiCheckboxComponent>",
-                    "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
             "projects/ui-kit/src/lib/components/card/ui-card.stories.ts": [
                 {
                     "name": "Story",
@@ -19193,6 +19358,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<UiCardComponent>",
                     "file": "projects/ui-kit/src/lib/components/card/ui-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<UiCheckboxComponent>",
+                    "file": "projects/ui-kit/src/lib/components/checkbox/ui-checkbox.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -19277,19 +19455,6 @@
                     "kind": 184
                 }
             ],
-            "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<UiPageTitleComponent>",
-                    "file": "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
             "projects/ui-kit/src/lib/components/modal/ui-modal.stories.ts": [
                 {
                     "name": "Story",
@@ -19297,6 +19462,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<UiModalComponent>",
                     "file": "projects/ui-kit/src/lib/components/modal/ui-modal.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<UiPageTitleComponent>",
+                    "file": "projects/ui-kit/src/lib/components/page-title/ui-page-title.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -19364,6 +19542,19 @@
                     "kind": 184
                 }
             ],
+            "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<UiStatCardGridComponent>",
+                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
             "projects/ui-kit/src/lib/components/switch/ui-switch.stories.ts": [
                 {
                     "name": "Story",
@@ -19386,19 +19577,6 @@
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 188
-                }
-            ],
-            "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<UiStatCardGridComponent>",
-                    "file": "projects/ui-kit/src/lib/components/stat-card-grid/ui-stat-card-grid.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
                 }
             ],
             "projects/ui-kit/src/lib/components/tabs/ui-tabs.stories.ts": [
@@ -21873,7 +22051,7 @@
                 "linktype": "component",
                 "name": "UiModalComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/31",
+                "coverageCount": "0/44",
                 "status": "low"
             },
             {

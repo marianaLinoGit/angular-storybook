@@ -34,11 +34,10 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      default: 'light',
-      values: [
-        { name: 'light', value: '#f9fafb' },
-        { name: 'dark', value: '#101320' },
-      ],
+      options: {
+        light: { name: 'light', value: '#f9f4fc' },
+        dark: { name: 'dark', value: '#0d0433' },
+      },
     },
     test: {
       dangerouslyIgnoreUnhandledErrors: false,
@@ -48,6 +47,7 @@ const preview: Preview = {
       test: 'off',
     },
   },
+
   decorators: [
     withThemeByDataAttribute({
       themes: {
@@ -58,6 +58,12 @@ const preview: Preview = {
       attributeName: 'data-theme',
     }),
   ],
+
+  initialGlobals: {
+    backgrounds: {
+      value: 'light'
+    }
+  }
 };
 
 export default preview;

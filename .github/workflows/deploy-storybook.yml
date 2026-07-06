@@ -39,7 +39,7 @@ jobs:
         run: npm ci
 
       - name: Build UI Kit
-        run: npm run build ui-kit
+        run: npm run build:ui-kit
 
       - name: Check dist
         run: |

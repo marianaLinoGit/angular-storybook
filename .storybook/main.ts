@@ -8,9 +8,7 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-a11y',
     '@storybook/addon-docs',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/addon-themes',
+    '@storybook/addon-themes'
   ],
   framework: '@storybook/angular',
 };
