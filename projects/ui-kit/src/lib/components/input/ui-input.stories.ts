@@ -11,6 +11,9 @@ const playgroundDefaults = {
   placeholder: 'Seu nome',
   autocomplete: 'name',
   inputMode: null as string | null,
+  min: null as string | number | null,
+  max: null as string | number | null,
+  step: null as string | number | null,
   required: true,
   readonly: false,
   disabled: false,
@@ -26,7 +29,7 @@ const meta: Meta<UiInputComponent> = {
   component: UiInputComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|Email|Password|Optional|RequiredWithError|Disabled|ReadOnly|Search|WithoutVisibleLabel)$/,
+    /^(PlaygroundCompleto|Default|Email|Password|Optional|RequiredWithError|Disabled|ReadOnly|Search|WithoutVisibleLabel|Date|DateTime|Time)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -86,9 +89,38 @@ const meta: Meta<UiInputComponent> = {
     },
     type: {
       control: 'select',
-      options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search'],
+      options: [
+        'text',
+        'email',
+        'password',
+        'number',
+        'tel',
+        'url',
+        'search',
+        'date',
+        'datetime-local',
+        'time',
+      ],
       table: { category: 'Formulário' },
       description: 'Tipo nativo do elemento `<input>`.',
+    },
+    min: {
+      control: 'text',
+      table: { category: 'Formulário' },
+      description:
+        'Valor mínimo aceito (útil com `number`, `date`, `datetime-local` e `time`).',
+    },
+    max: {
+      control: 'text',
+      table: { category: 'Formulário' },
+      description:
+        'Valor máximo aceito (útil com `number`, `date`, `datetime-local` e `time`).',
+    },
+    step: {
+      control: 'text',
+      table: { category: 'Formulário' },
+      description:
+        'Incremento aceito pelo campo (útil com `number`, `date`, `datetime-local` e `time`).',
     },
     autocomplete: {
       control: 'text',
@@ -289,5 +321,64 @@ export const WithoutVisibleLabel: Story = {
     autocomplete: 'off',
     inputMode: 'search',
     required: false,
+  },
+};
+
+export const Date: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Campo de data com `type="date"`. Use `max`/`min` para limitar o intervalo (ex.: impedir datas futuras).',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Data da medição',
+    id: 'measuredAt',
+    name: 'measuredAt',
+    type: 'date',
+    placeholder: '',
+    autocomplete: 'off',
+    max: '2026-12-31',
+  },
+};
+
+export const DateTime: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Campo de data e hora com `type="datetime-local"`.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Data e hora da consulta',
+    id: 'visitedAt',
+    name: 'visitedAt',
+    type: 'datetime-local',
+    placeholder: '',
+    autocomplete: 'off',
+  },
+};
+
+export const Time: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Campo de horário com `type="time"`.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Horário',
+    id: 'time',
+    name: 'time',
+    type: 'time',
+    placeholder: '',
+    autocomplete: 'off',
   },
 };

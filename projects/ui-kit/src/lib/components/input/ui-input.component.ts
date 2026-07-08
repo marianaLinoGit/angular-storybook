@@ -18,7 +18,10 @@ export type UiInputType =
   | 'number'
   | 'tel'
   | 'url'
-  | 'search';
+  | 'search'
+  | 'date'
+  | 'datetime-local'
+  | 'time';
 
 @Component({
   selector: 'ui-input',
@@ -46,6 +49,9 @@ export class UiInputComponent implements ControlValueAccessor {
   placeholder = input('');
   autocomplete = input<string | null>(null);
   inputMode = input<string | null>(null);
+  min = input<string | number | null>(null);
+  max = input<string | number | null>(null);
+  step = input<string | number | null>(null);
 
   required = input(false);
   readonly = input(false);
