@@ -27,4 +27,5 @@ export * from './lib/components/tabs/ui-tabs.component';
 export * from './lib/components/toast/ui-toast.component';
 export * from './lib/components/tooltip/ui-tooltip.component';
 
+export * from './lib/design-system/tokens/corner-shape.tokens';
 export * from './lib/design-system/types/ui.types';

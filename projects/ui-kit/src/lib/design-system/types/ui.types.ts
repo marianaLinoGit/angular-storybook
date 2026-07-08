@@ -18,3 +18,7 @@ export type UiToastPosition =
   | 'bottom-left'
   | 'bottom-center'
   | 'bottom-right';
+
+export type UiCornerShape = 'round' | 'squircle' | 'scoop' | 'bevel' | 'notch';
+
+export type UiCornerRadiusSize = 'sm' | 'md' | 'lg' | 'xl';

@@ -1,0 +1,89 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Design Tokens/Corner Shape/Guia" />
+
+# Corner Shape
+
+Tokens para o modelo visual de cantos com a propriedade CSS `corner-shape`, combinada com `border-radius`.
+
+---
+
+## Exemplos visuais
+
+<div style={{ display: "grid", gap: "var(--ui-space-6)" }}>
+  <div>
+    <strong>Round · XL (24px)</strong>
+    <div style={{ marginTop: "var(--ui-space-3)", padding: "var(--ui-space-4)", background: "repeating-conic-gradient(#e5e7eb 0% 25%, #ffffff 0% 50%) 50% / 18px 18px", border: "1px solid var(--ui-color-border)", borderRadius: "var(--ui-radius-md)", width: "fit-content" }}>
+      <div style={{ width: "120px", height: "120px", background: "var(--ui-color-primary)", borderRadius: "var(--ui-radius-xl)", cornerShape: "round", display: "grid", placeItems: "center", color: "#fff", fontSize: "12px", fontWeight: 600, textTransform: "uppercase" }}>round</div>
+    </div>
+  </div>
+
+  <div>
+    <strong>Squircle · XL (24px)</strong>
+    <div style={{ marginTop: "var(--ui-space-3)", padding: "var(--ui-space-4)", background: "repeating-conic-gradient(#e5e7eb 0% 25%, #ffffff 0% 50%) 50% / 18px 18px", border: "1px solid var(--ui-color-border)", borderRadius: "var(--ui-radius-md)", width: "fit-content" }}>
+      <div style={{ width: "120px", height: "120px", background: "var(--ui-color-primary)", borderRadius: "var(--ui-radius-xl)", cornerShape: "squircle", display: "grid", placeItems: "center", color: "#fff", fontSize: "12px", fontWeight: 600, textTransform: "uppercase" }}>squircle</div>
+    </div>
+  </div>
+
+  <div>
+    <strong>Scoop · XL (24px)</strong>
+    <div style={{ marginTop: "var(--ui-space-3)", padding: "var(--ui-space-4)", background: "repeating-conic-gradient(#e5e7eb 0% 25%, #ffffff 0% 50%) 50% / 18px 18px", border: "1px solid var(--ui-color-border)", borderRadius: "var(--ui-radius-md)", width: "fit-content" }}>
+      <div style={{ width: "120px", height: "120px", background: "var(--ui-color-primary)", borderRadius: "var(--ui-radius-xl)", cornerShape: "scoop", display: "grid", placeItems: "center", color: "#fff", fontSize: "12px", fontWeight: 600, textTransform: "uppercase" }}>scoop</div>
+    </div>
+  </div>
+
+  <div>
+    <strong>Bevel · XL (24px)</strong>
+    <div style={{ marginTop: "var(--ui-space-3)", padding: "var(--ui-space-4)", background: "repeating-conic-gradient(#e5e7eb 0% 25%, #ffffff 0% 50%) 50% / 18px 18px", border: "1px solid var(--ui-color-border)", borderRadius: "var(--ui-radius-md)", width: "fit-content" }}>
+      <div style={{ width: "120px", height: "120px", background: "var(--ui-color-primary)", borderRadius: "var(--ui-radius-xl)", cornerShape: "bevel", display: "grid", placeItems: "center", color: "#fff", fontSize: "12px", fontWeight: 600, textTransform: "uppercase" }}>bevel</div>
+    </div>
+  </div>
+
+  <div>
+    <strong>Notch · XL (24px)</strong>
+    <div style={{ marginTop: "var(--ui-space-3)", padding: "var(--ui-space-4)", background: "repeating-conic-gradient(#e5e7eb 0% 25%, #ffffff 0% 50%) 50% / 18px 18px", border: "1px solid var(--ui-color-border)", borderRadius: "var(--ui-radius-md)", width: "fit-content" }}>
+      <div style={{ width: "120px", height: "120px", background: "var(--ui-color-primary)", borderRadius: "var(--ui-radius-xl)", cornerShape: "notch", display: "grid", placeItems: "center", color: "#fff", fontSize: "12px", fontWeight: 600, textTransform: "uppercase" }}>notch</div>
+    </div>
+  </div>
+</div>
+
+---
+
+## Tokens CSS
+
+```scss
+--ui-corner-shape-round
+--ui-corner-shape-squircle
+--ui-corner-shape-scoop
+--ui-corner-shape-bevel
+--ui-corner-shape-notch
+```
+
+Tamanhos de raio:
+
+```scss
+--ui-radius-sm   // 6px
+--ui-radius-md   // 10px
+--ui-radius-lg   // 16px
+--ui-radius-xl   // 24px
+```
+
+---
+
+## Classes utilitárias
+
+```txt
+.ui-corner-{shape}-{size}
+```
+
+Exemplos: `.ui-corner-squircle-lg`, `.ui-corner-notch-xl`
+
+---
+
+## SCSS mixin
+
+```scss
+@include ui-corner-shape(squircle, var(--ui-radius-lg));
+```
+
+> Para a matriz completa (5 modelos × 4 tamanhos), abra **Design Tokens / Corner Shape / Matriz completa** no Canvas.

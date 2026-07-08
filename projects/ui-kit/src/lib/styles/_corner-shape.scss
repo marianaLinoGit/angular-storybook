@@ -1,0 +1,59 @@
+:root {
+  --ui-corner-shape-round: round;
+  --ui-corner-shape-squircle: squircle;
+  --ui-corner-shape-scoop: scoop;
+  --ui-corner-shape-bevel: bevel;
+  --ui-corner-shape-notch: notch;
+}
+
+$ui-corner-shapes: round, squircle, scoop, bevel, notch;
+
+$ui-corner-radius-sizes: (
+  sm: var(--ui-radius-sm),
+  md: var(--ui-radius-md),
+  lg: var(--ui-radius-lg),
+  xl: var(--ui-radius-xl),
+);
+
+@mixin ui-corner-shape(
+  $shape: round,
+  $radius: var(--ui-radius-md)
+) {
+  border-radius: $radius;
+  corner-shape: $shape;
+}
+
+@each $shape in $ui-corner-shapes {
+  .ui-corner-shape-#{$shape} {
+    corner-shape: #{$shape};
+  }
+}
+
+@each $size, $radius in $ui-corner-radius-sizes {
+  .ui-corner-radius-#{$size} {
+    border-radius: #{$radius};
+  }
+}
+
+@each $shape in $ui-corner-shapes {
+  @each $size, $radius in $ui-corner-radius-sizes {
+    .ui-corner-#{$shape}-#{$size} {
+      border-radius: #{$radius};
+      corner-shape: #{$shape};
+    }
+  }
+}
+
+.ui-corner-demo {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  background: var(--ui-color-primary);
+  border: 2px solid color-mix(in srgb, var(--ui-color-primary), #000000 18%);
+  color: var(--ui-color-on-primary);
+  font-family: var(--ui-font-family-text);
+  font-size: var(--ui-font-size-xs);
+  font-weight: var(--ui-font-weight-semibold);
+  text-transform: uppercase;
+}

@@ -1,0 +1,124 @@
+<div class="corner-shape-showcase">
+  @if (view() === 'matrix' || view() === 'shape') {
+    @for (shape of shapeSections(); track shape) {
+      <section class="corner-shape-showcase__section">
+        <h3 class="corner-shape-showcase__heading">{{ shapeLabel(shape) }}</h3>
+        <p class="corner-shape-showcase__description">{{ shapeDescription(shape) }}</p>
+
+        <div class="corner-shape-showcase__grid">
+          @for (size of sizes; track size) {
+            <div class="corner-shape-showcase__item">
+              <div class="corner-shape-showcase__canvas">
+                <div
+                  class="corner-shape-showcase__box"
+                  [style.border-radius]="radiusValue(size)"
+                  [style.corner-shape]="shape"
+                >
+                  {{ shape }}
+                </div>
+              </div>
+              <code class="corner-shape-showcase__code">.{{ utilityClass(shape, size) }}</code>
+              <span class="corner-shape-showcase__label">
+                {{ shapeLabel(shape) }} · {{ size | uppercase }} ({{ radiusLabel(size) }})
+              </span>
+            </div>
+          }
+        </div>
+      </section>
+    }
+  }
+
+  @if (view() === 'by-size' || view() === 'size') {
+    @for (size of sizeSections(); track size) {
+      <section class="corner-shape-showcase__section">
+        <h3 class="corner-shape-showcase__heading">
+          Raio {{ size | uppercase }} ({{ radiusLabel(size) }})
+        </h3>
+        <p class="corner-shape-showcase__description">
+          Comparação dos modelos de corner-shape no mesmo border-radius.
+        </p>
+
+        <div class="corner-shape-showcase__grid">
+          @for (shape of shapes; track shape) {
+            <div class="corner-shape-showcase__item">
+              <div class="corner-shape-showcase__canvas">
+                <div
+                  class="corner-shape-showcase__box"
+                  [style.border-radius]="radiusValue(size)"
+                  [style.corner-shape]="shape"
+                >
+                  {{ shape }}
+                </div>
+              </div>
+              <code class="corner-shape-showcase__code">.{{ utilityClass(shape, size) }}</code>
+              <span class="corner-shape-showcase__label">
+                {{ shapeLabel(shape) }} · {{ size | uppercase }} ({{ radiusLabel(size) }})
+              </span>
+            </div>
+          }
+        </div>
+      </section>
+    }
+  }
+
+  @if (view() === 'cards') {
+    <div class="corner-shape-showcase__cards">
+      <article
+        class="corner-shape-showcase__card"
+        [style.border-radius]="radiusValue('lg')"
+        [style.corner-shape]="'squircle'"
+      >
+        <h4 class="corner-shape-showcase__card-title">Card squircle</h4>
+        <p class="corner-shape-showcase__card-text">
+          Classe <code>.ui-corner-squircle-lg</code>
+        </p>
+      </article>
+
+      <article
+        class="corner-shape-showcase__card"
+        [style.border-radius]="radiusValue('xl')"
+        [style.corner-shape]="'scoop'"
+      >
+        <h4 class="corner-shape-showcase__card-title">Card scoop</h4>
+        <p class="corner-shape-showcase__card-text">
+          Classe <code>.ui-corner-scoop-xl</code>
+        </p>
+      </article>
+
+      <article
+        class="corner-shape-showcase__card"
+        [style.border-radius]="radiusValue('md')"
+        [style.corner-shape]="'bevel'"
+      >
+        <h4 class="corner-shape-showcase__card-title">Card bevel</h4>
+        <p class="corner-shape-showcase__card-text">
+          Classe <code>.ui-corner-bevel-md</code>
+        </p>
+      </article>
+    </div>
+  }
+
+  @if (view() === 'tokens') {
+    <div class="corner-shape-showcase__tokens">
+      <h3 class="corner-shape-showcase__heading">CSS variables</h3>
+      <ul class="corner-shape-showcase__list">
+        <li><code>--ui-corner-shape-round</code></li>
+        <li><code>--ui-corner-shape-squircle</code></li>
+        <li><code>--ui-corner-shape-scoop</code></li>
+        <li><code>--ui-corner-shape-bevel</code></li>
+        <li><code>--ui-corner-shape-notch</code></li>
+      </ul>
+
+      <h3 class="corner-shape-showcase__heading">Border radius</h3>
+      <ul class="corner-shape-showcase__list">
+        <li><code>--ui-radius-sm</code> (6px)</li>
+        <li><code>--ui-radius-md</code> (10px)</li>
+        <li><code>--ui-radius-lg</code> (16px)</li>
+        <li><code>--ui-radius-xl</code> (24px)</li>
+      </ul>
+
+      <h3 class="corner-shape-showcase__heading">SCSS mixin</h3>
+      <pre class="corner-shape-showcase__pre"><code>@include ui-corner-shape(squircle, var(--ui-radius-lg));</code></pre>
+    </div>
+  }
+</div>
