@@ -23,14 +23,17 @@
         </div>
 
         @if (showCloseButton()) {
-          <button
+          <ui-button
+            class="ui-modal__close"
             type="button"
-            class="ui-modal__icon-button"
-            [attr.aria-label]="closeAriaLabel()"
-            (click)="close()"
-          >
-            <ui-icon name="close" size="sm" aria-hidden="true" />
-          </button>
+            color="secondary"
+            size="sm"
+            icon="close"
+            [outline]="true"
+            [iconOnly]="true"
+            [ariaLabel]="closeAriaLabel()"
+            (buttonClick)="close()"
+          />
         }
       </header>
 
@@ -45,22 +48,23 @@
       @if (type() !== "content") {
         <footer class="ui-modal__footer">
           @if (type() === "confirmation") {
-            <button
+            <ui-button
               type="button"
-              class="ui-modal__button ui-modal__button--secondary"
-              (click)="cancel()"
-            >
-              {{ cancelLabel() }}
-            </button>
+              color="secondary"
+              size="md"
+              [outline]="true"
+              [label]="cancelLabel()"
+              (buttonClick)="cancel()"
+            />
           }
 
-          <button
+          <ui-button
             type="button"
-            class="ui-modal__button ui-modal__button--primary"
-            (click)="type() === 'confirmation' ? confirm() : close()"
-          >
-            {{ type() === "confirmation" ? confirmLabel() : closeLabel() }}
-          </button>
+            color="primary"
+            size="md"
+            [label]="type() === 'confirmation' ? confirmLabel() : closeLabel()"
+            (buttonClick)="type() === 'confirmation' ? confirm() : close()"
+          />
         </footer>
       }
     </section>

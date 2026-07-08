@@ -105,48 +105,7 @@
     border-top: 1px solid var(--ui-color-border);
   }
 
-  &__icon-button {
-    border: none;
-    background: transparent;
-    color: var(--ui-color-muted);
-    cursor: pointer;
-    font-size: 26px;
-    line-height: 1;
-    padding: 0;
-
-    &:hover {
-      color: var(--ui-color-text);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--ui-color-primary);
-      outline-offset: 2px;
-      border-radius: var(--ui-radius-sm);
-    }
-  }
-
-  &__button {
-    border-radius: var(--ui-radius-md);
-    padding: var(--ui-space-2) var(--ui-space-4);
-    font-weight: var(--ui-font-weight-semibold);
-    cursor: pointer;
-    font-size: var(--ui-font-size-sm);
-
-    &:focus-visible {
-      outline: 2px solid var(--ui-color-primary);
-      outline-offset: 2px;
-    }
-
-    &--primary {
-      border: none;
-      background: var(--ui-color-primary);
-      color: var(--ui-color-surface);
-    }
-
-    &--secondary {
-      border: 1px solid var(--ui-color-border);
-      background: var(--ui-color-surface);
-      color: var(--ui-color-text);
-    }
+  &__close {
+    flex-shrink: 0;
   }
 }

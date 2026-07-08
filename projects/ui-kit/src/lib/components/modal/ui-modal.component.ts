@@ -13,6 +13,7 @@ import {
   signal,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 export type UiModalType = 'confirmation' | 'informative' | 'content';
@@ -22,7 +23,7 @@ export type UiModalPresentationMode = 'fixed' | 'inline';
 @Component({
   selector: 'ui-modal',
   standalone: true,
-  imports: [UiIconComponent],
+  imports: [UiButtonComponent, UiIconComponent],
   templateUrl: './ui-modal.component.html',
   styleUrl: './ui-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
