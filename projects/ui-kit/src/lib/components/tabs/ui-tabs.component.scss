@@ -96,11 +96,16 @@
       padding: var(--ui-space-3) var(--ui-space-4);
       border-radius: var(--ui-radius-md);
       background: var(--ui-color-surface);
+      border: 1px solid var(--ui-color-border);
       text-align: center;
 
       &:hover:not(:disabled):not(.ui-tabs__tab--active) {
         color: var(--ui-color-primary);
-        background: color-mix(in srgb, var(--ui-color-primary) 10%, var(--ui-color-surface));
+        background: color-mix(
+          in srgb,
+          var(--ui-color-primary) 10%,
+          var(--ui-color-surface)
+        );
       }
 
       &:focus-visible {
@@ -110,11 +115,16 @@
 
       &--active {
         background: var(--ui-color-primary);
+        border-color: var(--ui-color-primary);
         color: var(--ui-color-on-primary);
         font-weight: var(--ui-font-weight-semibold);
 
         small {
-          background: color-mix(in srgb, var(--ui-color-on-primary) 24%, transparent);
+          background: color-mix(
+            in srgb,
+            var(--ui-color-on-primary) 24%,
+            transparent
+          );
           color: var(--ui-color-on-primary);
         }
       }
