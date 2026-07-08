@@ -69,13 +69,14 @@
     display: flex;
     align-items: center;
     gap: var(--ui-space-3);
+    color: var(--ui-color-text);
 
     h2 {
       margin: 0;
       font-family: var(--ui-font-family-title);
       font-size: var(--ui-font-size-lg);
       font-weight: var(--ui-font-weight-bold);
-      color: var(--ui-color-text);
+      color: inherit;
     }
   }
 
@@ -83,6 +84,20 @@
     flex-shrink: 0;
     font-size: var(--ui-font-size-xl);
     line-height: 1;
+    color: currentColor;
+  }
+
+  &__text-action {
+    ::ng-deep .ui-button.ui-button--outline {
+      color: var(--ui-color-text);
+      border-color: color-mix(in srgb, var(--ui-color-text) 28%, transparent);
+      background: transparent;
+
+      &:hover:not(:disabled) {
+        background: color-mix(in srgb, var(--ui-color-text) 8%, transparent);
+        filter: none;
+      }
+    }
   }
 
   &__body {

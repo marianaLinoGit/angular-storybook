@@ -10,7 +10,7 @@
     >
       <header class="ui-modal__header">
         <div class="ui-modal__title-wrapper">
-          @if (icon(); as iconName) {
+          @if (resolvedIcon(); as iconName) {
             <ui-icon
               class="ui-modal__title-icon"
               [name]="iconName"
@@ -24,7 +24,7 @@
 
         @if (showCloseButton()) {
           <ui-button
-            class="ui-modal__close"
+            class="ui-modal__close ui-modal__text-action"
             type="button"
             color="secondary"
             size="sm"
@@ -45,10 +45,11 @@
         <ng-content></ng-content>
       </main>
 
-      @if (type() !== "content") {
+      @if (showFooter()) {
         <footer class="ui-modal__footer">
-          @if (type() === "confirmation") {
+          @if (showCancelButton()) {
             <ui-button
+              class="ui-modal__text-action"
               type="button"
               color="secondary"
               size="md"
@@ -60,10 +61,10 @@
 
           <ui-button
             type="button"
-            color="primary"
+            [color]="primaryActionColor()"
             size="md"
-            [label]="type() === 'confirmation' ? confirmLabel() : closeLabel()"
-            (buttonClick)="type() === 'confirmation' ? confirm() : close()"
+            [label]="isConfirmAction() ? confirmLabel() : closeLabel()"
+            (buttonClick)="isConfirmAction() ? confirm() : close()"
           />
         </footer>
       }

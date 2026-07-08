@@ -16,7 +16,7 @@ import { DOCUMENT } from '@angular/common';
 import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
-export type UiModalType = 'confirmation' | 'informative' | 'content';
+export type UiModalType = 'confirmation' | 'informative' | 'content' | 'delete';
 export type UiModalSize = 'sm' | 'md' | 'lg';
 export type UiModalPresentationMode = 'fixed' | 'inline';
 
@@ -73,6 +73,25 @@ export class UiModalComponent {
   descriptionId = `ui-modal-description-${crypto.randomUUID()}`;
 
   isVisible = computed(() => this.open() && !this.internalClosed());
+
+  resolvedIcon = computed<UiIconName | null>(() => {
+    if (this.type() === 'delete') return 'delete';
+    return this.icon();
+  });
+
+  showFooter = computed(() => this.type() !== 'content');
+
+  showCancelButton = computed(
+    () => this.type() === 'confirmation' || this.type() === 'delete',
+  );
+
+  isConfirmAction = computed(
+    () => this.type() === 'confirmation' || this.type() === 'delete',
+  );
+
+  primaryActionColor = computed(() =>
+    this.type() === 'delete' ? 'danger' : 'primary',
+  );
 
   backdropClasses = computed(() =>
     ['ui-modal-backdrop', `ui-modal-backdrop--${this.presentationMode()}`]

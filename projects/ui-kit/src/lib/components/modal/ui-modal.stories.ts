@@ -26,7 +26,7 @@ const meta: Meta<UiModalComponent> = {
   component: UiModalComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Informative|Confirmation|Content|WithoutIcon)$/,
+    /^(PlaygroundCompleto|Informative|Confirmation|Delete|Content|WithoutIcon)$/,
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -43,10 +43,10 @@ const meta: Meta<UiModalComponent> = {
     },
     type: {
       control: 'select',
-      options: ['confirmation', 'informative', 'content'],
+      options: ['informative', 'confirmation', 'delete', 'content'],
       table: { category: 'Comportamento' },
       description:
-        'Define o comportamento do modal: confirmação, informativo ou apenas conteúdo.',
+        'Define o comportamento: informativo (1 botão), confirmação (cancelar + confirmar), exclusão (ícone delete + botão danger) ou conteúdo (sem footer).',
     },
     title: {
       control: 'text',
@@ -62,50 +62,61 @@ const meta: Meta<UiModalComponent> = {
     },
     icon: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description:
-        'Ícone visual exibido ao lado do título. É decorativo e oculto de leitores de tela.',
+        'Ícone ao lado do título. Ignorado quando type="delete" (usa ícone delete automaticamente).',
     },
     confirmLabel: {
       control: 'text',
-      description: 'Texto do botão de confirmação.',
+      table: { category: 'Conteúdo' },
+      description: 'Texto do botão de confirmação ou exclusão.',
     },
     cancelLabel: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description: 'Texto do botão de cancelamento.',
     },
     closeLabel: {
       control: 'text',
+      table: { category: 'Conteúdo' },
       description: 'Texto do botão principal em modais informativos.',
     },
     closeAriaLabel: {
       control: 'text',
+      table: { category: 'Acessibilidade' },
       description: 'Texto acessível do botão de fechar no cabeçalho.',
     },
     showCloseButton: {
       control: 'boolean',
+      table: { category: 'Comportamento' },
       description: 'Exibe ou oculta o botão de fechar no cabeçalho.',
     },
     closeOnBackdrop: {
       control: 'boolean',
+      table: { category: 'Comportamento' },
       description: 'Permite fechar o modal ao clicar fora do conteúdo.',
     },
     closeOnEscape: {
       control: 'boolean',
+      table: { category: 'Comportamento' },
       description: 'Permite fechar o modal pressionando a tecla Escape.',
     },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+      table: { category: 'Aparência' },
       description: 'Tamanho visual do modal.',
     },
     presentationMode: {
       control: 'radio',
       options: ['inline', 'fixed'],
+      table: { category: 'Aparência' },
       description:
         'Modo de apresentação. Use inline para documentação e fixed para uso real em tela.',
     },
     customClass: {
       control: 'text',
+      table: { category: 'Aparência' },
       description: 'Classe CSS customizada.',
     },
     confirmed: {
@@ -145,26 +156,70 @@ export const PlaygroundCompleto: Story = {
 };
 
 export const Informative: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Modal informativo: um botão principal (`closeLabel`) e ícone opcional.',
+      },
+    },
+  },
   args: {
     ...playgroundDefaults,
   },
 };
 
 export const Confirmation: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Modal de confirmação: cancelar + confirmar com botão primary. Ícone customizável.',
+      },
+    },
+  },
   args: {
     ...playgroundDefaults,
     type: 'confirmation',
     presentationMode: 'fixed',
-    title: 'Confirmar exclusão',
+    title: 'Confirmar ação',
+    description: 'Tem certeza que deseja continuar? Revise as informações antes de confirmar.',
+    icon: 'warning',
+    confirmLabel: 'Confirmar',
+    cancelLabel: 'Cancelar',
+  },
+};
+
+export const Delete: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Modal de exclusão: usa sempre o ícone `delete`, cancelar + botão de ação em `danger`. O input `icon` é ignorado.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    type: 'delete',
+    presentationMode: 'fixed',
+    title: 'Excluir registro?',
     description:
-      'Tem certeza que deseja excluir este item? Essa ação não poderá ser desfeita.',
-    icon: 'warning' as const,
+      'Essa ação não pode ser desfeita. O registro será removido permanentemente.',
+    icon: 'warning',
     confirmLabel: 'Excluir',
     cancelLabel: 'Cancelar',
   },
 };
 
 export const Content: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modal de conteúdo: sem footer, ideal para formulários ou conteúdo projetado.',
+      },
+    },
+  },
   render: (args) => ({
     props: args,
     template: `
@@ -194,18 +249,25 @@ export const Content: Story = {
     `,
   }),
   args: {
-    ...Informative.args,
+    ...playgroundDefaults,
     type: 'content',
     title: 'Modal de conteúdo',
     description: 'Modal sem footer, ideal para conteúdo customizado.',
-    icon: 'package' as const,
+    icon: 'package',
     size: 'lg',
   },
 };
 
 export const WithoutIcon: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Modal informativo sem ícone ao lado do título (`icon=null`).',
+      },
+    },
+  },
   args: {
-    ...Informative.args,
+    ...playgroundDefaults,
     title: 'Modal sem ícone',
     description: 'Esse exemplo não possui ícone ao lado do título.',
     icon: null,
