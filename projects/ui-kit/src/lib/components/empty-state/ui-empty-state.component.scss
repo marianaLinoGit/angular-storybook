@@ -118,40 +118,4 @@
     color: var(--ui-color-muted);
     line-height: 1.6;
   }
-
-  &__button {
-    border-radius: var(--ui-radius-md);
-    padding: var(--ui-space-3) var(--ui-space-4);
-    cursor: pointer;
-    font-weight: var(--ui-font-weight-semibold);
-    font-size: var(--ui-font-size-sm);
-    border: 0;
-    font-family: inherit;
-
-    &:disabled {
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--ui-color-primary);
-      outline-offset: 2px;
-    }
-
-    &--primary {
-      background: var(--ui-color-primary);
-      color: var(--ui-color-surface);
-    }
-
-    &--secondary {
-      background: var(--ui-color-secondary);
-      color: var(--ui-color-surface);
-    }
-
-    &--outline {
-      border: 1px solid var(--ui-color-primary);
-      background: transparent;
-      color: var(--ui-color-primary);
-    }
-  }
 }

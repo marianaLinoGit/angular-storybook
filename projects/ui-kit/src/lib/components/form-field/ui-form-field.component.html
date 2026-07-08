@@ -19,6 +19,10 @@
   }
 
   @if (hasErrorState() && errorMessage()) {
-    <p class="ui-form-field__error" [id]="errorId()">{{ errorMessage() }}</p>
+    <ui-field-error
+      [id]="errorId()"
+      [message]="errorMessage()!"
+      [flush]="true"
+    />
   }
 </div>

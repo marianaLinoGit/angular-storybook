@@ -119,8 +119,6 @@
   </div>
 
   @if (hasError() && !hideError()) {
-    <p class="ui-select-field__error" [id]="errorId()">
-      {{ errorMessage() }}
-    </p>
+    <ui-field-error [id]="errorId()" [message]="errorMessage()" />
   }
 </div>

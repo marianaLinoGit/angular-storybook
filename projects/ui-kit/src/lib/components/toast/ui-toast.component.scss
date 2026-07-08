@@ -154,29 +154,7 @@
   }
 
   &__close {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    flex-shrink: 0;
     margin-left: auto;
-
-    border: 0;
-
-    background: transparent;
-
-    color: var(--toast-text, inherit);
-
-    cursor: pointer;
-
-    opacity: 1;
-
-    transition: 0.2s;
-
-    &:hover {
-      filter: brightness(0.85);
-    }
-  }
-
-  &--solid &__close {
-    color: var(--toast-on-color);
   }
 }

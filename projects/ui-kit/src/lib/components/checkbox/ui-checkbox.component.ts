@@ -9,12 +9,13 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
+import { UiFieldErrorComponent } from '../field-error/ui-field-error.component';
 import { UiIconComponent } from '../icon/ui-icon.component';
 
 @Component({
   selector: 'ui-checkbox',
   standalone: true,
-  imports: [UiIconComponent],
+  imports: [UiFieldErrorComponent, UiIconComponent],
   templateUrl: './ui-checkbox.component.html',
   styleUrl: './ui-checkbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

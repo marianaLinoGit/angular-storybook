@@ -5,6 +5,8 @@ import {
   input,
   output,
 } from '@angular/core';
+import { UiColor } from '@design-system/types/ui.types';
+import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 export type UiEmptyStateSize = 'sm' | 'md' | 'lg';
@@ -15,7 +17,7 @@ export type UiEmptyStateButtonVariant = 'primary' | 'secondary' | 'outline';
 @Component({
   selector: 'ui-empty-state',
   standalone: true,
-  imports: [UiIconComponent],
+  imports: [UiButtonComponent, UiIconComponent],
   templateUrl: './ui-empty-state.component.html',
   styleUrl: './ui-empty-state.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -53,16 +55,20 @@ export class UiEmptyStateComponent {
       .join(' '),
   );
 
-  buttonClasses = computed(() =>
-    [
-      'ui-empty-state__button',
-      `ui-empty-state__button--${this.buttonVariant()}`,
-    ].join(' '),
+  buttonColor = computed<UiColor>(() =>
+    this.buttonVariant() === 'secondary' ? 'secondary' : 'primary',
   );
 
-  handleButtonClick(): void {
-    if (this.buttonDisabled()) return;
+  buttonOutline = computed(() => this.buttonVariant() === 'outline');
 
-    this.buttonClick.emit();
-  }
+  buttonPosition = computed(() => {
+    switch (this.align()) {
+      case 'left':
+        return 'left' as const;
+      case 'right':
+        return 'right' as const;
+      default:
+        return 'center' as const;
+    }
+  });
 }

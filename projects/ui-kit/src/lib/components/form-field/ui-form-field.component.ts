@@ -6,6 +6,7 @@ import {
   input,
 } from '@angular/core';
 import { NgControl, Validators } from '@angular/forms';
+import { UiFieldErrorComponent } from '../field-error/ui-field-error.component';
 import { UiLabelComponent } from '../label/ui-label.component';
 import {
   UI_FORM_FIELD,
@@ -15,7 +16,7 @@ import {
 @Component({
   selector: 'ui-form-field',
   standalone: true,
-  imports: [UiLabelComponent],
+  imports: [UiFieldErrorComponent, UiLabelComponent],
   templateUrl: './ui-form-field.component.html',
   styleUrl: './ui-form-field.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

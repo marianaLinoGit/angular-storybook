@@ -22,14 +22,17 @@
     </div>
 
     @if (closable()) {
-      <button
-        type="button"
+      <ui-button
         class="ui-alert__close"
-        [attr.aria-label]="closeAriaLabel()"
-        (click)="close()"
-      >
-        <ui-icon name="close" size="sm" aria-hidden="true" />
-      </button>
+        type="button"
+        color="secondary"
+        size="sm"
+        icon="close"
+        [outline]="true"
+        [iconOnly]="true"
+        [ariaLabel]="closeAriaLabel()"
+        (buttonClick)="close()"
+      />
     }
   </section>
 }

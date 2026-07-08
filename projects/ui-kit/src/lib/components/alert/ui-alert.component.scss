@@ -129,24 +129,6 @@
   }
 
   &__close {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    background: transparent;
-    color: currentColor;
-    cursor: pointer;
-    padding: 0;
-    opacity: 0.75;
-
-    &:hover {
-      opacity: 1;
-    }
-
-    &:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 2px;
-      border-radius: var(--ui-radius-sm);
-    }
+    flex-shrink: 0;
   }
 }

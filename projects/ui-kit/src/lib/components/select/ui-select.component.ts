@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
+import { UiFieldErrorComponent } from '../field-error/ui-field-error.component';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 import { UiLabelComponent } from '../label/ui-label.component';
 
@@ -27,7 +28,7 @@ export interface UiSelectOption {
 @Component({
   selector: 'ui-select',
   standalone: true,
-  imports: [UiLabelComponent, UiIconComponent],
+  imports: [UiFieldErrorComponent, UiLabelComponent, UiIconComponent],
   templateUrl: './ui-select.component.html',
   styleUrl: './ui-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

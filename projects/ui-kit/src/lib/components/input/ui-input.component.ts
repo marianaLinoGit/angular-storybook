@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
+import { UiFieldErrorComponent } from '../field-error/ui-field-error.component';
 import { UiLabelComponent } from '../label/ui-label.component';
 
 export type UiInputType =
@@ -26,7 +27,7 @@ export type UiInputType =
 @Component({
   selector: 'ui-input',
   standalone: true,
-  imports: [UiLabelComponent],
+  imports: [UiFieldErrorComponent, UiLabelComponent],
   templateUrl: './ui-input.component.html',
   styleUrl: './ui-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

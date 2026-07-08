@@ -7,6 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { UiColor, UiToastPosition } from '@design-system/types/ui.types';
+import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 type UiToastColor = Extract<UiColor, 'success' | 'danger' | 'warning' | 'info'>;
@@ -20,7 +21,7 @@ type UiToastAriaLive = 'polite' | 'assertive';
 @Component({
   selector: 'ui-toast',
   standalone: true,
-  imports: [UiIconComponent],
+  imports: [UiButtonComponent, UiIconComponent],
   templateUrl: './ui-toast.component.html',
   styleUrl: './ui-toast.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

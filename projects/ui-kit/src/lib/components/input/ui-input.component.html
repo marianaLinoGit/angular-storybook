@@ -34,8 +34,6 @@
   />
 
   @if (hasError() && !hideError()) {
-    <p class="ui-input-field__error" [id]="errorId()">
-      {{ errorMessage() }}
-    </p>
+    <ui-field-error [id]="errorId()" [message]="errorMessage()" />
   }
 </div>

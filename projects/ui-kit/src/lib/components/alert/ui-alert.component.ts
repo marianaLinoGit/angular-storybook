@@ -6,6 +6,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 
 export type AlertColor = 'success' | 'warning' | 'danger' | 'info';
@@ -16,7 +17,7 @@ export type AlertPosition = 'top' | 'bottom';
 @Component({
   selector: 'ui-alert',
   standalone: true,
-  imports: [UiIconComponent],
+  imports: [UiButtonComponent, UiIconComponent],
   templateUrl: './ui-alert.component.html',
   styleUrl: './ui-alert.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -18,15 +18,16 @@
   </p>
 
   @if (buttonLabel()) {
-    <button
+    <ui-button
       type="button"
-      [class]="buttonClasses()"
+      size="md"
+      [color]="buttonColor()"
+      [outline]="buttonOutline()"
+      [label]="buttonLabel()!"
+      [ariaLabel]="buttonAriaLabel() || buttonLabel()!"
       [disabled]="buttonDisabled()"
-      [attr.aria-label]="buttonAriaLabel() || buttonLabel()"
-      [attr.aria-disabled]="buttonDisabled() ? 'true' : null"
-      (click)="handleButtonClick()"
-    >
-      {{ buttonLabel() }}
-    </button>
+      [position]="buttonPosition()"
+      (buttonClick)="buttonClick.emit()"
+    />
   }
 </section>
