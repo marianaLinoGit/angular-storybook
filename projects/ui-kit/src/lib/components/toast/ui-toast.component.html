@@ -4,7 +4,7 @@
     [attr.role]="role()"
     [attr.aria-live]="ariaLive()"
     [attr.aria-labelledby]="titleId"
-    [attr.aria-describedby]="textId"
+    [attr.aria-describedby]="text() ? textId : null"
   >
     @if (showIcon()) {
       <ui-icon

@@ -93,6 +93,13 @@
     background: var(--alert-soft-bg);
     color: var(--alert-soft-text);
     border-color: transparent;
+
+    .ui-alert__close {
+      ::ng-deep .ui-button.ui-button--outline {
+        color: var(--alert-color);
+        border-color: color-mix(in srgb, var(--alert-color) 72%, transparent);
+      }
+    }
   }
 
   &--solid {

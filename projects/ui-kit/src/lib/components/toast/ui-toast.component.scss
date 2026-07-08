@@ -83,6 +83,13 @@
   &--soft {
     background: var(--toast-bg);
     color: var(--toast-text);
+
+    .ui-toast__close {
+      ::ng-deep .ui-button.ui-button--outline {
+        color: var(--toast-color);
+        border-color: color-mix(in srgb, var(--toast-color) 72%, transparent);
+      }
+    }
   }
 
   &--solid {
