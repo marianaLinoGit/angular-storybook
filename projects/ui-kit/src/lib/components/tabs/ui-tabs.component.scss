@@ -1,48 +1,12 @@
 .ui-tabs {
-  background: var(--ui-color-surface);
-  border: 1px solid var(--ui-color-border);
-  border-radius: var(--ui-radius-lg);
-  overflow: hidden;
-
-  &__header {
-    display: flex;
-    border-bottom: 1px solid var(--ui-color-border);
-    overflow-x: auto;
-  }
-
   &__tab {
     border: 0;
     background: transparent;
-    padding: var(--ui-space-4);
     cursor: pointer;
     color: var(--ui-color-muted);
-    display: inline-flex;
-    gap: var(--ui-space-2);
-    align-items: center;
-    white-space: nowrap;
     font-family: var(--ui-font-family-text);
     font-size: var(--ui-font-size-sm);
     transition: 0.2s ease;
-
-    &:hover:not(:disabled) {
-      color: var(--ui-color-primary);
-      background: var(--ui-color-background);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--ui-color-primary);
-      outline-offset: -2px;
-    }
-
-    &--active {
-      color: var(--ui-color-primary);
-      box-shadow: inset 0 -3px 0 var(--ui-color-primary);
-      font-weight: var(--ui-font-weight-semibold);
-    }
-
-    &--checked {
-      color: var(--ui-color-success);
-    }
 
     &:disabled {
       color: var(--ui-color-disabled);
@@ -59,23 +23,116 @@
     }
   }
 
-  &__check {
-    color: var(--ui-color-success);
-    font-weight: var(--ui-font-weight-bold);
+  &__icon {
+    flex-shrink: 0;
+  }
+
+  // ------------------------------------------------------------------
+  // Variante padrão: texto + sublinhado embaixo da aba ativa
+  // ------------------------------------------------------------------
+  &--underline {
+    background: var(--ui-color-surface);
+    border: 1px solid var(--ui-color-border);
+    border-radius: var(--ui-radius-lg);
+    overflow: hidden;
+
+    .ui-tabs__header {
+      display: flex;
+      border-bottom: 1px solid var(--ui-color-border);
+      overflow-x: auto;
+    }
+
+    .ui-tabs__tab {
+      padding: var(--ui-space-4);
+      display: inline-flex;
+      gap: var(--ui-space-2);
+      align-items: center;
+      white-space: nowrap;
+
+      &:hover:not(:disabled) {
+        color: var(--ui-color-primary);
+        background: var(--ui-color-background);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ui-color-primary);
+        outline-offset: -2px;
+      }
+
+      &--active {
+        color: var(--ui-color-primary);
+        box-shadow: inset 0 -3px 0 var(--ui-color-primary);
+        font-weight: var(--ui-font-weight-semibold);
+      }
+    }
+
+    .ui-tabs__content {
+      padding: var(--ui-space-5);
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Variante card: ícone acima do texto, cartões independentes,
+  // aba ativa com fundo sólido. Sem fundo no header nem no body.
+  // ------------------------------------------------------------------
+  &--card {
+    background: transparent;
+
+    .ui-tabs__header {
+      display: flex;
+      gap: var(--ui-space-2);
+      overflow-x: auto;
+      padding: var(--ui-space-1);
+    }
+
+    .ui-tabs__tab {
+      flex: 1 1 0;
+      min-width: 0;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--ui-space-2);
+      padding: var(--ui-space-3) var(--ui-space-4);
+      border-radius: var(--ui-radius-md);
+      background: var(--ui-color-surface);
+      text-align: center;
+
+      &:hover:not(:disabled):not(.ui-tabs__tab--active) {
+        color: var(--ui-color-primary);
+        background: color-mix(in srgb, var(--ui-color-primary) 10%, var(--ui-color-surface));
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ui-color-primary);
+        outline-offset: 2px;
+      }
+
+      &--active {
+        background: var(--ui-color-primary);
+        color: var(--ui-color-on-primary);
+        font-weight: var(--ui-font-weight-semibold);
+
+        small {
+          background: color-mix(in srgb, var(--ui-color-on-primary) 24%, transparent);
+          color: var(--ui-color-on-primary);
+        }
+      }
+    }
+
+    .ui-tabs__icon {
+      font-size: var(--ui-icon-size-md);
+    }
+
+    .ui-tabs__content {
+      padding: var(--ui-space-5) 0 0;
+    }
   }
 
   &__content {
-    padding: var(--ui-space-5);
-
     &:focus-visible {
       outline: 2px solid var(--ui-color-primary);
       outline-offset: -2px;
-    }
-
-    p {
-      margin: 0;
-      color: var(--ui-color-muted);
-      line-height: 1.6;
     }
   }
 }

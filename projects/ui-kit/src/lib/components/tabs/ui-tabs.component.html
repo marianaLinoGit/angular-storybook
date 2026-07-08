@@ -1,6 +1,6 @@
-<div class="ui-tabs">
+<div [class]="tabsClasses()">
   <div class="ui-tabs__header" role="tablist" [attr.aria-label]="ariaLabel()">
-    @for (tab of tabs(); track tab.id) {
+    @for (tab of tabItems(); track tab.id()) {
       <button
         type="button"
         role="tab"
@@ -8,26 +8,25 @@
         [attr.aria-selected]="isActive(tab) ? 'true' : 'false'"
         [attr.aria-controls]="getPanelId(tab)"
         [attr.tabindex]="isActive(tab) ? 0 : -1"
-        [disabled]="tab.disabled"
+        [disabled]="tab.disabled()"
         [class.ui-tabs__tab--active]="isActive(tab)"
-        [class.ui-tabs__tab--checked]="tab.checked"
         class="ui-tabs__tab"
         (click)="selectTab(tab)"
       >
-        @if (tab.checked) {
+        @if (tab.icon()) {
           <ui-icon
-            class="ui-tabs__check"
-            name="check"
-            size="xs"
+            class="ui-tabs__icon"
+            [name]="tab.icon()!"
+            size="sm"
             aria-hidden="true"
           />
         }
 
-        <span>{{ tab.label }}</span>
+        <span class="ui-tabs__label">{{ tab.label() }}</span>
 
-        @if (tab.count !== undefined) {
+        @if (tab.count() !== undefined) {
           <small aria-hidden="true">
-            {{ tab.count }}
+            {{ tab.count() }}
           </small>
         }
       </button>
@@ -42,7 +41,7 @@
       [attr.aria-labelledby]="getTabId(tab)"
       tabindex="0"
     >
-      <p>{{ tab.content }}</p>
+      <ng-container [ngTemplateOutlet]="tab.panelTemplate()" />
     </div>
   }
 </div>

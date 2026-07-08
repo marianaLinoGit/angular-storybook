@@ -1,71 +1,89 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  contentChildren,
   input,
+  model,
   output,
-  signal,
 } from '@angular/core';
 import { UiIconComponent } from '../icon/ui-icon.component';
+import { UiTabComponent } from './ui-tab.component';
 
-export interface TabItem {
+export type UiTabsVariant = 'underline' | 'card';
+
+export type UiTabChangeEvent = {
   id: string;
   label: string;
-  content: string;
-  count?: number;
-  countLabel?: string;
-  checked?: boolean;
-  disabled?: boolean;
-}
+};
 
 @Component({
   selector: 'ui-tabs',
   standalone: true,
-  imports: [UiIconComponent],
+  imports: [NgTemplateOutlet, UiIconComponent],
   templateUrl: './ui-tabs.component.html',
   styleUrl: './ui-tabs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiTabsComponent {
-  tabs = input<TabItem[]>([]);
+  tabItems = contentChildren(UiTabComponent);
+
   initialActiveId = input<string | null>(null);
+  activeId = model<string | null>(null);
   ariaLabel = input('Abas');
+  variant = input<UiTabsVariant>('underline');
 
-  private selectedId = signal<string | null>(null);
+  tabChange = output<UiTabChangeEvent>();
 
-  tabChange = output<TabItem>();
+  tabsClasses = computed(() =>
+    ['ui-tabs', `ui-tabs--${this.variant()}`].join(' '),
+  );
 
   activeTab = computed(() => {
-    const tabs = this.tabs();
-    const selectedId = this.selectedId();
+    const items = this.tabItems();
+    const activeId = this.activeId();
     const initialActiveId = this.initialActiveId();
 
-    return (
-      tabs.find((tab) => tab.id === selectedId && !tab.disabled) ||
-      tabs.find((tab) => tab.id === initialActiveId && !tab.disabled) ||
-      tabs.find((tab) => !tab.disabled) ||
-      null
-    );
+    if (activeId !== null) {
+      const selected = items.find(
+        (tab) => tab.id() === activeId && !tab.disabled(),
+      );
+      if (selected) {
+        return selected;
+      }
+    }
+
+    if (initialActiveId !== null) {
+      const initial = items.find(
+        (tab) => tab.id() === initialActiveId && !tab.disabled(),
+      );
+      if (initial) {
+        return initial;
+      }
+    }
+
+    return items.find((tab) => !tab.disabled()) ?? null;
   });
 
-  selectTab(tab: TabItem): void {
-    if (tab.disabled) {
+  selectTab(tab: UiTabComponent): void {
+    if (tab.disabled()) {
       return;
     }
 
-    this.selectedId.set(tab.id);
-    this.tabChange.emit(tab);
+    this.activeId.set(tab.id());
+    this.tabChange.emit({ id: tab.id(), label: tab.label() });
   }
 
-  isActive(tab: TabItem): boolean {
-    return this.activeTab()?.id === tab.id;
+  isActive(tab: UiTabComponent): boolean {
+    return this.activeTab()?.id() === tab.id();
   }
 
-  getTabId(tab: TabItem): string {
-    return `ui-tab-${tab.id}`;
+  getTabId(tab: UiTabComponent): string {
+    return `ui-tab-${tab.id()}`;
   }
 
-  getPanelId(tab: TabItem): string {
-    return `ui-tab-panel-${tab.id}`;
+  getPanelId(tab: UiTabComponent): string {
+    return `ui-tab-panel-${tab.id()}`;
   }
 }

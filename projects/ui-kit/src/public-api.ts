@@ -22,6 +22,7 @@ export * from './lib/components/stat-card-grid/ui-stat-card-grid.component';
 export * from './lib/components/stat-card/ui-stat-card.component';
 export * from './lib/components/switch/ui-switch.component';
 export * from './lib/components/table/ui-table.component';
+export * from './lib/components/tabs/ui-tab.component';
 export * from './lib/components/tabs/ui-tabs.component';
 export * from './lib/components/toast/ui-toast.component';
 export * from './lib/components/tooltip/ui-tooltip.component';
