@@ -75,4 +75,28 @@
       opacity: 0.4;
     }
   }
+
+  &[type='color'] {
+    width: var(--ui-control-height-field-form-md);
+    min-width: var(--ui-control-height-field-form-md);
+    height: var(--ui-control-height-field-form-md);
+    padding: 0 !important;
+    border-radius: var(--ui-radius-pill);
+    cursor: pointer;
+    border: none;
+
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    &::-webkit-color-swatch {
+      border: none;
+      border-radius: var(--ui-radius-sm);
+    }
+
+    &::-moz-color-swatch {
+      border: none;
+      border-radius: var(--ui-radius-sm);
+    }
+  }
 }

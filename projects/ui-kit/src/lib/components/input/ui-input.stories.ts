@@ -29,7 +29,7 @@ const meta: Meta<UiInputComponent> = {
   component: UiInputComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|Email|Password|Optional|RequiredWithError|Disabled|ReadOnly|Search|WithoutVisibleLabel|Date|DateTime|Time)$/,
+    /^(PlaygroundCompleto|Default|Email|Password|Optional|RequiredWithError|Disabled|ReadOnly|Search|WithoutVisibleLabel|Date|DateTime|Time|Color)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -100,6 +100,7 @@ const meta: Meta<UiInputComponent> = {
         'date',
         'datetime-local',
         'time',
+        'color',
       ],
       table: { category: 'Formulário' },
       description: 'Tipo nativo do elemento `<input>`.',
@@ -189,7 +190,8 @@ export const PlaygroundCompleto: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',
+        story:
+          'Modelo interativo com **todas as opções** disponíveis nos controles.',
       },
     },
   },
@@ -210,7 +212,11 @@ export const Default: Story = {
 
 export const Email: Story = {
   parameters: {
-    docs: { description: { story: 'Campo de e-mail com `type="email"` e autocomplete.' } },
+    docs: {
+      description: {
+        story: 'Campo de e-mail com `type="email"` e autocomplete.',
+      },
+    },
   },
   args: {
     ...playgroundDefaults,
@@ -226,7 +232,9 @@ export const Email: Story = {
 
 export const Password: Story = {
   parameters: {
-    docs: { description: { story: 'Campo de senha com autocomplete de nova senha.' } },
+    docs: {
+      description: { story: 'Campo de senha com autocomplete de nova senha.' },
+    },
   },
   args: {
     ...playgroundDefaults,
@@ -241,7 +249,9 @@ export const Password: Story = {
 
 export const Optional: Story = {
   parameters: {
-    docs: { description: { story: 'Campo opcional com texto "Opcional" no label.' } },
+    docs: {
+      description: { story: 'Campo opcional com texto "Opcional" no label.' },
+    },
   },
   args: {
     ...playgroundDefaults,
@@ -255,7 +265,9 @@ export const Optional: Story = {
 
 export const RequiredWithError: Story = {
   parameters: {
-    docs: { description: { story: 'Campo obrigatório com mensagem de erro visível.' } },
+    docs: {
+      description: { story: 'Campo obrigatório com mensagem de erro visível.' },
+    },
   },
   args: {
     ...playgroundDefaults,
@@ -275,7 +287,11 @@ export const Disabled: Story = {
 
 export const ReadOnly: Story = {
   parameters: {
-    docs: { description: { story: 'Campo somente leitura para exibição de valor fixo.' } },
+    docs: {
+      description: {
+        story: 'Campo somente leitura para exibição de valor fixo.',
+      },
+    },
   },
   args: {
     ...playgroundDefaults,
@@ -306,7 +322,8 @@ export const WithoutVisibleLabel: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Campo sem label visível, usando `ariaLabel` para acessibilidade.',
+        story:
+          'Campo sem label visível, usando `ariaLabel` para acessibilidade.',
       },
     },
   },
@@ -380,5 +397,27 @@ export const Time: Story = {
     type: 'time',
     placeholder: '',
     autocomplete: 'off',
+  },
+};
+
+export const Color: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Seletor de cor com `type="color"`. Útil para personalização de tema (ex.: cor do pet no sistema).',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Cor do tema',
+    id: 'themeColor',
+    name: 'themeColor',
+    type: 'color',
+    placeholder: '',
+    autocomplete: 'off',
+    required: false,
+    showOptionalText: false,
   },
 };

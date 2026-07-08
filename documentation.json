@@ -6864,7 +6864,7 @@
         },
         {
             "name": "UiInputComponent",
-            "id": "component-UiInputComponent-6096546aa7315278824bcf9479e9608f743970c26c66a5c0a1939d834d2e8ddbea41f935bbefcea3e8a28c6ed417862cc62d641190c5c19004e5f12acc1081c3",
+            "id": "component-UiInputComponent-5ba0ec19da8eb6441739023422eb3409d6a89cc56b80c2c65f093306e1424865035b96d92e1276592144ac05b7da124cc4f4c0f4b315c531d5793a051620fea6",
             "file": "projects/ui-kit/src/lib/components/input/ui-input.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -6890,7 +6890,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 43,
+                    "line": 44,
                     "required": false
                 },
                 {
@@ -6902,7 +6902,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 51,
+                    "line": 52,
                     "required": false
                 },
                 {
@@ -6913,7 +6913,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 66,
+                    "line": 67,
                     "required": false
                 },
                 {
@@ -6924,7 +6924,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 59,
+                    "line": 60,
                     "required": false
                 },
                 {
@@ -6935,7 +6935,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 64,
+                    "line": 65,
                     "required": false
                 },
                 {
@@ -6946,7 +6946,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 45,
+                    "line": 46,
                     "required": false
                 },
                 {
@@ -6957,7 +6957,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 44,
+                    "line": 45,
                     "required": false
                 },
                 {
@@ -6968,7 +6968,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 47,
+                    "line": 48,
                     "required": false
                 },
                 {
@@ -6980,7 +6980,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 52,
+                    "line": 53,
                     "required": false
                 },
                 {
@@ -6991,7 +6991,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 42,
+                    "line": 43,
                     "required": false
                 },
                 {
@@ -7003,7 +7003,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 54,
+                    "line": 55,
                     "required": false
                 },
                 {
@@ -7015,7 +7015,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 53,
+                    "line": 54,
                     "required": false
                 },
                 {
@@ -7027,7 +7027,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 48,
+                    "line": 49,
                     "required": false
                 },
                 {
@@ -7038,7 +7038,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 61,
+                    "line": 62,
                     "required": false
                 },
                 {
@@ -7049,7 +7049,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 50,
+                    "line": 51,
                     "required": false
                 },
                 {
@@ -7060,7 +7060,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 58,
+                    "line": 59,
                     "required": false
                 },
                 {
@@ -7071,7 +7071,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 57,
+                    "line": 58,
                     "required": false
                 },
                 {
@@ -7082,7 +7082,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 65,
+                    "line": 66,
                     "required": false
                 },
                 {
@@ -7093,7 +7093,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 62,
+                    "line": 63,
                     "required": false
                 },
                 {
@@ -7105,7 +7105,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 55,
+                    "line": 56,
                     "required": false
                 },
                 {
@@ -7117,7 +7117,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 49,
+                    "line": 50,
                     "required": false
                 }
             ],
@@ -7130,7 +7130,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 68,
+                    "line": 69,
                     "required": false
                 }
             ],
@@ -7144,7 +7144,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 103
+                    "line": 104
                 },
                 {
                     "name": "describedBy",
@@ -7155,7 +7155,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 95
+                    "line": 96
                 },
                 {
                     "name": "disabledState",
@@ -7166,7 +7166,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 71
+                    "line": 72
                 },
                 {
                     "name": "errorId",
@@ -7177,7 +7177,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 81
+                    "line": 82
                 },
                 {
                     "name": "formField",
@@ -7188,7 +7188,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 40,
+                    "line": 41,
                     "modifierKind": [
                         123,
                         148
@@ -7203,7 +7203,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 83
+                    "line": 84
                 },
                 {
                     "name": "inputAriaLabelledBy",
@@ -7214,7 +7214,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 91
+                    "line": 92
                 },
                 {
                     "name": "isDisabled",
@@ -7225,7 +7225,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 79
+                    "line": 80
                 },
                 {
                     "name": "ngControl",
@@ -7236,7 +7236,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 36,
+                    "line": 37,
                     "modifierKind": [
                         123,
                         148
@@ -7251,7 +7251,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 135
+                    "line": 136
                 },
                 {
                     "name": "onTouched",
@@ -7262,7 +7262,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 136
+                    "line": 137
                 },
                 {
                     "name": "value",
@@ -7273,7 +7273,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 70
+                    "line": 71
                 }
             ],
             "methodsClass": [
@@ -7283,7 +7283,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 150,
+                    "line": 151,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -7302,7 +7302,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 138,
+                    "line": 139,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -7325,7 +7325,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 122,
+                    "line": 123,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -7335,7 +7335,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 114,
+                    "line": 115,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -7364,7 +7364,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 158,
+                    "line": 159,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -7407,7 +7407,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 162,
+                    "line": 163,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -7440,7 +7440,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 166,
+                    "line": 167,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -7472,7 +7472,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 154,
+                    "line": 155,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -7508,7 +7508,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  computed,\r\n  inject,\r\n  input,\r\n  output,\r\n  signal,\r\n} from '@angular/core';\r\nimport { ControlValueAccessor, NgControl, Validators } from '@angular/forms';\r\nimport { UI_FORM_FIELD } from '../form-field/ui-form-field.context';\r\nimport { UiFieldErrorComponent } from '../field-error/ui-field-error.component';\r\nimport { UiLabelComponent } from '../label/ui-label.component';\r\n\r\nexport type UiInputType =\r\n  | 'text'\r\n  | 'email'\r\n  | 'password'\r\n  | 'number'\r\n  | 'tel'\r\n  | 'url'\r\n  | 'search'\r\n  | 'date'\r\n  | 'datetime-local'\r\n  | 'time';\r\n\r\n@Component({\r\n  selector: 'ui-input',\r\n  standalone: true,\r\n  imports: [UiFieldErrorComponent, UiLabelComponent],\r\n  templateUrl: './ui-input.component.html',\r\n  styleUrl: './ui-input.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class UiInputComponent implements ControlValueAccessor {\r\n  private readonly ngControl = inject(NgControl, {\r\n    self: true,\r\n    optional: true,\r\n  });\r\n  private readonly formField = inject(UI_FORM_FIELD, { optional: true });\r\n\r\n  label = input('');\r\n  ariaLabel = input<string | null>(null);\r\n  hideLabel = input(false);\r\n  hideError = input(false);\r\n\r\n  id = input(`ui-input-${crypto.randomUUID()}`);\r\n  name = input<string | null>(null);\r\n  type = input<UiInputType>('text');\r\n  placeholder = input('');\r\n  autocomplete = input<string | null>(null);\r\n  inputMode = input<string | null>(null);\r\n  min = input<string | number | null>(null);\r\n  max = input<string | number | null>(null);\r\n  step = input<string | number | null>(null);\r\n\r\n  required = input(false);\r\n  readonly = input(false);\r\n  disabled = input(false);\r\n\r\n  optionalText = input('Opcional');\r\n  showOptionalText = input(true);\r\n\r\n  errorMessage = input('*Campo obrigatório');\r\n  showError = input(false);\r\n  customClass = input('');\r\n\r\n  valueChange = output<string>();\r\n\r\n  value = signal('');\r\n  disabledState = signal(false);\r\n\r\n  constructor() {\r\n    if (this.ngControl) {\r\n      this.ngControl.valueAccessor = this;\r\n    }\r\n  }\r\n\r\n  isDisabled = computed(() => this.disabled() || this.disabledState());\r\n\r\n  errorId = computed(() => `${this.id()}-error`);\r\n\r\n  inputAriaLabel = computed(() => {\r\n    if ((this.label() && !this.hideLabel()) || this.formField?.labelId()) {\r\n      return null;\r\n    }\r\n\r\n    return this.ariaLabel();\r\n  });\r\n\r\n  inputAriaLabelledBy = computed(\r\n    () => this.formField?.labelId() ?? null,\r\n  );\r\n\r\n  describedBy = computed(() => {\r\n    if (this.formField) {\r\n      return this.formField.describedBy();\r\n    }\r\n\r\n    return this.hasError() ? this.errorId() : null;\r\n  });\r\n\r\n  classes = computed(() =>\r\n    [\r\n      'ui-input',\r\n      this.hasError() ? 'ui-input--error' : '',\r\n      this.isDisabled() ? 'ui-input--disabled' : '',\r\n      this.customClass(),\r\n    ]\r\n      .filter(Boolean)\r\n      .join(' '),\r\n  );\r\n\r\n  hasRequired(): boolean {\r\n    const control = this.ngControl?.control;\r\n\r\n    return Boolean(\r\n      this.required() || control?.hasValidator?.(Validators.required),\r\n    );\r\n  }\r\n\r\n  hasError(): boolean {\r\n    if (this.formField) {\r\n      return this.formField.hasError();\r\n    }\r\n\r\n    const control = this.ngControl?.control;\r\n\r\n    return Boolean(\r\n      this.showError() ||\r\n      (control?.invalid && (control.touched || control.dirty)),\r\n    );\r\n  }\r\n\r\n  onChange: (value: string) => void = () => {};\r\n  onTouched: () => void = () => {};\r\n\r\n  handleInput(event: Event): void {\r\n    if (this.isDisabled()) {\r\n      return;\r\n    }\r\n\r\n    const value = (event.target as HTMLInputElement).value;\r\n\r\n    this.value.set(value);\r\n    this.onChange(value);\r\n    this.valueChange.emit(value);\r\n  }\r\n\r\n  handleBlur(): void {\r\n    this.onTouched();\r\n  }\r\n\r\n  writeValue(value: string | null): void {\r\n    this.value.set(value ?? '');\r\n  }\r\n\r\n  registerOnChange(fn: (value: string) => void): void {\r\n    this.onChange = fn;\r\n  }\r\n\r\n  registerOnTouched(fn: () => void): void {\r\n    this.onTouched = fn;\r\n  }\r\n\r\n  setDisabledState(isDisabled: boolean): void {\r\n    this.disabledState.set(isDisabled);\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  computed,\r\n  inject,\r\n  input,\r\n  output,\r\n  signal,\r\n} from '@angular/core';\r\nimport { ControlValueAccessor, NgControl, Validators } from '@angular/forms';\r\nimport { UI_FORM_FIELD } from '../form-field/ui-form-field.context';\r\nimport { UiFieldErrorComponent } from '../field-error/ui-field-error.component';\r\nimport { UiLabelComponent } from '../label/ui-label.component';\r\n\r\nexport type UiInputType =\r\n  | 'text'\r\n  | 'email'\r\n  | 'password'\r\n  | 'number'\r\n  | 'tel'\r\n  | 'url'\r\n  | 'search'\r\n  | 'date'\r\n  | 'datetime-local'\r\n  | 'time'\r\n  | 'color';\r\n\r\n@Component({\r\n  selector: 'ui-input',\r\n  standalone: true,\r\n  imports: [UiFieldErrorComponent, UiLabelComponent],\r\n  templateUrl: './ui-input.component.html',\r\n  styleUrl: './ui-input.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class UiInputComponent implements ControlValueAccessor {\r\n  private readonly ngControl = inject(NgControl, {\r\n    self: true,\r\n    optional: true,\r\n  });\r\n  private readonly formField = inject(UI_FORM_FIELD, { optional: true });\r\n\r\n  label = input('');\r\n  ariaLabel = input<string | null>(null);\r\n  hideLabel = input(false);\r\n  hideError = input(false);\r\n\r\n  id = input(`ui-input-${crypto.randomUUID()}`);\r\n  name = input<string | null>(null);\r\n  type = input<UiInputType>('text');\r\n  placeholder = input('');\r\n  autocomplete = input<string | null>(null);\r\n  inputMode = input<string | null>(null);\r\n  min = input<string | number | null>(null);\r\n  max = input<string | number | null>(null);\r\n  step = input<string | number | null>(null);\r\n\r\n  required = input(false);\r\n  readonly = input(false);\r\n  disabled = input(false);\r\n\r\n  optionalText = input('Opcional');\r\n  showOptionalText = input(true);\r\n\r\n  errorMessage = input('*Campo obrigatório');\r\n  showError = input(false);\r\n  customClass = input('');\r\n\r\n  valueChange = output<string>();\r\n\r\n  value = signal('');\r\n  disabledState = signal(false);\r\n\r\n  constructor() {\r\n    if (this.ngControl) {\r\n      this.ngControl.valueAccessor = this;\r\n    }\r\n  }\r\n\r\n  isDisabled = computed(() => this.disabled() || this.disabledState());\r\n\r\n  errorId = computed(() => `${this.id()}-error`);\r\n\r\n  inputAriaLabel = computed(() => {\r\n    if ((this.label() && !this.hideLabel()) || this.formField?.labelId()) {\r\n      return null;\r\n    }\r\n\r\n    return this.ariaLabel();\r\n  });\r\n\r\n  inputAriaLabelledBy = computed(\r\n    () => this.formField?.labelId() ?? null,\r\n  );\r\n\r\n  describedBy = computed(() => {\r\n    if (this.formField) {\r\n      return this.formField.describedBy();\r\n    }\r\n\r\n    return this.hasError() ? this.errorId() : null;\r\n  });\r\n\r\n  classes = computed(() =>\r\n    [\r\n      'ui-input',\r\n      this.hasError() ? 'ui-input--error' : '',\r\n      this.isDisabled() ? 'ui-input--disabled' : '',\r\n      this.customClass(),\r\n    ]\r\n      .filter(Boolean)\r\n      .join(' '),\r\n  );\r\n\r\n  hasRequired(): boolean {\r\n    const control = this.ngControl?.control;\r\n\r\n    return Boolean(\r\n      this.required() || control?.hasValidator?.(Validators.required),\r\n    );\r\n  }\r\n\r\n  hasError(): boolean {\r\n    if (this.formField) {\r\n      return this.formField.hasError();\r\n    }\r\n\r\n    const control = this.ngControl?.control;\r\n\r\n    return Boolean(\r\n      this.showError() ||\r\n      (control?.invalid && (control.touched || control.dirty)),\r\n    );\r\n  }\r\n\r\n  onChange: (value: string) => void = () => {};\r\n  onTouched: () => void = () => {};\r\n\r\n  handleInput(event: Event): void {\r\n    if (this.isDisabled()) {\r\n      return;\r\n    }\r\n\r\n    const value = (event.target as HTMLInputElement).value;\r\n\r\n    this.value.set(value);\r\n    this.onChange(value);\r\n    this.valueChange.emit(value);\r\n  }\r\n\r\n  handleBlur(): void {\r\n    this.onTouched();\r\n  }\r\n\r\n  writeValue(value: string | null): void {\r\n    this.value.set(value ?? '');\r\n  }\r\n\r\n  registerOnChange(fn: (value: string) => void): void {\r\n    this.onChange = fn;\r\n  }\r\n\r\n  registerOnTouched(fn: () => void): void {\r\n    this.onTouched = fn;\r\n  }\r\n\r\n  setDisabledState(isDisabled: boolean): void {\r\n    this.disabledState.set(isDisabled);\r\n  }\r\n}\r\n",
             "styleUrl": "./ui-input.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -7519,7 +7519,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 71
+                "line": 72
             },
             "extends": [],
             "implements": [
@@ -14922,16 +14922,6 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/design-system/tokens/corner-shape.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<CornerShapeShowcaseComponent>",
-                "defaultValue": "{\r\n  title: 'Design Tokens/Corner Shape',\r\n  component: CornerShapeShowcaseComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [CornerShapeShowcaseComponent],\r\n    }),\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Tokens e utilitários para `corner-shape` combinados com `border-radius`. ' +\r\n          'Os exemplos usam caixas roxas sobre fundo xadrez para destacar cada modelo.',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    view: {\r\n      control: 'select',\r\n      options: [\r\n        'matrix',\r\n        'by-size',\r\n        'shape',\r\n        'size',\r\n        'cards',\r\n        'tokens',\r\n      ] satisfies CornerShapeShowcaseView[],\r\n      table: { category: 'Visualização' },\r\n    },\r\n    focusShape: {\r\n      control: 'select',\r\n      options: ['round', 'squircle', 'scoop', 'bevel', 'notch'] satisfies UiCornerShape[],\r\n      table: { category: 'Foco' },\r\n    },\r\n    focusSize: {\r\n      control: 'select',\r\n      options: ['sm', 'md', 'lg', 'xl'] satisfies UiCornerRadiusSize[],\r\n      table: { category: 'Foco' },\r\n    },\r\n  },\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/accordion/ui-accordion.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -15187,6 +15177,16 @@
                 "deprecationMessage": "",
                 "type": "Meta<UiTooltipComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Tooltip',\r\n  component: UiTooltipComponent,\r\n  tags: ['autodocs'],\r\n  includeStories: /^(PlaygroundCompleto|Text|WithHtml|Right|Disabled)$/,\r\n  parameters: {\r\n    layout: 'centered',\r\n    docs: {\r\n      story: {\r\n        height: '220px',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    text: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Texto exibido no tooltip. Também deve ser usado como conteúdo acessível quando não houver HTML.',\r\n    },\r\n    html: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Conteúdo HTML opcional do tooltip. Use apenas com conteúdo confiável/sanitizado.',\r\n    },\r\n    position: {\r\n      control: 'select',\r\n      options: ['top', 'right', 'bottom', 'left'],\r\n      table: { category: 'Layout' },\r\n      description: 'Posição visual do tooltip em relação ao elemento alvo.',\r\n    },\r\n    disabled: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Desabilita a exibição do tooltip.',\r\n    },\r\n    maxWidth: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Largura máxima do tooltip.',\r\n    },\r\n    delay: {\r\n      control: 'text',\r\n      table: { category: 'Comportamento' },\r\n      description: 'Delay da transição CSS. Exemplo: 0ms, 150ms, 300ms.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS customizada.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/design-system/tokens/corner-shape.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CornerShapeShowcaseComponent>",
+                "defaultValue": "{\r\n  title: 'Design Tokens/Corner Shape',\r\n  component: CornerShapeShowcaseComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [CornerShapeShowcaseComponent],\r\n    }),\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Tokens e utilitários para `corner-shape` combinados com `border-radius`. ' +\r\n          'Os exemplos usam caixas roxas sobre fundo xadrez para destacar cada modelo.',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    view: {\r\n      control: 'select',\r\n      options: [\r\n        'matrix',\r\n        'by-size',\r\n        'shape',\r\n        'size',\r\n        'cards',\r\n        'tokens',\r\n      ] satisfies CornerShapeShowcaseView[],\r\n      table: { category: 'Visualização' },\r\n    },\r\n    focusShape: {\r\n      control: 'select',\r\n      options: ['round', 'squircle', 'scoop', 'bevel', 'notch'] satisfies UiCornerShape[],\r\n      table: { category: 'Foco' },\r\n    },\r\n    focusSize: {\r\n      control: 'select',\r\n      options: ['sm', 'md', 'lg', 'xl'] satisfies UiCornerRadiusSize[],\r\n      table: { category: 'Foco' },\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "MixedSizes",
@@ -18523,17 +18523,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<CornerShapeShowcaseComponent>",
-                "file": "projects/ui-kit/src/lib/design-system/tokens/corner-shape.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 184
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<UiAccordionComponent>",
                 "file": "projects/ui-kit/src/lib/components/accordion/ui-accordion.stories.ts",
                 "deprecated": false,
@@ -18817,6 +18806,17 @@
                 "kind": 184
             },
             {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<CornerShapeShowcaseComponent>",
+                "file": "projects/ui-kit/src/lib/design-system/tokens/corner-shape.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
                 "name": "StoryPlayFn",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -19084,7 +19084,7 @@
                 "name": "UiInputType",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "\"text\" | \"email\" | \"password\" | \"number\" | \"tel\" | \"url\" | \"search\" | \"date\" | \"datetime-local\" | \"time\"",
+                "rawtype": "\"text\" | \"email\" | \"password\" | \"number\" | \"tel\" | \"url\" | \"search\" | \"date\" | \"datetime-local\" | \"time\" | \"color\"",
                 "file": "projects/ui-kit/src/lib/components/input/ui-input.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -24312,19 +24312,6 @@
                     "kind": 188
                 }
             ],
-            "projects/ui-kit/src/lib/design-system/tokens/corner-shape.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<CornerShapeShowcaseComponent>",
-                    "file": "projects/ui-kit/src/lib/design-system/tokens/corner-shape.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
             "projects/ui-kit/src/lib/components/accordion/ui-accordion.stories.ts": [
                 {
                     "name": "Story",
@@ -24683,6 +24670,19 @@
                     "kind": 184
                 }
             ],
+            "projects/ui-kit/src/lib/design-system/tokens/corner-shape.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<CornerShapeShowcaseComponent>",
+                    "file": "projects/ui-kit/src/lib/design-system/tokens/corner-shape.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
             "projects/ui-kit/src/lib/storybook/play.helpers.ts": [
                 {
                     "name": "StoryPlayFn",
@@ -24992,7 +24992,7 @@
                     "name": "UiInputType",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "\"text\" | \"email\" | \"password\" | \"number\" | \"tel\" | \"url\" | \"search\" | \"date\" | \"datetime-local\" | \"time\"",
+                    "rawtype": "\"text\" | \"email\" | \"password\" | \"number\" | \"tel\" | \"url\" | \"search\" | \"date\" | \"datetime-local\" | \"time\" | \"color\"",
                     "file": "projects/ui-kit/src/lib/components/input/ui-input.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",

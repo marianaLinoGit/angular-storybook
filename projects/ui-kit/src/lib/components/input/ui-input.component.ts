@@ -22,7 +22,8 @@ export type UiInputType =
   | 'search'
   | 'date'
   | 'datetime-local'
-  | 'time';
+  | 'time'
+  | 'color';
 
 @Component({
   selector: 'ui-input',
