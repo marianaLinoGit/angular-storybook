@@ -123,7 +123,6 @@ export class UiTableComponent {
   paginationPosition = input<UiTablePaginationPosition>('bottom');
 
   size = input<UiTableSize>('md');
-  striped = input(false);
   hover = input(true);
   stickyHeader = input(false);
   bordered = input(true);
@@ -159,7 +158,6 @@ export class UiTableComponent {
     [
       'ui-table',
       `ui-table--${this.size()}`,
-      this.striped() ? 'ui-table--striped' : '',
       this.hover() ? 'ui-table--hover' : '',
       this.stickyHeader() ? 'ui-table--sticky' : '',
       this.bordered() ? 'ui-table--bordered' : '',

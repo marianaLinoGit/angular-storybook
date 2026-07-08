@@ -5,42 +5,20 @@
 
 .ui-table {
   --ui-table-radius: var(--ui-radius-lg);
-  --ui-table-border-color: color-mix(
-    in srgb,
-    var(--ui-color-primary),
-    transparent 78%
-  );
-  --ui-table-cell-divider-color: color-mix(
-    in srgb,
-    var(--ui-color-primary),
-    transparent 88%
-  );
-  --ui-table-row-border-color: color-mix(
-    in srgb,
-    var(--ui-color-primary),
-    transparent 90%
-  );
+  --ui-table-border-color: var(--ui-color-border);
+  --ui-table-cell-divider-color: var(--ui-color-border);
+  --ui-table-row-border-color: var(--ui-color-border);
   --ui-table-header-bg: color-mix(
     in srgb,
-    var(--ui-color-primary),
+    var(--ui-color-background),
     transparent 90%
   );
-  --ui-table-header-text: var(--ui-color-primary);
+  --ui-table-header-text: var(--ui-color-text);
   --ui-table-body-bg: var(--ui-color-background);
   --ui-table-hover-bg: color-mix(
     in srgb,
-    var(--ui-color-primary),
-    transparent 88%
-  );
-  --ui-table-striped-bg: color-mix(
-    in srgb,
-    var(--ui-color-primary),
-    transparent 92%
-  );
-  --ui-table-striped-hover-bg: color-mix(
-    in srgb,
-    var(--ui-color-primary),
-    transparent 84%
+    var(--ui-color-surface),
+    transparent 50%
   );
 
   display: grid;
@@ -326,20 +304,6 @@
     tr:not(.ui-table__skeleton-row):not(.ui-table__empty-row):hover
     td {
     background: var(--ui-table-hover-bg);
-  }
-
-  &--striped
-    tbody
-    tr:not(.ui-table__skeleton-row):not(.ui-table__empty-row):nth-child(even)
-    td {
-    background: var(--ui-table-striped-bg);
-  }
-
-  &--striped.ui-table--hover
-    tbody
-    tr:not(.ui-table__skeleton-row):not(.ui-table__empty-row):nth-child(even):hover
-    td {
-    background: var(--ui-table-striped-hover-bg);
   }
 
   &__empty-row:hover td {

@@ -168,7 +168,6 @@ function sortValue(row: VetInviteDemoRow, sortBy: string): string {
       [showTotal]="showTotal()"
       [paginationPosition]="paginationPosition()"
       [size]="size()"
-      [striped]="striped()"
       [hover]="hover()"
       [stickyHeader]="stickyHeader()"
       [bordered]="bordered()"
@@ -259,7 +258,6 @@ class UiTablePlaygroundComponent {
   pageSizeOptions = input<number[]>([3, 5, 10, 20, 50]);
 
   size = input<UiTableSize>('md');
-  striped = input(false);
   hover = input(true);
   stickyHeader = input(false);
   bordered = input(true);
@@ -367,7 +365,6 @@ const playgroundDefaults = {
   pageSizeOptions: [3, 5, 10, 20, 50],
   initialPageSize: 3,
   size: 'md' as UiTableSize,
-  striped: true,
   hover: true,
   stickyHeader: true,
   bordered: true,
@@ -396,7 +393,7 @@ const meta: Meta<UiTablePlaygroundComponent> = {
   title: 'Components/Table',
   component: UiTablePlaygroundComponent,
   tags: ['autodocs'],
-  includeStories: /^(PlaygroundCompleto|Default|Loading|EmptyWithoutFilters|EmptyWithFilters|OnePage|MultiplePages|WithoutPagination|StripedAndSticky|Sizes|Mobile)$/,
+  includeStories: /^(PlaygroundCompleto|Default|Loading|EmptyWithoutFilters|EmptyWithFilters|OnePage|MultiplePages|WithoutPagination|StickyHeaderStory|Sizes|Mobile)$/,
   decorators: [
     moduleMetadata({
       imports: [UiTablePlaygroundComponent, UiTableComponent],
@@ -418,7 +415,7 @@ const meta: Meta<UiTablePlaygroundComponent> = {
     docs: {
       description: {
         component:
-          'Tabela do design system para listagens e CRUDs. Usa tokens de `--ui-space-*`, `--ui-font-size-*`, `--ui-radius-*` e `--ui-color-*`. Inclui header com cor primária translúcida, divisórias verticais/horizontais, rodapé unificado (total + paginação + itens por página), ordenação, skeleton, empty states, responsividade, zebrado, hover, sticky header, larguras e alinhamento.\n\n' +
+          'Tabela do design system para listagens e CRUDs. Usa tokens de `--ui-space-*`, `--ui-font-size-*`, `--ui-radius-*` e `--ui-color-*`. Inclui header com cor primária translúcida, divisórias verticais/horizontais, rodapé unificado (total + paginação + itens por página), ordenação, skeleton, empty states, responsividade, hover, sticky header, larguras e alinhamento.\n\n' +
           '**Uso:** declare `[columns]` e projete as linhas (`<tr>`) via conteúdo. O `thead` é gerado automaticamente.\n\n' +
           '**Colunas (`UiTableColumn`):** `key`, `label`, `sortable`, `hideMobile`, `width`, `minWidth`, `align`, `headerAlign`, `isActions`, `badge` (mapa valor → `ui-badge`).\n\n' +
           '**Helpers exportados:** `resolveUiTableBadge()`, `getUiTableBodyCellClasses()`.\n\n' +
@@ -505,11 +502,6 @@ const meta: Meta<UiTablePlaygroundComponent> = {
       table: { category: 'Aparência' },
       description:
         'Densidade visual da tabela. Altera padding das células e tamanho da fonte via tokens.',
-    },
-    striped: {
-      control: 'boolean',
-      table: { category: 'Aparência' },
-      description: 'Aplica fundo alternado nas linhas pares (zebrado).',
     },
     hover: {
       control: 'boolean',
@@ -650,7 +642,6 @@ const meta: Meta<UiTablePlaygroundComponent> = {
       [pageSizeOptions]="pageSizeOptions"
       [initialPageSize]="initialPageSize"
       [size]="size"
-      [striped]="striped"
       [hover]="hover"
       [stickyHeader]="stickyHeader"
       [bordered]="bordered"
@@ -686,7 +677,7 @@ export const PlaygroundCompleto: Story = {
     docs: {
       description: {
         story:
-          'Modelo com **todas as opções** disponíveis nos controles: rodapé top/bottom, zebrado, hover, sticky, ordenação, empty states, loading e labels customizados.',
+          'Modelo com **todas as opções** disponíveis nos controles: rodapé top/bottom, hover, sticky, ordenação, empty states, loading e labels customizados.',
       },
     },
   },
@@ -706,7 +697,6 @@ export const PlaygroundCompleto: Story = {
       [pageSizeOptions]="pageSizeOptions"
       [initialPageSize]="initialPageSize"
       [size]="size"
-      [striped]="striped"
       [hover]="hover"
       [stickyHeader]="stickyHeader"
       [bordered]="bordered"
@@ -736,11 +726,10 @@ export const PlaygroundCompleto: Story = {
 
 export const Default: Story = {
   render: (args) => ({
-    props: { ...args, initialPageSize: 5, paginationPosition: 'bottom', striped: false, stickyHeader: false, showPaginationWhenSinglePage: false },
+    props: { ...args, initialPageSize: 5, paginationPosition: 'bottom', stickyHeader: false, showPaginationWhenSinglePage: false },
     template: `<ui-table-playground
       [initialPageSize]="initialPageSize"
       [paginationPosition]="paginationPosition"
-      [striped]="striped"
       [stickyHeader]="stickyHeader"
       [showPaginationWhenSinglePage]="showPaginationWhenSinglePage"
     />`,
@@ -862,11 +851,11 @@ export const WithoutPagination: Story = {
   },
 };
 
-export const StripedAndSticky: Story = {
+export const StickyHeaderStory: Story = {
+  name: 'Header sticky',
   render: (args) => ({
-    props: { ...args, striped: true, stickyHeader: true, initialPageSize: 3 },
+    props: { ...args, stickyHeader: true, initialPageSize: 3 },
     template: `<ui-table-playground
-      [striped]="striped"
       [stickyHeader]="stickyHeader"
       [initialPageSize]="initialPageSize"
     />`,
@@ -875,7 +864,7 @@ export const StripedAndSticky: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Zebrado + header sticky com divisórias visíveis ao rolar.',
+        story: 'Header sticky com divisórias visíveis ao rolar.',
       },
     },
   },
