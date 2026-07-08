@@ -1,0 +1,167 @@
+<div [class]="classes()">
+  @if (label() && !hideLabel()) {
+    <ui-label
+      [label]="label()"
+      [forId]="id()"
+      [required]="hasRequired()"
+      [optionalText]="optionalText()"
+      [showOptionalText]="showOptionalText()"
+    />
+  }
+
+  @if (items().length > 0 || showExistingPreview()) {
+    <div class="ui-file-upload__list">
+      @if (showExistingPreview()) {
+        <article class="ui-file-upload__item ui-file-upload__item--existing">
+          <div class="ui-file-upload__thumb">
+            <img [src]="existingPreviewSrc()" alt="" class="ui-file-upload__thumb-image" />
+          </div>
+
+          <div class="ui-file-upload__content">
+            <strong class="ui-file-upload__name">Foto atual</strong>
+            <span class="ui-file-upload__meta">Imagem existente</span>
+          </div>
+
+          @if (!isDisabled()) {
+            <button
+              type="button"
+              class="ui-file-upload__remove"
+              aria-label="Remover foto atual"
+              (click)="removeExistingPreview()"
+            >
+              <ui-icon name="close" size="sm" />
+            </button>
+          }
+        </article>
+      }
+
+      @for (item of items(); track item.id) {
+        <article
+          class="ui-file-upload__item"
+          [class.ui-file-upload__item--uploading]="item.status === 'uploading'"
+          [class.ui-file-upload__item--success]="item.status === 'success'"
+        >
+          <div class="ui-file-upload__thumb">
+            @if (item.previewUrl) {
+              <img [src]="item.previewUrl" alt="" class="ui-file-upload__thumb-image" />
+            } @else if (isPdf(item.file)) {
+              <div class="ui-file-upload__pdf-icon" aria-hidden="true">
+                <span>pdf</span>
+              </div>
+            } @else {
+              <div class="ui-file-upload__file-icon" aria-hidden="true">
+                <ui-icon name="folder" size="md" />
+              </div>
+            }
+          </div>
+
+          <div class="ui-file-upload__content">
+            <strong class="ui-file-upload__name">{{ item.file.name }}</strong>
+
+            @if (item.status === 'uploading') {
+              <span class="ui-file-upload__meta">{{ uploadingText() }}</span>
+              <div class="ui-file-upload__progress" role="progressbar" [attr.aria-valuenow]="item.progress">
+                <span class="ui-file-upload__progress-bar" [style.width.%]="item.progress"></span>
+                <span class="ui-file-upload__progress-value">{{ item.progress }}%</span>
+              </div>
+            } @else {
+              <span class="ui-file-upload__meta">
+                {{ formatSize(item.file.size) }} • {{ getExtension(item.file) }}
+              </span>
+            }
+
+            @if (item.status === 'success' && resolvedEnableCrop() && isImage(item.file) && !isDisabled()) {
+              <button type="button" class="ui-file-upload__crop" (click)="openCropper(item.id)">
+                {{ cropActionText() }}
+              </button>
+            }
+          </div>
+
+          @if (!isDisabled()) {
+            <button
+              type="button"
+              class="ui-file-upload__remove"
+              [attr.aria-label]="item.status === 'uploading' ? 'Cancelar envio' : 'Remover arquivo'"
+              (click)="item.status === 'uploading' ? cancelUpload(item.id) : removeItem(item.id)"
+            >
+              <ui-icon name="close" size="sm" />
+            </button>
+          }
+        </article>
+      }
+
+      @if (canAddMore() && items().length > 0 && resolvedMultiple()) {
+        <button type="button" class="ui-file-upload__add-more" (click)="openFilePicker()">
+          {{ addMoreText() }}
+        </button>
+      }
+    </div>
+  }
+
+  @if (showDropzone()) {
+    <div
+      class="ui-file-upload__dropzone"
+      [attr.aria-disabled]="isDisabled()"
+      [attr.aria-describedby]="describedBy()"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+      (click)="openFilePicker()"
+      (keydown.enter)="openFilePicker()"
+      (keydown.space)="$event.preventDefault(); openFilePicker()"
+      tabindex="0"
+      role="button"
+      [attr.aria-label]="ariaLabel() ?? dropzoneText()"
+    >
+      <ui-icon name="upload" size="xl" class="ui-file-upload__dropzone-icon" />
+
+      <p class="ui-file-upload__dropzone-title">
+        {{ isDragOver() ? dropActiveText() : dropzoneText() }}
+      </p>
+      <button type="button" class="ui-file-upload__browse" (click)="$event.stopPropagation(); openFilePicker()">
+        {{ browseText() }}
+      </button>
+      <p class="ui-file-upload__constraints">{{ resolvedConstraintsText() }}</p>
+
+      @if (showAuxiliaryText() && auxiliaryText()) {
+        <div class="ui-file-upload__auxiliary">
+          <ui-icon name="info" size="sm" />
+          <span>{{ auxiliaryText() }}</span>
+        </div>
+      }
+
+      <input
+        #fileInput
+        class="ui-file-upload__input"
+        type="file"
+        [id]="id()"
+        [name]="name() ?? id()"
+        [accept]="resolvedAccept()"
+        [multiple]="resolvedMultiple()"
+        [disabled]="isDisabled()"
+        (change)="onNativeFileChange($event)"
+        (blur)="onTouched()"
+      />
+    </div>
+  }
+
+  @if (isDisabled() && items().length === 0 && !showExistingPreview()) {
+    <div class="ui-file-upload__dropzone ui-file-upload__dropzone--disabled" aria-disabled="true">
+      <ui-icon name="upload" size="xl" class="ui-file-upload__dropzone-icon" />
+      <p class="ui-file-upload__dropzone-title">{{ disabledText() }}</p>
+    </div>
+  }
+
+  @if (hasError() && !hideError()) {
+    <ui-field-error [id]="errorId()" [message]="errorMessage()" />
+  }
+</div>
+
+@if (cropTargetItem(); as cropItem) {
+  <ui-image-cropper
+    [imageUrl]="cropItem.previewUrl ?? ''"
+    [fileName]="cropItem.file.name"
+    (cancelled)="closeCropper()"
+    (applied)="onCropApplied($event)"
+  />
+}

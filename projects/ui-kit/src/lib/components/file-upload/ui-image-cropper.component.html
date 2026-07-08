@@ -1,0 +1,79 @@
+<div class="ui-image-cropper" role="dialog" aria-modal="true" [attr.aria-label]="title()">
+  <div class="ui-image-cropper__panel">
+    <div class="ui-image-cropper__header">
+      <h3 class="ui-image-cropper__title">{{ title() }}</h3>
+    </div>
+
+    <div class="ui-image-cropper__body">
+      <div
+        class="ui-image-cropper__viewport"
+        (pointerdown)="onPointerDown($event)"
+        (pointermove)="onPointerMove($event)"
+        (pointerup)="onPointerUp($event)"
+        (pointercancel)="onPointerUp($event)"
+      >
+        <img
+          #sourceImage
+          class="ui-image-cropper__image"
+          [src]="imageUrl()"
+          [alt]="fileName()"
+          [style]="imageStyle()"
+        />
+
+        <div class="ui-image-cropper__overlay">
+          <div class="ui-image-cropper__crop-box" [style]="cropBoxStyle()"></div>
+        </div>
+      </div>
+
+      <aside class="ui-image-cropper__controls">
+        <div class="ui-image-cropper__control-group">
+          <span class="ui-image-cropper__control-label">{{ zoomLabel() }}</span>
+          <div class="ui-image-cropper__zoom">
+            <button type="button" class="ui-image-cropper__zoom-btn" (click)="zoomOut()">−</button>
+            <span class="ui-image-cropper__zoom-value">{{ zoom() * 100 | number: '1.0-0' }}%</span>
+            <button type="button" class="ui-image-cropper__zoom-btn" (click)="zoomIn()">+</button>
+          </div>
+        </div>
+
+        <div class="ui-image-cropper__control-group">
+          <span class="ui-image-cropper__control-label">{{ ratioLabel() }}</span>
+          <div class="ui-image-cropper__ratios">
+            @for (option of aspectOptions; track option.id) {
+              <button
+                type="button"
+                class="ui-image-cropper__ratio"
+                [class.ui-image-cropper__ratio--active]="aspectRatio() === option.id"
+                (click)="selectAspectRatio(option.id)"
+              >
+                <span>{{ option.label }}</span>
+                @if (aspectRatio() === option.id) {
+                  <ui-icon name="check" size="sm" />
+                }
+              </button>
+            }
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="ui-image-cropper__rotate"
+          [attr.aria-label]="rotateAriaLabel()"
+          (click)="rotate()"
+        >
+          <ui-icon name="reactive" size="md" />
+        </button>
+      </aside>
+    </div>
+
+    <div class="ui-image-cropper__footer">
+      <ui-button
+        type="button"
+        color="secondary"
+        [outline]="true"
+        [label]="cancelLabel()"
+        (buttonClick)="cancel()"
+      />
+      <ui-button type="button" color="primary" [label]="applyLabel()" (buttonClick)="apply()" />
+    </div>
+  </div>
+</div>
