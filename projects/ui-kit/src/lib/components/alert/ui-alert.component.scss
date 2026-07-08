@@ -65,24 +65,28 @@
     --alert-color: var(--ui-color-success);
     --alert-soft-bg: var(--ui-color-success-soft-bg);
     --alert-soft-text: var(--ui-color-success-soft-text);
+    --alert-on-color: var(--ui-color-on-success);
   }
 
   &--warning {
     --alert-color: var(--ui-color-warning);
     --alert-soft-bg: var(--ui-color-warning-soft-bg);
     --alert-soft-text: var(--ui-color-warning-soft-text);
+    --alert-on-color: var(--ui-color-on-warning);
   }
 
   &--danger {
     --alert-color: var(--ui-color-danger);
     --alert-soft-bg: var(--ui-color-danger-soft-bg);
     --alert-soft-text: var(--ui-color-danger-soft-text);
+    --alert-on-color: var(--ui-color-on-danger);
   }
 
   &--info {
     --alert-color: var(--ui-color-info);
     --alert-soft-bg: var(--ui-color-info-soft-bg);
     --alert-soft-text: var(--ui-color-info-soft-text);
+    --alert-on-color: var(--ui-color-on-info);
   }
 
   &--soft {
@@ -93,8 +97,21 @@
 
   &--solid {
     background: var(--alert-color);
-    color: var(--ui-color-surface);
+    color: var(--alert-on-color);
     border-color: var(--alert-color);
+
+    .ui-alert__close {
+      ::ng-deep .ui-button.ui-button--outline {
+        color: currentColor;
+        border-color: color-mix(in srgb, currentColor 72%, transparent);
+        background: transparent;
+
+        &:hover:not(:disabled) {
+          background: color-mix(in srgb, currentColor 14%, transparent);
+          filter: none;
+        }
+      }
+    }
   }
 
   &--outline {
@@ -102,6 +119,13 @@
     color: var(--alert-soft-text);
     border-color: var(--alert-color);
     box-shadow: none;
+
+    .ui-alert__close {
+      ::ng-deep .ui-button.ui-button--outline {
+        color: var(--alert-color);
+        border-color: color-mix(in srgb, var(--alert-color) 72%, transparent);
+      }
+    }
   }
 
   &__icon {

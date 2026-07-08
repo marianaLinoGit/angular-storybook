@@ -88,12 +88,32 @@
   &--solid {
     background: var(--toast-color);
     color: var(--toast-on-color);
+
+    .ui-toast__close {
+      ::ng-deep .ui-button.ui-button--outline {
+        color: currentColor;
+        border-color: color-mix(in srgb, currentColor 72%, transparent);
+        background: transparent;
+
+        &:hover:not(:disabled) {
+          background: color-mix(in srgb, currentColor 14%, transparent);
+          filter: none;
+        }
+      }
+    }
   }
 
   &--outline {
     background: var(--ui-color-surface);
     color: var(--toast-text);
     border-color: var(--toast-color);
+
+    .ui-toast__close {
+      ::ng-deep .ui-button.ui-button--outline {
+        color: var(--toast-color);
+        border-color: color-mix(in srgb, var(--toast-color) 72%, transparent);
+      }
+    }
   }
 
   &--top-left {
