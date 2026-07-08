@@ -28,7 +28,7 @@ export class UiAlertComponent {
   closeAriaLabel = input('Fechar alerta');
 
   color = input<AlertColor>('info');
-  variant = input<AlertVariant>('soft');
+  variant = input<AlertVariant>('solid');
   size = input<AlertSize>('md');
   showIcon = input(true);
   closable = input(true);

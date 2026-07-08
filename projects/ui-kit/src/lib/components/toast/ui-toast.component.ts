@@ -31,7 +31,7 @@ export class UiToastComponent {
   text = input('Mensagem do toast');
 
   color = input<UiToastColor>('info');
-  variant = input<UiToastVariant>('soft');
+  variant = input<UiToastVariant>('solid');
 
   size = input<UiToastSize>('md');
   shadow = input<UiToastShadow>('sm');

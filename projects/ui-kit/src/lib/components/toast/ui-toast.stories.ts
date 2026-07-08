@@ -7,7 +7,7 @@ const playgroundDefaults = {
   title: 'Informação',
   text: 'Essa é uma mensagem informativa.',
   color: 'info' as const,
-  variant: 'soft' as const,
+  variant: 'solid' as const,
   size: 'md' as const,
   shadow: 'sm' as const,
   icon: null as (typeof UI_ICON_NAMES)[number] | null,
