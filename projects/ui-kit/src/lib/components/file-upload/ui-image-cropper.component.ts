@@ -256,47 +256,48 @@ export class UiImageCropperComponent {
 
     await this.waitForImage(imageEl);
 
+    const vw = viewport.clientWidth;
+    const vh = viewport.clientHeight;
+    if (vw <= 0 || vh <= 0) return;
+
+    const crop = this.cropRect();
+    const cropWidth = Math.max(1, Math.round(crop.width));
+    const cropHeight = Math.max(1, Math.round(crop.height));
+
+    const viewportCanvas = document.createElement('canvas');
+    viewportCanvas.width = vw;
+    viewportCanvas.height = vh;
+
+    const viewportContext = viewportCanvas.getContext('2d');
+    if (!viewportContext) return;
+
+    this.renderViewport(
+      viewportContext,
+      imageEl,
+      vw,
+      vh,
+      this.zoom(),
+      this.rotation(),
+    );
+
     const canvas = document.createElement('canvas');
+    canvas.width = cropWidth;
+    canvas.height = cropHeight;
+
     const context = canvas.getContext('2d');
     if (!context) return;
 
-    const viewportRect = viewport.getBoundingClientRect();
-    const imageRect = imageEl.getBoundingClientRect();
-    const crop = this.cropRect();
-
-    const cropLeft = viewportRect.left + crop.left;
-    const cropTop = viewportRect.top + crop.top;
-    const cropWidth = crop.width;
-    const cropHeight = crop.height;
-
-    const scaleX = imageEl.naturalWidth / imageRect.width;
-    const scaleY = imageEl.naturalHeight / imageRect.height;
-
-    const sx = Math.max(0, (cropLeft - imageRect.left) * scaleX);
-    const sy = Math.max(0, (cropTop - imageRect.top) * scaleY);
-    const sw = Math.min(imageEl.naturalWidth - sx, cropWidth * scaleX);
-    const sh = Math.min(imageEl.naturalHeight - sy, cropHeight * scaleY);
-
-    canvas.width = Math.max(1, Math.round(sw));
-    canvas.height = Math.max(1, Math.round(sh));
-
-    if (this.rotation() % 360 !== 0) {
-      context.translate(canvas.width / 2, canvas.height / 2);
-      context.rotate((this.rotation() * Math.PI) / 180);
-      context.drawImage(
-        imageEl,
-        sx,
-        sy,
-        sw,
-        sh,
-        -canvas.width / 2,
-        -canvas.height / 2,
-        canvas.width,
-        canvas.height,
-      );
-    } else {
-      context.drawImage(imageEl, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
-    }
+    context.drawImage(
+      viewportCanvas,
+      crop.left,
+      crop.top,
+      crop.width,
+      crop.height,
+      0,
+      0,
+      cropWidth,
+      cropHeight,
+    );
 
     const blob = await new Promise<Blob | null>((resolve) =>
       canvas.toBlob(resolve, 'image/jpeg', 0.92),
@@ -311,6 +312,44 @@ export class UiImageCropperComponent {
     });
 
     this.applied.emit(croppedFile);
+  }
+
+  /** Renderiza a imagem no canvas exatamente como aparece no viewport (contain + zoom + rotação). */
+  private renderViewport(
+    context: CanvasRenderingContext2D,
+    image: HTMLImageElement,
+    viewportW: number,
+    viewportH: number,
+    zoom: number,
+    rotationDeg: number,
+  ): void {
+    const naturalW = image.naturalWidth;
+    const naturalH = image.naturalHeight;
+    if (naturalW <= 0 || naturalH <= 0) return;
+
+    const fitScale = Math.min(viewportW / naturalW, viewportH / naturalH);
+    const drawW = naturalW * fitScale;
+    const drawH = naturalH * fitScale;
+
+    context.clearRect(0, 0, viewportW, viewportH);
+    context.save();
+    context.beginPath();
+    context.rect(0, 0, viewportW, viewportH);
+    context.clip();
+
+    // CSS: transform scale(z) rotate(r) → rotate primeiro, depois scale (origem no centro).
+    context.translate(viewportW / 2, viewportH / 2);
+    context.scale(zoom, zoom);
+    context.rotate((rotationDeg * Math.PI) / 180);
+    context.translate(-viewportW / 2, -viewportH / 2);
+    context.drawImage(
+      image,
+      (viewportW - drawW) / 2,
+      (viewportH - drawH) / 2,
+      drawW,
+      drawH,
+    );
+    context.restore();
   }
 
   private initCropRect(): void {
@@ -425,25 +464,31 @@ export class UiImageCropperComponent {
     viewportW: number,
     viewportH: number,
   ): CropRect {
+    const aspectLock = this.getAspectLock();
     let { left, top, width, height } = rect;
 
     width = Math.max(MIN_CROP_SIZE, Math.min(width, viewportW));
     height = Math.max(MIN_CROP_SIZE, Math.min(height, viewportH));
 
-    const aspectLock = this.getAspectLock();
     if (aspectLock) {
-      const currentAspect = width / height;
-      if (Math.abs(currentAspect - aspectLock) > 0.01) {
-        if (currentAspect > aspectLock) {
-          width = height * aspectLock;
-        } else {
-          height = width / aspectLock;
-        }
+      if (width / height > aspectLock) {
+        width = height * aspectLock;
+      } else {
+        height = width / aspectLock;
+      }
+
+      const maxWidth = Math.min(viewportW, viewportH * aspectLock);
+      const maxHeight = Math.min(viewportH, viewportW / aspectLock);
+      width = Math.min(width, maxWidth);
+      height = Math.min(height, maxHeight);
+
+      if (width / height > aspectLock) {
+        width = height * aspectLock;
+      } else {
+        height = width / aspectLock;
       }
     }
 
-    width = Math.min(width, viewportW);
-    height = Math.min(height, viewportH);
     left = Math.max(0, Math.min(left, viewportW - width));
     top = Math.max(0, Math.min(top, viewportH - height));
 
