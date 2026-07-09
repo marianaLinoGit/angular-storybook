@@ -5,6 +5,7 @@ import {
   ElementRef,
   Renderer2,
   afterNextRender,
+  afterEveryRender,
   computed,
   effect,
   inject,
@@ -17,6 +18,10 @@ import { DOCUMENT, DecimalPipe } from '@angular/common';
 import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconComponent } from '../icon/ui-icon.component';
 import { BodyScrollLock } from '../../utils/body-scroll-lock';
+import {
+  bringOverlayRootToFront,
+  getUiOverlayRoot,
+} from '../../utils/overlay-root';
 
 export type UiImageCropAspectRatio = 'free' | '1:1' | '4:3' | '16:9';
 
@@ -42,8 +47,6 @@ type InteractionState =
 
 const MIN_CROP_SIZE = 56;
 const CORNER_HANDLES: ResizeHandle[] = ['nw', 'ne', 'sw', 'se'];
-
-const CROPPER_Z_INDEX = '1500';
 
 @Component({
   selector: 'ui-image-cropper',
@@ -129,10 +132,14 @@ export class UiImageCropperComponent {
       this.initCropRect();
     });
 
-    this.portalToBody();
+    this.portalToOverlay();
+
+    afterEveryRender(() => {
+      this.ensurePortalPosition();
+    });
 
     this.destroyRef.onDestroy(() => {
-      this.restoreFromBody();
+      this.restoreFromOverlay();
     });
   }
 
@@ -508,27 +515,37 @@ export class UiImageCropperComponent {
     return { width, height };
   }
 
-  private portalToBody(): void {
-    const host = this.elementRef.nativeElement;
+  private portalToOverlay(): void {
+    this.ensurePortalPosition();
+    this.lockBodyScroll();
+  }
 
-    if (host.parentElement === this.document.body) {
-      this.applyPortalStyles(host);
-      return;
+  private ensurePortalPosition(): void {
+    const host = this.elementRef.nativeElement;
+    const overlayRoot = getUiOverlayRoot(this.document);
+    bringOverlayRootToFront(this.document);
+
+    if (host.parentElement !== overlayRoot) {
+      if (
+        !this.originalParent &&
+        host.parentElement &&
+        host.parentElement !== overlayRoot
+      ) {
+        this.originalParent = host.parentElement;
+        this.originalNextSibling = host.nextSibling;
+      }
+
+      overlayRoot.appendChild(host);
     }
 
-    this.originalParent = host.parentElement;
-    this.originalNextSibling = host.nextSibling;
-    this.document.body.appendChild(host);
     this.isPortaled.set(true);
     this.applyPortalStyles(host);
-    this.lockBodyScroll();
   }
 
   private applyPortalStyles(host: HTMLElement): void {
     this.renderer.addClass(host, 'ui-image-cropper-host--portaled');
     this.renderer.setStyle(host, 'position', 'fixed');
     this.renderer.setStyle(host, 'inset', '0');
-    this.renderer.setStyle(host, 'z-index', CROPPER_Z_INDEX);
     this.renderer.setStyle(host, 'display', 'block');
     this.renderer.setStyle(host, 'pointer-events', 'auto');
   }
@@ -537,15 +554,15 @@ export class UiImageCropperComponent {
     this.renderer.removeClass(host, 'ui-image-cropper-host--portaled');
     this.renderer.removeStyle(host, 'position');
     this.renderer.removeStyle(host, 'inset');
-    this.renderer.removeStyle(host, 'z-index');
     this.renderer.removeStyle(host, 'display');
     this.renderer.removeStyle(host, 'pointer-events');
   }
 
-  private restoreFromBody(): void {
+  private restoreFromOverlay(): void {
     const host = this.elementRef.nativeElement;
+    const overlayRoot = getUiOverlayRoot(this.document);
 
-    if (host.parentElement !== this.document.body || !this.originalParent) {
+    if (host.parentElement !== overlayRoot || !this.originalParent) {
       this.clearPortalStyles(host);
       this.unlockBodyScroll();
       return;

@@ -5,14 +5,12 @@
 :host(.ui-image-cropper-host--portaled) {
   position: fixed;
   inset: 0;
-  z-index: var(--ui-z-cropper, 1500);
   pointer-events: auto;
 }
 
 .ui-image-cropper {
   position: fixed;
   inset: 0;
-  z-index: var(--ui-z-cropper, 1500);
   display: flex;
   align-items: center;
   justify-content: center;

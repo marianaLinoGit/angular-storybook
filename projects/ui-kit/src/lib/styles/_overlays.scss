@@ -1,0 +1,11 @@
+#ui-kit-overlay-root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ui-z-overlay, 1500);
+  pointer-events: none;
+  isolation: isolate;
+}
+
+#ui-kit-overlay-root > * {
+  pointer-events: auto;
+}

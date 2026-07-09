@@ -11,11 +11,16 @@ import {
   input,
   output,
   signal,
+  afterEveryRender,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 import { BodyScrollLock } from '../../utils/body-scroll-lock';
+import {
+  bringOverlayRootToFront,
+  getUiOverlayRoot,
+} from '../../utils/overlay-root';
 
 export type UiModalType = 'confirmation' | 'informative' | 'content' | 'delete';
 export type UiModalSize = 'sm' | 'md' | 'lg';
@@ -65,6 +70,7 @@ export class UiModalComponent {
   private internalClosed = signal(false);
   private originalParent: HTMLElement | null = null;
   private originalNextSibling: ChildNode | null = null;
+  private bodyScrollLocked = false;
 
   readonly isPortaled = signal(false);
 
@@ -116,15 +122,21 @@ export class UiModalComponent {
         this.presentationMode() === 'fixed' && this.isVisible();
 
       if (shouldPortal) {
-        this.portalToBody();
+        this.portalToOverlay();
         return;
       }
 
-      this.restoreFromBody();
+      this.restoreFromOverlay();
+    });
+
+    afterEveryRender(() => {
+      if (this.presentationMode() === 'fixed' && this.isVisible()) {
+        this.ensurePortalPosition();
+      }
     });
 
     this.destroyRef.onDestroy(() => {
-      this.restoreFromBody();
+      this.restoreFromOverlay();
     });
   }
 
@@ -162,25 +174,64 @@ export class UiModalComponent {
     this.close();
   }
 
-  private portalToBody(): void {
-    const host = this.elementRef.nativeElement;
+  private portalToOverlay(): void {
+    this.ensurePortalPosition();
 
-    if (host.parentElement === this.document.body) {
-      return;
+    if (!this.bodyScrollLocked) {
+      this.lockBodyScroll();
+      this.bodyScrollLocked = true;
     }
-
-    this.originalParent = host.parentElement;
-    this.originalNextSibling = host.nextSibling;
-    this.document.body.appendChild(host);
-    this.isPortaled.set(true);
-    this.lockBodyScroll();
   }
 
-  private restoreFromBody(): void {
+  private ensurePortalPosition(): void {
     const host = this.elementRef.nativeElement;
+    const overlayRoot = getUiOverlayRoot(this.document);
+    bringOverlayRootToFront(this.document);
 
-    if (host.parentElement !== this.document.body || !this.originalParent) {
-      this.unlockBodyScroll();
+    if (host.parentElement !== overlayRoot) {
+      if (
+        !this.originalParent &&
+        host.parentElement &&
+        host.parentElement !== overlayRoot
+      ) {
+        this.originalParent = host.parentElement;
+        this.originalNextSibling = host.nextSibling;
+      }
+
+      overlayRoot.appendChild(host);
+    }
+
+    this.isPortaled.set(true);
+    this.applyPortalStyles(host);
+  }
+
+  private applyPortalStyles(host: HTMLElement): void {
+    this.renderer.addClass(host, 'ui-modal-host--portaled');
+    this.renderer.setStyle(host, 'position', 'fixed');
+    this.renderer.setStyle(host, 'inset', '0');
+    this.renderer.setStyle(host, 'display', 'block');
+    this.renderer.setStyle(host, 'pointer-events', 'auto');
+  }
+
+  private clearPortalStyles(host: HTMLElement): void {
+    this.renderer.removeClass(host, 'ui-modal-host--portaled');
+    this.renderer.removeStyle(host, 'position');
+    this.renderer.removeStyle(host, 'inset');
+    this.renderer.removeStyle(host, 'display');
+    this.renderer.removeStyle(host, 'pointer-events');
+  }
+
+  private restoreFromOverlay(): void {
+    const host = this.elementRef.nativeElement;
+    const overlayRoot = getUiOverlayRoot(this.document);
+
+    if (host.parentElement !== overlayRoot || !this.originalParent) {
+      this.clearPortalStyles(host);
+
+      if (this.bodyScrollLocked) {
+        this.unlockBodyScroll();
+        this.bodyScrollLocked = false;
+      }
       return;
     }
 
@@ -193,7 +244,12 @@ export class UiModalComponent {
     this.originalParent = null;
     this.originalNextSibling = null;
     this.isPortaled.set(false);
-    this.unlockBodyScroll();
+    this.clearPortalStyles(host);
+
+    if (this.bodyScrollLocked) {
+      this.unlockBodyScroll();
+      this.bodyScrollLocked = false;
+    }
   }
 
   private lockBodyScroll(): void {
