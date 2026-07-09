@@ -6,12 +6,18 @@ import {
   input,
   signal,
 } from '@angular/core';
+import {
+  UiIconComponent,
+  UiIconName,
+  UiIconSize,
+} from '../icon/ui-icon.component';
 
 export type UiTooltipPosition = 'top' | 'right' | 'bottom' | 'left';
 
 @Component({
   selector: 'ui-tooltip',
   standalone: true,
+  imports: [UiIconComponent],
   templateUrl: './ui-tooltip.component.html',
   styleUrl: './ui-tooltip.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,9 +31,23 @@ export class UiTooltipComponent {
   delay = input('0ms');
   customClass = input('');
 
+  icon = input<UiIconName | null>(null);
+  iconSize = input<UiIconSize>('sm');
+  iconColor = input<string | null>(null);
+  iconLabel = input('');
+
   tooltipId = `ui-tooltip-${crypto.randomUUID()}`;
 
   readonly visible = signal(false);
+
+  resolvedIconLabel = computed(() => {
+    const label = this.iconLabel().trim();
+    if (label) {
+      return label;
+    }
+
+    return this.text().trim() || null;
+  });
 
   tooltipClasses = computed(() =>
     [

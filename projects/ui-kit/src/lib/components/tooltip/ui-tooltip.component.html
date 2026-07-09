@@ -1,5 +1,20 @@
-<span class="ui-tooltip">
-  <ng-content></ng-content>
+<span class="ui-tooltip" [class.ui-tooltip--icon]="!!icon()">
+  @if (icon(); as iconName) {
+    <span
+      class="ui-tooltip__trigger ui-tooltip__trigger--icon"
+      tabindex="0"
+      [attr.aria-describedby]="tooltipId"
+    >
+      <ui-icon
+        [name]="iconName"
+        [size]="iconSize()"
+        [color]="iconColor()"
+        [label]="resolvedIconLabel()"
+      />
+    </span>
+  } @else {
+    <ng-content />
+  }
 
   @if (!disabled()) {
     <span

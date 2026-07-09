@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { tooltipPlaygroundPlay } from '../../storybook/play.helpers';
+import { UI_ICON_NAMES } from '../icon/ui-icon.component';
 import { UiTooltipComponent } from './ui-tooltip.component';
 
 const playgroundDefaults = {
@@ -10,6 +11,10 @@ const playgroundDefaults = {
   maxWidth: '240px',
   delay: '0ms',
   customClass: '',
+  icon: null as (typeof UI_ICON_NAMES)[number] | null,
+  iconSize: 'sm' as const,
+  iconColor: null as string | null,
+  iconLabel: '',
 };
 
 const tooltipTemplate = `
@@ -22,10 +27,16 @@ const tooltipTemplate = `
       [maxWidth]="maxWidth"
       [delay]="delay"
       [customClass]="customClass"
+      [icon]="icon"
+      [iconSize]="iconSize"
+      [iconColor]="iconColor"
+      [iconLabel]="iconLabel"
     >
-      <button type="button" style="padding: 10px 16px; border-radius: 8px; border: 1px solid #ddd;">
-        Passe o mouse
-      </button>
+      @if (!icon) {
+        <button type="button" style="padding: 10px 16px; border-radius: 8px; border: 1px solid #ddd;">
+          Passe o mouse
+        </button>
+      }
     </ui-tooltip>
   </div>
 `;
@@ -34,7 +45,7 @@ const meta: Meta<UiTooltipComponent> = {
   title: 'Components/Tooltip',
   component: UiTooltipComponent,
   tags: ['autodocs'],
-  includeStories: /^(PlaygroundCompleto|Text|WithHtml|Right|Disabled)$/,
+  includeStories: /^(PlaygroundCompleto|Text|WithIcon|WithHtml|Right|Disabled)$/,
   parameters: {
     layout: 'centered',
     docs: {
@@ -82,6 +93,30 @@ const meta: Meta<UiTooltipComponent> = {
       table: { category: 'Aparência' },
       description: 'Classe CSS customizada.',
     },
+    icon: {
+      control: 'select',
+      options: [null, ...UI_ICON_NAMES],
+      table: { category: 'Ícone' },
+      description:
+        'Quando informado, renderiza um ui-icon como gatilho (sem botão). O conteúdo projetado é ignorado.',
+    },
+    iconSize: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+      table: { category: 'Ícone' },
+      description: 'Tamanho do ícone quando `icon` está definido.',
+    },
+    iconColor: {
+      control: 'color',
+      table: { category: 'Ícone' },
+      description: 'Cor customizada do ícone. Padrão: `--ui-color-info`.',
+    },
+    iconLabel: {
+      control: 'text',
+      table: { category: 'Ícone' },
+      description:
+        'Rótulo acessível do ícone. Se vazio, usa o texto do tooltip.',
+    },
   },
   args: { ...playgroundDefaults },
 };
@@ -113,6 +148,31 @@ export const Text: Story = {
     template: tooltipTemplate,
   }),
   args: { ...playgroundDefaults },
+};
+
+export const WithIcon: Story = {
+  name: 'Com ícone info',
+  render: (args) => ({
+    props: args,
+    template: `
+      <div style="padding: 80px; display: flex; align-items: center; gap: 8px;">
+        <span>Campo exemplo</span>
+        <ui-tooltip
+          [text]="text"
+          [position]="position"
+          [icon]="icon"
+          [iconSize]="iconSize"
+        />
+      </div>
+    `,
+  }),
+  args: {
+    ...playgroundDefaults,
+    text: 'Informação adicional sobre este campo.',
+    icon: 'info',
+    iconSize: 'sm',
+    position: 'top',
+  },
 };
 
 export const WithHtml: Story = {

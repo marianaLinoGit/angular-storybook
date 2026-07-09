@@ -3,12 +3,33 @@
   display: inline-flex;
   align-items: center;
 
+  &--icon {
+    vertical-align: middle;
+  }
+
   &:hover,
   &:focus-within {
     .ui-tooltip__content {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
+    }
+  }
+
+  &__trigger {
+    display: inline-flex;
+    align-items: center;
+    outline: none;
+    border-radius: var(--ui-radius-sm);
+
+    &--icon {
+      cursor: help;
+      color: var(--ui-color-info);
+
+      &:focus-visible {
+        outline: 2px solid var(--ui-color-info);
+        outline-offset: 2px;
+      }
     }
   }
 
