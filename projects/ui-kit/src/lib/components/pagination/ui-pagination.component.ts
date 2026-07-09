@@ -5,7 +5,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import { UiSize } from '@design-system/types/ui.types';
+import { UiSize } from '../../design-system/types/ui.types';
 import { UiButtonComponent } from '../button/ui-button.component';
 import { UiSelectComponent, UiSelectOption } from '../select/ui-select.component';
 

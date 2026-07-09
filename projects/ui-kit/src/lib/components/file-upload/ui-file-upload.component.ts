@@ -573,7 +573,7 @@ export class UiFileUploadComponent implements ControlValueAccessor {
   }
 
   private formatFileTooLargeMessage(maxSize: string): string {
-    return this.fileTooLargeMessage().replace(/\{\{?maxSize\}?\}/g, maxSize);
+    return this.fileTooLargeMessage().replace(/\{\{?maxSize\}?\}|__MAX_SIZE__/g, maxSize);
   }
 
   private rejectUpload(itemId: string, fileName: string, message: string): void {

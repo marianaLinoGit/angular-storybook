@@ -10,7 +10,7 @@ import {
   UiColor,
   UiHorizontalPosition,
   UiSize,
-} from '@design-system/types/ui.types';
+} from '../../design-system/types/ui.types';
 import { RouteHistoryService } from '../../services/route-history.service';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 

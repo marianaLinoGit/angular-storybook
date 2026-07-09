@@ -4,7 +4,7 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { UiSize } from '@design-system/types/ui.types';
+import { UiSize } from '../../design-system/types/ui.types';
 
 export type UiLoadingType =
   | 'spinner'

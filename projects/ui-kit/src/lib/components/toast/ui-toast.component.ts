@@ -6,7 +6,7 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { UiColor, UiToastPosition } from '@design-system/types/ui.types';
+import { UiColor, UiToastPosition } from '../../design-system/types/ui.types';
 import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 

@@ -294,7 +294,7 @@ export class UiTableComponent {
   getSortAriaLabel(column: UiTableColumn): string {
     const template = this.sortByAriaLabel().trim();
     const base = template
-      ? template.replace(/\{column\}/g, column.label)
+      ? template.replace(/\{column\}|__COLUMN__/g, column.label)
       : column.label;
 
     if (this.sortBy() !== column.key) {

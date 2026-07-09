@@ -6,7 +6,7 @@ import {
   output,
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { UiSize } from '@design-system/types/ui.types';
+import { UiSize } from '../../design-system/types/ui.types';
 
 export type UiCardAlign = 'left' | 'center' | 'right';
 export type UiCardTarget = '_self' | '_blank';
