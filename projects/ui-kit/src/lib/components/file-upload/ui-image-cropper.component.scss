@@ -1,15 +1,30 @@
-.ui-image-cropper {
+:host {
+  display: contents;
+}
+
+:host(.ui-image-cropper-host--portaled) {
+  display: block;
   position: fixed;
   inset: 0;
-  z-index: 1200;
-  display: grid;
-  place-items: center;
+  z-index: var(--ui-z-cropper, 1250);
+}
+
+.ui-image-cropper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--ui-space-4);
   background: var(--ui-color-overlay);
+  box-sizing: border-box;
 }
 
 .ui-image-cropper__panel {
+  display: flex;
+  flex-direction: column;
   width: min(920px, 100%);
+  max-height: calc(100dvh - 2 * var(--ui-space-4));
   border-radius: var(--ui-radius-lg);
   background: var(--ui-color-surface);
   box-shadow: var(--ui-shadow-md);
@@ -17,6 +32,7 @@
 }
 
 .ui-image-cropper__header {
+  flex-shrink: 0;
   padding: var(--ui-space-4) var(--ui-space-5);
   border-bottom: 1px solid var(--ui-color-border);
 }
@@ -33,12 +49,16 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) 220px;
   gap: var(--ui-space-4);
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
   padding: var(--ui-space-4) var(--ui-space-5);
 }
 
 .ui-image-cropper__viewport {
   position: relative;
-  min-height: 320px;
+  height: clamp(180px, 38dvh, 340px);
+  min-height: 180px;
   border-radius: var(--ui-radius-md);
   background: #0f172a;
   overflow: hidden;
@@ -151,14 +171,33 @@
 
 .ui-image-cropper__footer {
   display: flex;
+  flex-shrink: 0;
   justify-content: flex-end;
   gap: var(--ui-space-3);
   padding: var(--ui-space-4) var(--ui-space-5);
   border-top: 1px solid var(--ui-color-border);
+  background: var(--ui-color-surface);
 }
 
 @media (max-width: 768px) {
+  .ui-image-cropper {
+    padding: var(--ui-space-3);
+  }
+
+  .ui-image-cropper__panel {
+    max-height: calc(100dvh - 2 * var(--ui-space-3));
+  }
+
   .ui-image-cropper__body {
     grid-template-columns: 1fr;
+  }
+
+  .ui-image-cropper__viewport {
+    height: clamp(160px, 32dvh, 260px);
+    min-height: 160px;
+  }
+
+  .ui-image-cropper__ratios {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
