@@ -65,6 +65,8 @@ export const UI_ICON_NAMES = [
   'plus-circle',
   'preventive',
   'reactive',
+  'rotate-left',
+  'rotate-right',
   'search',
   'search-bigger',
   'statistics',
