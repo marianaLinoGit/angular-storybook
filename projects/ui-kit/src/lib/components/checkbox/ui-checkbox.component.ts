@@ -40,7 +40,7 @@ export class UiCheckboxComponent implements ControlValueAccessor {
   required = input(false);
   disabled = input(false);
   showError = input(false);
-  errorMessage = input('*Campo obrigatório');
+  errorMessage = input('');
   customClass = input('');
 
   checkedChange = output<boolean>();

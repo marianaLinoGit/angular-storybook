@@ -51,19 +51,19 @@ export class UiSelectComponent implements ControlValueAccessor {
 
   id = input(`ui-select-${crypto.randomUUID()}`);
   name = input<string | null>(null);
-  placeholder = input('Selecione');
-  searchPlaceholder = input('Buscar...');
-  searchAriaLabel = input('Buscar opção');
-  emptyText = input('Nenhuma opção encontrada');
+  placeholder = input('');
+  searchPlaceholder = input('');
+  searchAriaLabel = input('');
+  emptyText = input('');
   options = input<UiSelectOption[]>([]);
 
   required = input(false);
   disabled = input(false);
 
-  optionalText = input('Opcional');
+  optionalText = input('');
   showOptionalText = input(true);
 
-  errorMessage = input('*Campo obrigatório');
+  errorMessage = input('');
   showError = input(false);
   customClass = input('');
 
@@ -72,7 +72,7 @@ export class UiSelectComponent implements ControlValueAccessor {
   searchable = input(false);
   serverSearch = input(false);
   allowClear = input(false);
-  clearAriaLabel = input('Limpar seleção');
+  clearAriaLabel = input('');
 
   valueChange = output<string>();
   searchChange = output<string>();

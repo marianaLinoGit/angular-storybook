@@ -25,8 +25,8 @@ export type UiEmptyStateButtonVariant = 'primary' | 'secondary' | 'outline';
 export class UiEmptyStateComponent {
   iconName = input<UiIconName | null>('paw');
 
-  title = input('Nenhum resultado encontrado');
-  description = input('Tente ajustar os filtros ou criar um novo item.');
+  title = input('');
+  description = input('');
 
   buttonLabel = input<string | null>(null);
   buttonAriaLabel = input<string | null>(null);

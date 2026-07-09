@@ -16,7 +16,7 @@ export class UiLabelComponent {
   label = input('');
   forId = input<string | null>(null);
   required = input(false);
-  optionalText = input('Opcional');
+  optionalText = input('');
   showOptionalText = input(true);
   customClass = input('');
   labelId = input<string | null>(null);

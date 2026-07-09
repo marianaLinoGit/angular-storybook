@@ -46,14 +46,14 @@ export class UiModalComponent {
   open = input(true);
   type = input<UiModalType>('informative');
 
-  title = input('Título do modal');
-  description = input<string | null>('Descrição do modal');
+  title = input('');
+  description = input<string | null>(null);
   icon = input<UiIconName | null>(null);
 
-  confirmLabel = input('Confirmar');
-  cancelLabel = input('Cancelar');
-  closeLabel = input('Fechar');
-  closeAriaLabel = input('Fechar modal');
+  confirmLabel = input('');
+  cancelLabel = input('');
+  closeLabel = input('');
+  closeAriaLabel = input('');
 
   showCloseButton = input(true);
   closeOnBackdrop = input(true);

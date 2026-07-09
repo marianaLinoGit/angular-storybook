@@ -59,10 +59,10 @@ export class UiInputComponent implements ControlValueAccessor {
   readonly = input(false);
   disabled = input(false);
 
-  optionalText = input('Opcional');
+  optionalText = input('');
   showOptionalText = input(true);
 
-  errorMessage = input('*Campo obrigatório');
+  errorMessage = input('');
   showError = input(false);
   customClass = input('');
 

@@ -67,7 +67,7 @@ export class UiPageTitleComponent {
     const label = this.backLabel().trim();
     if (label) return label;
 
-    return 'Voltar';
+    return '';
   });
 
   computedActionAriaLabel = computed(() => {

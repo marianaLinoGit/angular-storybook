@@ -37,8 +37,8 @@ export class UiSwitchComponent implements ControlValueAccessor {
   uncheckedIcon = input<UiIconName | null>(null);
   showOnlyCurrentSide = input(false);
 
-  activeText = input('Ativado');
-  inactiveText = input('Desativado');
+  activeText = input('');
+  inactiveText = input('');
 
   showSideLabels = input(false);
   showStatus = input(true);

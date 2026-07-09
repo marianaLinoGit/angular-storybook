@@ -133,22 +133,27 @@ export class UiTableComponent {
   skeletonColumns = input<number | null>(null);
 
   emptyIcon = input<UiIconName | null>('folder');
-  emptyTitle = input('Nenhum registro cadastrado');
-  emptyDescription = input('Ainda não há dados para exibir.');
+  emptyTitle = input('');
+  emptyDescription = input('');
 
   noResultsIcon = input<UiIconName | null>('filter');
-  noResultsTitle = input('Nenhum registro encontrado');
-  noResultsDescription = input('Tente ajustar os filtros para encontrar o que procura.');
+  noResultsTitle = input('');
+  noResultsDescription = input('');
 
-  ariaLabel = input('Tabela de dados');
-  paginationAriaLabel = input('Paginação da tabela');
-  previousLabel = input('Anterior');
-  nextLabel = input('Próxima');
+  ariaLabel = input('');
+  paginationAriaLabel = input('');
+  paginationTopSuffix = input('');
+  paginationBottomSuffix = input('');
+  previousLabel = input('');
+  nextLabel = input('');
   pageSizeLabel = input<string | null>(null);
   pageSizeAriaLabel = input<string | null>(null);
-  totalLabel = input('registro(s)');
-  pageLabel = input('Página');
-  ofLabel = input('de');
+  totalLabel = input('');
+  pageLabel = input('');
+  ofLabel = input('');
+  sortByAriaLabel = input('');
+  sortAscAriaLabel = input('');
+  sortDescAriaLabel = input('');
 
   pageIndexChange = output<number>();
   pageSizeChange = output<number>();
@@ -201,7 +206,7 @@ export class UiTableComponent {
     const visibleLabel = this.pageSizeLabel()?.trim();
     if (visibleLabel) return visibleLabel;
 
-    return 'Itens por página';
+    return '';
   });
 
   showFooterTop = computed(
@@ -220,9 +225,12 @@ export class UiTableComponent {
     const base = this.paginationAriaLabel();
 
     if (this.showFooterTop() && this.showFooterBottom()) {
-      return position === 'top'
-        ? `${base} (superior)`
-        : `${base} (inferior)`;
+      const suffix =
+        position === 'top'
+          ? this.paginationTopSuffix().trim()
+          : this.paginationBottomSuffix().trim();
+
+      return suffix ? `${base} ${suffix}` : base;
     }
 
     return base;
@@ -284,13 +292,21 @@ export class UiTableComponent {
   }
 
   getSortAriaLabel(column: UiTableColumn): string {
+    const template = this.sortByAriaLabel().trim();
+    const base = template
+      ? template.replace(/\{column\}/g, column.label)
+      : column.label;
+
     if (this.sortBy() !== column.key) {
-      return `Ordenar por ${column.label}`;
+      return base;
     }
 
-    return `Ordenar por ${column.label}, ${
-      this.sortDir() === 'asc' ? 'crescente' : 'decrescente'
-    }`;
+    const direction =
+      this.sortDir() === 'asc'
+        ? this.sortAscAriaLabel().trim()
+        : this.sortDescAriaLabel().trim();
+
+    return direction ? `${base}, ${direction}` : base;
   }
 
   onSort(column: UiTableColumn): void {

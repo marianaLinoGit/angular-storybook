@@ -24,8 +24,8 @@ export type AlertPosition = 'top' | 'bottom';
 })
 export class UiAlertComponent {
   title = input<string | null>(null);
-  message = input('Mensagem do alerta');
-  closeAriaLabel = input('Fechar alerta');
+  message = input('');
+  closeAriaLabel = input('');
 
   color = input<AlertColor>('info');
   variant = input<AlertVariant>('solid');

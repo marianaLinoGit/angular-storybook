@@ -17,7 +17,7 @@ export type UiTooltipPosition = 'top' | 'right' | 'bottom' | 'left';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiTooltipComponent {
-  text = input('Passe o mouse');
+  text = input('');
   html = input<string | null>(null);
   position = input<UiTooltipPosition>('top');
   disabled = input(false);

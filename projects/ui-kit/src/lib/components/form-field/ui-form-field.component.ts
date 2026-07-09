@@ -27,7 +27,7 @@ export class UiFormFieldComponent implements UiFormFieldContext {
 
   label = input('');
   hint = input('');
-  optionalText = input('Opcional');
+  optionalText = input('');
   showOptionalText = input(true);
   controlId = input<string | null>(null);
   customClass = input('');

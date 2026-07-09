@@ -25,8 +25,8 @@ import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
 export class UiButtonComponent {
   private routeHistory = inject(RouteHistoryService);
 
-  label = input('Button');
-  loadingLabel = input('Loading...');
+  label = input('');
+  loadingLabel = input('');
   ariaLabel = input<string | null>(null);
 
   color = input<UiColor>('primary');
@@ -68,8 +68,6 @@ export class UiButtonComponent {
 
     const label = this.label()?.trim();
     if (label) return label;
-
-    if (this.appearance() === 'back') return 'Voltar';
 
     return null;
   });

@@ -104,7 +104,7 @@ export class UiFileUploadComponent implements ControlValueAccessor {
   fileTooLargeMessage = input('');
   uploadFailedMessage = input('');
   unknownFileExtensionLabel = input('');
-  pdfBadgeText = input('pdf');
+  pdfBadgeText = input('');
   enableImagePreview = input(true);
 
   cropperTitle = input('');

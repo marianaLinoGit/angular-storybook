@@ -27,8 +27,8 @@ type UiToastAriaLive = 'polite' | 'assertive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiToastComponent {
-  title = input('Título do toast');
-  text = input('Mensagem do toast');
+  title = input('');
+  text = input('');
 
   color = input<UiToastColor>('info');
   variant = input<UiToastVariant>('solid');
@@ -43,7 +43,7 @@ export class UiToastComponent {
   presentationMode = input<UiToastPresentationMode>('fixed');
 
   closable = input(true);
-  closeAriaLabel = input('Fechar notificação');
+  closeAriaLabel = input('');
 
   duration = input(5000);
   ariaLive = input<UiToastAriaLive>('polite');

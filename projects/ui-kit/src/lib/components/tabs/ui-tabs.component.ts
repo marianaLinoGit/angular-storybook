@@ -31,7 +31,7 @@ export class UiTabsComponent {
 
   initialActiveId = input<string | null>(null);
   activeId = model<string | null>(null);
-  ariaLabel = input('Abas');
+  ariaLabel = input('');
   variant = input<UiTabsVariant>('underline');
 
   tabChange = output<UiTabChangeEvent>();

@@ -29,7 +29,7 @@ export class UiLoadingComponent {
   size = input<UiSize>('md');
 
   message = input<string | null>(null);
-  ariaLabel = input('Carregando conteúdo');
+  ariaLabel = input('');
 
   overlay = input(false);
   overlayMode = input<UiLoadingOverlayMode>('fixed');

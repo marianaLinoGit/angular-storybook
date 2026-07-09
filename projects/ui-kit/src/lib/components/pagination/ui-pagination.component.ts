@@ -30,13 +30,13 @@ export class UiPaginationComponent {
   disabled = input(false);
   size = input<UiSize>('sm');
 
-  previousLabel = input('Anterior');
-  nextLabel = input('Próxima');
-  pageLabel = input('Página');
-  ofLabel = input('de');
+  previousLabel = input('');
+  nextLabel = input('');
+  pageLabel = input('');
+  ofLabel = input('');
   pageSizeLabel = input<string | null>(null);
   pageSizeAriaLabel = input<string | null>(null);
-  ariaLabel = input('Paginação');
+  ariaLabel = input('');
 
   pageIndexChange = output<number>();
   pageSizeChange = output<number>();
@@ -52,7 +52,7 @@ export class UiPaginationComponent {
     const visibleLabel = this.pageSizeSelectLabel();
     if (visibleLabel) return visibleLabel;
 
-    return 'Itens por página';
+    return '';
   });
 
   isFirstPage = computed(() => this.pageIndex() <= 1);

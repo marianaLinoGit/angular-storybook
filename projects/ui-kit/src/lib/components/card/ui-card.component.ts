@@ -20,9 +20,9 @@ export type UiCardTarget = '_self' | '_blank';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiCardComponent {
-  title = input('Título do card');
+  title = input('');
   subtitle = input<string | null>(null);
-  description = input('Descrição do card');
+  description = input('');
 
   imageUrl = input<string | null>(null);
   imageAlt = input<string | null>(null);
