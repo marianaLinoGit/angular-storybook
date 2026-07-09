@@ -78,14 +78,18 @@ export class UiImageCropperComponent {
   readonly cornerHandles = CORNER_HANDLES;
 
   imageUrl = input.required<string>();
-  fileName = input('imagem.jpg');
-  title = input('Recortar imagem');
-  cancelLabel = input('Cancelar');
-  applyLabel = input('Aplicar recorte');
-  zoomLabel = input('Zoom');
-  ratioLabel = input('Proporção');
-  rotateLeftAriaLabel = input('Girar para a esquerda');
-  rotateRightAriaLabel = input('Girar para a direita');
+  fileName = input('');
+  title = input('');
+  cancelLabel = input('');
+  applyLabel = input('');
+  zoomLabel = input('');
+  ratioLabel = input('');
+  rotateLeftAriaLabel = input('');
+  rotateRightAriaLabel = input('');
+  aspectRatioFreeLabel = input('');
+  aspectRatioSquareLabel = input('');
+  aspectRatioFourThreeLabel = input('');
+  aspectRatioSixteenNineLabel = input('');
 
   cancelled = output<void>();
   applied = output<File>();
@@ -100,12 +104,12 @@ export class UiImageCropperComponent {
     height: MIN_CROP_SIZE,
   });
 
-  readonly aspectOptions: { id: UiImageCropAspectRatio; label: string }[] = [
-    { id: 'free', label: 'Livre' },
-    { id: '1:1', label: 'Quadrado (1:1)' },
-    { id: '4:3', label: '4:3' },
-    { id: '16:9', label: '16:9' },
-  ];
+  readonly aspectOptions = computed(() => [
+    { id: 'free' as const, label: this.aspectRatioFreeLabel() },
+    { id: '1:1' as const, label: this.aspectRatioSquareLabel() },
+    { id: '4:3' as const, label: this.aspectRatioFourThreeLabel() },
+    { id: '16:9' as const, label: this.aspectRatioSixteenNineLabel() },
+  ]);
 
   readonly cropBoxStyle = computed(() => {
     const rect = this.cropRect();
@@ -314,7 +318,7 @@ export class UiImageCropperComponent {
 
     if (!blob) return;
 
-    const baseName = this.fileName().replace(/\.[^.]+$/, '') || 'imagem';
+    const baseName = this.fileName().replace(/\.[^.]+$/, '') || 'image';
     const croppedFile = new File([blob], `${baseName}.jpg`, {
       type: 'image/jpeg',
       lastModified: Date.now(),

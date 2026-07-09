@@ -15,7 +15,10 @@ export function isPdfFile(file: File): boolean {
   return file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
 }
 
-export function getFileExtension(file: File): string {
+export function getFileExtension(
+  file: File,
+  unknownLabel = '',
+): string {
   const fromName = file.name.split('.').pop()?.toUpperCase();
   if (fromName) return fromName;
 
@@ -24,7 +27,7 @@ export function getFileExtension(file: File): string {
   if (file.type === 'image/webp') return 'WEBP';
   if (file.type === 'application/pdf') return 'PDF';
 
-  return 'ARQUIVO';
+  return unknownLabel;
 }
 
 export function formatFileSize(bytes: number): string {
@@ -61,19 +64,24 @@ export function fileMatchesAccept(file: File, accept: string): boolean {
   });
 }
 
+export type UiFileValidationMessages = {
+  invalidType?: string;
+  tooLarge?: (maxSize: string) => string;
+};
+
 export function validateFile(
   file: File,
   accept: string,
   maxSizeBytes: number,
-  maxSizeLabel?: string,
+  messages: UiFileValidationMessages = {},
 ): string | null {
   if (!fileMatchesAccept(file, accept)) {
-    return 'Tipo de arquivo não permitido';
+    return messages.invalidType ?? null;
   }
 
   if (file.size > maxSizeBytes) {
-    const limit = maxSizeLabel ?? formatFileSize(maxSizeBytes);
-    return `Arquivo excede o tamanho máximo (${limit})`;
+    const limit = formatFileSize(maxSizeBytes);
+    return messages.tooLarge?.(limit) ?? null;
   }
 
   return null;

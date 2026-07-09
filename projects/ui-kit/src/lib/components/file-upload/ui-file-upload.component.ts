@@ -79,32 +79,53 @@ export class UiFileUploadComponent implements ControlValueAccessor {
   maxSizeBytes = input<number | null>(null);
   enableCrop = input<boolean | null>(null);
 
-  dropzoneText = input('Arraste e solte o arquivo aqui');
-  dropActiveText = input('Solte o arquivo para enviar');
-  browseText = input('ou clique para procurar');
+  dropzoneText = input('');
+  dropActiveText = input('');
+  browseText = input('');
   constraintsText = input('');
   auxiliaryText = input('');
   showAuxiliaryText = input(false);
-  disabledText = input('Upload de arquivo desabilitado');
-  addMoreText = input('+ Adicionar mais arquivos');
-  cropActionText = input('Editar imagem (recortar)');
-  uploadingText = input('Enviando arquivo...');
+  disabledText = input('');
+  addMoreText = input('');
+  cropActionText = input('');
+  uploadingText = input('');
   simulateUpload = input(true);
 
   existingPreviewUrl = input<string | null>(null);
   placeholderPreviewUrl = input<string | null>(null);
-  existingPreviewTitle = input('Foto atual');
-  previewExpandAriaLabel = input('Ampliar imagem');
-  previewCloseAriaLabel = input('Fechar visualização da imagem');
+  existingPreviewTitle = input('');
+  existingPreviewMetaText = input('');
+  previewExpandAriaLabel = input('');
+  previewCloseAriaLabel = input('');
+  removeExistingAriaLabel = input('');
+  cancelUploadAriaLabel = input('');
+  removeFileAriaLabel = input('');
+  invalidFileTypeMessage = input('');
+  fileTooLargeMessage = input('');
+  uploadFailedMessage = input('');
+  unknownFileExtensionLabel = input('');
+  pdfBadgeText = input('pdf');
   enableImagePreview = input(true);
+
+  cropperTitle = input('');
+  cropperCancelLabel = input('');
+  cropperApplyLabel = input('');
+  cropperZoomLabel = input('');
+  cropperRatioLabel = input('');
+  cropperRotateLeftAriaLabel = input('');
+  cropperRotateRightAriaLabel = input('');
+  cropperAspectFreeLabel = input('');
+  cropperAspectSquareLabel = input('');
+  cropperAspectFourThreeLabel = input('');
+  cropperAspectSixteenNineLabel = input('');
 
   required = input(false);
   disabled = input(false);
 
-  optionalText = input('Opcional');
+  optionalText = input('');
   showOptionalText = input(true);
 
-  errorMessage = input('*Campo obrigatório');
+  errorMessage = input('');
   showError = input(false);
   customClass = input('');
 
@@ -166,11 +187,7 @@ export class UiFileUploadComponent implements ControlValueAccessor {
     return UI_FILE_UPLOAD_PRESETS[this.preset()].enableCrop;
   });
 
-  readonly resolvedConstraintsText = computed(() => {
-    const custom = this.constraintsText().trim();
-    if (custom) return custom;
-    return UI_FILE_UPLOAD_PRESETS[this.preset()].constraintsText;
-  });
+  readonly resolvedConstraintsText = computed(() => this.constraintsText().trim());
 
   readonly isDisabled = computed(() => this.disabled() || this.disabledState());
 
@@ -253,7 +270,13 @@ export class UiFileUploadComponent implements ControlValueAccessor {
   }
 
   getExtension(file: File): string {
-    return getFileExtension(file);
+    return getFileExtension(file, this.unknownFileExtensionLabel());
+  }
+
+  removeItemAriaLabel(status: UiFileUploadItem['status']): string {
+    return status === 'uploading'
+      ? this.cancelUploadAriaLabel()
+      : this.removeFileAriaLabel();
   }
 
   existingPreviewSrc(): string {
@@ -418,7 +441,10 @@ export class UiFileUploadComponent implements ControlValueAccessor {
       file,
       this.resolvedAccept(),
       this.resolvedMaxSizeBytes(),
-      formatFileSize(this.resolvedMaxSizeBytes()),
+      {
+        invalidType: this.invalidFileTypeMessage(),
+        tooLarge: (maxSize) => this.formatFileTooLargeMessage(maxSize),
+      },
     );
 
     if (validationError) {
@@ -491,7 +517,11 @@ export class UiFileUploadComponent implements ControlValueAccessor {
             this.emitValue();
           },
           error: () => {
-            this.rejectUpload(itemId, file.name, 'Não foi possível enviar o arquivo');
+            this.rejectUpload(
+              itemId,
+              file.name,
+              this.uploadFailedMessage(),
+            );
           },
         });
 
@@ -540,6 +570,10 @@ export class UiFileUploadComponent implements ControlValueAccessor {
       });
 
     this.uploadSubscriptions.set(itemId, subscription);
+  }
+
+  private formatFileTooLargeMessage(maxSize: string): string {
+    return this.fileTooLargeMessage().replace(/\{\{?maxSize\}?\}/g, maxSize);
   }
 
   private rejectUpload(itemId: string, fileName: string, message: string): void {

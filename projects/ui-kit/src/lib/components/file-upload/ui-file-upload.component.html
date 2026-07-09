@@ -29,15 +29,15 @@
           }
 
           <div class="ui-file-upload__content">
-            <strong class="ui-file-upload__name">Foto atual</strong>
-            <span class="ui-file-upload__meta">Imagem existente</span>
+            <strong class="ui-file-upload__name">{{ existingPreviewTitle() }}</strong>
+            <span class="ui-file-upload__meta">{{ existingPreviewMetaText() }}</span>
           </div>
 
           @if (!isDisabled()) {
             <button
               type="button"
               class="ui-file-upload__remove"
-              aria-label="Remover foto atual"
+              [attr.aria-label]="removeExistingAriaLabel()"
               (click)="removeExistingPreview()"
             >
               <ui-icon name="close" size="sm" />
@@ -68,7 +68,7 @@
               }
             } @else if (isPdf(item.file)) {
               <div class="ui-file-upload__pdf-icon" aria-hidden="true">
-                <span>pdf</span>
+                <span>{{ pdfBadgeText() }}</span>
               </div>
             } @else {
               <div class="ui-file-upload__file-icon" aria-hidden="true">
@@ -103,7 +103,7 @@
             <button
               type="button"
               class="ui-file-upload__remove"
-              [attr.aria-label]="item.status === 'uploading' ? 'Cancelar envio' : 'Remover arquivo'"
+              [attr.aria-label]="removeItemAriaLabel(item.status)"
               (click)="item.status === 'uploading' ? cancelUpload(item.id) : removeItem(item.id)"
             >
               <ui-icon name="close" size="sm" />
@@ -183,6 +183,17 @@
   <ui-image-cropper
     [imageUrl]="cropItem.previewUrl ?? ''"
     [fileName]="cropItem.file.name"
+    [title]="cropperTitle()"
+    [cancelLabel]="cropperCancelLabel()"
+    [applyLabel]="cropperApplyLabel()"
+    [zoomLabel]="cropperZoomLabel()"
+    [ratioLabel]="cropperRatioLabel()"
+    [rotateLeftAriaLabel]="cropperRotateLeftAriaLabel()"
+    [rotateRightAriaLabel]="cropperRotateRightAriaLabel()"
+    [aspectRatioFreeLabel]="cropperAspectFreeLabel()"
+    [aspectRatioSquareLabel]="cropperAspectSquareLabel()"
+    [aspectRatioFourThreeLabel]="cropperAspectFourThreeLabel()"
+    [aspectRatioSixteenNineLabel]="cropperAspectSixteenNineLabel()"
     (cancelled)="closeCropper()"
     (applied)="onCropApplied($event)"
   />

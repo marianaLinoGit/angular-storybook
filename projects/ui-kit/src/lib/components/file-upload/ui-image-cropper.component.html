@@ -57,7 +57,7 @@
         <div class="ui-image-cropper__control-group">
           <span class="ui-image-cropper__control-label">{{ ratioLabel() }}</span>
           <div class="ui-image-cropper__ratios">
-            @for (option of aspectOptions; track option.id) {
+            @for (option of aspectOptions(); track option.id) {
               <button
                 type="button"
                 class="ui-image-cropper__ratio"

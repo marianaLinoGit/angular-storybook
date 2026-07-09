@@ -30,7 +30,6 @@ export type UiFileUploadPresetConfig = {
   maxSizeBytes: number;
   multiple: boolean;
   enableCrop: boolean;
-  constraintsText: string;
 };
 
 export const UI_FILE_UPLOAD_PRESETS: Record<
@@ -42,27 +41,23 @@ export const UI_FILE_UPLOAD_PRESETS: Record<
     maxSizeBytes: 10 * 1024 * 1024,
     multiple: false,
     enableCrop: false,
-    constraintsText: 'Formatos aceitos: JPG, PNG, WebP, PDF até 10MB',
   },
   'pet-photo': {
     accept: 'image/jpeg,image/png,image/webp',
     maxSizeBytes: 5 * 1024 * 1024,
     multiple: false,
     enableCrop: true,
-    constraintsText: 'Formatos aceitos: JPG, PNG, WebP até 5MB',
   },
   exam: {
     accept: 'image/jpeg,image/png,image/webp,application/pdf',
     maxSizeBytes: 20 * 1024 * 1024,
     multiple: true,
     enableCrop: false,
-    constraintsText: 'Imagens ou PDF até 20MB',
   },
   'pdf-only': {
     accept: 'application/pdf',
     maxSizeBytes: 20 * 1024 * 1024,
     multiple: false,
     enableCrop: false,
-    constraintsText: 'Apenas arquivos PDF até 20MB',
   },
 };
