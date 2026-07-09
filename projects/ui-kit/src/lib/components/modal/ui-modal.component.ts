@@ -15,6 +15,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
+import { BodyScrollLock } from '../../utils/body-scroll-lock';
 
 export type UiModalType = 'confirmation' | 'informative' | 'content' | 'delete';
 export type UiModalSize = 'sm' | 'md' | 'lg';
@@ -32,8 +33,6 @@ export type UiModalPresentationMode = 'fixed' | 'inline';
   },
 })
 export class UiModalComponent {
-  private static openFixedCount = 0;
-
   private readonly document = inject(DOCUMENT);
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly renderer = inject(Renderer2);
@@ -181,6 +180,7 @@ export class UiModalComponent {
     const host = this.elementRef.nativeElement;
 
     if (host.parentElement !== this.document.body || !this.originalParent) {
+      this.unlockBodyScroll();
       return;
     }
 
@@ -201,11 +201,7 @@ export class UiModalComponent {
       return;
     }
 
-    UiModalComponent.openFixedCount += 1;
-
-    if (UiModalComponent.openFixedCount === 1) {
-      this.renderer.setStyle(this.document.body, 'overflow', 'hidden');
-    }
+    BodyScrollLock.lock(this.document, this.renderer);
   }
 
   private unlockBodyScroll(): void {
@@ -213,13 +209,6 @@ export class UiModalComponent {
       return;
     }
 
-    UiModalComponent.openFixedCount = Math.max(
-      0,
-      UiModalComponent.openFixedCount - 1,
-    );
-
-    if (UiModalComponent.openFixedCount === 0) {
-      this.renderer.removeStyle(this.document.body, 'overflow');
-    }
+    BodyScrollLock.unlock(this.document, this.renderer);
   }
 }

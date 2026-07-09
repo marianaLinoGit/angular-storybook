@@ -23,7 +23,7 @@
 .ui-image-cropper__panel {
   display: flex;
   flex-direction: column;
-  width: min(920px, 100%);
+  width: min(1080px, 100%);
   max-height: calc(100dvh - 2 * var(--ui-space-4));
   border-radius: var(--ui-radius-lg);
   background: var(--ui-color-surface);
@@ -47,7 +47,7 @@
 
 .ui-image-cropper__body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
+  grid-template-columns: minmax(0, 1fr) 240px;
   gap: var(--ui-space-4);
   flex: 1;
   min-height: 0;
@@ -57,8 +57,8 @@
 
 .ui-image-cropper__viewport {
   position: relative;
-  height: clamp(180px, 38dvh, 340px);
-  min-height: 180px;
+  height: clamp(360px, 56dvh, 620px);
+  min-height: 360px;
   border-radius: var(--ui-radius-md);
   background: #0f172a;
   overflow: hidden;
@@ -77,16 +77,51 @@
 .ui-image-cropper__overlay {
   position: absolute;
   inset: 0;
-  background: color-mix(in srgb, #000000, transparent 45%);
+  pointer-events: none;
 }
 
 .ui-image-cropper__crop-box {
   position: absolute;
-  top: 50%;
-  left: 50%;
   border: 2px dashed #ffffff;
   box-shadow: 0 0 0 9999px color-mix(in srgb, #000000, transparent 45%);
   cursor: move;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+.ui-image-cropper__handle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--ui-color-primary);
+  border-radius: 2px;
+  background: #ffffff;
+  pointer-events: auto;
+  box-sizing: border-box;
+
+  &--nw {
+    top: -7px;
+    left: -7px;
+    cursor: nwse-resize;
+  }
+
+  &--ne {
+    top: -7px;
+    right: -7px;
+    cursor: nesw-resize;
+  }
+
+  &--sw {
+    bottom: -7px;
+    left: -7px;
+    cursor: nesw-resize;
+  }
+
+  &--se {
+    bottom: -7px;
+    right: -7px;
+    cursor: nwse-resize;
+  }
 }
 
 .ui-image-cropper__controls {
@@ -156,6 +191,11 @@
   }
 }
 
+.ui-image-cropper__rotate-actions {
+  display: flex;
+  gap: var(--ui-space-2);
+}
+
 .ui-image-cropper__rotate {
   display: inline-flex;
   align-items: center;
@@ -193,8 +233,8 @@
   }
 
   .ui-image-cropper__viewport {
-    height: clamp(160px, 32dvh, 260px);
-    min-height: 160px;
+    height: clamp(280px, 46dvh, 460px);
+    min-height: 280px;
   }
 
   .ui-image-cropper__ratios {

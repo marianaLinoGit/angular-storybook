@@ -4,6 +4,7 @@ import {
   DestroyRef,
   ElementRef,
   Renderer2,
+  afterNextRender,
   computed,
   effect,
   inject,
@@ -12,12 +13,35 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { DecimalPipe } from '@angular/common';
+import { DOCUMENT, DecimalPipe } from '@angular/common';
 import { UiButtonComponent } from '../button/ui-button.component';
 import { UiIconComponent } from '../icon/ui-icon.component';
+import { BodyScrollLock } from '../../utils/body-scroll-lock';
 
 export type UiImageCropAspectRatio = 'free' | '1:1' | '4:3' | '16:9';
+
+type CropRect = {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+};
+
+type ResizeHandle = 'nw' | 'ne' | 'sw' | 'se';
+
+type InteractionState =
+  | { mode: 'idle' }
+  | { mode: 'move'; startX: number; startY: number; origin: CropRect }
+  | {
+      mode: 'resize';
+      handle: ResizeHandle;
+      startX: number;
+      startY: number;
+      origin: CropRect;
+    };
+
+const MIN_CROP_SIZE = 56;
+const CORNER_HANDLES: ResizeHandle[] = ['nw', 'ne', 'sw', 'se'];
 
 @Component({
   selector: 'ui-image-cropper',
@@ -31,18 +55,22 @@ export type UiImageCropAspectRatio = 'free' | '1:1' | '4:3' | '16:9';
   },
 })
 export class UiImageCropperComponent {
-  private static openCount = 0;
-
   private readonly document = inject(DOCUMENT);
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly renderer = inject(Renderer2);
   private readonly destroyRef = inject(DestroyRef);
+
   private readonly imageRef = viewChild<ElementRef<HTMLImageElement>>('sourceImage');
+  private readonly viewportRef =
+    viewChild<ElementRef<HTMLDivElement>>('viewport');
 
   private originalParent: HTMLElement | null = null;
   private originalNextSibling: ChildNode | null = null;
 
+  private interaction: InteractionState = { mode: 'idle' };
+
   readonly isPortaled = signal(false);
+  readonly cornerHandles = CORNER_HANDLES;
 
   imageUrl = input.required<string>();
   fileName = input('imagem.jpg');
@@ -51,7 +79,8 @@ export class UiImageCropperComponent {
   applyLabel = input('Aplicar recorte');
   zoomLabel = input('Zoom');
   ratioLabel = input('Proporção');
-  rotateAriaLabel = input('Girar imagem');
+  rotateLeftAriaLabel = input('Girar para a esquerda');
+  rotateRightAriaLabel = input('Girar para a direita');
 
   cancelled = output<void>();
   applied = output<File>();
@@ -59,14 +88,12 @@ export class UiImageCropperComponent {
   readonly zoom = signal(1);
   readonly rotation = signal(0);
   readonly aspectRatio = signal<UiImageCropAspectRatio>('free');
-  readonly cropOffsetX = signal(0);
-  readonly cropOffsetY = signal(0);
-
-  private dragging = false;
-  private dragStartX = 0;
-  private dragStartY = 0;
-  private dragOriginX = 0;
-  private dragOriginY = 0;
+  readonly cropRect = signal<CropRect>({
+    left: 0,
+    top: 0,
+    width: MIN_CROP_SIZE,
+    height: MIN_CROP_SIZE,
+  });
 
   readonly aspectOptions: { id: UiImageCropAspectRatio; label: string }[] = [
     { id: 'free', label: 'Livre' },
@@ -76,25 +103,13 @@ export class UiImageCropperComponent {
   ];
 
   readonly cropBoxStyle = computed(() => {
-    const ratio = this.aspectRatio();
-    let width = 72;
-    let height = 72;
-
-    if (ratio === '1:1') {
-      width = 70;
-      height = 70;
-    } else if (ratio === '4:3') {
-      width = 78;
-      height = 58;
-    } else if (ratio === '16:9') {
-      width = 82;
-      height = 46;
-    }
+    const rect = this.cropRect();
 
     return {
-      width: `${width}%`,
-      height: `${height}%`,
-      transform: `translate(calc(-50% + ${this.cropOffsetX()}px), calc(-50% + ${this.cropOffsetY()}px))`,
+      left: `${rect.left}px`,
+      top: `${rect.top}px`,
+      width: `${rect.width}px`,
+      height: `${rect.height}px`,
     };
   });
 
@@ -105,8 +120,11 @@ export class UiImageCropperComponent {
   constructor() {
     effect(() => {
       this.aspectRatio();
-      this.cropOffsetX.set(0);
-      this.cropOffsetY.set(0);
+      queueMicrotask(() => this.initCropRect());
+    });
+
+    afterNextRender(() => {
+      this.initCropRect();
     });
 
     this.portalToBody();
@@ -124,7 +142,11 @@ export class UiImageCropperComponent {
     this.zoom.update((value) => Math.max(0.5, Number((value - 0.1).toFixed(2))));
   }
 
-  rotate(): void {
+  rotateLeft(): void {
+    this.rotation.update((value) => (value - 90 + 360) % 360);
+  }
+
+  rotateRight(): void {
     this.rotation.update((value) => (value + 90) % 360);
   }
 
@@ -132,90 +154,105 @@ export class UiImageCropperComponent {
     this.aspectRatio.set(value);
   }
 
-  onPointerDown(event: PointerEvent): void {
-    if ((event.target as HTMLElement).closest('.ui-image-cropper__crop-box')) {
-      this.dragging = true;
-      this.dragStartX = event.clientX;
-      this.dragStartY = event.clientY;
-      this.dragOriginX = this.cropOffsetX();
-      this.dragOriginY = this.cropOffsetY();
-      (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+  onImageLoad(): void {
+    this.initCropRect();
+  }
+
+  onCropBoxPointerDown(event: PointerEvent): void {
+    if ((event.target as HTMLElement).closest('.ui-image-cropper__handle')) {
+      return;
     }
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.interaction = {
+      mode: 'move',
+      startX: event.clientX,
+      startY: event.clientY,
+      origin: this.cropRect(),
+    };
+
+    (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+  }
+
+  onHandlePointerDown(event: PointerEvent, handle: ResizeHandle): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.interaction = {
+      mode: 'resize',
+      handle,
+      startX: event.clientX,
+      startY: event.clientY,
+      origin: this.cropRect(),
+    };
+
+    (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
   }
 
   onPointerMove(event: PointerEvent): void {
-    if (!this.dragging) return;
+    const viewport = this.getViewportSize();
+    if (!viewport) return;
 
-    this.cropOffsetX.set(this.dragOriginX + (event.clientX - this.dragStartX));
-    this.cropOffsetY.set(this.dragOriginY + (event.clientY - this.dragStartY));
+    if (this.interaction.mode === 'move') {
+      const dx = event.clientX - this.interaction.startX;
+      const dy = event.clientY - this.interaction.startY;
+      const origin = this.interaction.origin;
+
+      this.cropRect.set(
+        this.clampRect(
+          {
+            ...origin,
+            left: origin.left + dx,
+            top: origin.top + dy,
+          },
+          viewport.width,
+          viewport.height,
+        ),
+      );
+      return;
+    }
+
+    if (this.interaction.mode === 'resize') {
+      const dx = event.clientX - this.interaction.startX;
+      const dy = event.clientY - this.interaction.startY;
+
+      this.cropRect.set(
+        this.resizeRect(
+          this.interaction.handle,
+          dx,
+          dy,
+          this.interaction.origin,
+          viewport.width,
+          viewport.height,
+        ),
+      );
+    }
   }
 
   onPointerUp(event: PointerEvent): void {
-    if (!this.dragging) return;
-    this.dragging = false;
-    (event.currentTarget as HTMLElement).releasePointerCapture(event.pointerId);
+    if (this.interaction.mode === 'idle') return;
+
+    this.interaction = { mode: 'idle' };
+
+    if (event.currentTarget instanceof HTMLElement) {
+      try {
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      } catch {
+        // ignore if capture was already released
+      }
+    }
   }
 
   cancel(): void {
     this.cancelled.emit();
   }
 
-  private portalToBody(): void {
-    const host = this.elementRef.nativeElement;
-
-    if (host.parentElement === this.document.body) {
-      return;
-    }
-
-    this.originalParent = host.parentElement;
-    this.originalNextSibling = host.nextSibling;
-    this.document.body.appendChild(host);
-    this.isPortaled.set(true);
-    this.lockBodyScroll();
-  }
-
-  private restoreFromBody(): void {
-    const host = this.elementRef.nativeElement;
-
-    if (host.parentElement !== this.document.body || !this.originalParent) {
-      this.unlockBodyScroll();
-      return;
-    }
-
-    if (this.originalNextSibling) {
-      this.originalParent.insertBefore(host, this.originalNextSibling);
-    } else {
-      this.originalParent.appendChild(host);
-    }
-
-    this.originalParent = null;
-    this.originalNextSibling = null;
-    this.isPortaled.set(false);
-    this.unlockBodyScroll();
-  }
-
-  private lockBodyScroll(): void {
-    UiImageCropperComponent.openCount += 1;
-
-    if (UiImageCropperComponent.openCount === 1) {
-      this.renderer.setStyle(this.document.body, 'overflow', 'hidden');
-    }
-  }
-
-  private unlockBodyScroll(): void {
-    UiImageCropperComponent.openCount = Math.max(
-      0,
-      UiImageCropperComponent.openCount - 1,
-    );
-
-    if (UiImageCropperComponent.openCount === 0) {
-      this.renderer.removeStyle(this.document.body, 'overflow');
-    }
-  }
-
   async apply(): Promise<void> {
     const imageEl = this.imageRef()?.nativeElement;
-    if (!imageEl) return;
+    const viewport = this.viewportRef()?.nativeElement;
+    if (!imageEl || !viewport) return;
 
     await this.waitForImage(imageEl);
 
@@ -223,37 +260,20 @@ export class UiImageCropperComponent {
     const context = canvas.getContext('2d');
     if (!context) return;
 
-    const viewport = imageEl.parentElement;
-    if (!viewport) return;
-
     const viewportRect = viewport.getBoundingClientRect();
     const imageRect = imageEl.getBoundingClientRect();
+    const crop = this.cropRect();
 
-    const ratio = this.aspectRatio();
-    let cropWidthRatio = 0.72;
-    let cropHeightRatio = 0.72;
-
-    if (ratio === '1:1') {
-      cropWidthRatio = 0.7;
-      cropHeightRatio = 0.7;
-    } else if (ratio === '4:3') {
-      cropWidthRatio = 0.78;
-      cropHeightRatio = 0.58;
-    } else if (ratio === '16:9') {
-      cropWidthRatio = 0.82;
-      cropHeightRatio = 0.46;
-    }
-
-    const cropWidth = viewportRect.width * cropWidthRatio;
-    const cropHeight = viewportRect.height * cropHeightRatio;
-    const cropCenterX = viewportRect.left + viewportRect.width / 2 + this.cropOffsetX();
-    const cropCenterY = viewportRect.top + viewportRect.height / 2 + this.cropOffsetY();
+    const cropLeft = viewportRect.left + crop.left;
+    const cropTop = viewportRect.top + crop.top;
+    const cropWidth = crop.width;
+    const cropHeight = crop.height;
 
     const scaleX = imageEl.naturalWidth / imageRect.width;
     const scaleY = imageEl.naturalHeight / imageRect.height;
 
-    const sx = Math.max(0, (cropCenterX - cropWidth / 2 - imageRect.left) * scaleX);
-    const sy = Math.max(0, (cropCenterY - cropHeight / 2 - imageRect.top) * scaleY);
+    const sx = Math.max(0, (cropLeft - imageRect.left) * scaleX);
+    const sy = Math.max(0, (cropTop - imageRect.top) * scaleY);
     const sw = Math.min(imageEl.naturalWidth - sx, cropWidth * scaleX);
     const sh = Math.min(imageEl.naturalHeight - sy, cropHeight * scaleY);
 
@@ -291,6 +311,196 @@ export class UiImageCropperComponent {
     });
 
     this.applied.emit(croppedFile);
+  }
+
+  private initCropRect(): void {
+    const viewport = this.getViewportSize();
+    if (!viewport) return;
+
+    const { width: vw, height: vh } = viewport;
+    const ratio = this.aspectRatio();
+    let width = vw * 0.72;
+    let height = vh * 0.65;
+
+    if (ratio === '1:1') {
+      const size = Math.min(vw, vh) * 0.72;
+      width = size;
+      height = size;
+    } else if (ratio === '4:3') {
+      width = vw * 0.76;
+      height = width * (3 / 4);
+      if (height > vh * 0.82) {
+        height = vh * 0.82;
+        width = height * (4 / 3);
+      }
+    } else if (ratio === '16:9') {
+      width = vw * 0.86;
+      height = width * (9 / 16);
+      if (height > vh * 0.82) {
+        height = vh * 0.82;
+        width = height * (16 / 9);
+      }
+    }
+
+    this.cropRect.set(
+      this.clampRect(
+        {
+          left: (vw - width) / 2,
+          top: (vh - height) / 2,
+          width,
+          height,
+        },
+        vw,
+        vh,
+      ),
+    );
+  }
+
+  private getAspectLock(): number | null {
+    const ratio = this.aspectRatio();
+
+    if (ratio === '1:1') return 1;
+    if (ratio === '4:3') return 4 / 3;
+    if (ratio === '16:9') return 16 / 9;
+    return null;
+  }
+
+  private resizeRect(
+    handle: ResizeHandle,
+    dx: number,
+    dy: number,
+    start: CropRect,
+    viewportW: number,
+    viewportH: number,
+  ): CropRect {
+    const aspectLock = this.getAspectLock();
+    let left = start.left;
+    let top = start.top;
+    let width = start.width;
+    let height = start.height;
+
+    if (handle === 'se') {
+      width = Math.max(MIN_CROP_SIZE, start.width + dx);
+      height = aspectLock
+        ? width / aspectLock
+        : Math.max(MIN_CROP_SIZE, start.height + dy);
+      if (aspectLock) {
+        width = height * aspectLock;
+      }
+    } else if (handle === 'sw') {
+      width = Math.max(MIN_CROP_SIZE, start.width - dx);
+      height = aspectLock
+        ? width / aspectLock
+        : Math.max(MIN_CROP_SIZE, start.height + dy);
+      if (aspectLock) {
+        width = height * aspectLock;
+      }
+      left = start.left + (start.width - width);
+    } else if (handle === 'ne') {
+      width = Math.max(MIN_CROP_SIZE, start.width + dx);
+      height = aspectLock
+        ? width / aspectLock
+        : Math.max(MIN_CROP_SIZE, start.height - dy);
+      if (aspectLock) {
+        width = height * aspectLock;
+      }
+      top = start.top + (start.height - height);
+    } else if (handle === 'nw') {
+      width = Math.max(MIN_CROP_SIZE, start.width - dx);
+      height = aspectLock
+        ? width / aspectLock
+        : Math.max(MIN_CROP_SIZE, start.height - dy);
+      if (aspectLock) {
+        width = height * aspectLock;
+      }
+      left = start.left + (start.width - width);
+      top = start.top + (start.height - height);
+    }
+
+    return this.clampRect({ left, top, width, height }, viewportW, viewportH);
+  }
+
+  private clampRect(
+    rect: CropRect,
+    viewportW: number,
+    viewportH: number,
+  ): CropRect {
+    let { left, top, width, height } = rect;
+
+    width = Math.max(MIN_CROP_SIZE, Math.min(width, viewportW));
+    height = Math.max(MIN_CROP_SIZE, Math.min(height, viewportH));
+
+    const aspectLock = this.getAspectLock();
+    if (aspectLock) {
+      const currentAspect = width / height;
+      if (Math.abs(currentAspect - aspectLock) > 0.01) {
+        if (currentAspect > aspectLock) {
+          width = height * aspectLock;
+        } else {
+          height = width / aspectLock;
+        }
+      }
+    }
+
+    width = Math.min(width, viewportW);
+    height = Math.min(height, viewportH);
+    left = Math.max(0, Math.min(left, viewportW - width));
+    top = Math.max(0, Math.min(top, viewportH - height));
+
+    return { left, top, width, height };
+  }
+
+  private getViewportSize(): { width: number; height: number } | null {
+    const viewport = this.viewportRef()?.nativeElement;
+    if (!viewport) return null;
+
+    const width = viewport.clientWidth;
+    const height = viewport.clientHeight;
+    if (width <= 0 || height <= 0) return null;
+
+    return { width, height };
+  }
+
+  private portalToBody(): void {
+    const host = this.elementRef.nativeElement;
+
+    if (host.parentElement === this.document.body) {
+      return;
+    }
+
+    this.originalParent = host.parentElement;
+    this.originalNextSibling = host.nextSibling;
+    this.document.body.appendChild(host);
+    this.isPortaled.set(true);
+    this.lockBodyScroll();
+  }
+
+  private restoreFromBody(): void {
+    const host = this.elementRef.nativeElement;
+
+    if (host.parentElement !== this.document.body || !this.originalParent) {
+      this.unlockBodyScroll();
+      return;
+    }
+
+    if (this.originalNextSibling) {
+      this.originalParent.insertBefore(host, this.originalNextSibling);
+    } else {
+      this.originalParent.appendChild(host);
+    }
+
+    this.originalParent = null;
+    this.originalNextSibling = null;
+    this.isPortaled.set(false);
+    this.unlockBodyScroll();
+  }
+
+  private lockBodyScroll(): void {
+    BodyScrollLock.lock(this.document, this.renderer);
+  }
+
+  private unlockBodyScroll(): void {
+    BodyScrollLock.unlock(this.document, this.renderer);
   }
 
   private waitForImage(image: HTMLImageElement): Promise<void> {

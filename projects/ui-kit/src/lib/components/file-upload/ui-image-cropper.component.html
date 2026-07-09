@@ -6,8 +6,8 @@
 
     <div class="ui-image-cropper__body">
       <div
+        #viewport
         class="ui-image-cropper__viewport"
-        (pointerdown)="onPointerDown($event)"
         (pointermove)="onPointerMove($event)"
         (pointerup)="onPointerUp($event)"
         (pointercancel)="onPointerUp($event)"
@@ -18,10 +18,29 @@
           [src]="imageUrl()"
           [alt]="fileName()"
           [style]="imageStyle()"
+          (load)="onImageLoad()"
         />
 
         <div class="ui-image-cropper__overlay">
-          <div class="ui-image-cropper__crop-box" [style]="cropBoxStyle()"></div>
+          <div
+            class="ui-image-cropper__crop-box"
+            [style]="cropBoxStyle()"
+            (pointerdown)="onCropBoxPointerDown($event)"
+            (pointermove)="onPointerMove($event)"
+            (pointerup)="onPointerUp($event)"
+            (pointercancel)="onPointerUp($event)"
+          >
+            @for (handle of cornerHandles; track handle) {
+              <span
+                class="ui-image-cropper__handle"
+                [class]="'ui-image-cropper__handle--' + handle"
+                (pointerdown)="onHandlePointerDown($event, handle)"
+                (pointermove)="onPointerMove($event)"
+                (pointerup)="onPointerUp($event)"
+                (pointercancel)="onPointerUp($event)"
+              ></span>
+            }
+          </div>
         </div>
       </div>
 
@@ -54,14 +73,27 @@
           </div>
         </div>
 
-        <button
-          type="button"
-          class="ui-image-cropper__rotate"
-          [attr.aria-label]="rotateAriaLabel()"
-          (click)="rotate()"
-        >
-          <ui-icon name="reactive" size="md" />
-        </button>
+        <div class="ui-image-cropper__control-group">
+          <div class="ui-image-cropper__rotate-actions">
+            <button
+              type="button"
+              class="ui-image-cropper__rotate"
+              [attr.aria-label]="rotateLeftAriaLabel()"
+              (click)="rotateLeft()"
+            >
+              <ui-icon name="rotate-left" size="md" />
+            </button>
+
+            <button
+              type="button"
+              class="ui-image-cropper__rotate"
+              [attr.aria-label]="rotateRightAriaLabel()"
+              (click)="rotateRight()"
+            >
+              <ui-icon name="rotate-right" size="md" />
+            </button>
+          </div>
+        </div>
       </aside>
     </div>
 

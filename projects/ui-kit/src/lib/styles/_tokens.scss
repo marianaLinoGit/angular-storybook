@@ -181,3 +181,14 @@ body,
   background-color: var(--ui-color-background) !important;
   color: var(--ui-color-text);
 }
+
+// Storybook: manter scroll da documentação mesmo com cropper/modal abertos.
+html:has(#storybook-root),
+body:has(#storybook-root) {
+  overflow: auto !important;
+}
+
+.sb-show-main.sb-main-padded,
+.sb-show-main.sb-main-fullscreen {
+  overflow: visible;
+}

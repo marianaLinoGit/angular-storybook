@@ -125,6 +125,35 @@ const playgroundDefaults = {
   customClass: '',
 };
 
+const defaultHostStyles = `
+  :host {
+    display: block;
+    max-width: 560px;
+    padding: var(--ui-space-4);
+  }
+`;
+
+const cropperPreviewHostStyles = `
+  :host {
+    display: block;
+    width: 100%;
+    max-width: min(1120px, 100%);
+    min-height: 720px;
+    padding: var(--ui-space-4);
+    box-sizing: border-box;
+  }
+`;
+
+const cropperPreviewParameters = {
+  cropperPreview: true,
+  layout: 'fullscreen' as const,
+  docs: {
+    story: {
+      height: '900px',
+    },
+  },
+};
+
 const meta: Meta<UiFileUploadComponent> = {
   title: 'Components/File Upload',
   component: UiFileUploadComponent,
@@ -132,16 +161,12 @@ const meta: Meta<UiFileUploadComponent> = {
   includeStories:
     /^(PlaygroundCompleto|Default|WithAuxiliaryText|MultipleFiles|PetPhoto|ExamUpload|PdfOnly|Disabled|WithExistingPhoto|WithToastFeedback|ValidationError|UploadFailure|RequiredWithError)$/,
   decorators: [
-    (story) => ({
+    (story, context) => ({
       ...story(),
       styles: [
-        `
-        :host {
-          display: block;
-          max-width: 560px;
-          padding: var(--ui-space-4);
-        }
-        `,
+        context.parameters['cropperPreview']
+          ? cropperPreviewHostStyles
+          : defaultHostStyles,
       ],
     }),
   ],
@@ -206,7 +231,9 @@ export const MultipleFiles: Story = {
 
 export const PetPhoto: Story = {
   parameters: {
+    ...cropperPreviewParameters,
     docs: {
+      ...cropperPreviewParameters.docs,
       description: {
         story:
           'Preset para foto de pet com recorte opcional. Clique na miniatura para ampliar a imagem em um modal.',
@@ -254,7 +281,9 @@ export const Disabled: Story = {
 
 export const WithExistingPhoto: Story = {
   parameters: {
+    ...cropperPreviewParameters,
     docs: {
+      ...cropperPreviewParameters.docs,
       description: {
         story:
           'Exibe foto existente com opção de remoção. Clique na miniatura para visualizar a imagem ampliada.',
@@ -285,7 +314,9 @@ export const WithToastFeedback: Story = {
     `,
   }),
   parameters: {
+    ...cropperPreviewParameters,
     docs: {
+      ...cropperPreviewParameters.docs,
       description: {
         story:
           'Ao concluir o upload, exibe toast de sucesso. O card do arquivo mostra apenas miniatura, metadados e botão X para remover.',
