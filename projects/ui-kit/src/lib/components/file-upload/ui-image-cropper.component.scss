@@ -1,17 +1,18 @@
 :host {
-  display: contents;
+  display: block;
 }
 
 :host(.ui-image-cropper-host--portaled) {
-  display: block;
   position: fixed;
   inset: 0;
-  z-index: var(--ui-z-cropper, 1250);
+  z-index: var(--ui-z-cropper, 1500);
+  pointer-events: auto;
 }
 
 .ui-image-cropper {
-  position: absolute;
+  position: fixed;
   inset: 0;
+  z-index: var(--ui-z-cropper, 1500);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -222,10 +223,15 @@
 @media (max-width: 768px) {
   .ui-image-cropper {
     padding: var(--ui-space-3);
+    height: 100dvh;
+    height: 100svh;
   }
 
   .ui-image-cropper__panel {
-    max-height: calc(100dvh - 2 * var(--ui-space-3));
+    max-height: min(
+      calc(100dvh - 2 * var(--ui-space-3)),
+      calc(100svh - 2 * var(--ui-space-3))
+    );
   }
 
   .ui-image-cropper__body {

@@ -43,6 +43,8 @@ type InteractionState =
 const MIN_CROP_SIZE = 56;
 const CORNER_HANDLES: ResizeHandle[] = ['nw', 'ne', 'sw', 'se'];
 
+const CROPPER_Z_INDEX = '1500';
+
 @Component({
   selector: 'ui-image-cropper',
   standalone: true,
@@ -510,6 +512,7 @@ export class UiImageCropperComponent {
     const host = this.elementRef.nativeElement;
 
     if (host.parentElement === this.document.body) {
+      this.applyPortalStyles(host);
       return;
     }
 
@@ -517,13 +520,33 @@ export class UiImageCropperComponent {
     this.originalNextSibling = host.nextSibling;
     this.document.body.appendChild(host);
     this.isPortaled.set(true);
+    this.applyPortalStyles(host);
     this.lockBodyScroll();
+  }
+
+  private applyPortalStyles(host: HTMLElement): void {
+    this.renderer.addClass(host, 'ui-image-cropper-host--portaled');
+    this.renderer.setStyle(host, 'position', 'fixed');
+    this.renderer.setStyle(host, 'inset', '0');
+    this.renderer.setStyle(host, 'z-index', CROPPER_Z_INDEX);
+    this.renderer.setStyle(host, 'display', 'block');
+    this.renderer.setStyle(host, 'pointer-events', 'auto');
+  }
+
+  private clearPortalStyles(host: HTMLElement): void {
+    this.renderer.removeClass(host, 'ui-image-cropper-host--portaled');
+    this.renderer.removeStyle(host, 'position');
+    this.renderer.removeStyle(host, 'inset');
+    this.renderer.removeStyle(host, 'z-index');
+    this.renderer.removeStyle(host, 'display');
+    this.renderer.removeStyle(host, 'pointer-events');
   }
 
   private restoreFromBody(): void {
     const host = this.elementRef.nativeElement;
 
     if (host.parentElement !== this.document.body || !this.originalParent) {
+      this.clearPortalStyles(host);
       this.unlockBodyScroll();
       return;
     }
@@ -537,6 +560,7 @@ export class UiImageCropperComponent {
     this.originalParent = null;
     this.originalNextSibling = null;
     this.isPortaled.set(false);
+    this.clearPortalStyles(host);
     this.unlockBodyScroll();
   }
 
