@@ -27,6 +27,7 @@ export class UiFormFieldComponent implements UiFormFieldContext {
 
   label = input('');
   hint = input('');
+  labelTooltip = input('');
   optionalText = input('');
   showOptionalText = input(true);
   controlId = input<string | null>(null);
@@ -38,6 +39,9 @@ export class UiFormFieldComponent implements UiFormFieldContext {
   id = input(`ui-form-field-${crypto.randomUUID()}`);
 
   labelIdAttr = computed(() => `${this.id()}-label`);
+  labelTooltipId = computed(() =>
+    this.labelTooltip().trim() ? `${this.labelIdAttr()}-tooltip` : null,
+  );
   hintId = computed(() => `${this.id()}-hint`);
   errorId = computed(() => `${this.id()}-error`);
 
@@ -78,6 +82,7 @@ export class UiFormFieldComponent implements UiFormFieldContext {
   describedByState = computed(() => {
     const ids = [
       this.hint() ? this.hintId() : null,
+      this.labelTooltip().trim() ? this.labelTooltipId() : null,
       this.hasErrorState() && this.errorMessage() ? this.errorId() : null,
     ].filter(Boolean);
 

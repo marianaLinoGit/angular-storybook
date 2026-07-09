@@ -143,6 +143,7 @@ const playgroundDefaults = {
   disabled: false,
   optionalText: 'Opcional',
   showOptionalText: true,
+  labelTooltip: '',
   errorMessage: '*Campo obrigatório',
   showError: false,
   customClass: '',
@@ -182,7 +183,7 @@ const meta: Meta<UiFileUploadComponent> = {
   component: UiFileUploadComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|WithAuxiliaryText|MultipleFiles|PetPhoto|ExamUpload|PdfOnly|Disabled|WithExistingPhoto|WithToastFeedback|ValidationError|UploadFailure|RequiredWithError)$/,
+    /^(PlaygroundCompleto|Default|WithAuxiliaryText|MultipleFiles|PetPhoto|ExamUpload|PdfOnly|Disabled|WithExistingPhoto|WithToastFeedback|ValidationError|UploadFailure|RequiredWithError|WithLabelTooltip)$/,
   decorators: [
     (story, context) => ({
       ...story(),
@@ -206,6 +207,12 @@ const meta: Meta<UiFileUploadComponent> = {
   },
   argTypes: {
     label: { control: 'text', table: { category: 'Conteúdo' } },
+    labelTooltip: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description:
+        'Texto de ajuda exibido no tooltip info ao lado do label integrado.',
+    },
     preset: {
       control: 'select',
       options: ['default', 'pet-photo', 'exam', 'pdf-only'],
@@ -408,5 +415,25 @@ export const RequiredWithError: Story = {
     required: true,
     showError: true,
     errorMessage: '*Selecione um arquivo',
+  },
+};
+
+export const WithLabelTooltip: Story = {
+  name: 'Com tooltip no label',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Upload com tooltip info no label via `labelTooltip`. O ícone info é exibido automaticamente.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Foto do pet',
+    preset: 'pet-photo',
+    required: false,
+    showOptionalText: false,
+    labelTooltip: 'Formatos aceitos: JPG, PNG ou WebP. A foto pode ser recortada após o envio.',
   },
 };

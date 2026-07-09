@@ -7,5 +7,17 @@
     } @else if (showOptionalText()) {
       <small>{{ optionalText() }}</small>
     }
+
+    @if (labelTooltip()) {
+      <ui-tooltip
+        class="ui-label__tooltip"
+        [id]="resolvedLabelTooltipId()"
+        [text]="labelTooltip()"
+        [iconLabel]="labelTooltip()"
+        icon="info"
+        iconSize="sm"
+        position="top"
+      />
+    }
   </label>
 }

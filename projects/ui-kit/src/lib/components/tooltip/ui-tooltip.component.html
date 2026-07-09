@@ -3,7 +3,7 @@
     <span
       class="ui-tooltip__trigger ui-tooltip__trigger--icon"
       tabindex="0"
-      [attr.aria-describedby]="tooltipId"
+      [attr.aria-describedby]="resolvedTooltipId()"
     >
       <ui-icon
         [name]="iconName"
@@ -19,7 +19,7 @@
   @if (!disabled()) {
     <span
       role="tooltip"
-      [id]="tooltipId"
+      [id]="resolvedTooltipId()"
       [class]="tooltipClasses()"
       [style.max-width]="maxWidth()"
       [style.transition-delay]="delay()"

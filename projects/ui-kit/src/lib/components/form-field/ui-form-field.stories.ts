@@ -62,6 +62,7 @@ import { UiSelectComponent, UiSelectOption } from '../select/ui-select.component
       <ui-form-field
         label="Como nos conheceu?"
         controlId="referralSource"
+        labelTooltip="Ajuda a entender de onde veio o cadastro."
         [errorMessage]="fieldError('referralSource')"
         [showError]="!!fieldError('referralSource')"
       >
@@ -161,11 +162,74 @@ class UiFormFieldPlaygroundComponent implements OnInit {
   }
 }
 
+@Component({
+  selector: 'ui-form-field-label-tooltip-demo',
+  standalone: true,
+  imports: [UiFormFieldComponent, UiInputComponent, UiSelectComponent],
+  template: `
+    <div class="ui-form-field-demo">
+      <ui-form-field
+        label="Alimentação"
+        controlId="feeding-form-field"
+        labelTooltip="Nome da ração ou descrição de comida natural"
+        [showOptionalText]="false"
+      >
+        <ui-input
+          id="feeding-form-field"
+          placeholder="Nome da ração ou alimentação habitual"
+          [hideLabel]="true"
+          [hideError]="true"
+        />
+      </ui-form-field>
+
+      <ui-form-field
+        label="Ambiente de vida"
+        controlId="livingEnvironment-form-field"
+        labelTooltip="Onde o animal passa a maior parte do tempo."
+        [showOptionalText]="false"
+      >
+        <ui-select
+          id="livingEnvironment-form-field"
+          placeholder="Selecione"
+          [options]="livingEnvironmentOptions"
+          [hideLabel]="true"
+          [hideError]="true"
+        />
+      </ui-form-field>
+
+      <ui-input
+        label="Observações"
+        id="notes-standalone"
+        placeholder="Informações adicionais"
+        labelTooltip="Texto livre para detalhes que não se encaixam nos outros campos."
+        [showOptionalText]="false"
+      />
+    </div>
+  `,
+  styles: [
+    `
+      .ui-form-field-demo {
+        display: grid;
+        gap: var(--ui-space-4);
+        width: 100%;
+        max-width: 420px;
+      }
+    `,
+  ],
+})
+class UiFormFieldLabelTooltipDemoComponent {
+  livingEnvironmentOptions: UiSelectOption[] = [
+    { label: 'Indoor — dentro de casa apenas', value: 'indoor_only' },
+    { label: 'Outdoor — quintal', value: 'outdoor_yard_only' },
+    { label: 'Misto — dentro e fora de casa', value: 'mixed_no_street_access' },
+  ];
+}
+
 const meta: Meta<UiFormFieldPlaygroundComponent> = {
   title: 'Components/Form Field',
   component: UiFormFieldPlaygroundComponent,
   tags: ['autodocs'],
-  includeStories: /^(PlaygroundCompleto|Default|WithErrors)$/,
+  includeStories: /^(PlaygroundCompleto|Default|WithErrors|WithLabelTooltip)$/,
   decorators: [
     moduleMetadata({
       imports: [UiFormFieldPlaygroundComponent],
@@ -187,8 +251,8 @@ const meta: Meta<UiFormFieldPlaygroundComponent> = {
     docs: {
       description: {
         component:
-          'Wrapper de formulário que centraliza label, hint, erro e acessibilidade para `ui-input`, `ui-select` e `ui-checkbox`.\n\n' +
-          '**Uso:** envolva o controle filho e passe `label`, `controlId`, `errorMessage` e `showError`. No controle filho, use `[hideLabel]="true"` e `[hideError]="true"`.',
+          'Wrapper de formulário que centraliza label, hint, tooltip no label, erro e acessibilidade para `ui-input`, `ui-select` e `ui-checkbox`.\n\n' +
+          '**Uso:** envolva o controle filho e passe `label`, `controlId`, `labelTooltip`, `errorMessage` e `showError`. No controle filho, use `[hideLabel]="true"` e `[hideError]="true"`.',
       },
     },
   },
@@ -220,4 +284,24 @@ export const Default: Story = {
 export const WithErrors: Story = {
   name: 'Com erros',
   args: { submitted: true },
+};
+
+export const WithLabelTooltip: StoryObj<UiFormFieldLabelTooltipDemoComponent> = {
+  name: 'Com tooltip no label',
+  render: () => ({
+    template: `<ui-form-field-label-tooltip-demo />`,
+  }),
+  decorators: [
+    moduleMetadata({
+      imports: [UiFormFieldLabelTooltipDemoComponent],
+    }),
+  ],
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Exemplos de `labelTooltip` no wrapper `ui-form-field` (input e select) e no `ui-input` standalone.',
+      },
+    },
+  },
 };

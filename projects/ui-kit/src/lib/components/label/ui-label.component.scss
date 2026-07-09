@@ -17,4 +17,8 @@
     font-size: var(--ui-font-size-xs);
     font-weight: var(--ui-font-weight-regular);
   }
+
+  &__tooltip {
+    flex-shrink: 0;
+  }
 }

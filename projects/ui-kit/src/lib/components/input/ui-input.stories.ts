@@ -19,6 +19,7 @@ const playgroundDefaults = {
   disabled: false,
   optionalText: 'Opcional',
   showOptionalText: false,
+  labelTooltip: '',
   errorMessage: '*Campo obrigatório',
   showError: false,
   customClass: '',
@@ -29,7 +30,7 @@ const meta: Meta<UiInputComponent> = {
   component: UiInputComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|Email|Password|Optional|RequiredWithError|Disabled|ReadOnly|Search|WithoutVisibleLabel|Date|DateTime|Time|Color)$/,
+    /^(PlaygroundCompleto|Default|Email|Password|Optional|RequiredWithError|Disabled|ReadOnly|Search|WithoutVisibleLabel|Date|DateTime|Time|Color|WithLabelTooltip)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -50,7 +51,7 @@ const meta: Meta<UiInputComponent> = {
       description: {
         component:
           'Campo de texto do design system com label integrado, validação visual e suporte a acessibilidade.\n\n' +
-          '**Uso:** informe `label` e `id`. Emite `valueChange` a cada alteração do valor.',
+          '**Uso:** informe `label` e `id`. Use `labelTooltip` para ajuda contextual no label. Emite `valueChange` a cada alteração do valor.',
       },
     },
   },
@@ -76,6 +77,12 @@ const meta: Meta<UiInputComponent> = {
       table: { category: 'Conteúdo' },
       description:
         'Texto exibido pelo label quando o campo é opcional (ex.: "Opcional").',
+    },
+    labelTooltip: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description:
+        'Texto de ajuda exibido no tooltip info ao lado do label integrado.',
     },
     id: {
       control: 'text',
@@ -419,5 +426,27 @@ export const Color: Story = {
     autocomplete: 'off',
     required: false,
     showOptionalText: false,
+  },
+};
+
+export const WithLabelTooltip: Story = {
+  name: 'Com tooltip no label',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Campo com tooltip info no label via `labelTooltip`. O ícone info é exibido automaticamente.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Alimentação',
+    id: 'feeding',
+    name: 'feeding',
+    placeholder: 'Nome da ração ou alimentação habitual',
+    required: false,
+    showOptionalText: false,
+    labelTooltip: 'Nome da ração ou descrição de comida natural',
   },
 };

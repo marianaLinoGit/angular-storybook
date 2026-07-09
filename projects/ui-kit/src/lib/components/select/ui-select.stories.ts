@@ -37,6 +37,7 @@ const playgroundDefaults = {
   disabled: false,
   optionalText: 'Opcional',
   showOptionalText: true,
+  labelTooltip: '',
   errorMessage: '*Campo obrigatório',
   showError: false,
   customClass: '',
@@ -51,7 +52,7 @@ const meta: Meta<UiSelectStoryArgs> = {
   component: UiSelectComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|Searchable|ServerSearch|WithIcons|AllowClear|RequiredWithError|Optional|Disabled|EmptyOptions|WithDisabledOption|WithoutVisibleLabel)$/,
+    /^(PlaygroundCompleto|Default|Searchable|ServerSearch|WithIcons|AllowClear|RequiredWithError|Optional|Disabled|EmptyOptions|WithDisabledOption|WithoutVisibleLabel|WithLabelTooltip)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -90,6 +91,7 @@ const meta: Meta<UiSelectStoryArgs> = {
         [disabled]="disabled"
         [optionalText]="optionalText"
         [showOptionalText]="showOptionalText"
+        [labelTooltip]="labelTooltip"
         [errorMessage]="errorMessage"
         [showError]="showError"
         [customClass]="customClass"
@@ -104,7 +106,7 @@ const meta: Meta<UiSelectStoryArgs> = {
       description: {
         component:
           'Select customizado com dropdown, busca opcional, ícones nas opções e suporte a limpar seleção.\n\n' +
-          '**Uso:** informe `options` (array de `{ value, label }`) e vincule `[value]`. Emite `valueChange` e `searchChange`.',
+          '**Uso:** informe `options` (array de `{ value, label }`) e vincule `[value]`. Use `labelTooltip` para ajuda contextual no label. Emite `valueChange` e `searchChange`.',
       },
     },
   },
@@ -139,6 +141,12 @@ const meta: Meta<UiSelectStoryArgs> = {
       control: 'text',
       table: { category: 'Conteúdo' },
       description: 'Texto exibido pelo label quando o campo é opcional.',
+    },
+    labelTooltip: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description:
+        'Texto de ajuda exibido no tooltip info ao lado do label integrado.',
     },
     errorMessage: {
       control: 'text',
@@ -425,6 +433,28 @@ export const WithoutVisibleLabel: Story = {
     ...playgroundDefaults,
     label: '',
     ariaLabel: 'Selecione a origem do cadastro',
+  },
+};
+
+export const WithLabelTooltip: Story = {
+  name: 'Com tooltip no label',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Select com tooltip info no label via `labelTooltip`. O ícone info é exibido automaticamente.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Ambiente de vida',
+    id: 'livingEnvironment',
+    placeholder: 'Selecione',
+    required: false,
+    showOptionalText: false,
+    labelTooltip:
+      'Descreva onde o animal passa a maior parte do tempo: dentro de casa, quintal ou rua.',
   },
 };
 

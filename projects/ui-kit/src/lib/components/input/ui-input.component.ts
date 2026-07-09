@@ -61,6 +61,7 @@ export class UiInputComponent implements ControlValueAccessor {
 
   optionalText = input('');
   showOptionalText = input(true);
+  labelTooltip = input('');
 
   errorMessage = input('');
   showError = input(false);
@@ -80,6 +81,9 @@ export class UiInputComponent implements ControlValueAccessor {
   isDisabled = computed(() => this.disabled() || this.disabledState());
 
   errorId = computed(() => `${this.id()}-error`);
+  labelTooltipId = computed(() =>
+    this.labelTooltip().trim() ? `${this.id()}-tooltip` : null,
+  );
 
   inputAriaLabel = computed(() => {
     if ((this.label() && !this.hideLabel()) || this.formField?.labelId()) {
@@ -98,7 +102,14 @@ export class UiInputComponent implements ControlValueAccessor {
       return this.formField.describedBy();
     }
 
-    return this.hasError() ? this.errorId() : null;
+    const ids = [
+      this.labelTooltip().trim() && this.label() && !this.hideLabel()
+        ? this.labelTooltipId()
+        : null,
+      this.hasError() ? this.errorId() : null,
+    ].filter(Boolean);
+
+    return ids.length ? ids.join(' ') : null;
   });
 
   classes = computed(() =>

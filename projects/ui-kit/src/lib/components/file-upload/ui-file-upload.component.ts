@@ -124,6 +124,7 @@ export class UiFileUploadComponent implements ControlValueAccessor {
 
   optionalText = input('');
   showOptionalText = input(true);
+  labelTooltip = input('');
 
   errorMessage = input('');
   showError = input(false);
@@ -192,13 +193,23 @@ export class UiFileUploadComponent implements ControlValueAccessor {
   readonly isDisabled = computed(() => this.disabled() || this.disabledState());
 
   readonly errorId = computed(() => `${this.id()}-error`);
+  readonly labelTooltipId = computed(() =>
+    this.labelTooltip().trim() ? `${this.id()}-tooltip` : null,
+  );
 
   readonly describedBy = computed(() => {
     if (this.formField) {
       return this.formField.describedBy();
     }
 
-    return this.hasError() ? this.errorId() : null;
+    const ids = [
+      this.labelTooltip().trim() && this.label() && !this.hideLabel()
+        ? this.labelTooltipId()
+        : null,
+      this.hasError() ? this.errorId() : null,
+    ].filter(Boolean);
+
+    return ids.length ? ids.join(' ') : null;
   });
 
   readonly showExistingPreview = computed(

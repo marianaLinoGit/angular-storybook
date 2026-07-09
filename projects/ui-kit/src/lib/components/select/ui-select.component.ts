@@ -62,6 +62,7 @@ export class UiSelectComponent implements ControlValueAccessor {
 
   optionalText = input('');
   showOptionalText = input(true);
+  labelTooltip = input('');
 
   errorMessage = input('');
   showError = input(false);
@@ -105,6 +106,9 @@ export class UiSelectComponent implements ControlValueAccessor {
 
   errorId = computed(() => `${this.id()}-error`);
   labelId = computed(() => `${this.id()}-label`);
+  labelTooltipId = computed(() =>
+    this.labelTooltip().trim() ? `${this.labelId()}-tooltip` : null,
+  );
   listboxId = computed(() => `${this.id()}-listbox`);
 
   chevronIcon = computed<UiIconName>(() =>
@@ -132,7 +136,14 @@ export class UiSelectComponent implements ControlValueAccessor {
       return this.formField.describedBy();
     }
 
-    return this.hasError() ? this.errorId() : null;
+    const ids = [
+      this.labelTooltip().trim() && this.label() && !this.hideLabel()
+        ? this.labelTooltipId()
+        : null,
+      this.hasError() ? this.errorId() : null,
+    ].filter(Boolean);
+
+    return ids.length ? ids.join(' ') : null;
   });
 
   selectedOption = computed(

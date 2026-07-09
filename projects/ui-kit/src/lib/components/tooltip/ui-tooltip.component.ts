@@ -36,9 +36,14 @@ export class UiTooltipComponent {
   iconColor = input<string | null>(null);
   iconLabel = input('');
 
-  tooltipId = `ui-tooltip-${crypto.randomUUID()}`;
+  private readonly fallbackTooltipId = `ui-tooltip-${crypto.randomUUID()}`;
+  id = input<string | null>(null);
 
   readonly visible = signal(false);
+
+  resolvedTooltipId = computed(
+    () => this.id()?.trim() || this.fallbackTooltipId,
+  );
 
   resolvedIconLabel = computed(() => {
     const label = this.iconLabel().trim();

@@ -8,6 +8,7 @@ const playgroundDefaults = {
   required: true,
   optionalText: 'Opcional',
   showOptionalText: true,
+  labelTooltip: '',
   customClass: '',
 };
 
@@ -15,7 +16,7 @@ const meta: Meta<UiLabelComponent> = {
   title: 'Components/Label',
   component: UiLabelComponent,
   tags: ['autodocs'],
-  includeStories: /^(PlaygroundCompleto|Required|Optional|OptionalEnglish)$/,
+  includeStories: /^(PlaygroundCompleto|Required|Optional|OptionalEnglish|WithLabelTooltip)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -35,7 +36,7 @@ const meta: Meta<UiLabelComponent> = {
       description: {
         component:
           'Label reutilizável para campos de formulário. Exibe indicador de obrigatoriedade ou texto opcional.\n\n' +
-          '**Uso:** associe ao campo via `forId` com o `id` do input/select correspondente.',
+          '**Uso:** associe ao campo via `forId` com o `id` do input/select correspondente. Passe `labelTooltip` para exibir ícone info com tooltip ao lado do texto.',
       },
     },
   },
@@ -69,6 +70,12 @@ const meta: Meta<UiLabelComponent> = {
       description:
         'Controla a exibição do texto opcional quando `required` é `false`.',
     },
+    labelTooltip: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description:
+        'Texto exibido no tooltip info ao lado do label. Quando preenchido, o ícone info é exibido automaticamente.',
+    },
     customClass: {
       control: 'text',
       table: { category: 'Aparência' },
@@ -86,6 +93,7 @@ const meta: Meta<UiLabelComponent> = {
           [required]="required"
           [optionalText]="optionalText"
           [showOptionalText]="showOptionalText"
+          [labelTooltip]="labelTooltip"
           [customClass]="customClass"
         />
         <input [id]="forId" type="text" />
@@ -154,6 +162,28 @@ export const OptionalEnglish: Story = {
     required: false,
     optionalText: 'Optional',
     showOptionalText: true,
+    labelTooltip: '',
+    customClass: '',
+  },
+};
+
+export const WithLabelTooltip: Story = {
+  name: 'Com tooltip no label',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Label com tooltip info automático. Passe `labelTooltip` com texto de ajuda contextual.',
+      },
+    },
+  },
+  args: {
+    label: 'Alimentação',
+    forId: 'feeding',
+    required: false,
+    optionalText: 'Opcional',
+    showOptionalText: false,
+    labelTooltip: 'Nome da ração ou descrição de comida natural',
     customClass: '',
   },
 };
