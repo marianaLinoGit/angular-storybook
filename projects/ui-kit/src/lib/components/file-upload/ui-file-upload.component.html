@@ -13,9 +13,20 @@
     <div class="ui-file-upload__list">
       @if (showExistingPreview()) {
         <article class="ui-file-upload__item ui-file-upload__item--existing">
-          <div class="ui-file-upload__thumb">
-            <img [src]="existingPreviewSrc()" alt="" class="ui-file-upload__thumb-image" />
-          </div>
+          @if (canPreviewImage(existingPreviewSrc())) {
+            <button
+              type="button"
+              class="ui-file-upload__thumb ui-file-upload__thumb--interactive"
+              [attr.aria-label]="previewExpandAriaLabel()"
+              (click)="openImagePreview(existingPreviewSrc(), existingPreviewTitle())"
+            >
+              <img [src]="existingPreviewSrc()" alt="" class="ui-file-upload__thumb-image" />
+            </button>
+          } @else {
+            <div class="ui-file-upload__thumb">
+              <img [src]="existingPreviewSrc()" alt="" class="ui-file-upload__thumb-image" />
+            </div>
+          }
 
           <div class="ui-file-upload__content">
             <strong class="ui-file-upload__name">Foto atual</strong>
@@ -43,7 +54,18 @@
         >
           <div class="ui-file-upload__thumb">
             @if (item.previewUrl) {
-              <img [src]="item.previewUrl" alt="" class="ui-file-upload__thumb-image" />
+              @if (canPreviewImage(item.previewUrl)) {
+                <button
+                  type="button"
+                  class="ui-file-upload__thumb-button"
+                  [attr.aria-label]="previewExpandAriaLabel()"
+                  (click)="openImagePreview(item.previewUrl!, item.file.name)"
+                >
+                  <img [src]="item.previewUrl" alt="" class="ui-file-upload__thumb-image" />
+                </button>
+              } @else {
+                <img [src]="item.previewUrl" alt="" class="ui-file-upload__thumb-image" />
+              }
             } @else if (isPdf(item.file)) {
               <div class="ui-file-upload__pdf-icon" aria-hidden="true">
                 <span>pdf</span>
@@ -164,4 +186,24 @@
     (cancelled)="closeCropper()"
     (applied)="onCropApplied($event)"
   />
+}
+
+@if (imagePreviewOpen() && imagePreviewUrl(); as previewUrl) {
+  <ui-modal
+    [open]="imagePreviewOpen()"
+    type="content"
+    size="lg"
+    presentationMode="fixed"
+    [title]="imagePreviewTitle()"
+    [description]="null"
+    [closeAriaLabel]="previewCloseAriaLabel()"
+    customClass="ui-file-upload__preview-modal"
+    (closed)="closeImagePreview()"
+  >
+    <img
+      [src]="previewUrl"
+      [alt]="imagePreviewTitle()"
+      class="ui-file-upload__preview-image"
+    />
+  </ui-modal>
 }

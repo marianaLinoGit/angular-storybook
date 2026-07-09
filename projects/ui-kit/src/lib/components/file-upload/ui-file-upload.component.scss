@@ -30,6 +30,31 @@
   display: grid;
   place-items: center;
   background: var(--ui-color-background);
+
+  &--interactive,
+  &-button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--ui-color-primary), transparent 70%);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ui-color-focus);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.ui-file-upload__thumb-button {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
 }
 
 .ui-file-upload__thumb-image {
@@ -217,4 +242,20 @@
 
 .ui-file-upload--error .ui-file-upload__dropzone {
   border-color: var(--ui-color-danger);
+}
+
+:host ::ng-deep .ui-file-upload__preview-modal .ui-modal__body {
+  display: grid;
+  place-items: center;
+  padding: var(--ui-space-4);
+}
+
+.ui-file-upload__preview-image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(70vh, 640px);
+  margin: 0 auto;
+  border-radius: var(--ui-radius-md);
+  object-fit: contain;
 }

@@ -4,6 +4,7 @@ import {
   DestroyRef,
   ElementRef,
   computed,
+  effect,
   inject,
   input,
   output,
@@ -17,6 +18,7 @@ import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
 import { UiFieldErrorComponent } from '../field-error/ui-field-error.component';
 import { UiIconComponent } from '../icon/ui-icon.component';
 import { UiLabelComponent } from '../label/ui-label.component';
+import { UiModalComponent } from '../modal/ui-modal.component';
 import { UiImageCropperComponent } from './ui-image-cropper.component';
 import {
   UI_FILE_UPLOAD_PRESETS,
@@ -43,6 +45,7 @@ import {
     UiIconComponent,
     UiImageCropperComponent,
     UiLabelComponent,
+    UiModalComponent,
   ],
   templateUrl: './ui-file-upload.component.html',
   styleUrl: './ui-file-upload.component.scss',
@@ -90,6 +93,10 @@ export class UiFileUploadComponent implements ControlValueAccessor {
 
   existingPreviewUrl = input<string | null>(null);
   placeholderPreviewUrl = input<string | null>(null);
+  existingPreviewTitle = input('Foto atual');
+  previewExpandAriaLabel = input('Ampliar imagem');
+  previewCloseAriaLabel = input('Fechar visualização da imagem');
+  enableImagePreview = input(true);
 
   required = input(false);
   disabled = input(false);
@@ -113,6 +120,9 @@ export class UiFileUploadComponent implements ControlValueAccessor {
   readonly removeExisting = signal(false);
   readonly cropTargetId = signal<string | null>(null);
   readonly disabledState = signal(false);
+  readonly imagePreviewOpen = signal(false);
+  readonly imagePreviewUrl = signal<string | null>(null);
+  readonly imagePreviewTitle = signal('');
 
   constructor() {
     if (this.ngControl) {
@@ -123,6 +133,12 @@ export class UiFileUploadComponent implements ControlValueAccessor {
       this.revokeAllPreviewUrls();
       this.uploadSubscriptions.forEach((subscription) => subscription.unsubscribe());
       this.uploadSubscriptions.clear();
+    });
+
+    effect(() => {
+      if (this.existingPreviewUrl()) {
+        this.removeExisting.set(false);
+      }
     });
   }
 
@@ -307,6 +323,24 @@ export class UiFileUploadComponent implements ControlValueAccessor {
 
   closeCropper(): void {
     this.cropTargetId.set(null);
+  }
+
+  canPreviewImage(url: string | null | undefined): boolean {
+    return this.enableImagePreview() && Boolean(url);
+  }
+
+  openImagePreview(url: string, title: string): void {
+    if (!this.canPreviewImage(url)) return;
+
+    this.imagePreviewUrl.set(url);
+    this.imagePreviewTitle.set(title);
+    this.imagePreviewOpen.set(true);
+  }
+
+  closeImagePreview(): void {
+    this.imagePreviewOpen.set(false);
+    this.imagePreviewUrl.set(null);
+    this.imagePreviewTitle.set('');
   }
 
   onCropApplied(file: File): void {

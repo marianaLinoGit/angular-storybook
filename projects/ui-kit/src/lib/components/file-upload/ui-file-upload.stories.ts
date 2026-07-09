@@ -205,6 +205,14 @@ export const MultipleFiles: Story = {
 };
 
 export const PetPhoto: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Preset para foto de pet com recorte opcional. Clique na miniatura para ampliar a imagem em um modal.',
+      },
+    },
+  },
   args: {
     ...playgroundDefaults,
     label: 'Foto do pet',
@@ -245,6 +253,14 @@ export const Disabled: Story = {
 };
 
 export const WithExistingPhoto: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Exibe foto existente com opção de remoção. Clique na miniatura para visualizar a imagem ampliada.',
+      },
+    },
+  },
   args: {
     ...playgroundDefaults,
     label: 'Foto do pet',
