@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
+  ElementRef,
   HostListener,
+  computed,
+  inject,
   input,
   signal,
 } from '@angular/core';
@@ -14,6 +16,11 @@ import {
 
 export type UiTooltipPosition = 'top' | 'right' | 'bottom' | 'left';
 
+type TooltipCoords = {
+  top: string;
+  left: string;
+};
+
 @Component({
   selector: 'ui-tooltip',
   standalone: true,
@@ -23,6 +30,8 @@ export type UiTooltipPosition = 'top' | 'right' | 'bottom' | 'left';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiTooltipComponent {
+  private readonly hostRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
   text = input('');
   html = input<string | null>(null);
   position = input<UiTooltipPosition>('top');
@@ -40,6 +49,7 @@ export class UiTooltipComponent {
   id = input<string | null>(null);
 
   readonly visible = signal(false);
+  readonly coords = signal<TooltipCoords | null>(null);
 
   resolvedTooltipId = computed(
     () => this.id()?.trim() || this.fallbackTooltipId,
@@ -58,6 +68,7 @@ export class UiTooltipComponent {
     [
       'ui-tooltip__content',
       `ui-tooltip__content--${this.position()}`,
+      'ui-tooltip__content--fixed',
       this.visible() ? 'ui-tooltip__content--visible' : '',
       this.disabled() ? 'ui-tooltip__content--disabled' : '',
       this.customClass(),
@@ -68,22 +79,63 @@ export class UiTooltipComponent {
 
   @HostListener('mouseenter')
   @HostListener('focusin')
-  showTooltip(): void {
-    if (!this.disabled()) {
-      this.visible.set(true);
+  onShow(): void {
+    if (this.disabled()) {
+      return;
     }
+
+    this.coords.set(this.computeCoords());
+    this.visible.set(true);
   }
 
   @HostListener('mouseleave')
+  onMouseLeave(): void {
+    this.hide();
+  }
+
   @HostListener('focusout', ['$event'])
-  hideTooltip(event: FocusEvent): void {
-    const host = event.currentTarget as HTMLElement;
+  onFocusOut(event: FocusEvent): void {
+    const host = this.hostRef.nativeElement;
     const nextTarget = event.relatedTarget as Node | null;
 
     if (nextTarget && host.contains(nextTarget)) {
       return;
     }
 
+    this.hide();
+  }
+
+  private hide(): void {
     this.visible.set(false);
+    this.coords.set(null);
+  }
+
+  private computeCoords(): TooltipCoords {
+    const host = this.hostRef.nativeElement.getBoundingClientRect();
+    const gap = 8;
+
+    switch (this.position()) {
+      case 'bottom':
+        return {
+          top: `${host.bottom + gap}px`,
+          left: `${host.left + host.width / 2}px`,
+        };
+      case 'left':
+        return {
+          top: `${host.top + host.height / 2}px`,
+          left: `${host.left - gap}px`,
+        };
+      case 'right':
+        return {
+          top: `${host.top + host.height / 2}px`,
+          left: `${host.right + gap}px`,
+        };
+      case 'top':
+      default:
+        return {
+          top: `${host.top - gap}px`,
+          left: `${host.left + host.width / 2}px`,
+        };
+    }
   }
 }

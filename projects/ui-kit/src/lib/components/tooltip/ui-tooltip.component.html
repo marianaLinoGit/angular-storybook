@@ -16,11 +16,13 @@
     <ng-content />
   }
 
-  @if (!disabled()) {
+  @if (!disabled() && visible() && coords(); as position) {
     <span
       role="tooltip"
       [id]="resolvedTooltipId()"
       [class]="tooltipClasses()"
+      [style.top]="position.top"
+      [style.left]="position.left"
       [style.max-width]="maxWidth()"
       [style.transition-delay]="delay()"
     >
