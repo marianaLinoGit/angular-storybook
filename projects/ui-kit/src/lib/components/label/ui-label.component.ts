@@ -19,7 +19,7 @@ export class UiLabelComponent {
   forId = input<string | null>(null);
   required = input(false);
   optionalText = input('');
-  showOptionalText = input(true);
+  showOptionalText = input(false);
   customClass = input('');
   labelId = input<string | null>(null);
   labelTooltip = input('');

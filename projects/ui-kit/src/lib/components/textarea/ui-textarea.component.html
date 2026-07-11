@@ -1,0 +1,39 @@
+<div class="ui-textarea-field">
+  @if (label() && !hideLabel()) {
+    <ui-label
+      [label]="label()"
+      [forId]="id()"
+      [required]="hasRequired()"
+      [optionalText]="optionalText()"
+      [showOptionalText]="showOptionalText()"
+      [labelTooltip]="labelTooltip()"
+      [labelTooltipId]="labelTooltipId()"
+    ></ui-label>
+  }
+
+  <textarea
+    [id]="id()"
+    [name]="name()"
+    [class]="classes()"
+    [attr.rows]="rows()"
+    [attr.cols]="cols()"
+    [attr.maxlength]="maxlength()"
+    [placeholder]="placeholder()"
+    [attr.autocomplete]="autocomplete()"
+    [required]="hasRequired()"
+    [readonly]="readonly()"
+    [disabled]="isDisabled()"
+    [attr.aria-label]="textareaAriaLabel()"
+    [attr.aria-labelledby]="textareaAriaLabelledBy()"
+    [attr.aria-required]="hasRequired() ? 'true' : null"
+    [attr.aria-invalid]="hasError() ? 'true' : null"
+    [attr.aria-describedby]="describedBy()"
+    [value]="value()"
+    (input)="handleInput($event)"
+    (blur)="handleBlur()"
+  ></textarea>
+
+  @if (hasError() && !hideError()) {
+    <ui-field-error [id]="errorId()" [message]="errorMessage()" />
+  }
+</div>

@@ -16,16 +16,16 @@
 
   input {
     position: absolute;
-    width: 18px;
-    height: 18px;
+    width: var(--ui-icon-size-xs);
+    height: var(--ui-icon-size-xs);
     margin: 2px 0 0;
     opacity: 0;
     cursor: pointer;
   }
 
   &__box {
-    width: 18px;
-    height: 18px;
+    width: var(--ui-icon-size-xs);
+    height: var(--ui-icon-size-xs);
     margin-top: 2px;
     border: 1px solid var(--ui-color-input-border);
     border-radius: var(--ui-radius-sm);
@@ -38,6 +38,11 @@
     font-size: var(--ui-font-size-xs);
     font-weight: var(--ui-font-weight-bold);
     transition: 0.2s ease;
+
+    ui-icon {
+      position: relative;
+      top: 2px;
+    }
   }
 
   &__text {

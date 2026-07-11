@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   input,
   output,
@@ -42,6 +43,7 @@ export class UiCheckboxComponent implements ControlValueAccessor {
   showError = input(false);
   errorMessage = input('');
   customClass = input('');
+  checkedInput = input(false, { alias: 'checked' });
 
   checkedChange = output<boolean>();
 
@@ -52,6 +54,12 @@ export class UiCheckboxComponent implements ControlValueAccessor {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+
+    effect(() => {
+      if (!this.ngControl) {
+        this.checked.set(this.checkedInput());
+      }
+    });
   }
 
   isDisabled = computed(() => this.disabled() || this.disabledState());

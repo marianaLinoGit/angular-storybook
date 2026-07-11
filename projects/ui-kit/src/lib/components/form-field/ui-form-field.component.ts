@@ -29,7 +29,7 @@ export class UiFormFieldComponent implements UiFormFieldContext {
   hint = input('');
   labelTooltip = input('');
   optionalText = input('');
-  showOptionalText = input(true);
+  showOptionalText = input(false);
   controlId = input<string | null>(null);
   customClass = input('');
   required = input(false);

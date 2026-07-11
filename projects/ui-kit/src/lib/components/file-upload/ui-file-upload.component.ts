@@ -123,7 +123,7 @@ export class UiFileUploadComponent implements ControlValueAccessor {
   disabled = input(false);
 
   optionalText = input('');
-  showOptionalText = input(true);
+  showOptionalText = input(false);
   labelTooltip = input('');
 
   errorMessage = input('');

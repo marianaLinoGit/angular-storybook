@@ -12,28 +12,17 @@ import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
 import { UiFieldErrorComponent } from '../field-error/ui-field-error.component';
 import { UiLabelComponent } from '../label/ui-label.component';
 
-export type UiInputType =
-  | 'text'
-  | 'email'
-  | 'password'
-  | 'number'
-  | 'tel'
-  | 'url'
-  | 'search'
-  | 'date'
-  | 'datetime-local'
-  | 'time'
-  | 'color';
+export type UiTextareaResize = 'none' | 'vertical' | 'horizontal' | 'both';
 
 @Component({
-  selector: 'ui-input',
+  selector: 'ui-textarea',
   standalone: true,
   imports: [UiFieldErrorComponent, UiLabelComponent],
-  templateUrl: './ui-input.component.html',
-  styleUrl: './ui-input.component.scss',
+  templateUrl: './ui-textarea.component.html',
+  styleUrl: './ui-textarea.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UiInputComponent implements ControlValueAccessor {
+export class UiTextareaComponent implements ControlValueAccessor {
   private readonly ngControl = inject(NgControl, {
     self: true,
     optional: true,
@@ -45,15 +34,14 @@ export class UiInputComponent implements ControlValueAccessor {
   hideLabel = input(false);
   hideError = input(false);
 
-  id = input(`ui-input-${crypto.randomUUID()}`);
+  id = input(`ui-textarea-${crypto.randomUUID()}`);
   name = input<string | null>(null);
-  type = input<UiInputType>('text');
   placeholder = input('');
   autocomplete = input<string | null>(null);
-  inputMode = input<string | null>(null);
-  min = input<string | number | null>(null);
-  max = input<string | number | null>(null);
-  step = input<string | number | null>(null);
+  rows = input(3);
+  cols = input<number | null>(null);
+  maxlength = input<number | null>(null);
+  resize = input<UiTextareaResize>('vertical');
 
   required = input(false);
   readonly = input(false);
@@ -85,7 +73,7 @@ export class UiInputComponent implements ControlValueAccessor {
     this.labelTooltip().trim() ? `${this.id()}-tooltip` : null,
   );
 
-  inputAriaLabel = computed(() => {
+  textareaAriaLabel = computed(() => {
     if ((this.label() && !this.hideLabel()) || this.formField?.labelId()) {
       return null;
     }
@@ -93,7 +81,7 @@ export class UiInputComponent implements ControlValueAccessor {
     return this.ariaLabel();
   });
 
-  inputAriaLabelledBy = computed(
+  textareaAriaLabelledBy = computed(
     () => this.formField?.labelId() ?? null,
   );
 
@@ -114,9 +102,10 @@ export class UiInputComponent implements ControlValueAccessor {
 
   classes = computed(() =>
     [
-      'ui-input',
-      this.hasError() ? 'ui-input--error' : '',
-      this.isDisabled() ? 'ui-input--disabled' : '',
+      'ui-textarea',
+      `ui-textarea--resize-${this.resize()}`,
+      this.hasError() ? 'ui-textarea--error' : '',
+      this.isDisabled() ? 'ui-textarea--disabled' : '',
       this.customClass(),
     ]
       .filter(Boolean)
@@ -152,7 +141,7 @@ export class UiInputComponent implements ControlValueAccessor {
       return;
     }
 
-    const value = (event.target as HTMLInputElement).value;
+    const value = (event.target as HTMLTextAreaElement).value;
 
     this.value.set(value);
     this.onChange(value);
