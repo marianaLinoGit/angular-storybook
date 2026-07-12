@@ -28,12 +28,10 @@
   }
 
   @media (max-width: 767px) {
-    align-items: stretch;
-    flex-direction: column;
+    justify-content: center;
 
     &__nav {
-      align-items: stretch;
-      flex-direction: column;
+      justify-content: center;
     }
 
     &__page-size {
