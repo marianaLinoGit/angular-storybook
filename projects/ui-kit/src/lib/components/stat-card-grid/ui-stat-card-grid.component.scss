@@ -1,18 +1,25 @@
 .ui-stat-card-grid {
   width: 100%;
   display: grid;
-  gap: var(--ui-stat-card-grid-gap);
+  gap: var(--ui-stat-card-grid-gap, 16px);
+  align-items: stretch;
 
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* mobile: 2 por linha */
+  grid-template-columns: repeat(
+    var(--ui-stat-card-grid-cols-mobile, 2),
+    minmax(0, 1fr)
+  );
 
-  @media (min-width: 768px) and (max-width: 899px) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* desktop: no máximo 4 por linha */
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(
+      var(--ui-stat-card-grid-cols-desktop, 4),
+      minmax(0, 1fr)
+    );
   }
 
-  @media (min-width: 900px) {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(min(100%, var(--ui-stat-card-grid-min)), 1fr)
-    );
+  > * {
+    height: 100%;
+    min-height: 100%;
   }
 }

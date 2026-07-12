@@ -7,6 +7,9 @@ const playgroundDefaults = {
   size: 'md' as const,
   message: 'Carregando...',
   skeletonRows: 3,
+  skeletonColumnsMobile: 3,
+  skeletonColumnsTablet: 4,
+  skeletonColumnsDesktop: 5,
   overlay: false,
   overlayMode: 'fixed' as const,
   ariaLabel: 'Carregando conteúdo',
@@ -68,6 +71,24 @@ const meta: Meta<UiLoadingComponent> = {
       table: { category: 'Conteúdo' },
       description:
         'Quantidade de linhas nos skeletons. Padrão: 3. Nos cards (`skeleton-card` e `skeleton-card-text`), controla as linhas de texto abaixo da mídia ou dentro do card.',
+    },
+    skeletonColumnsMobile: {
+      control: { type: 'number', min: 1, max: 12, step: 1 },
+      table: { category: 'Conteúdo' },
+      description:
+        'Colunas do `skeleton-table` no mobile. Padrão: 3.',
+    },
+    skeletonColumnsTablet: {
+      control: { type: 'number', min: 1, max: 12, step: 1 },
+      table: { category: 'Conteúdo' },
+      description:
+        'Colunas do `skeleton-table` no tablet. Padrão: 4.',
+    },
+    skeletonColumnsDesktop: {
+      control: { type: 'number', min: 1, max: 12, step: 1 },
+      table: { category: 'Conteúdo' },
+      description:
+        'Colunas do `skeleton-table` no desktop. Padrão: 5.',
     },
     size: {
       control: 'select',
@@ -230,6 +251,9 @@ export const SkeletonTable: Story = {
     size: 'lg',
     message: null,
     skeletonRows: 5,
+    skeletonColumnsMobile: 3,
+    skeletonColumnsTablet: 5,
+    skeletonColumnsDesktop: 7,
     ariaLabel: 'Carregando tabela',
   },
 };

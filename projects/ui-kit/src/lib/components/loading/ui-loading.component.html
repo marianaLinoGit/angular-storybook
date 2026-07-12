@@ -51,12 +51,21 @@
   }
 
   @if (type() === "skeleton-table") {
-    <div class="ui-skeleton-table" aria-hidden="true">
+    <div
+      class="ui-skeleton-table"
+      aria-hidden="true"
+      [style]="skeletonTableStyles()"
+    >
       @for (row of skeletonRowsArray(); track row) {
         <div class="ui-skeleton-table__row">
-          <span></span>
-          <span></span>
-          <span></span>
+          @for (col of skeletonTableCols(); track col.index) {
+            <span
+              class="ui-skeleton-table__cell"
+              [class.ui-skeleton-table__cell--mobile]="col.mobile"
+              [class.ui-skeleton-table__cell--tablet]="col.tablet"
+              [class.ui-skeleton-table__cell--desktop]="col.desktop"
+            ></span>
+          }
         </div>
       }
     </div>

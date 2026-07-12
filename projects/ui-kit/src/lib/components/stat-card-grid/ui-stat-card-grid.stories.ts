@@ -5,7 +5,8 @@ import { UiStatCardComponent } from '../stat-card/ui-stat-card.component';
 import { UiStatCardGridComponent } from './ui-stat-card-grid.component';
 
 const playgroundDefaults = {
-  minCardWidth: '180px',
+  columnsMobile: 2,
+  columnsDesktop: 4,
   gap: '16px',
 };
 
@@ -21,10 +22,15 @@ const meta: Meta<UiStatCardGridComponent> = {
   includeStories:
     /^(PlaygroundCompleto|Default|TwoCards|SixCards|Gradient|MixedSizes|WithoutIcons|MobilePetsExample)$/,
   argTypes: {
-    minCardWidth: {
-      control: 'text',
+    columnsMobile: {
+      control: { type: 'number', min: 1, max: 4, step: 1 },
       table: { category: 'Layout' },
-      description: 'Largura mínima utilizada no desktop >= 900px.',
+      description: 'Quantidade de colunas no mobile. Padrão: 2.',
+    },
+    columnsDesktop: {
+      control: { type: 'number', min: 1, max: 6, step: 1 },
+      table: { category: 'Layout' },
+      description: 'Quantidade de colunas no desktop. Padrão: 4.',
     },
     gap: {
       control: 'text',
@@ -40,7 +46,7 @@ export default meta;
 type Story = StoryObj<UiStatCardGridComponent>;
 
 const defaultGridTemplate = `
-  <ui-stat-card-grid [minCardWidth]="minCardWidth" [gap]="gap">
+  <ui-stat-card-grid [columnsMobile]="columnsMobile" [columnsDesktop]="columnsDesktop" [gap]="gap">
     <ui-stat-card type="default" [value]="6" label="Total de alertas" icon="alert" />
     <ui-stat-card type="danger" [value]="2" label="Urgentes" icon="warning" />
     <ui-stat-card type="warning" [value]="2" label="Em breve" icon="calendar" />

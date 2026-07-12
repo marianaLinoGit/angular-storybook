@@ -36,6 +36,13 @@ export class UiLoadingComponent {
 
   skeletonRows = input(3);
 
+  /** Colunas do skeleton-table no mobile (< 768px). */
+  skeletonColumnsMobile = input(3);
+  /** Colunas do skeleton-table no tablet (768px–1023px). */
+  skeletonColumnsTablet = input(4);
+  /** Colunas do skeleton-table no desktop (≥ 1024px). */
+  skeletonColumnsDesktop = input(5);
+
   messageId = `ui-loading-message-${crypto.randomUUID()}`;
 
   skeletonRowsArray = computed(() =>
@@ -44,6 +51,28 @@ export class UiLoadingComponent {
       (_, index) => index,
     ),
   );
+
+  skeletonTableCols = computed(() => {
+    const mobile = Math.max(1, this.skeletonColumnsMobile());
+    const tablet = Math.max(1, this.skeletonColumnsTablet());
+    const desktop = Math.max(1, this.skeletonColumnsDesktop());
+    const max = Math.max(mobile, tablet, desktop);
+
+    return Array.from({ length: max }, (_, index) => ({
+      index,
+      mobile: index < mobile,
+      tablet: index < tablet,
+      desktop: index < desktop,
+    }));
+  });
+
+  skeletonTableStyles = computed(() => ({
+    '--skeleton-cols-mobile': String(Math.max(1, this.skeletonColumnsMobile())),
+    '--skeleton-cols-tablet': String(Math.max(1, this.skeletonColumnsTablet())),
+    '--skeleton-cols-desktop': String(
+      Math.max(1, this.skeletonColumnsDesktop()),
+    ),
+  }));
 
   skeletonCardTextLineClass(index: number): string {
     const total = this.skeletonRowsArray().length;
@@ -67,6 +96,7 @@ export class UiLoadingComponent {
     [
       'ui-loading',
       `ui-loading--${this.size()}`,
+      this.type() === 'skeleton-table' ? 'ui-loading--skeleton-table' : '',
       this.overlay() ? 'ui-loading--overlay' : '',
       this.overlay() ? `ui-loading--overlay-${this.overlayMode()}` : '',
     ]

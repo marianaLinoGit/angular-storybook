@@ -28,6 +28,9 @@ export type UiStatCardAppearance = 'solid' | 'gradient';
   templateUrl: './ui-stat-card.component.html',
   styleUrl: './ui-stat-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    style: 'display: block; height: 100%; min-height: 100%;',
+  },
 })
 export class UiStatCardComponent {
   type = input<UiStatCardType>('default');
