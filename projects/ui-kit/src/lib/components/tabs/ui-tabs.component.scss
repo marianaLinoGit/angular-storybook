@@ -10,6 +10,7 @@
     min-width: 150px;
     max-width: 150px;
     box-sizing: border-box;
+    position: relative;
 
     &:disabled {
       color: var(--ui-color-disabled);
@@ -20,10 +21,13 @@
       background: color-mix(in srgb, var(--ui-color-primary) 12%, transparent);
       color: var(--ui-color-primary);
       border-radius: var(--ui-radius-pill);
-      padding: 2px 7px;
+      padding: var(--ui-space-1) var(--ui-space-2);
       font-size: var(--ui-font-size-xs);
       font-weight: var(--ui-font-weight-semibold);
       flex-shrink: 0;
+      position: absolute;
+      top: var(--ui-space-2);
+      right: var(--ui-space-2);
     }
   }
 
@@ -105,6 +109,8 @@
   // ------------------------------------------------------------------
   &--card {
     background: transparent;
+    gap: var(--ui-space-6);
+    display: grid;
 
     .ui-tabs__header {
       gap: var(--ui-space-2);
