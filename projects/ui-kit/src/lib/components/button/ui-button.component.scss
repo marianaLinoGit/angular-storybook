@@ -207,6 +207,10 @@
   flex: 0 0 auto;
   color: currentColor;
   margin-top: var(--ui-space-1);
+
+  .ui-button--icon-only & {
+    margin-top: 0;
+  }
 }
 
 .ui-button__label {

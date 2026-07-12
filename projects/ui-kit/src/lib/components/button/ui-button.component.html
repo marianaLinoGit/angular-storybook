@@ -13,7 +13,11 @@
     }
 
     @if (!loading() && buttonIcon() && iconPosition() === "left") {
-      <ui-icon class="ui-button__icon" [name]="buttonIcon()!" size="sm" />
+      <ui-icon
+        class="ui-button__icon"
+        [name]="buttonIcon()!"
+        [size]="resolvedIconSize()"
+      />
     }
 
     @if (!iconOnly()) {
@@ -26,7 +30,11 @@
     }
 
     @if (!loading() && buttonIcon() && iconPosition() === "right") {
-      <ui-icon class="ui-button__icon" [name]="buttonIcon()!" size="sm" />
+      <ui-icon
+        class="ui-button__icon"
+        [name]="buttonIcon()!"
+        [size]="resolvedIconSize()"
+      />
     }
   </button>
 </div>

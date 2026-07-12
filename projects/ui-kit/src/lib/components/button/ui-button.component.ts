@@ -12,7 +12,7 @@ import {
   UiSize,
 } from '../../design-system/types/ui.types';
 import { RouteHistoryService } from '../../services/route-history.service';
-import { UiIconComponent, UiIconName } from '../icon/ui-icon.component';
+import { UiIconComponent, UiIconName, UiIconSize } from '../icon/ui-icon.component';
 
 @Component({
   selector: 'ui-button',
@@ -43,6 +43,7 @@ export class UiButtonComponent {
   hideLabelOnMobile = input(false);
 
   icon = input<UiIconName | null>(null);
+  iconSize = input<UiIconSize | null>(null);
   iconPosition = input<'left' | 'right'>('left');
 
   appearance = input<'default' | 'back'>('default');
@@ -61,6 +62,8 @@ export class UiButtonComponent {
 
     return null;
   });
+
+  resolvedIconSize = computed<UiIconSize>(() => this.iconSize() ?? 'sm');
 
   computedAriaLabel = computed(() => {
     const aria = this.ariaLabel()?.trim();
