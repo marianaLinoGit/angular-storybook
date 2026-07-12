@@ -11,6 +11,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { NgStyle } from '@angular/common';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
 import { UiFieldErrorComponent } from '../field-error/ui-field-error.component';
@@ -28,7 +29,7 @@ export interface UiSelectOption {
 @Component({
   selector: 'ui-select',
   standalone: true,
-  imports: [UiFieldErrorComponent, UiLabelComponent, UiIconComponent],
+  imports: [NgStyle, UiFieldErrorComponent, UiLabelComponent, UiIconComponent],
   templateUrl: './ui-select.component.html',
   styleUrl: './ui-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -85,6 +86,7 @@ export class UiSelectComponent implements ControlValueAccessor {
   searchTerm = signal('');
   opened = signal(false);
   disabledState = signal(false);
+  dropdownStyle = signal<Record<string, string> | null>(null);
 
   constructor() {
     if (this.ngControl) {
@@ -206,16 +208,55 @@ export class UiSelectComponent implements ControlValueAccessor {
   toggle(): void {
     if (this.isDisabled()) return;
 
-    this.opened.update((value) => !value);
+    const next = !this.opened();
+    this.opened.set(next);
 
-    if (this.opened() && this.searchable()) {
-      queueMicrotask(() => this.searchInput()?.nativeElement.focus());
+    if (next) {
+      this.updateDropdownPosition();
+      if (this.searchable()) {
+        queueMicrotask(() => this.searchInput()?.nativeElement.focus());
+      }
+    } else {
+      this.dropdownStyle.set(null);
+      this.searchTerm.set('');
     }
   }
 
   close(): void {
     this.opened.set(false);
     this.searchTerm.set('');
+    this.dropdownStyle.set(null);
+  }
+
+  private updateDropdownPosition(): void {
+    const trigger = this.host.nativeElement.querySelector(
+      '.ui-select__trigger',
+    ) as HTMLElement | null;
+    if (!trigger) return;
+
+    const rect = trigger.getBoundingClientRect();
+    const dropdownMax = 280;
+    const gap = 6;
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const openUp = spaceBelow < dropdownMax && rect.top > spaceBelow;
+
+    const style: Record<string, string> = {
+      position: 'fixed',
+      left: `${Math.max(8, rect.left)}px`,
+      width: `${Math.max(rect.width, 160)}px`,
+      right: 'auto',
+      zIndex: '10000',
+    };
+
+    if (openUp) {
+      style['bottom'] = `${Math.max(8, window.innerHeight - rect.top + gap)}px`;
+      style['top'] = 'auto';
+    } else {
+      style['top'] = `${rect.bottom + gap}px`;
+      style['bottom'] = 'auto';
+    }
+
+    this.dropdownStyle.set(style);
   }
 
   selectOption(option: UiSelectOption): void {
@@ -275,6 +316,17 @@ export class UiSelectComponent implements ControlValueAccessor {
     if (!this.host.nativeElement.contains(target)) {
       this.close();
     }
+  }
+
+  @HostListener('window:resize')
+  onViewportChange(): void {
+    if (!this.opened()) return;
+    this.updateDropdownPosition();
+  }
+
+  @HostListener('document:scroll', ['$event'])
+  onDocumentScroll(): void {
+    if (this.opened()) this.close();
   }
 
   @HostListener('keydown.escape')

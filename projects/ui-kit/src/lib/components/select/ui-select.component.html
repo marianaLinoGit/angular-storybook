@@ -68,6 +68,7 @@
         class="ui-select__dropdown"
         [id]="listboxId()"
         role="listbox"
+        [ngStyle]="dropdownStyle()"
         [attr.aria-labelledby]="label() ? labelId() : selectAriaLabel()"
       >
         @if (searchable()) {
