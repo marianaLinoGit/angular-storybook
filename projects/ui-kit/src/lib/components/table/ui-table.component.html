@@ -3,50 +3,22 @@
     <ng-container *ngTemplateOutlet="footerTpl; context: { position: 'top' }" />
   }
 
-  <div class="ui-table__wrapper">
-    <table [attr.aria-label]="ariaLabel()">
-      <thead>
-        <tr>
-          @for (column of columns(); track column.key) {
-            <th
-              scope="col"
-              [class]="getHeaderClasses(column)"
-              [style]="getColumnStyle(column)"
-              [attr.aria-sort]="
-                sortBy() === column.key
-                  ? sortDir() === 'asc'
-                    ? 'ascending'
-                    : 'descending'
-                  : null
-              "
-            >
-              @if (column.sortable) {
-                <button
-                  type="button"
-                  class="ui-table__sort-button"
-                  [attr.aria-label]="getSortAriaLabel(column)"
-                  (click)="onSort(column)"
-                >
-                  <span>{{ column.label }}</span>
-
-                  <ui-icon
-                    class="ui-table__sort-icon"
-                    [class.ui-table__sort-icon--active]="
-                      sortBy() === column.key
-                    "
-                    [name]="sortIcon(column)"
-                    size="xs"
-                  />
-                </button>
-              } @else {
+  @if (loading()) {
+    <div class="ui-table__wrapper">
+      <table [attr.aria-label]="ariaLabel()">
+        <thead>
+          <tr>
+            @for (column of columns(); track column.key) {
+              <th
+                scope="col"
+                [class]="getHeaderClasses(column)"
+                [style]="getColumnStyle(column)"
+              >
                 <span>{{ column.label }}</span>
-              }
-            </th>
-          }
-        </tr>
-      </thead>
-
-      @if (loading()) {
+              </th>
+            }
+          </tr>
+        </thead>
         <tbody>
           @for (row of skeletonRowsArray(); track row) {
             <tr class="ui-table__skeleton-row">
@@ -58,27 +30,68 @@
             </tr>
           }
         </tbody>
-      } @else if (!hasRows()) {
-        <tbody>
-          <tr class="ui-table__empty-row">
-            <td class="ui-table__empty-cell" [attr.colspan]="columns().length">
-              <ui-empty-state
-                variant="plain"
-                size="sm"
-                [iconName]="currentEmptyIcon()"
-                [title]="currentEmptyTitle()"
-                [description]="currentEmptyDescription()"
-              />
-            </td>
+      </table>
+    </div>
+  } @else if (!hasRows()) {
+    <div class="ui-table__empty">
+      <ui-empty-state
+        variant="plain"
+        size="sm"
+        [iconName]="currentEmptyIcon()"
+        [title]="currentEmptyTitle()"
+        [description]="currentEmptyDescription()"
+      />
+    </div>
+  } @else {
+    <div class="ui-table__wrapper">
+      <table [attr.aria-label]="ariaLabel()">
+        <thead>
+          <tr>
+            @for (column of columns(); track column.key) {
+              <th
+                scope="col"
+                [class]="getHeaderClasses(column)"
+                [style]="getColumnStyle(column)"
+                [attr.aria-sort]="
+                  sortBy() === column.key
+                    ? sortDir() === 'asc'
+                      ? 'ascending'
+                      : 'descending'
+                    : null
+                "
+              >
+                @if (column.sortable) {
+                  <button
+                    type="button"
+                    class="ui-table__sort-button"
+                    [attr.aria-label]="getSortAriaLabel(column)"
+                    (click)="onSort(column)"
+                  >
+                    <span>{{ column.label }}</span>
+
+                    <ui-icon
+                      class="ui-table__sort-icon"
+                      [class.ui-table__sort-icon--active]="
+                        sortBy() === column.key
+                      "
+                      [name]="sortIcon(column)"
+                      size="xs"
+                    />
+                  </button>
+                } @else {
+                  <span>{{ column.label }}</span>
+                }
+              </th>
+            }
           </tr>
-        </tbody>
-      } @else {
+        </thead>
+
         <tbody>
           <ng-content />
         </tbody>
-      }
-    </table>
-  </div>
+      </table>
+    </div>
+  }
 
   @if (showFooterBottom()) {
     <ng-container *ngTemplateOutlet="footerTpl; context: { position: 'bottom' }" />

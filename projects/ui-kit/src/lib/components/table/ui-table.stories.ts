@@ -417,7 +417,8 @@ const meta: Meta<UiTablePlaygroundComponent> = {
         component:
           'Tabela do design system para listagens e CRUDs. Usa tokens de `--ui-space-*`, `--ui-font-size-*`, `--ui-radius-*` e `--ui-color-*`. Inclui header com cor primária translúcida, divisórias verticais/horizontais, rodapé unificado (total + paginação + itens por página), ordenação, skeleton, empty states, responsividade, hover, sticky header, larguras e alinhamento.\n\n' +
           '**Uso:** declare `[columns]` e projete as linhas (`<tr>`) via conteúdo. O `thead` é gerado automaticamente.\n\n' +
-          '**Colunas (`UiTableColumn`):** `key`, `label`, `sortable`, `hideMobile`, `width`, `minWidth`, `align`, `headerAlign`, `isActions`, `badge` (mapa valor → `ui-badge`).\n\n' +
+          '**Colunas (`UiTableColumn`):** `key`, `label`, `sortable`, `hideOn` (`mobile` | `tablet`), `hideMobile` (legado), `width`, `minWidth`, `align`, `headerAlign`, `isActions`, `badge` (mapa valor → `ui-badge`).\n\n' +
+          '**Breakpoints:** mobile `<768`, tablet `768–1023`, desktop `≥1024`. Ex.: `hideOn: [\'mobile\', \'tablet\']` mostra a coluna só no desktop.\n\n' +
           '**Helpers exportados:** `resolveUiTableBadge()`, `getUiTableBodyCellClasses()`.\n\n' +
           '**Eventos:** `pageIndexChange`, `pageSizeChange`, `sortChange`.',
       },

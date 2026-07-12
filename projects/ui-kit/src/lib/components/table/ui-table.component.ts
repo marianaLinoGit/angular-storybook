@@ -17,6 +17,9 @@ export type UiTableAlign = 'left' | 'center' | 'right';
 export type UiTableSize = 'sm' | 'md' | 'lg';
 export type UiTablePaginationPosition = 'top' | 'bottom' | 'both';
 
+/** Breakpoints: mobile < 768px, tablet 768–1023px, desktop ≥ 1024px */
+export type UiTableBreakpoint = 'mobile' | 'tablet';
+
 export type UiTableColumnBadgeValue =
   | UiBadgeType
   | {
@@ -33,6 +36,14 @@ export interface UiTableColumn {
   key: string;
   label: string;
   sortable?: boolean;
+  /**
+   * Hide this column on the given breakpoints.
+   * - `mobile`: hidden below 768px
+   * - `tablet`: hidden between 768px and 1023px
+   * Use `['mobile', 'tablet']` to show only on desktop (≥1024px).
+   */
+  hideOn?: UiTableBreakpoint[];
+  /** @deprecated Prefer `hideOn: ['mobile']` */
   hideMobile?: boolean;
   width?: string;
   minWidth?: string;
@@ -78,9 +89,21 @@ export function resolveUiTableBadge(
   };
 }
 
+export function getUiTableColumnHideClasses(column: UiTableColumn): string {
+  const hideOn = new Set(column.hideOn ?? []);
+  if (column.hideMobile) hideOn.add('mobile');
+
+  return [
+    hideOn.has('mobile') ? 'ui-table__cell--hide-mobile' : '',
+    hideOn.has('tablet') ? 'ui-table__cell--hide-tablet' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+}
+
 export function getUiTableBodyCellClasses(column: UiTableColumn): string {
   return [
-    column.hideMobile ? 'ui-table__cell--hide-mobile' : '',
+    getUiTableColumnHideClasses(column),
     column.isActions ? 'ui-table__cell--actions' : '',
     column.badge ? 'ui-table__cell--badge' : '',
     `ui-table__cell--align-${column.align ?? 'left'}`,
@@ -167,6 +190,7 @@ export class UiTableComponent {
       this.stickyHeader() ? 'ui-table--sticky' : '',
       this.bordered() ? 'ui-table--bordered' : '',
       this.fullWidth() ? 'ui-table--full' : '',
+      !this.hasRows() && !this.loading() ? 'ui-table--empty' : '',
       this.customClass(),
     ]
       .filter(Boolean)
@@ -259,7 +283,7 @@ export class UiTableComponent {
 
   getColumnClasses(column: UiTableColumn): string {
     return [
-      column.hideMobile ? 'ui-table__cell--hide-mobile' : '',
+      getUiTableColumnHideClasses(column),
       column.isActions ? 'ui-table__cell--actions' : '',
       `ui-table__cell--align-${column.align ?? 'left'}`,
     ]
@@ -269,7 +293,7 @@ export class UiTableComponent {
 
   getHeaderClasses(column: UiTableColumn): string {
     return [
-      column.hideMobile ? 'ui-table__cell--hide-mobile' : '',
+      getUiTableColumnHideClasses(column),
       column.isActions ? 'ui-table__cell--actions' : '',
       column.badge ? 'ui-table__cell--badge' : '',
       column.sortable ? 'ui-table__header-cell--sortable' : '',
