@@ -26,13 +26,15 @@ const playgroundDefaults = {
   searchPlaceholder: 'Buscar...',
   emptyText: 'Nenhuma opção encontrada',
   options: referralOptions,
-  selectedValue: null as string | number | null,
+  selectedValue: null as string | number | string[] | null,
   size: 'md' as const,
   searchable: false,
   searchAriaLabel: 'Buscar opção',
   serverSearch: false,
   clearAriaLabel: 'Limpar seleção',
   allowClear: false,
+  multiple: false,
+  removeChipAriaLabel: 'Remover',
   required: true,
   disabled: false,
   optionalText: 'Opcional',
@@ -44,7 +46,7 @@ const playgroundDefaults = {
 };
 
 type UiSelectStoryArgs = UiSelectComponent & {
-  selectedValue: string | number | null;
+  selectedValue: string | number | string[] | null;
 };
 
 const meta: Meta<UiSelectStoryArgs> = {
@@ -52,7 +54,7 @@ const meta: Meta<UiSelectStoryArgs> = {
   component: UiSelectComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|Searchable|ServerSearch|WithIcons|AllowClear|RequiredWithError|Optional|Disabled|EmptyOptions|WithDisabledOption|WithoutVisibleLabel|WithLabelTooltip)$/,
+    /^(PlaygroundCompleto|Default|Searchable|MultipleSearchable|ServerSearch|WithIcons|AllowClear|RequiredWithError|Optional|Disabled|EmptyOptions|WithDisabledOption|WithoutVisibleLabel|WithLabelTooltip)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -87,6 +89,8 @@ const meta: Meta<UiSelectStoryArgs> = {
         [serverSearch]="serverSearch"
         [clearAriaLabel]="clearAriaLabel"
         [allowClear]="allowClear"
+        [multiple]="multiple"
+        [removeChipAriaLabel]="removeChipAriaLabel"
         [required]="required"
         [disabled]="disabled"
         [optionalText]="optionalText"
@@ -105,8 +109,8 @@ const meta: Meta<UiSelectStoryArgs> = {
     docs: {
       description: {
         component:
-          'Select customizado com dropdown, busca opcional, ícones nas opções e suporte a limpar seleção.\n\n' +
-          '**Uso:** informe `options` (array de `{ value, label }`) e vincule `[value]`. Use `labelTooltip` para ajuda contextual no label. Emite `valueChange` e `searchChange`.',
+          'Select customizado com dropdown, busca opcional, multi-select com chips, ícones nas opções e suporte a limpar seleção.\n\n' +
+          '**Uso:** informe `options` (array de `{ value, label }`) e vincule `[value]`. Use `multiple` para seleção múltipla com chips. Emite `valueChange` (`string` ou `string[]`) e `searchChange`.',
       },
     },
   },
@@ -197,6 +201,17 @@ const meta: Meta<UiSelectStoryArgs> = {
       table: { category: 'Estado' },
       description: 'Exibe botão para limpar a seleção atual.',
     },
+    multiple: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description:
+        'Ativa seleção múltipla com chips das opções escolhidas no trigger.',
+    },
+    removeChipAriaLabel: {
+      control: 'text',
+      table: { category: 'Acessibilidade' },
+      description: 'Prefixo de aria-label do botão de remover chip.',
+    },
     required: {
       control: 'boolean',
       table: { category: 'Estado' },
@@ -285,6 +300,39 @@ export const Searchable: Story = {
     searchPlaceholder: 'Buscar tutor...',
     options: tutorOptions,
     searchable: true,
+    allowClear: true,
+    required: false,
+    showOptionalText: false,
+  },
+};
+
+export const MultipleSearchable: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Seleção múltipla com busca e chips das opções selecionadas no trigger.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Cores',
+    id: 'colors',
+    name: 'colors',
+    placeholder: 'Selecione as cores',
+    searchPlaceholder: 'Buscar cor...',
+    options: [
+      { value: 'black', label: 'Preto' },
+      { value: 'white', label: 'Branco' },
+      { value: 'brown', label: 'Marrom' },
+      { value: 'golden', label: 'Dourado' },
+      { value: 'cream', label: 'Creme' },
+      { value: 'gray', label: 'Cinza' },
+    ],
+    selectedValue: ['black', 'golden'],
+    searchable: true,
+    multiple: true,
     allowClear: true,
     required: false,
     showOptionalText: false,

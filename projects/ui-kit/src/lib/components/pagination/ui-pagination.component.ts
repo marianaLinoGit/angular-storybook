@@ -83,8 +83,9 @@ export class UiPaginationComponent {
     this.pageIndexChange.emit(this.pageIndex() + 1);
   }
 
-  onPageSizeChange(value: string): void {
-    const next = Number(value);
+  onPageSizeChange(value: string | string[]): void {
+    const raw = Array.isArray(value) ? value[0] : value;
+    const next = Number(raw);
     if (!Number.isFinite(next) || next <= 0) return;
     this.pageSizeChange.emit(next);
   }

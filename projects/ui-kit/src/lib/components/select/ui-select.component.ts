@@ -26,6 +26,8 @@ export interface UiSelectOption {
   iconLabel?: string | null;
 }
 
+export type UiSelectValue = string | string[] | null;
+
 @Component({
   selector: 'ui-select',
   standalone: true,
@@ -75,14 +77,19 @@ export class UiSelectComponent implements ControlValueAccessor {
   serverSearch = input(false);
   allowClear = input(false);
   clearAriaLabel = input('');
+  multiple = input(false);
+  removeChipAriaLabel = input('Remover');
 
-  valueChange = output<string>();
+  valueChange = output<string | string[]>();
   searchChange = output<string>();
 
   /** Valor controlado externamente (one-way). */
-  selectedValue = input<string | number | null>(null, { alias: 'value' });
+  selectedValue = input<string | number | string[] | null>(null, {
+    alias: 'value',
+  });
 
   value = signal('');
+  values = signal<string[]>([]);
   searchTerm = signal('');
   opened = signal(false);
   disabledState = signal(false);
@@ -96,6 +103,16 @@ export class UiSelectComponent implements ControlValueAccessor {
     effect(() => {
       const external = this.selectedValue();
       if (external == null) return;
+
+      if (this.multiple()) {
+        const next = Array.isArray(external)
+          ? external.map(String)
+          : [String(external)];
+        if (!this.sameStringArrays(next, this.values())) {
+          this.values.set(next);
+        }
+        return;
+      }
 
       const next = String(external);
       if (next !== this.value()) {
@@ -155,6 +172,15 @@ export class UiSelectComponent implements ControlValueAccessor {
 
   selectedLabel = computed(() => this.selectedOption()?.label ?? '');
 
+  selectedOptions = computed(() => {
+    const selected = new Set(this.values());
+    return this.options().filter((option) => selected.has(option.value));
+  });
+
+  hasSelection = computed(() =>
+    this.multiple() ? this.values().length > 0 : Boolean(this.value()),
+  );
+
   visibleOptions = computed(() => {
     if (this.serverSearch()) return this.options();
 
@@ -170,11 +196,12 @@ export class UiSelectComponent implements ControlValueAccessor {
     [
       'ui-select',
       `ui-select--${this.size()}`,
+      this.multiple() ? 'ui-select--multiple' : '',
       this.hasError() ? 'ui-select--error' : '',
       this.isDisabled() ? 'ui-select--disabled' : '',
       this.opened() ? 'ui-select--open' : '',
-      !this.value() ? 'ui-select--placeholder' : '',
-      this.allowClear() && this.value() ? 'ui-select--clearable' : '',
+      !this.hasSelection() ? 'ui-select--placeholder' : '',
+      this.allowClear() && this.hasSelection() ? 'ui-select--clearable' : '',
       this.customClass(),
     ]
       .filter(Boolean)
@@ -198,11 +225,19 @@ export class UiSelectComponent implements ControlValueAccessor {
 
     return Boolean(
       this.showError() ||
-      (control?.invalid && (control.touched || control.dirty)),
+        (control?.invalid && (control.touched || control.dirty)),
     );
   }
 
-  onChange: (value: string) => void = () => {};
+  isOptionSelected(option: UiSelectOption): boolean {
+    if (this.multiple()) {
+      return this.values().includes(option.value);
+    }
+
+    return option.value === this.value();
+  }
+
+  onChange: (value: string | string[]) => void = () => {};
   onTouched: () => void = () => {};
 
   toggle(): void {
@@ -262,10 +297,39 @@ export class UiSelectComponent implements ControlValueAccessor {
   selectOption(option: UiSelectOption): void {
     if (this.isDisabled() || option.disabled) return;
 
+    if (this.multiple()) {
+      const current = this.values();
+      const next = current.includes(option.value)
+        ? current.filter((value) => value !== option.value)
+        : [...current, option.value];
+
+      this.values.set(next);
+      this.onChange(next);
+      this.valueChange.emit(next);
+      this.updateDropdownPosition();
+      return;
+    }
+
     this.value.set(option.value);
     this.onChange(option.value);
     this.valueChange.emit(option.value);
     this.close();
+  }
+
+  removeChip(option: UiSelectOption, event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (this.isDisabled() || !this.multiple()) return;
+
+    const next = this.values().filter((value) => value !== option.value);
+    this.values.set(next);
+    this.onChange(next);
+    this.valueChange.emit(next);
+
+    if (this.opened()) {
+      this.updateDropdownPosition();
+    }
   }
 
   clearValue(event: MouseEvent): void {
@@ -274,9 +338,16 @@ export class UiSelectComponent implements ControlValueAccessor {
 
     if (this.isDisabled()) return;
 
-    this.value.set('');
-    this.onChange('');
-    this.valueChange.emit('');
+    if (this.multiple()) {
+      this.values.set([]);
+      this.onChange([]);
+      this.valueChange.emit([]);
+    } else {
+      this.value.set('');
+      this.onChange('');
+      this.valueChange.emit('');
+    }
+
     this.searchTerm.set('');
     this.close();
   }
@@ -292,11 +363,26 @@ export class UiSelectComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  writeValue(value: string | null): void {
-    this.value.set(value ?? '');
+  writeValue(value: UiSelectValue): void {
+    if (this.multiple()) {
+      if (Array.isArray(value)) {
+        this.values.set(value.map(String));
+        return;
+      }
+
+      if (value == null || value === '') {
+        this.values.set([]);
+        return;
+      }
+
+      this.values.set([String(value)]);
+      return;
+    }
+
+    this.value.set(value == null ? '' : String(value));
   }
 
-  registerOnChange(fn: (value: string) => void): void {
+  registerOnChange(fn: (value: string | string[]) => void): void {
     this.onChange = fn;
   }
 
@@ -332,5 +418,10 @@ export class UiSelectComponent implements ControlValueAccessor {
   @HostListener('keydown.escape')
   onEscape(): void {
     this.close();
+  }
+
+  private sameStringArrays(a: string[], b: string[]): boolean {
+    if (a.length !== b.length) return false;
+    return a.every((value, index) => value === b[index]);
   }
 }

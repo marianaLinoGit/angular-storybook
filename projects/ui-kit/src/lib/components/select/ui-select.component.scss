@@ -51,6 +51,69 @@
     min-width: 0;
     max-width: 100%;
     overflow: hidden;
+
+    &--chips {
+      overflow: visible;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ui-space-1);
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    max-width: 100%;
+    min-height: 24px;
+    padding: 0 2px 0 var(--ui-space-2);
+    border-radius: var(--ui-radius-pill);
+    background: color-mix(in srgb, var(--ui-color-primary), transparent 88%);
+    color: var(--ui-color-primary);
+    font-size: var(--ui-font-size-xs);
+    font-weight: var(--ui-font-weight-medium);
+  }
+
+  &__chip-label {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__chip-remove {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-radius: var(--ui-radius-pill);
+    padding: 0;
+    background: transparent;
+    color: currentColor;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: color-mix(in srgb, var(--ui-color-primary), transparent 80%);
+    }
+
+    &:focus {
+      outline: 2px solid var(--ui-color-focus);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
   }
 
   &__value-text,
@@ -61,6 +124,22 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     font-size: var(--ui-font-size-sm);
+  }
+
+  &__option-check {
+    flex: 0 0 auto;
+    margin-left: auto;
+    color: currentColor;
+  }
+
+  &--multiple {
+    .ui-select__trigger {
+      height: auto;
+      min-height: var(--ui-control-height-field-form-md);
+      padding-top: var(--ui-space-2);
+      padding-bottom: var(--ui-space-2);
+      align-items: center;
+    }
   }
 
   &__icon {
@@ -236,6 +315,13 @@
       height: 34px;
       min-height: 34px;
       padding: 0 var(--ui-space-2) 0 var(--ui-space-3);
+    }
+
+    &.ui-select--multiple .ui-select__trigger {
+      height: auto;
+      min-height: 34px;
+      padding-top: var(--ui-space-1);
+      padding-bottom: var(--ui-space-1);
     }
 
     .ui-select__value-text,
