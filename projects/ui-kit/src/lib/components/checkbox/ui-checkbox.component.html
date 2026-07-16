@@ -1,5 +1,5 @@
 <div class="ui-checkbox-field">
-  <label [class]="classes()">
+  <div [class]="classes()">
     <input
       [id]="id()"
       [name]="name()"
@@ -8,6 +8,7 @@
       [required]="hasRequired()"
       [disabled]="isDisabled()"
       [attr.aria-label]="ariaLabel()"
+      [attr.aria-labelledby]="label() ? labelId() : null"
       [attr.aria-required]="hasRequired() ? 'true' : null"
       [attr.aria-invalid]="hasError() ? 'true' : null"
       [attr.aria-describedby]="describedBy()"
@@ -15,30 +16,24 @@
       (blur)="handleBlur()"
     />
 
-    <span class="ui-checkbox__box" aria-hidden="true">
+    <label class="ui-checkbox__box" [attr.for]="id()" aria-hidden="true">
       @if (checked()) {
         <ui-icon name="check" size="xs" />
       }
-    </span>
+    </label>
 
-    <span class="ui-checkbox__text">
-      <span class="ui-checkbox__label-row">
-        <span>{{ label() }}</span>
-
-        @if (labelTooltip()) {
-          <ui-tooltip
-            class="ui-checkbox__tooltip"
-            [id]="labelTooltipId()"
-            [text]="labelTooltip()"
-            [iconLabel]="labelTooltip()"
-            icon="info"
-            iconSize="sm"
-            position="top"
-            (click)="handleLinkClick($event)"
-            (mousedown)="handleLinkClick($event)"
-          />
-        }
-      </span>
+    <div class="ui-checkbox__text">
+      @if (label()) {
+        <ui-label
+          [label]="label()"
+          [forId]="id()"
+          [labelId]="labelId()"
+          [labelTooltip]="labelTooltip()"
+          [labelTooltipId]="labelTooltipId()"
+          [required]="hasRequired()"
+          customClass="ui-checkbox__label"
+        />
+      }
 
       @if (linkLabel() && linkUrl()) {
         <a
@@ -51,8 +46,8 @@
           {{ linkLabel() }}
         </a>
       }
-    </span>
-  </label>
+    </div>
+  </div>
 
   @if (hasError() && !hideError()) {
     <ui-field-error [id]="errorId()" [message]="errorMessage()" />

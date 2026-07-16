@@ -42,4 +42,10 @@ export class UiLabelComponent {
     const base = this.labelId() || this.forId() || 'ui-label';
     return `${base}-tooltip`;
   });
+
+  /** Avoid toggling the associated control when interacting with the tooltip. */
+  stopTooltipActivate(event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+  }
 }

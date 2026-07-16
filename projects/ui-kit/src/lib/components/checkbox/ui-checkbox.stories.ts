@@ -43,8 +43,8 @@ const meta: Meta<UiCheckboxComponent> = {
     docs: {
       description: {
         component:
-          'Checkbox do design system com label, link opcional, tooltip no label, validação e suporte a formulários reativos (`ControlValueAccessor`).\n\n' +
-          '**Uso:** informe `label` e `id`. Use `labelTooltip` para ícone de info ao lado do texto. Emite `checkedChange` ao alternar o estado.',
+          'Checkbox do design system com `ui-label` (texto + `labelTooltip`), link opcional, validação e suporte a formulários reativos (`ControlValueAccessor`).\n\n' +
+          '**Uso:** informe `label` e `id`. Use `labelTooltip` no mesmo padrão do `ui-label`. Emite `checkedChange` ao alternar o estado.',
       },
     },
   },

@@ -12,12 +12,12 @@ import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
 import { UiFieldErrorComponent } from '../field-error/ui-field-error.component';
 import { UiIconComponent } from '../icon/ui-icon.component';
-import { UiTooltipComponent } from '../tooltip/ui-tooltip.component';
+import { UiLabelComponent } from '../label/ui-label.component';
 
 @Component({
   selector: 'ui-checkbox',
   standalone: true,
-  imports: [UiFieldErrorComponent, UiIconComponent, UiTooltipComponent],
+  imports: [UiFieldErrorComponent, UiIconComponent, UiLabelComponent],
   templateUrl: './ui-checkbox.component.html',
   styleUrl: './ui-checkbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -68,6 +68,8 @@ export class UiCheckboxComponent implements ControlValueAccessor {
 
   errorId = computed(() => `${this.id()}-error`);
 
+  labelId = computed(() => `${this.id()}-label`);
+
   labelTooltipId = computed(() =>
     this.labelTooltip().trim() ? `${this.id()}-label-tooltip` : null,
   );
@@ -105,8 +107,8 @@ export class UiCheckboxComponent implements ControlValueAccessor {
 
     return Boolean(
       this.required() ||
-      control?.hasValidator?.(Validators.required) ||
-      control?.hasValidator?.(Validators.requiredTrue),
+        control?.hasValidator?.(Validators.required) ||
+        control?.hasValidator?.(Validators.requiredTrue),
     );
   }
 
@@ -119,7 +121,7 @@ export class UiCheckboxComponent implements ControlValueAccessor {
 
     return Boolean(
       this.showError() ||
-      (control?.invalid && (control.touched || control.dirty)),
+        (control?.invalid && (control.touched || control.dirty)),
     );
   }
 
