@@ -108,12 +108,10 @@
   // ------------------------------------------------------------------
   &--card {
     background: transparent;
-    gap: var(--ui-space-6);
-    display: grid;
 
     .ui-tabs__header {
-      gap: var(--ui-space-2);
-      padding: var(--ui-space-1);
+      gap: var(--ui-space-4);
+      padding: 0;
     }
 
     .ui-tabs__tab {
