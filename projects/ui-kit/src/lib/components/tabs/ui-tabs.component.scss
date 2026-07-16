@@ -1,4 +1,7 @@
 .ui-tabs {
+  gap: var(--ui-space-6);
+  display: grid;
+
   &__tab {
     border: 0;
     background: transparent;
