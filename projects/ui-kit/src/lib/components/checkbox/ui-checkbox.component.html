@@ -22,7 +22,23 @@
     </span>
 
     <span class="ui-checkbox__text">
-      {{ label() }}
+      <span class="ui-checkbox__label-row">
+        <span>{{ label() }}</span>
+
+        @if (labelTooltip()) {
+          <ui-tooltip
+            class="ui-checkbox__tooltip"
+            [id]="labelTooltipId()"
+            [text]="labelTooltip()"
+            [iconLabel]="labelTooltip()"
+            icon="info"
+            iconSize="sm"
+            position="top"
+            (click)="handleLinkClick($event)"
+            (mousedown)="handleLinkClick($event)"
+          />
+        }
+      </span>
 
       @if (linkLabel() && linkUrl()) {
         <a

@@ -6,6 +6,7 @@ const playgroundDefaults = {
   id: 'termsAccepted',
   name: 'termsAccepted',
   label: 'Li e aceito os',
+  labelTooltip: '',
   ariaLabel: null as string | null,
   linkLabel: 'termos de uso',
   linkUrl: '/termos-de-uso',
@@ -42,8 +43,8 @@ const meta: Meta<UiCheckboxComponent> = {
     docs: {
       description: {
         component:
-          'Checkbox do design system com label, link opcional, validação e suporte a formulários reativos (`ControlValueAccessor`).\n\n' +
-          '**Uso:** informe `label` e `id`. Emite `checkedChange` ao alternar o estado.',
+          'Checkbox do design system com label, link opcional, tooltip no label, validação e suporte a formulários reativos (`ControlValueAccessor`).\n\n' +
+          '**Uso:** informe `label` e `id`. Use `labelTooltip` para ícone de info ao lado do texto. Emite `checkedChange` ao alternar o estado.',
       },
     },
   },
@@ -52,6 +53,12 @@ const meta: Meta<UiCheckboxComponent> = {
       control: 'text',
       table: { category: 'Conteúdo' },
       description: 'Texto principal exibido ao lado do checkbox.',
+    },
+    labelTooltip: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description:
+        'Texto do tooltip (ícone info) exibido ao lado do label. Quando vazio, o ícone não aparece.',
     },
     linkLabel: {
       control: 'text',

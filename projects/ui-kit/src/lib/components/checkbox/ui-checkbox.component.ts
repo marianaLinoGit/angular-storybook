@@ -12,11 +12,12 @@ import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import { UI_FORM_FIELD } from '../form-field/ui-form-field.context';
 import { UiFieldErrorComponent } from '../field-error/ui-field-error.component';
 import { UiIconComponent } from '../icon/ui-icon.component';
+import { UiTooltipComponent } from '../tooltip/ui-tooltip.component';
 
 @Component({
   selector: 'ui-checkbox',
   standalone: true,
-  imports: [UiFieldErrorComponent, UiIconComponent],
+  imports: [UiFieldErrorComponent, UiIconComponent, UiTooltipComponent],
   templateUrl: './ui-checkbox.component.html',
   styleUrl: './ui-checkbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,6 +32,7 @@ export class UiCheckboxComponent implements ControlValueAccessor {
   id = input(`ui-checkbox-${crypto.randomUUID()}`);
   name = input<string | null>(null);
   label = input('');
+  labelTooltip = input('');
   ariaLabel = input<string | null>(null);
   hideError = input(false);
 
@@ -66,12 +68,21 @@ export class UiCheckboxComponent implements ControlValueAccessor {
 
   errorId = computed(() => `${this.id()}-error`);
 
+  labelTooltipId = computed(() =>
+    this.labelTooltip().trim() ? `${this.id()}-label-tooltip` : null,
+  );
+
   describedBy = computed(() => {
     if (this.formField) {
       return this.formField.describedBy();
     }
 
-    return this.hasError() ? this.errorId() : null;
+    const ids = [
+      this.labelTooltipId(),
+      this.hasError() ? this.errorId() : null,
+    ].filter(Boolean);
+
+    return ids.length ? ids.join(' ') : null;
   });
 
   linkRel = computed(() =>

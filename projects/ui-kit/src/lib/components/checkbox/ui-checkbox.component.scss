@@ -46,14 +46,30 @@
   }
 
   &__text {
-    a {
-      color: var(--ui-color-link);
-      font-weight: var(--ui-font-weight-semibold);
-      text-decoration: none;
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--ui-space-1);
+    min-width: 0;
+  }
 
-      &:hover {
-        text-decoration: underline;
-      }
+  &__label-row {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ui-space-1);
+    min-width: 0;
+  }
+
+  &__tooltip {
+    flex-shrink: 0;
+  }
+
+  &__text a {
+    color: var(--ui-color-link);
+    font-weight: var(--ui-font-weight-semibold);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 
