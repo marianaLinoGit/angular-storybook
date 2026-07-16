@@ -27,6 +27,7 @@
 
   &__content {
     z-index: var(--ui-z-tooltip, 1200);
+    box-sizing: border-box;
     min-width: 160px;
     width: max-content;
     max-width: min(240px, calc(100vw - 24px));
@@ -38,6 +39,10 @@
     font-size: var(--ui-font-size-xs);
     font-family: var(--ui-font-family-text);
     line-height: 1.4;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
