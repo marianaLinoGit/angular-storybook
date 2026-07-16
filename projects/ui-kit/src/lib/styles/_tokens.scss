@@ -35,6 +35,12 @@
   --ui-space-6: 24px;
   --ui-space-8: 32px;
 
+  /* Distance from ui-form-field top to its control row (label line + spacing).
+     Useful to align sibling actions with inputs in a form grid. */
+  --ui-form-field-control-offset: calc(
+    var(--ui-font-size-sm) * 1.18 + var(--ui-space-2) + var(--ui-space-1)
+  );
+
   --ui-radius-sm: 6px;
   --ui-radius-md: 10px;
   --ui-radius-lg: 16px;

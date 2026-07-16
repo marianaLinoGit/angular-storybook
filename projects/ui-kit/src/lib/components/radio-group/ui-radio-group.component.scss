@@ -1,0 +1,111 @@
+.ui-radio-group-field {
+  display: grid;
+  gap: var(--ui-space-1);
+  width: 100%;
+}
+
+.ui-radio-group {
+  display: flex;
+  gap: var(--ui-space-4);
+  color: var(--ui-color-text);
+  font-family: var(--ui-font-family-text);
+  font-size: var(--ui-font-size-sm);
+  line-height: 1.5;
+
+  &--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &--disabled {
+    color: var(--ui-color-disabled);
+  }
+
+  &--error {
+    .ui-radio__control {
+      border-color: var(--ui-color-danger);
+    }
+  }
+}
+
+.ui-radio {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--ui-space-2);
+  cursor: pointer;
+  user-select: none;
+
+  input {
+    position: absolute;
+    width: var(--ui-icon-size-xs);
+    height: var(--ui-icon-size-xs);
+    margin: 2px 0 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &__control {
+    width: var(--ui-icon-size-xs);
+    height: var(--ui-icon-size-xs);
+    margin-top: 2px;
+    border: 1px solid var(--ui-color-input-border);
+    border-radius: 50%;
+    background: var(--ui-color-input-background);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: 0.2s ease;
+  }
+
+  &__dot {
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    background: transparent;
+    transition: background-color 0.2s ease;
+  }
+
+  &__label {
+    min-width: 0;
+  }
+
+  input:checked + &__control {
+    border-color: var(--ui-color-primary);
+
+    .ui-radio__dot {
+      background: var(--ui-color-primary);
+    }
+  }
+
+  input:focus-visible + &__control {
+    outline: 2px solid var(--ui-color-focus);
+    outline-offset: 2px;
+  }
+
+  &:hover:not(.ui-radio--disabled) {
+    .ui-radio__control {
+      border-color: var(--ui-color-input-border-hover);
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    color: var(--ui-color-disabled);
+
+    input {
+      cursor: not-allowed;
+    }
+
+    .ui-radio__control {
+      background: var(--ui-color-input-disabled-background);
+    }
+  }
+}

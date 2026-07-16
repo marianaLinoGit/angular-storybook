@@ -1,0 +1,43 @@
+/* Layout helpers for ui-form-field rows (sibling actions, grids). */
+
+.ui-form-field-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--ui-space-3);
+  align-items: start;
+  width: 100%;
+}
+
+.ui-form-field-row__action {
+  display: flex;
+  align-items: center;
+  min-height: var(--ui-control-height-field-form-md);
+  /* Align with the input row when sibling fields have a label. */
+  padding-top: var(--ui-form-field-control-offset);
+}
+
+.ui-form-field-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ui-space-3);
+  align-items: start;
+  width: 100%;
+
+  > * {
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*
+  Situation 4: field without label next to labeled fields.
+  Reserve the label block so inputs share the same vertical line.
+*/
+ui-form-field.ui-form-field--no-label.ui-form-field--align-control,
+.ui-form-field-grid:has(ui-form-field:not(.ui-form-field--no-label))
+  ui-form-field.ui-form-field--no-label {
+  padding-top: var(--ui-form-field-control-offset);
+}

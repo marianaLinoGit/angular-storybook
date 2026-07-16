@@ -21,4 +21,13 @@
   &__tooltip {
     flex-shrink: 0;
   }
+
+  ::ng-deep ui-icon {
+    width: var(--ui-icon-size-xs);
+    height: var(--ui-icon-size-xs);
+
+    .ui-icon--sm {
+      --ui-icon-size-current: var(--ui-icon-size-xs);
+    }
+  }
 }

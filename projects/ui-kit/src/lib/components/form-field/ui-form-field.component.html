@@ -16,6 +16,10 @@
     <ng-content />
   </div>
 
+  <div class="ui-form-field__addon">
+    <ng-content select="[uiFormFieldAddon]" />
+  </div>
+
   @if (hint()) {
     <p class="ui-form-field__hint" [id]="hintId()">{{ hint() }}</p>
   }

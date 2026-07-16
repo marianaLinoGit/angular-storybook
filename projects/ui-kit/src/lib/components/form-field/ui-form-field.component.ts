@@ -21,6 +21,9 @@ import {
   styleUrl: './ui-form-field.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: UI_FORM_FIELD, useExisting: UiFormFieldComponent }],
+  host: {
+    '[class.ui-form-field--no-label]': 'isNoLabel()',
+  },
 })
 export class UiFormFieldComponent implements UiFormFieldContext {
   private readonly ngControl = contentChild(NgControl, { descendants: true });
@@ -44,6 +47,8 @@ export class UiFormFieldComponent implements UiFormFieldContext {
   );
   hintId = computed(() => `${this.id()}-hint`);
   errorId = computed(() => `${this.id()}-error`);
+
+  readonly isNoLabel = computed(() => !this.label().trim());
 
   classes = computed(() =>
     ['ui-form-field', this.customClass()].filter(Boolean).join(' '),

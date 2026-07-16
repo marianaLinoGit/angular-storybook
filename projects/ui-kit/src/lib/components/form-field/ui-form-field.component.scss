@@ -2,10 +2,19 @@
   display: grid;
   gap: var(--ui-space-1);
   width: 100%;
+  align-content: start;
 }
 
 .ui-form-field__control {
   min-width: 0;
+}
+
+.ui-form-field__addon {
+  min-width: 0;
+
+  &:not(:has(*)) {
+    display: none;
+  }
 }
 
 .ui-form-field__hint {

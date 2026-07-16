@@ -1,0 +1,52 @@
+<div class="ui-radio-group-field">
+  @if (label() && !hideLabel()) {
+    <ui-label
+      [label]="label()"
+      [forId]="id()"
+      [labelId]="labelId()"
+      [required]="hasRequired()"
+    />
+  }
+
+  <div
+    [id]="id()"
+    role="radiogroup"
+    [class]="classes()"
+    [attr.aria-label]="ariaLabel() || (hideLabel() ? label() || null : null)"
+    [attr.aria-labelledby]="!hideLabel() && label() ? labelId() : null"
+    [attr.aria-required]="hasRequired() ? 'true' : null"
+    [attr.aria-invalid]="hasError() ? 'true' : null"
+    [attr.aria-describedby]="describedBy()"
+  >
+    @for (option of options(); track option.value; let i = $index) {
+      <label
+        class="ui-radio"
+        [class.ui-radio--disabled]="isOptionDisabled(option)"
+        [class.ui-radio--checked]="value() === option.value"
+      >
+        <input
+          type="radio"
+          [id]="optionId(option, i)"
+          [name]="groupName()"
+          [value]="option.value"
+          [checked]="value() === option.value"
+          [disabled]="isOptionDisabled(option)"
+          [attr.aria-label]="option.label"
+          (click)="handleClick($event, option)"
+          (change)="handleChange(option)"
+          (blur)="handleBlur()"
+        />
+
+        <span class="ui-radio__control" aria-hidden="true">
+          <span class="ui-radio__dot"></span>
+        </span>
+
+        <span class="ui-radio__label">{{ option.label }}</span>
+      </label>
+    }
+  </div>
+
+  @if (hasError() && !hideError()) {
+    <ui-field-error [id]="errorId()" [message]="errorMessage()" />
+  }
+</div>
