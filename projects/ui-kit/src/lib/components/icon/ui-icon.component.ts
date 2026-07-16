@@ -40,6 +40,7 @@ export const UI_ICON_NAMES = [
   'flag-fr',
   'flag-pt',
   'folder',
+  'food',
   'glucose',
   'glucose-comparison',
   'home',
