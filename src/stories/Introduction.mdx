@@ -30,10 +30,10 @@ O objetivo é permitir que equipes desenvolvam interfaces consistentes utilizand
 
 ### Core
 
-* Angular 18
-* TypeScript 5.5
+* Angular 20.3
+* TypeScript 5.8
 * SCSS
-* Storybook 8
+* Storybook 9.1
 
 ### Angular Moderno
 
@@ -51,6 +51,8 @@ O objetivo é permitir que equipes desenvolvam interfaces consistentes utilizand
 * MDX
 * Storybook Controls
 * Storybook A11y
+* Storybook Themes
+* Compodoc (API dos componentes)
 
 ### Design System
 
@@ -100,89 +102,18 @@ Biblioteca de componentes reutilizáveis.
 
 ## Componentes Disponíveis
 
-### Accordion
+A library exporta **30 componentes** (cada um com story **Playground completo**):
 
-* Abertura única ou múltipla
-* Numeração automática
-* Ícones opcionais
-* Estado desabilitado
-* Separador visual ao expandir
+| Categoria | Componentes |
+| --------- | ----------- |
+| Layout | Page Title, Stat Card, Stat Card Grid, Card, Divider |
+| Formulário | Input, Textarea, Select, Checkbox, Radio Group, Switch, Label, Form Field, Field Error, File Upload |
+| Feedback | Alert, Badge, Empty State, Loading, Toast, Tooltip |
+| Navegação | Breadcrumb, Tabs, Accordion, Accordion Panel, Pagination |
+| Ação | Button, Modal |
+| Dados | Table, Icon |
 
-### Alert
-
-* Feedback visual
-* Variantes de status
-* Fechamento opcional
-* Ícone opcional
-
-### Breadcrumb
-
-* Navegação hierárquica
-* Separadores customizados
-* Itens clicáveis
-
-### Button
-
-* Variantes visuais
-* Tamanhos
-* Ícones
-* Full Width
-* Outline
-* Rounded
-
-### Card
-
-* Conteúdo estruturado
-* Destaque visual
-* Imagem opcional
-* Footer opcional
-
-### Empty State
-
-* Ícone
-* Título
-* Descrição
-* CTA opcional
-
-### Loading
-
-* Spinner
-* Dots
-* Skeleton Text
-* Skeleton Avatar
-* Skeleton Card
-* Skeleton Table
-* Overlay
-
-### Modal
-
-* Informativo
-* Confirmação
-* Conteúdo customizado
-* Footer dinâmico
-
-### Tabs
-
-* Conteúdo dinâmico
-* Badge numérico
-* Status completed
-* Estado disabled
-* Fluxo por etapas
-
-### Toast
-
-* Success
-* Warning
-* Error
-* Info
-* Duração configurável
-* Posicionamento
-
-### Tooltip
-
-* Texto simples
-* HTML formatado
-* Posições customizadas
+Detalhes, controles e exemplos ficam em **Components/** no painel lateral.
 
 ---
 
@@ -193,7 +124,7 @@ Todos os componentes utilizam tokens globais centralizados.
 Localização:
 
 ```txt
-src/styles/_tokens.scss
+projects/ui-kit/src/lib/styles/
 ```
 
 Tokens disponíveis:
@@ -228,45 +159,16 @@ Exemplo:
 ## Estrutura do Projeto
 
 ```txt
-src
-│
-├── app
-│   ├── components
-│   │   ├── accordion
-│   │   ├── alert
-│   │   ├── breadcrumb
-│   │   ├── button
-│   │   ├── card
-│   │   ├── empty-state
-│   │   ├── loading
-│   │   ├── modal
-│   │   ├── tabs
-│   │   ├── toast
-│   │   └── tooltip
-│   │
-│   └── design-system
-│       └── types
-│
-├── styles
-│   ├── _reset.scss
-│   ├── _tokens.scss
-│   └── _typography.scss
-│
-└── stories
-    ├── Introduction.mdx
-    │
-    ├── Design Tokens
-    │   ├── Border Radius
-    │   ├── Colors
-    │   ├── Shadows
-    │   ├── Spacing
-    │   └── Typography
-    │
-    └── Guidelines
-        ├── Accessibility
-        ├── Component API
-        ├── Roadmap
-        └── Usage Guidelines
+model-ui-kit/
+├── .storybook/
+├── docs/
+├── projects/ui-kit/          # Library @marianaLinoGit/model-ui-kit
+│   └── src/lib/
+│       ├── components/       # 30 componentes + stories
+│       ├── design-system/
+│       ├── storybook/
+│       └── styles/           # Design Tokens
+└── src/stories/              # MDX (Introduction, Tokens, Guidelines)
 ```
 
 ---
@@ -290,9 +192,4 @@ Este projeto demonstra conhecimento em:
 
 ## Evolução do projeto
 
-O Model UI Kit está em evolução contínua. Os próximos passos incluem empacotamento como Angular Library, consumo em aplicações reais, testes visuais, acessibilidade e suporte a temas.
-
-Consulte a página **Guidelines/Roadmap** para acompanhar a evolução planejada.
-
-```
-```
+A library já é publicada (`@marianaLinoGit/model-ui-kit`) e consumida pelo app Pets. Próximos passos: ver **Guidelines/Roadmap**.

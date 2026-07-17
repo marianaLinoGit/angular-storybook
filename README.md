@@ -10,16 +10,16 @@ O projeto foi desenvolvido como portfólio técnico para demonstrar a construç�
 
 | Tecnologia                 | Versão   |
 | -------------------------- | -------- |
-| Angular                    | 18.2.x   |
-| Angular CLI                | 18.2.21  |
-| TypeScript                 | 5.5.x    |
-| Storybook                  | 8.6.x    |
-| Storybook Angular          | 8.6.x    |
-| Storybook Docs / A11y      | 8.6.x    |
-| Storybook Interactions     | 8.6.x    |
-| Storybook Test Runner      | 0.22.x   |
+| Angular                    | 20.3.x   |
+| Angular CLI                | 20.3.x   |
+| TypeScript                 | 5.8.x    |
+| Storybook                  | 9.1.x    |
+| Storybook Angular          | 9.1.x    |
+| Storybook Docs / A11y / Themes | 9.1.x |
+| Storybook Test Runner      | 0.23.x   |
+| Compodoc                   | 1.2.x    |
 | RxJS                       | 7.8.x    |
-| Zone.js                    | 0.14.x   |
+| Zone.js                    | 0.15.x   |
 | SCSS                       | Latest   |
 
 ---
@@ -42,14 +42,14 @@ Este projeto demonstra:
 
 ## Componentes
 
-Atualmente a library exporta **24 componentes**:
+Atualmente a library exporta **30 componentes**:
 
 | Categoria   | Componentes |
 | ----------- | ----------- |
-| Layout      | Page Title, Stat Card, Stat Card Grid, Card |
-| Formulário  | Input, Select, Checkbox, Switch, Label |
+| Layout      | Page Title, Stat Card, Stat Card Grid, Card, Divider |
+| Formulário  | Input, Textarea, Select, Checkbox, Radio Group, Switch, Label, Form Field, Field Error, File Upload |
 | Feedback    | Alert, Badge, Empty State, Loading, Toast, Tooltip |
-| Navegação   | Breadcrumb, Tabs, Accordion, Accordion Panel |
+| Navegação   | Breadcrumb, Tabs, Accordion, Accordion Panel, Pagination |
 | Ação        | Button, Modal |
 | Dados       | Table, Icon |
 
@@ -65,7 +65,7 @@ model-ui-kit/
 ├── .storybook/              # Configuração do Storybook
 ├── docs/                    # Documentação técnica (.md)
 ├── projects/
-│   └── ui-kit/              # Angular Library
+│   └── ui-kit/              # Angular Library (@marianaLinoGit/model-ui-kit)
 │       └── src/lib/
 │           ├── components/  # Componentes + *.stories.ts
 │           ├── design-system/

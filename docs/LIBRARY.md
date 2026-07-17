@@ -13,7 +13,7 @@ projects/ui-kit/
 
 src/
 ├── lib/
-│   ├── components/      # 24 componentes standalone
+│   ├── components/      # 30 componentes standalone
 │   ├── design-system/   # Tipos compartilhados (UiColor, UiSize…)
 │   ├── storybook/       # Helpers de teste (não exportados)
 │   └── styles/          # Design Tokens (SCSS)
@@ -50,12 +50,14 @@ Resultado: `marianaLinoGit-model-ui-kit-x.x.x.tgz`
 ### Pacote local (.tgz)
 
 ```bash
-npm install ./marianaLinoGit-model-ui-kit-0.0.36.tgz
+npm install ./marianaLinoGit-model-ui-kit-0.0.97.tgz
 ```
+
+(Substitua a versão pelo arquivo gerado em `npm pack`.)
 
 ### GitHub Packages
 
-Pacote: `@marianaLinoGit/model-ui-kit`
+Pacote: `@marianaLinoGit/model-ui-kit` (versão atual em `projects/ui-kit/package.json`).
 
 Configure o registry no `.npmrc` do projeto consumidor:
 
@@ -64,7 +66,7 @@ Configure o registry no `.npmrc` do projeto consumidor:
 ```
 
 ```bash
-npm install @marianaLinoGit/model-ui-kit
+npm install @marianaLinoGit/model-ui-kit@^0.0.97
 ```
 
 ---

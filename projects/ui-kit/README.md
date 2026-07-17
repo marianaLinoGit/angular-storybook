@@ -31,9 +31,13 @@ Gera: `marianaLinoGit-model-ui-kit-x.x.x.tgz`
 
 ### Arquivo local
 
+Após `npm pack` em `dist/ui-kit`:
+
 ```bash
-npm install ./marianaLinoGit-model-ui-kit-0.0.36.tgz
+npm install ./marianaLinoGit-model-ui-kit-0.0.97.tgz
 ```
+
+(Substitua a versão pelo arquivo gerado.)
 
 ### GitHub Packages
 
@@ -44,7 +48,7 @@ npm install ./marianaLinoGit-model-ui-kit-0.0.36.tgz
 ```
 
 ```bash
-npm install @marianaLinoGit/model-ui-kit
+npm install @marianaLinoGit/model-ui-kit@^0.0.97
 ```
 
 ---

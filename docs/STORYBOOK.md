@@ -69,11 +69,11 @@ Configuração: `.storybook/main.ts`
 
 | Addon | Função |
 | ----- | ------ |
-| `@storybook/addon-docs` | Autodocs, descrições |
+| `@storybook/addon-docs` | Autodocs, descrições, MDX |
 | `@storybook/addon-a11y` | Auditoria de acessibilidade |
-| `@storybook/addon-essentials` | Controles, actions, viewport |
-| `@storybook/addon-interactions` | Painel Interactions |
 | `@storybook/addon-themes` | Tema claro/escuro |
+
+Controles, actions e viewport vêm do pacote `@storybook/angular` / docs no Storybook 9 (sem `addon-essentials` / `addon-interactions` separados).
 
 ---
 
@@ -118,21 +118,28 @@ Components
   Button
   Card
   Checkbox
+  Divider
   Empty State
+  Field Error
+  File Upload
+  Form Field
   Icon
   Input
   Label
   Loading
   Modal
   Page Title
+  Pagination
+  Radio Group
   Select
   Stat Card
+  Stat Card Grid
   Switch
   Table
   Tabs
+  Textarea
   Toast
   Tooltip
-  …
 ```
 
 Ordem definida em `.storybook/preview.ts` → `storySort`.
