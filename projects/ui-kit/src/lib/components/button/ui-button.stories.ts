@@ -30,7 +30,7 @@ const meta: Meta<UiButtonComponent> = {
   component: UiButtonComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|WithIcon|IconRight|Download|Upload|Outline|Rounded|FullWidth|Disabled|Loading|IconOnly|BackButtonDesktop|BackButtonMobile|BackIconOnly)$/,
+    /^(PlaygroundCompleto|Default|WithIcon|IconRight|Download|Upload|Outline|Rounded|FullWidth|Disabled|Loading|IconOnly|BackButtonDesktop|BackButtonMobile|BackIconOnly|AllSizes|AllColors|AllColorsOutline)$/,
   decorators: [
     (story) => ({
       ...story(),
