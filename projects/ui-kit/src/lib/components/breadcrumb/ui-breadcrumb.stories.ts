@@ -21,7 +21,8 @@ const meta: Meta<UiBreadcrumbComponent> = {
   title: 'Components/Breadcrumb',
   component: UiBreadcrumbComponent,
   tags: ['autodocs'],
-  includeStories: /^(PlaygroundCompleto|Default|HomeIconOnly|WithoutIcons|LongPath|DisabledItem|SingleItem|CustomSeparator)$/,
+  includeStories:
+    /^(PlaygroundCompleto|Default|HomeIconOnly|HomeTextOnly|HomeIconAndText|WithCustomSeparator|WithIcons|WithoutIcons|WithDisabledItem)$/,
   argTypes: {
     items: {
       control: 'object',

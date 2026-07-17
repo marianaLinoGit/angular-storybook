@@ -6,6 +6,7 @@ const playgroundDefaults = {
   currentPageIndex: 2,
   totalPages: 5,
   showControls: true,
+  showFirstLast: true,
   showPageSize: true,
   currentPageSize: 10,
   pageSizeOptions: [5, 10, 20, 50],
@@ -27,6 +28,7 @@ type UiPaginationStoryArgs = {
   currentPageIndex: number;
   totalPages: number;
   showControls: boolean;
+  showFirstLast: boolean;
   showPageSize: boolean;
   currentPageSize: number;
   pageSizeOptions: number[];
@@ -48,7 +50,8 @@ const meta: Meta<UiPaginationStoryArgs> = {
   title: 'Components/Pagination',
   component: UiPaginationComponent,
   tags: ['autodocs'],
-  includeStories: /^(PlaygroundCompleto|ControlesApenas|ComSeletor|PrimeiraPagina|UltimaPagina|PaginaUnica|Loading|Disabled)$/,
+  includeStories:
+    /^(PlaygroundCompleto|ControlesApenas|ComSeletor|SemPrimeiraUltima|PrimeiraPagina|UltimaPagina|PaginaUnica|Sizes|Loading|Disabled)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -57,6 +60,15 @@ const meta: Meta<UiPaginationStoryArgs> = {
         :host {
           display: block;
           padding: var(--ui-space-4);
+        }
+        .demo-stack {
+          display: grid;
+          gap: var(--ui-space-5);
+        }
+        .demo-stack__label {
+          margin: 0 0 var(--ui-space-2);
+          font-size: var(--ui-font-size-sm, 0.875rem);
+          color: var(--ui-color-text-muted, #667085);
         }
         `,
       ],
@@ -89,6 +101,7 @@ const meta: Meta<UiPaginationStoryArgs> = {
         [pageIndex]="currentPageIndex"
         [totalPages]="totalPages"
         [showControls]="showControls"
+        [showFirstLast]="showFirstLast"
         [showPageSize]="showPageSize"
         [pageSize]="currentPageSize"
         [pageSizeOptions]="pageSizeOptions"
@@ -173,6 +186,11 @@ const meta: Meta<UiPaginationStoryArgs> = {
       table: { category: 'Estado' },
       description: 'Exibe botões anterior/próxima e indicador de página.',
     },
+    showFirstLast: {
+      control: 'boolean',
+      table: { category: 'Estado' },
+      description: 'Exibe botões de primeira e última página.',
+    },
     showPageSize: {
       control: 'boolean',
       table: { category: 'Estado' },
@@ -246,6 +264,23 @@ export const ComSeletor: Story = {
   args: { ...playgroundDefaults, showPageSize: true },
 };
 
+export const SemPrimeiraUltima: Story = {
+  name: 'Sem primeira/última',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Com `showFirstLast=false`, apenas botões anterior/próxima e indicador de página.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    showFirstLast: false,
+    showPageSize: false,
+  },
+};
+
 export const PrimeiraPagina: Story = {
   parameters: {
     docs: {
@@ -275,6 +310,56 @@ export const PaginaUnica: Story = {
     },
   },
   args: { ...playgroundDefaults, currentPageIndex: 1, totalPages: 1, showPageSize: false },
+};
+
+export const Sizes: Story = {
+  name: 'Tamanhos sm / md / lg',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Comparação visual dos tamanhos `sm`, `md` e `lg`.',
+      },
+    },
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      sizes: ['sm', 'md', 'lg'] as const,
+      handlePageIndexChange(index: number) {
+        this['currentPageIndex'] = index;
+      },
+      handlePageSizeChange(size: number) {
+        this['currentPageSize'] = size;
+        this['currentPageIndex'] = 1;
+      },
+    },
+    template: `
+      <div class="demo-stack">
+        @for (s of sizes; track s) {
+          <div>
+            <p class="demo-stack__label">{{ s }}</p>
+            <ui-pagination
+              [pageIndex]="currentPageIndex"
+              [totalPages]="totalPages"
+              [showControls]="true"
+              [showFirstLast]="showFirstLast"
+              [showPageSize]="false"
+              [size]="s"
+              [previousLabel]="previousLabel"
+              [nextLabel]="nextLabel"
+              [firstLabel]="firstLabel"
+              [lastLabel]="lastLabel"
+              [pageLabel]="pageLabel"
+              [ofLabel]="ofLabel"
+              [ariaLabel]="ariaLabel + ' (' + s + ')'"
+              (pageIndexChange)="handlePageIndexChange($event)"
+            />
+          </div>
+        }
+      </div>
+    `,
+  }),
+  args: { ...playgroundDefaults, showPageSize: false },
 };
 
 export const Loading: Story = {

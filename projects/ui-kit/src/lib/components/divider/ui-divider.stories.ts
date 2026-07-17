@@ -14,7 +14,8 @@ const meta: Meta<UiDividerComponent> = {
   title: 'Components/Divider',
   component: UiDividerComponent,
   tags: ['autodocs'],
-  includeStories: /^(PlaygroundCompleto|Primary|WithLabel|Dashed|Vertical)$/,
+  includeStories:
+    /^(PlaygroundCompleto|Primary|WithLabel|Dashed|Dotted|LabelDashed|AllColors|AllSizes|Vertical)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -28,6 +29,20 @@ const meta: Meta<UiDividerComponent> = {
           display: flex;
           align-items: center;
           gap: var(--ui-space-3);
+        }
+        .demo-stack {
+          display: grid;
+          gap: var(--ui-space-4);
+          max-width: 480px;
+        }
+        .demo-stack__item {
+          display: grid;
+          gap: var(--ui-space-2);
+        }
+        .demo-stack__label {
+          margin: 0;
+          font-size: var(--ui-font-size-sm, 0.875rem);
+          color: var(--ui-color-text-muted, #667085);
         }
         `,
       ],
@@ -106,6 +121,94 @@ export const WithLabel: Story = {
 
 export const Dashed: Story = {
   args: { ...playgroundDefaults, variant: 'dashed', color: 'primary' },
+};
+
+export const Dotted: Story = {
+  parameters: {
+    docs: {
+      description: { story: 'Variante `dotted` com cor muted.' },
+    },
+  },
+  args: { ...playgroundDefaults, variant: 'dotted', color: 'muted' },
+};
+
+export const LabelDashed: Story = {
+  name: 'Label + dashed',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Divider horizontal com label central e linha tracejada.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Ou continue com',
+    variant: 'dashed',
+    color: 'muted',
+  },
+};
+
+export const AllColors: Story = {
+  name: 'Matriz de cores',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Comparação visual de todas as cores semânticas (`default`, `primary`, `secondary`, `success`, `warning`, `danger`, `info`, `muted`).',
+      },
+    },
+  },
+  render: () => ({
+    template: `
+      <div class="demo-stack">
+        @for (color of colors; track color) {
+          <div class="demo-stack__item">
+            <p class="demo-stack__label">{{ color }}</p>
+            <ui-divider [color]="color" />
+          </div>
+        }
+      </div>
+    `,
+    props: {
+      colors: [
+        'default',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'danger',
+        'info',
+        'muted',
+      ],
+    },
+  }),
+};
+
+export const AllSizes: Story = {
+  name: 'Tamanhos sm / md / lg',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Comparação das espessuras `sm`, `md` e `lg`.',
+      },
+    },
+  },
+  render: () => ({
+    template: `
+      <div class="demo-stack">
+        @for (size of sizes; track size) {
+          <div class="demo-stack__item">
+            <p class="demo-stack__label">{{ size }}</p>
+            <ui-divider [size]="size" color="primary" />
+          </div>
+        }
+      </div>
+    `,
+    props: {
+      sizes: ['sm', 'md', 'lg'],
+    },
+  }),
 };
 
 export const Vertical: Story = {

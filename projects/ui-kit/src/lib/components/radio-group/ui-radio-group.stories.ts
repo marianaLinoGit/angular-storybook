@@ -134,7 +134,7 @@ const meta: Meta<UiRadioGroupStoryArgs> = {
   component: UiRadioGroupComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|Vertical|WithValue|AllowClear|Disabled|RequiredWithError|InsideFormField)$/,
+    /^(PlaygroundCompleto|Default|Vertical|WithValue|AllowClear|Disabled|WithDisabledOption|HideLabel|EmptyOptions|RequiredWithError|InsideFormField)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -256,6 +256,61 @@ export const Disabled: Story = {
     options: glucoseOptions,
     value: 'LO',
     disabled: true,
+  },
+};
+
+export const WithDisabledOption: Story = {
+  name: 'Opção desabilitada',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Uma opção individual com `disabled: true` dentro de `options`.',
+      },
+    },
+  },
+  args: {
+    label: 'Espécie',
+    options: [
+      { label: 'Cão', value: 'dog' },
+      { label: 'Gato', value: 'cat' },
+      { label: 'Outro', value: 'other', disabled: true },
+    ],
+    allowClear: true,
+  },
+};
+
+export const HideLabel: Story = {
+  name: 'Sem label visível',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Com `hideLabel=true`, use `ariaLabel` para manter o nome acessível do grupo.',
+      },
+    },
+  },
+  args: {
+    label: 'Faixa do medidor',
+    hideLabel: true,
+    ariaLabel: 'Faixa do medidor LO ou HI',
+    options: glucoseOptions,
+    allowClear: true,
+  },
+};
+
+export const EmptyOptions: Story = {
+  name: 'Sem opções',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Grupo renderizado com `options` vazio (estado de carregamento ou sem dados).',
+      },
+    },
+  },
+  args: {
+    label: 'Espécie',
+    options: [],
+    allowClear: false,
   },
 };
 

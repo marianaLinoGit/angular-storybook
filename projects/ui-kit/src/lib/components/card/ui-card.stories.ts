@@ -25,7 +25,8 @@ const meta: Meta<UiCardComponent> = {
   title: 'Components/Card',
   component: UiCardComponent,
   tags: ['autodocs'],
-  includeStories: /^PlaygroundCompleto|Default|WithImage|Clickable|Highlighted|Bordered|WithoutShadow|CenterAligned|WithFooter|ExternalLink$/,
+  includeStories:
+    /^(PlaygroundCompleto|Default|WithImage|DecorativeImage|ClickableWithLink|ClickableWithoutLink|Highlighted|AlignCenter|AlignRight|Small|Large)$/,
   argTypes: {
     title: {
       control: 'text',

@@ -12,7 +12,7 @@ const meta: Meta<UiBadgeComponent> = {
   title: 'Components/Badge',
   component: UiBadgeComponent,
   tags: ['autodocs'],
-  includeStories: /^(PlaygroundCompleto|Html|Danger|Warning|Success|Info)$/,
+  includeStories: /^(PlaygroundCompleto|Html|Danger|Warning|Success|Info|AllTypes)$/,
   decorators: [
     (story) => ({
       ...story(),

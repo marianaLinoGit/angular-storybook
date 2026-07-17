@@ -23,7 +23,7 @@ const meta: Meta<UiCheckboxComponent> = {
   component: UiCheckboxComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|WithoutLink|RequiredWithError|Disabled|LabelOnly|AccessibleLabelOnly)$/,
+    /^(PlaygroundCompleto|Default|WithoutLink|RequiredWithError|Disabled|LabelOnly|AccessibleLabelOnly|WithLabelTooltip)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -248,6 +248,7 @@ export const AccessibleLabelOnly: Story = {
     id: 'iconOnlyCheckbox',
     name: 'iconOnlyCheckbox',
     label: '',
+    labelTooltip: '',
     ariaLabel: 'Aceitar termos de uso',
     linkLabel: null,
     linkUrl: null,
@@ -257,5 +258,28 @@ export const AccessibleLabelOnly: Story = {
     showError: false,
     errorMessage: '*Campo obrigatório',
     customClass: '',
+  },
+};
+
+export const WithLabelTooltip: Story = {
+  name: 'Com tooltip no label',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Checkbox com tooltip info no label via `labelTooltip`, no mesmo padrão do `ui-label`.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    id: 'shareData',
+    name: 'shareData',
+    label: 'Autorizo o compartilhamento de dados',
+    linkLabel: null,
+    linkUrl: null,
+    required: false,
+    labelTooltip:
+      'Os dados clínicos poderão ser compartilhados com a clínica parceira para continuidade do atendimento.',
   },
 };

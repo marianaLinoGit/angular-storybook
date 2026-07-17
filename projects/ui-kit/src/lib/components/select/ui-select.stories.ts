@@ -54,7 +54,7 @@ const meta: Meta<UiSelectStoryArgs> = {
   component: UiSelectComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|Searchable|MultipleSearchable|ServerSearch|WithIcons|AllowClear|RequiredWithError|Optional|Disabled|EmptyOptions|WithDisabledOption|WithoutVisibleLabel|WithLabelTooltip)$/,
+    /^(PlaygroundCompleto|Default|Searchable|MultipleSearchable|ServerSearch|WithIcons|AllowClear|RequiredWithError|Optional|Disabled|EmptyOptions|WithDisabledOption|WithoutVisibleLabel|WithLabelTooltip|IconsGallery)$/,
   decorators: [
     (story) => ({
       ...story(),

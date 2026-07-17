@@ -28,7 +28,7 @@ const meta: Meta<UiTextareaComponent> = {
   component: UiTextareaComponent,
   tags: ['autodocs'],
   includeStories:
-    /^(PlaygroundCompleto|Default|RequiredWithError|Disabled|ReadOnly|WithoutVisibleLabel|NoResize)$/,
+    /^(PlaygroundCompleto|Default|Optional|RequiredWithError|Disabled|ReadOnly|WithoutVisibleLabel|NoResize|WithLabelTooltip)$/,
   decorators: [
     (story) => ({
       ...story(),
@@ -158,6 +158,23 @@ export const Default: Story = {
   },
 };
 
+export const Optional: Story = {
+  parameters: {
+    docs: {
+      description: { story: 'Campo opcional com texto "Opcional" no label.' },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Observações adicionais',
+    id: 'extraNotes',
+    name: 'extraNotes',
+    placeholder: 'Detalhes opcionais…',
+    required: false,
+    showOptionalText: true,
+  },
+};
+
 export const RequiredWithError: Story = {
   args: {
     ...playgroundDefaults,
@@ -197,5 +214,27 @@ export const NoResize: Story = {
     ...playgroundDefaults,
     resize: 'none',
     rows: 5,
+  },
+};
+
+export const WithLabelTooltip: Story = {
+  name: 'Com tooltip no label',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Campo com tooltip info no label via `labelTooltip`. O ícone info é exibido automaticamente.',
+      },
+    },
+  },
+  args: {
+    ...playgroundDefaults,
+    label: 'Histórico clínico',
+    id: 'clinicalHistory',
+    name: 'clinicalHistory',
+    placeholder: 'Resuma o histórico relevante…',
+    required: false,
+    showOptionalText: false,
+    labelTooltip: 'Inclua diagnósticos prévios, alergias e medicações em uso.',
   },
 };
