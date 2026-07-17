@@ -22,6 +22,7 @@ export class UiPaginationComponent {
   totalPages = input(1);
 
   showControls = input(true);
+  showFirstLast = input(true);
   showPageSize = input(false);
   pageSize = input(10);
   pageSizeOptions = input<number[]>([5, 10, 20, 50, 100]);
@@ -30,8 +31,10 @@ export class UiPaginationComponent {
   disabled = input(false);
   size = input<UiSize>('sm');
 
+  firstLabel = input('');
   previousLabel = input('');
   nextLabel = input('');
+  lastLabel = input('');
   pageLabel = input('');
   ofLabel = input('');
   pageSizeLabel = input<string | null>(null);
@@ -73,6 +76,11 @@ export class UiPaginationComponent {
     })),
   );
 
+  goToFirst(): void {
+    if (this.isFirstPage() || this.isControlsDisabled()) return;
+    this.pageIndexChange.emit(1);
+  }
+
   goToPrevious(): void {
     if (this.isFirstPage() || this.isControlsDisabled()) return;
     this.pageIndexChange.emit(this.pageIndex() - 1);
@@ -81,6 +89,11 @@ export class UiPaginationComponent {
   goToNext(): void {
     if (this.isLastPage() || this.isControlsDisabled()) return;
     this.pageIndexChange.emit(this.pageIndex() + 1);
+  }
+
+  goToLast(): void {
+    if (this.isLastPage() || this.isControlsDisabled()) return;
+    this.pageIndexChange.emit(this.totalPages());
   }
 
   onPageSizeChange(value: string | string[]): void {

@@ -207,8 +207,10 @@ export async function expectNavigation(
 
 export const paginationPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
   await expectNavigation(canvasElement, 'Paginação de resultados');
+  await expectButton(canvasElement, 'Primeira', false);
   await expectButton(canvasElement, 'Anterior', false);
   await expectButton(canvasElement, 'Próxima', true);
+  await expectButton(canvasElement, 'Última', true);
 };
 
 export async function expectAlert(

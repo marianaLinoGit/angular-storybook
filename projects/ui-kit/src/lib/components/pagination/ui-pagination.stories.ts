@@ -14,6 +14,8 @@ const playgroundDefaults = {
   size: 'sm' as const,
   previousLabel: 'Anterior',
   nextLabel: 'Próxima',
+  firstLabel: 'Primeira',
+  lastLabel: 'Última',
   pageLabel: 'Página',
   ofLabel: 'de',
   pageSizeLabel: 'Itens por página',
@@ -33,6 +35,8 @@ type UiPaginationStoryArgs = {
   size: 'sm' | 'md' | 'lg';
   previousLabel: string;
   nextLabel: string;
+  firstLabel: string;
+  lastLabel: string;
   pageLabel: string;
   ofLabel: string;
   pageSizeLabel: string | null;
@@ -63,7 +67,8 @@ const meta: Meta<UiPaginationStoryArgs> = {
     docs: {
       description: {
         component:
-          'Controles de paginação reutilizáveis com navegação anterior/próxima, indicador de página e seletor opcional de itens por página.\n\n' +
+          'Controles de paginação reutilizáveis com navegação primeira/anterior/próxima/última, indicador de página e seletor opcional de itens por página.\n\n' +
+          '**Mobile (< 768px):** os botões exibem símbolos compactos (`<<`, `<`, `>`, `>>`); o texto acessível (`aria-label`) permanece o label completo.\n\n' +
           '**Uso:** informe `pageIndex` e `totalPages`. Escute `pageIndexChange` e `pageSizeChange` para atualizar o estado no componente pai.',
       },
     },
@@ -92,6 +97,8 @@ const meta: Meta<UiPaginationStoryArgs> = {
         [size]="size"
         [previousLabel]="previousLabel"
         [nextLabel]="nextLabel"
+        [firstLabel]="firstLabel"
+        [lastLabel]="lastLabel"
         [pageLabel]="pageLabel"
         [ofLabel]="ofLabel"
         [pageSizeLabel]="pageSizeLabel"
@@ -134,6 +141,16 @@ const meta: Meta<UiPaginationStoryArgs> = {
       control: 'text',
       table: { category: 'Conteúdo' },
       description: 'Texto do botão de próxima página.',
+    },
+    firstLabel: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description: 'Texto do botão da primeira página.',
+    },
+    lastLabel: {
+      control: 'text',
+      table: { category: 'Conteúdo' },
+      description: 'Texto do botão da última página.',
     },
     pageLabel: {
       control: 'text',
@@ -232,7 +249,9 @@ export const ComSeletor: Story = {
 export const PrimeiraPagina: Story = {
   parameters: {
     docs: {
-      description: { story: 'Botão anterior desabilitado na primeira página.' },
+      description: {
+        story: 'Botões primeira e anterior desabilitados na primeira página.',
+      },
     },
   },
   args: { ...playgroundDefaults, currentPageIndex: 1, showPageSize: false },
@@ -241,7 +260,9 @@ export const PrimeiraPagina: Story = {
 export const UltimaPagina: Story = {
   parameters: {
     docs: {
-      description: { story: 'Botão próxima desabilitado na última página.' },
+      description: {
+        story: 'Botões próxima e última desabilitados na última página.',
+      },
     },
   },
   args: { ...playgroundDefaults, currentPageIndex: 5, totalPages: 5, showPageSize: false },

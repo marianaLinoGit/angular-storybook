@@ -1,15 +1,33 @@
 <div class="ui-pagination">
   @if (showControls()) {
     <nav class="ui-pagination__nav" [attr.aria-label]="ariaLabel()">
-      <ui-button
-        [label]="previousLabel()"
-        color="primary"
-        [size]="size()"
-        [outline]="true"
-        type="button"
-        [disabled]="isFirstPage() || isControlsDisabled()"
-        (buttonClick)="goToPrevious()"
-      />
+      @if (showFirstLast()) {
+        <div class="ui-pagination__nav-btn ui-pagination__nav-btn--first">
+          <ui-button
+            [label]="firstLabel()"
+            [ariaLabel]="firstLabel()"
+            color="primary"
+            [size]="size()"
+            [outline]="true"
+            type="button"
+            [disabled]="isFirstPage() || isControlsDisabled()"
+            (buttonClick)="goToFirst()"
+          />
+        </div>
+      }
+
+      <div class="ui-pagination__nav-btn ui-pagination__nav-btn--previous">
+        <ui-button
+          [label]="previousLabel()"
+          [ariaLabel]="previousLabel()"
+          color="primary"
+          [size]="size()"
+          [outline]="true"
+          type="button"
+          [disabled]="isFirstPage() || isControlsDisabled()"
+          (buttonClick)="goToPrevious()"
+        />
+      </div>
 
       <p
         class="ui-pagination__status"
@@ -25,15 +43,33 @@
         </span>
       </p>
 
-      <ui-button
-        [label]="nextLabel()"
-        color="primary"
-        [size]="size()"
-        [outline]="true"
-        type="button"
-        [disabled]="isLastPage() || isControlsDisabled()"
-        (buttonClick)="goToNext()"
-      />
+      <div class="ui-pagination__nav-btn ui-pagination__nav-btn--next">
+        <ui-button
+          [label]="nextLabel()"
+          [ariaLabel]="nextLabel()"
+          color="primary"
+          [size]="size()"
+          [outline]="true"
+          type="button"
+          [disabled]="isLastPage() || isControlsDisabled()"
+          (buttonClick)="goToNext()"
+        />
+      </div>
+
+      @if (showFirstLast()) {
+        <div class="ui-pagination__nav-btn ui-pagination__nav-btn--last">
+          <ui-button
+            [label]="lastLabel()"
+            [ariaLabel]="lastLabel()"
+            color="primary"
+            [size]="size()"
+            [outline]="true"
+            type="button"
+            [disabled]="isLastPage() || isControlsDisabled()"
+            (buttonClick)="goToLast()"
+          />
+        </div>
+      }
     </nav>
   }
 

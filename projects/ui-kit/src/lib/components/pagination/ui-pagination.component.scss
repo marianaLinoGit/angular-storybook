@@ -12,6 +12,26 @@
     flex-wrap: wrap;
   }
 
+  &__nav-btn {
+    flex-shrink: 0;
+
+    &--first {
+      --ui-pagination-mobile-label: '<<';
+    }
+
+    &--previous {
+      --ui-pagination-mobile-label: '<';
+    }
+
+    &--next {
+      --ui-pagination-mobile-label: '>';
+    }
+
+    &--last {
+      --ui-pagination-mobile-label: '>>';
+    }
+  }
+
   &__status {
     margin: 0;
     font-size: var(--ui-font-size-sm);
@@ -32,6 +52,24 @@
 
     &__nav {
       justify-content: center;
+      gap: var(--ui-space-2);
+    }
+
+    &__nav-btn ::ng-deep .ui-button__label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.25rem;
+      font-size: 0;
+      line-height: 1;
+
+      &::after {
+        content: var(--ui-pagination-mobile-label);
+        font-size: var(--ui-font-size-sm);
+        font-weight: var(--ui-font-weight-semibold);
+        line-height: 1;
+      }
     }
 
     &__page-size {
