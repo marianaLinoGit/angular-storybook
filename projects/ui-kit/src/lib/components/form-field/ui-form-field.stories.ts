@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
+import { formFieldPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiButtonComponent } from '../button/ui-button.component';
 import { UiCheckboxComponent } from '../checkbox/ui-checkbox.component';
 import { UiInputComponent } from '../input/ui-input.component';
@@ -620,6 +621,7 @@ type Story = StoryObj<UiFormFieldPlaygroundComponent>;
 export const PlaygroundCompleto: Story = {
   name: 'Playground completo',
   args: { submitted: false },
+  play: formFieldPlaygroundPlay,
 };
 
 export const Default: Story = {

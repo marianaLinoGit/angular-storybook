@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Component, input } from '@angular/core';
+import { radioGroupPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiFormFieldComponent } from '../form-field/ui-form-field.component';
 import { UiInputComponent } from '../input/ui-input.component';
 import {
@@ -214,7 +215,10 @@ const meta: Meta<UiRadioGroupStoryArgs> = {
 export default meta;
 type Story = StoryObj<UiRadioGroupStoryArgs>;
 
-export const PlaygroundCompleto: Story = {};
+export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
+  play: radioGroupPlaygroundPlay,
+};
 
 export const Default: Story = {
   args: {

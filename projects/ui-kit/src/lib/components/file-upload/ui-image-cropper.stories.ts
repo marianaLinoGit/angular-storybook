@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { UiImageCropperComponent } from '../file-upload/ui-image-cropper.component';
+import { imageCropperPlaygroundPlay } from '../../storybook/play.helpers';
+import { UiImageCropperComponent } from './ui-image-cropper.component';
 
 const PLACEHOLDER_IMAGE =
   'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=960&q=80';
@@ -146,6 +147,7 @@ export const PlaygroundCompleto: Story = {
     },
   },
   args: { ...playgroundDefaults },
+  play: imageCropperPlaygroundPlay,
 };
 
 export const Standalone: Story = {

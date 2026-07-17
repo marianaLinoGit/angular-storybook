@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { fieldErrorPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiFieldErrorComponent } from './ui-field-error.component';
 
 const playgroundDefaults = {
@@ -82,6 +83,7 @@ export const PlaygroundCompleto: Story = {
     },
   },
   args: { ...playgroundDefaults },
+  play: fieldErrorPlaygroundPlay,
 };
 
 export const Message: Story = {

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { dividerPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiDividerComponent } from './ui-divider.component';
 
 const playgroundDefaults = {
@@ -108,6 +109,7 @@ type Story = StoryObj<UiDividerComponent>;
 export const PlaygroundCompleto: Story = {
   name: 'Playground completo',
   args: { ...playgroundDefaults },
+  play: dividerPlaygroundPlay,
 };
 
 export const Primary: Story = {

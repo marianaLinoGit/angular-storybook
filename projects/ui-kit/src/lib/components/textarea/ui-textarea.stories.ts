@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { textareaPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiTextareaComponent } from './ui-textarea.component';
 
 const playgroundDefaults = {
@@ -147,7 +148,9 @@ export default meta;
 type Story = StoryObj<UiTextareaComponent>;
 
 export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
   args: { ...playgroundDefaults },
+  play: textareaPlaygroundPlay,
 };
 
 export const Default: Story = {

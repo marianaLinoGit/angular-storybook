@@ -285,3 +285,73 @@ export const statCardGridPlaygroundPlay: StoryPlayFn = async ({
   await expectText(canvasElement, 'Total de alertas');
   await expectText(canvasElement, 'Urgentes');
 };
+
+export async function expectSeparator(
+  canvasElement: HTMLElement,
+): Promise<void> {
+  const canvas = await canvasOf(canvasElement);
+  await expect(canvas.getByRole('separator')).toBeVisible();
+}
+
+export const dividerPlaygroundPlay: StoryPlayFn = async ({ canvasElement }) => {
+  await expectSeparator(canvasElement);
+};
+
+export const fieldErrorPlaygroundPlay: StoryPlayFn = async ({
+  canvasElement,
+}) => {
+  await expectText(canvasElement, '*Campo obrigatório');
+};
+
+export const imageCropperPlaygroundPlay: StoryPlayFn = async ({
+  canvasElement,
+}) => {
+  await expectDialog(canvasElement, /Recortar imagem/i);
+  await expectButton(canvasElement, 'Cancelar', false);
+  await expectButton(canvasElement, 'Aplicar recorte', false);
+};
+
+export async function expectRadio(
+  canvasElement: HTMLElement,
+  name: string | RegExp,
+  select = true,
+): Promise<void> {
+  const canvas = await canvasOf(canvasElement);
+  await expect(canvas.getByRole('radiogroup')).toBeVisible();
+  const radio = canvas.getByRole('radio', { name, hidden: true });
+
+  await expect(radio).toBeInTheDocument();
+
+  if (select) {
+    await userEvent.click(canvas.getByText(name));
+    await expect(radio).toBeChecked();
+  }
+}
+
+export const radioGroupPlaygroundPlay: StoryPlayFn = async ({
+  canvasElement,
+}) => {
+  await expectText(canvasElement, 'Faixa do medidor');
+  await expectRadio(canvasElement, 'LO');
+};
+
+export const textareaPlaygroundPlay: StoryPlayFn = async ({
+  canvasElement,
+}) => {
+  await expectInput(canvasElement, 'Observações', 'Nota de teste');
+};
+
+export const formFieldPlaygroundPlay: StoryPlayFn = async ({
+  canvasElement,
+}) => {
+  await expectText(canvasElement, 'E-mail');
+  await expectInput(canvasElement, /E-mail/i, 'maria@email.com');
+  await expectButton(canvasElement, 'Entrar', false);
+};
+
+export const fileUploadPlaygroundPlay: StoryPlayFn = async ({
+  canvasElement,
+}) => {
+  await expectText(canvasElement, 'Anexar arquivo');
+  await expectText(canvasElement, 'Arraste e solte o arquivo aqui');
+};

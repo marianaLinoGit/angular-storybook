@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { Component, Input, signal } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
+import { fileUploadPlaygroundPlay } from '../../storybook/play.helpers';
 import { UiToastComponent } from '../toast/ui-toast.component';
 import { UiFileUploadComponent } from './ui-file-upload.component';
 import type {
@@ -231,7 +232,9 @@ export default meta;
 type Story = StoryObj<UiFileUploadComponent>;
 
 export const PlaygroundCompleto: Story = {
+  name: 'Playground completo',
   args: playgroundDefaults,
+  play: fileUploadPlaygroundPlay,
 };
 
 export const Default: Story = {
