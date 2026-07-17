@@ -6,6 +6,7 @@ export * from './lib/components/breadcrumb/ui-breadcrumb.component';
 export * from './lib/components/button/ui-button.component';
 export * from './lib/components/card/ui-card.component';
 export * from './lib/components/checkbox/ui-checkbox.component';
+export * from './lib/components/divider/ui-divider.component';
 export * from './lib/components/empty-state/ui-empty-state.component';
 export * from './lib/components/field-error/ui-field-error.component';
 export * from './lib/components/file-upload/ui-file-upload.component';
