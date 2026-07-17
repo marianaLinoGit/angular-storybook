@@ -143,7 +143,7 @@ export class UiTableComponent {
   showPaginationWhenSinglePage = input(false);
   showPageSize = input(true);
   showTotal = input(true);
-  paginationPosition = input<UiTablePaginationPosition>('bottom');
+  paginationPosition = input<UiTablePaginationPosition>('both');
 
   size = input<UiTableSize>('md');
   hover = input(true);
@@ -169,6 +169,8 @@ export class UiTableComponent {
   paginationBottomSuffix = input('');
   previousLabel = input('');
   nextLabel = input('');
+  firstLabel = input('');
+  lastLabel = input('');
   pageSizeLabel = input<string | null>(null);
   pageSizeAriaLabel = input<string | null>(null);
   totalLabel = input('');

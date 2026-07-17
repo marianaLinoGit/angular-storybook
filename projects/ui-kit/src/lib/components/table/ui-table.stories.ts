@@ -184,6 +184,8 @@ function sortValue(row: VetInviteDemoRow, sortBy: string): string {
       [ariaLabel]="ariaLabel()"
       [previousLabel]="previousLabel()"
       [nextLabel]="nextLabel()"
+      [firstLabel]="firstLabel()"
+      [lastLabel]="lastLabel()"
       [pageSizeLabel]="pageSizeLabel()"
       [pageSizeAriaLabel]="pageSizeAriaLabel()"
       [totalLabel]="totalLabel()"
@@ -282,6 +284,8 @@ class UiTablePlaygroundComponent {
   ariaLabel = input('Tabela de convites veterinários');
   previousLabel = input('Anterior');
   nextLabel = input('Próxima');
+  firstLabel = input('Primeira');
+  lastLabel = input('Última');
   pageSizeLabel = input<string | null>(null);
   pageSizeAriaLabel = input<string | null>(null);
   totalLabel = input('registro(s)');
@@ -382,6 +386,8 @@ const playgroundDefaults = {
   ariaLabel: 'Tabela de convites veterinários',
   previousLabel: 'Anterior',
   nextLabel: 'Próxima',
+  firstLabel: 'Primeira',
+  lastLabel: 'Última',
   pageSizeLabel: null as string | null,
   pageSizeAriaLabel: null as string | null,
   totalLabel: 'registro(s)',
@@ -659,6 +665,8 @@ const meta: Meta<UiTablePlaygroundComponent> = {
       [ariaLabel]="ariaLabel"
       [previousLabel]="previousLabel"
       [nextLabel]="nextLabel"
+      [firstLabel]="firstLabel"
+      [lastLabel]="lastLabel"
       [pageSizeLabel]="pageSizeLabel"
       [pageSizeAriaLabel]="pageSizeAriaLabel"
       [totalLabel]="totalLabel"
@@ -714,6 +722,8 @@ export const PlaygroundCompleto: Story = {
       [ariaLabel]="ariaLabel"
       [previousLabel]="previousLabel"
       [nextLabel]="nextLabel"
+      [firstLabel]="firstLabel"
+      [lastLabel]="lastLabel"
       [pageSizeLabel]="pageSizeLabel"
       [pageSizeAriaLabel]="pageSizeAriaLabel"
       [totalLabel]="totalLabel"
