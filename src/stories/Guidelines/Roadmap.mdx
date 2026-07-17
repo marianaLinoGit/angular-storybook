@@ -21,14 +21,23 @@ Possíveis evoluções para o Model UI Kit.
 
 ## Componentes
 
-- Textarea
 - Avatar
-- Dropdown / Menu
+- Dropdown / Menu (substituir `nz-menu` nos apps consumidores)
 - Stepper
 - Date Picker
-- File Upload
-- Combobox (select com busca)
+- Combobox avançado (select com busca server-side já existe; evoluir UX)
 - Paginação com salto direto para página (input numérico)
+- `ui-table` com template de célula / linha editável (hoje a edição inline fica fora do DS)
+
+### Já entregues (remover desta lista ao publicar)
+
+- Textarea (`ui-textarea`)
+- File Upload (`ui-file-upload` + `ui-image-cropper`)
+- Radio group (`ui-radio-group`)
+- Divider (`ui-divider`)
+- Field error (`ui-field-error`)
+- Form field addons + layout situations
+- Paginação com primeira/última página (`showFirstLast`)
 
 ---
 
@@ -49,6 +58,7 @@ Possíveis evoluções para o Model UI Kit.
 - Visual regression testing (Chromatic ou Loki)
 - Storybook deploy preview por PR
 - Reduzir violações axe a zero nas stories `PlaygroundCompleto`
+- CI que falhe quando `documentation.json` / `includeStories` ficarem dessincronizados
 
 ---
 
