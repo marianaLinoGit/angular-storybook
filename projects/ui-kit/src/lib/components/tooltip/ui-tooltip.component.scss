@@ -28,7 +28,6 @@
   &__content {
     z-index: var(--ui-z-tooltip, 1200);
     box-sizing: border-box;
-    min-width: 160px;
     width: max-content;
     max-width: min(240px, calc(100vw - 24px));
     padding: var(--ui-space-2) var(--ui-space-3);
