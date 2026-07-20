@@ -62,9 +62,11 @@
   }
 
   &--disabled,
-  &:disabled {
+  &:disabled,
+  &[readonly] {
     cursor: not-allowed;
-    background: var(--ui-color-input-disabled-background);
-    color: var(--ui-color-disabled);
+    background: color-mix(in srgb, var(--ui-color-primary), transparent 90%);
+    color: var(--ui-color-text);
+    border-color: color-mix(in srgb, var(--ui-color-primary), transparent 65%);
   }
 }
