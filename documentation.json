@@ -19420,21 +19420,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<UiAccordionPanelComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Accordion Panel',\r\n  component: UiAccordionPanelComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|Closed|WithoutBadge|WithoutIcon|Disabled)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          max-width: 480px;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Painel expansível individual com título, ícone, badge e conteúdo projetado via `ng-content`.\\n\\n' +\r\n          '**Uso:** informe `id` e `title`. Vincule `[(open)]` para controlar o estado. Emite `openedChange` ao alternar.',\r\n      },\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <ui-accordion-panel\r\n        [id]=\"id\"\r\n        [title]=\"title\"\r\n        [icon]=\"icon\"\r\n        [badge]=\"badge\"\r\n        [badgeType]=\"badgeType\"\r\n        [disabled]=\"disabled\"\r\n        [allowOverflow]=\"allowOverflow\"\r\n        [(open)]=\"open\"\r\n        (openedChange)=\"openedChange($event)\"\r\n      >\r\n        ${panelDemoContent}\r\n      </ui-accordion-panel>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    id: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Identificador único do painel. Usado nos IDs de acessibilidade do trigger e do painel.',\r\n    },\r\n    title: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Título exibido no cabeçalho clicável do painel.',\r\n    },\r\n    icon: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Ícone ou emoji opcional exibido antes do título.',\r\n    },\r\n    badge: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Texto ou número exibido como badge (`ui-badge`) ao lado do título. Quando `null`, não é exibido.',\r\n    },\r\n    badgeType: {\r\n      control: 'select',\r\n      options: ['default', 'danger', 'warning', 'success', 'info'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Variação semântica de cor do badge.',\r\n    },\r\n    open: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Estado aberto/fechado do painel. Suporta two-way binding com `[(open)]`.',\r\n    },\r\n    disabled: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Impede abrir ou fechar o painel.',\r\n    },\r\n    allowOverflow: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Quando `true`, permite que dropdowns e popovers dentro do painel ultrapassem os limites do container.',\r\n    },\r\n    openedChange: {\r\n      action: 'openedChange',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado quando o painel é aberto ou fechado.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<UiAlertComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Alert',\r\n  component: UiAlertComponent,\r\n  tags: ['autodocs'],\r\n  includeStories: /^(PlaygroundCompleto|Info|Success|Warning|Danger|Solid|Outline|WithoutIcon|WithoutTitle|NotClosable|FixedTop|FixedBottom)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          max-width: 480px;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  argTypes: {\r\n    title: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Título opcional do alerta.',\r\n    },\r\n    message: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Mensagem principal exibida no alerta.',\r\n    },\r\n    closeAriaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto acessível utilizado no botão de fechar para leitores de tela.',\r\n    },\r\n    color: {\r\n      control: 'select',\r\n      table: { category: 'Aparência' },\r\n      options: ['success', 'warning', 'danger', 'info'],\r\n      description:\r\n        'Cor semântica do alerta, usada para representar sucesso, atenção, erro ou informação.',\r\n    },\r\n    variant: {\r\n      control: 'select',\r\n      table: { category: 'Aparência' },\r\n      options: ['soft', 'solid', 'outline'],\r\n      description: 'Variação visual aplicada ao alerta.',\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      table: { category: 'Aparência' },\r\n      options: ['sm', 'md', 'lg'],\r\n      description: 'Tamanho visual do componente.',\r\n    },\r\n    showIcon: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe ou oculta o ícone semântico do alerta.',\r\n    },\r\n    closable: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe ou oculta o botão para fechar o alerta.',\r\n    },\r\n    fixed: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Define se o alerta deve permanecer fixo na tela ou seguir o fluxo da página.',\r\n    },\r\n    position: {\r\n      control: 'radio',\r\n      table: { category: 'Estado' },\r\n      options: ['top', 'bottom'],\r\n      description:\r\n        'Posição do alerta quando a propriedade fixed estiver habilitada.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS customizada adicionada ao componente.',\r\n    },\r\n    closed: {\r\n      action: 'closed',\r\n      table: {\r\n        category: 'Events',\r\n      },\r\n      description:\r\n        'Evento disparado quando o usuário fecha o alerta pelo botão de fechar.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<UiAccordionPanelComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Accordion Panel',\r\n  component: UiAccordionPanelComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|Closed|WithoutBadge|WithoutIcon|Disabled)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          max-width: 480px;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Painel expansível individual com título, ícone, badge e conteúdo projetado via `ng-content`.\\n\\n' +\r\n          '**Uso:** informe `id` e `title`. Vincule `[(open)]` para controlar o estado. Emite `openedChange` ao alternar.',\r\n      },\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <ui-accordion-panel\r\n        [id]=\"id\"\r\n        [title]=\"title\"\r\n        [icon]=\"icon\"\r\n        [badge]=\"badge\"\r\n        [badgeType]=\"badgeType\"\r\n        [disabled]=\"disabled\"\r\n        [allowOverflow]=\"allowOverflow\"\r\n        [(open)]=\"open\"\r\n        (openedChange)=\"openedChange($event)\"\r\n      >\r\n        ${panelDemoContent}\r\n      </ui-accordion-panel>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    id: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'Identificador único do painel. Usado nos IDs de acessibilidade do trigger e do painel.',\r\n    },\r\n    title: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Título exibido no cabeçalho clicável do painel.',\r\n    },\r\n    icon: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Ícone ou emoji opcional exibido antes do título.',\r\n    },\r\n    badge: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description:\r\n        'Texto ou número exibido como badge (`ui-badge`) ao lado do título. Quando `null`, não é exibido.',\r\n    },\r\n    badgeType: {\r\n      control: 'select',\r\n      options: ['default', 'danger', 'warning', 'success', 'info'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Variação semântica de cor do badge.',\r\n    },\r\n    open: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Estado aberto/fechado do painel. Suporta two-way binding com `[(open)]`.',\r\n    },\r\n    disabled: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Impede abrir ou fechar o painel.',\r\n    },\r\n    allowOverflow: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description:\r\n        'Quando `true`, permite que dropdowns e popovers dentro do painel ultrapassem os limites do container.',\r\n    },\r\n    openedChange: {\r\n      action: 'openedChange',\r\n      table: { category: 'Events' },\r\n      description: 'Evento disparado quando o painel é aberto ou fechado.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
             },
             {
                 "name": "meta",
@@ -19464,7 +19464,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<UiButtonComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Button',\r\n  component: UiButtonComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|WithIcon|IconRight|Download|Upload|Outline|Rounded|FullWidth|Disabled|Loading|IconOnly|BackButtonDesktop|BackButtonMobile|BackIconOnly)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Botão do design system com suporte a ícones, variantes de cor, outline, loading e preset de voltar.\\n\\n' +\r\n          '**Uso:** informe `label` e `color`. Emite `buttonClick` ao clicar (exceto quando `disabled` ou `loading`).',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    label: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto exibido no botão.',\r\n    },\r\n    loadingLabel: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto exibido quando o botão está em estado de carregamento.',\r\n    },\r\n    icon: {\r\n      control: 'select',\r\n      options: [null, ...UI_ICON_NAMES],\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Nome do ícone exibido no botão. Usa o componente `ui-icon`.',\r\n    },\r\n    iconPosition: {\r\n      control: 'radio',\r\n      options: ['left', 'right'],\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Posição do ícone em relação ao texto.',\r\n    },\r\n    color: {\r\n      control: 'select',\r\n      options: [\r\n        'primary',\r\n        'secondary',\r\n        'success',\r\n        'warning',\r\n        'danger',\r\n        'info',\r\n        'disabled',\r\n      ],\r\n      table: { category: 'Aparência' },\r\n      description: 'Variação visual e semântica do botão.',\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['sm', 'md', 'lg'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Tamanho do botão.',\r\n    },\r\n    position: {\r\n      control: 'select',\r\n      options: ['left', 'center', 'right'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Alinhamento do botão dentro do wrapper.',\r\n    },\r\n    appearance: {\r\n      control: 'select',\r\n      options: ['default', 'back'],\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Preset visual. Com `back`, usa automaticamente o ícone `back` se nenhum ícone for informado.',\r\n    },\r\n    outline: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Aplica estilo outline (fundo transparente com borda).',\r\n    },\r\n    rounded: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Aplica borda totalmente arredondada (pill).',\r\n    },\r\n    fullWidth: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Faz o botão ocupar 100% da largura do container.',\r\n    },\r\n    iconOnly: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Exibe apenas o ícone. Use `ariaLabel` para manter acessibilidade.',\r\n    },\r\n    hideLabelOnMobile: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Oculta o texto do botão em telas menores que 900px.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS adicional aplicada ao botão.',\r\n    },\r\n    type: {\r\n      control: 'select',\r\n      options: ['button', 'submit', 'reset'],\r\n      table: { category: 'Formulário' },\r\n      description: 'Tipo nativo do elemento `<button>`.',\r\n    },\r\n    backFallbackUrl: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'URL de fallback usada pelo preset `back` quando não há histórico de navegação.',\r\n    },\r\n    disabled: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Desabilita o botão e impede cliques.',\r\n    },\r\n    loading: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe spinner e `loadingLabel` no lugar do conteúdo normal.',\r\n    },\r\n    ariaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto para leitores de tela quando o botão não possui texto visível suficiente.',\r\n    },\r\n    buttonClick: {\r\n      action: 'buttonClick',\r\n      table: { category: 'Events' },\r\n      description:\r\n        'Evento disparado ao clicar. Não é emitido quando `disabled` ou `loading` estão ativos.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
+                "defaultValue": "{\r\n  title: 'Components/Button',\r\n  component: UiButtonComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|WithIcon|IconRight|Download|Upload|Outline|Rounded|FullWidth|Disabled|Loading|IconOnly|BackButtonDesktop|BackButtonMobile|BackIconOnly|AllSizes|AllColors|AllColorsOutline)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Botão do design system com suporte a ícones, variantes de cor, outline, loading e preset de voltar.\\n\\n' +\r\n          '**Uso:** informe `label` e `color`. Emite `buttonClick` ao clicar (exceto quando `disabled` ou `loading`).',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    label: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto exibido no botão.',\r\n    },\r\n    loadingLabel: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto exibido quando o botão está em estado de carregamento.',\r\n    },\r\n    icon: {\r\n      control: 'select',\r\n      options: [null, ...UI_ICON_NAMES],\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Nome do ícone exibido no botão. Usa o componente `ui-icon`.',\r\n    },\r\n    iconPosition: {\r\n      control: 'radio',\r\n      options: ['left', 'right'],\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Posição do ícone em relação ao texto.',\r\n    },\r\n    color: {\r\n      control: 'select',\r\n      options: [\r\n        'primary',\r\n        'secondary',\r\n        'success',\r\n        'warning',\r\n        'danger',\r\n        'info',\r\n        'disabled',\r\n      ],\r\n      table: { category: 'Aparência' },\r\n      description: 'Variação visual e semântica do botão.',\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['sm', 'md', 'lg'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Tamanho do botão.',\r\n    },\r\n    position: {\r\n      control: 'select',\r\n      options: ['left', 'center', 'right'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Alinhamento do botão dentro do wrapper.',\r\n    },\r\n    appearance: {\r\n      control: 'select',\r\n      options: ['default', 'back'],\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Preset visual. Com `back`, usa automaticamente o ícone `back` se nenhum ícone for informado.',\r\n    },\r\n    outline: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Aplica estilo outline (fundo transparente com borda).',\r\n    },\r\n    rounded: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Aplica borda totalmente arredondada (pill).',\r\n    },\r\n    fullWidth: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Faz o botão ocupar 100% da largura do container.',\r\n    },\r\n    iconOnly: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Exibe apenas o ícone. Use `ariaLabel` para manter acessibilidade.',\r\n    },\r\n    hideLabelOnMobile: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Oculta o texto do botão em telas menores que 900px.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS adicional aplicada ao botão.',\r\n    },\r\n    type: {\r\n      control: 'select',\r\n      options: ['button', 'submit', 'reset'],\r\n      table: { category: 'Formulário' },\r\n      description: 'Tipo nativo do elemento `<button>`.',\r\n    },\r\n    backFallbackUrl: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'URL de fallback usada pelo preset `back` quando não há histórico de navegação.',\r\n    },\r\n    disabled: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Desabilita o botão e impede cliques.',\r\n    },\r\n    loading: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe spinner e `loadingLabel` no lugar do conteúdo normal.',\r\n    },\r\n    ariaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto para leitores de tela quando o botão não possui texto visível suficiente.',\r\n    },\r\n    buttonClick: {\r\n      action: 'buttonClick',\r\n      table: { category: 'Events' },\r\n      description:\r\n        'Evento disparado ao clicar. Não é emitido quando `disabled` ou `loading` estão ativos.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
             },
             {
                 "name": "meta",
@@ -20120,21 +20120,21 @@
                 "name": "PlaygroundCompleto",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: accordionPanelPlaygroundPlay,\r\n}"
-            },
-            {
-                "name": "PlaygroundCompleto",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: alertPlaygroundPlay,\r\n}"
+            },
+            {
+                "name": "PlaygroundCompleto",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  name: 'Playground completo',\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Modelo interativo com **todas as opções** disponíveis nos controles.',\r\n      },\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n  play: accordionPanelPlaygroundPlay,\r\n}"
             },
             {
                 "name": "PlaygroundCompleto",
@@ -20430,21 +20430,21 @@
                 "name": "playgroundDefaults",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  id: 'filters',\r\n  title: 'Filtros',\r\n  icon: 'search' as UiIconName,\r\n  badge: '12 pets',\r\n  badgeType: 'default' as const,\r\n  disabled: false,\r\n  open: true,\r\n  allowOverflow: false,\r\n}"
-            },
-            {
-                "name": "playgroundDefaults",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  title: 'Informação',\r\n  message: 'Mensagem informativa para o usuário.',\r\n  closeAriaLabel: 'Fechar alerta',\r\n  color: 'info' as const,\r\n  variant: 'solid' as const,\r\n  size: 'md' as const,\r\n  showIcon: true,\r\n  closable: true,\r\n  fixed: false,\r\n  position: 'top' as const,\r\n  customClass: '',\r\n}"
+            },
+            {
+                "name": "playgroundDefaults",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  id: 'filters',\r\n  title: 'Filtros',\r\n  icon: 'search' as UiIconName,\r\n  badge: '12 pets',\r\n  badgeType: 'default' as const,\r\n  disabled: false,\r\n  open: true,\r\n  allowOverflow: false,\r\n}"
             },
             {
                 "name": "playgroundDefaults",
@@ -21980,21 +21980,21 @@
                 "name": "WithoutIcon",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  parameters: {\r\n    docs: { description: { story: 'Painel apenas com título e badge.' } },\r\n  },\r\n  args: {\r\n    ...playgroundDefaults,\r\n    id: 'without-icon',\r\n    title: 'Sem ícone',\r\n    icon: null,\r\n  },\r\n}"
-            },
-            {
-                "name": "WithoutIcon",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    title: 'Sem ícone',\r\n    message: 'Esse alerta é exibido sem ícone inicial.',\r\n    closeAriaLabel: 'Fechar alerta',\r\n    color: 'info',\r\n    variant: 'solid',\r\n    size: 'md',\r\n    showIcon: false,\r\n    closable: true,\r\n    fixed: false,\r\n    position: 'top',\r\n    customClass: '',\r\n  },\r\n}"
+            },
+            {
+                "name": "WithoutIcon",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  parameters: {\r\n    docs: { description: { story: 'Painel apenas com título e badge.' } },\r\n  },\r\n  args: {\r\n    ...playgroundDefaults,\r\n    id: 'without-icon',\r\n    title: 'Sem ícone',\r\n    icon: null,\r\n  },\r\n}"
             },
             {
                 "name": "WithoutIcon",
@@ -23726,8 +23726,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<UiAccordionPanelComponent>",
-                "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
+                "rawtype": "StoryObj<UiAlertComponent>",
+                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -23737,8 +23737,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<UiAlertComponent>",
-                "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
+                "rawtype": "StoryObj<UiAccordionPanelComponent>",
+                "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -25455,7 +25455,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<UiButtonComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Button',\r\n  component: UiButtonComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|WithIcon|IconRight|Download|Upload|Outline|Rounded|FullWidth|Disabled|Loading|IconOnly|BackButtonDesktop|BackButtonMobile|BackIconOnly)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Botão do design system com suporte a ícones, variantes de cor, outline, loading e preset de voltar.\\n\\n' +\r\n          '**Uso:** informe `label` e `color`. Emite `buttonClick` ao clicar (exceto quando `disabled` ou `loading`).',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    label: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto exibido no botão.',\r\n    },\r\n    loadingLabel: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto exibido quando o botão está em estado de carregamento.',\r\n    },\r\n    icon: {\r\n      control: 'select',\r\n      options: [null, ...UI_ICON_NAMES],\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Nome do ícone exibido no botão. Usa o componente `ui-icon`.',\r\n    },\r\n    iconPosition: {\r\n      control: 'radio',\r\n      options: ['left', 'right'],\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Posição do ícone em relação ao texto.',\r\n    },\r\n    color: {\r\n      control: 'select',\r\n      options: [\r\n        'primary',\r\n        'secondary',\r\n        'success',\r\n        'warning',\r\n        'danger',\r\n        'info',\r\n        'disabled',\r\n      ],\r\n      table: { category: 'Aparência' },\r\n      description: 'Variação visual e semântica do botão.',\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['sm', 'md', 'lg'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Tamanho do botão.',\r\n    },\r\n    position: {\r\n      control: 'select',\r\n      options: ['left', 'center', 'right'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Alinhamento do botão dentro do wrapper.',\r\n    },\r\n    appearance: {\r\n      control: 'select',\r\n      options: ['default', 'back'],\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Preset visual. Com `back`, usa automaticamente o ícone `back` se nenhum ícone for informado.',\r\n    },\r\n    outline: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Aplica estilo outline (fundo transparente com borda).',\r\n    },\r\n    rounded: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Aplica borda totalmente arredondada (pill).',\r\n    },\r\n    fullWidth: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Faz o botão ocupar 100% da largura do container.',\r\n    },\r\n    iconOnly: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Exibe apenas o ícone. Use `ariaLabel` para manter acessibilidade.',\r\n    },\r\n    hideLabelOnMobile: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Oculta o texto do botão em telas menores que 900px.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS adicional aplicada ao botão.',\r\n    },\r\n    type: {\r\n      control: 'select',\r\n      options: ['button', 'submit', 'reset'],\r\n      table: { category: 'Formulário' },\r\n      description: 'Tipo nativo do elemento `<button>`.',\r\n    },\r\n    backFallbackUrl: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'URL de fallback usada pelo preset `back` quando não há histórico de navegação.',\r\n    },\r\n    disabled: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Desabilita o botão e impede cliques.',\r\n    },\r\n    loading: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe spinner e `loadingLabel` no lugar do conteúdo normal.',\r\n    },\r\n    ariaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto para leitores de tela quando o botão não possui texto visível suficiente.',\r\n    },\r\n    buttonClick: {\r\n      action: 'buttonClick',\r\n      table: { category: 'Events' },\r\n      description:\r\n        'Evento disparado ao clicar. Não é emitido quando `disabled` ou `loading` estão ativos.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
+                    "defaultValue": "{\r\n  title: 'Components/Button',\r\n  component: UiButtonComponent,\r\n  tags: ['autodocs'],\r\n  includeStories:\r\n    /^(PlaygroundCompleto|Default|WithIcon|IconRight|Download|Upload|Outline|Rounded|FullWidth|Disabled|Loading|IconOnly|BackButtonDesktop|BackButtonMobile|BackIconOnly|AllSizes|AllColors|AllColorsOutline)$/,\r\n  decorators: [\r\n    (story) => ({\r\n      ...story(),\r\n      styles: [\r\n        `\r\n        :host {\r\n          display: block;\r\n          padding: var(--ui-space-4);\r\n        }\r\n        `,\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component:\r\n          'Botão do design system com suporte a ícones, variantes de cor, outline, loading e preset de voltar.\\n\\n' +\r\n          '**Uso:** informe `label` e `color`. Emite `buttonClick` ao clicar (exceto quando `disabled` ou `loading`).',\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    label: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto exibido no botão.',\r\n    },\r\n    loadingLabel: {\r\n      control: 'text',\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Texto exibido quando o botão está em estado de carregamento.',\r\n    },\r\n    icon: {\r\n      control: 'select',\r\n      options: [null, ...UI_ICON_NAMES],\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Nome do ícone exibido no botão. Usa o componente `ui-icon`.',\r\n    },\r\n    iconPosition: {\r\n      control: 'radio',\r\n      options: ['left', 'right'],\r\n      table: { category: 'Conteúdo' },\r\n      description: 'Posição do ícone em relação ao texto.',\r\n    },\r\n    color: {\r\n      control: 'select',\r\n      options: [\r\n        'primary',\r\n        'secondary',\r\n        'success',\r\n        'warning',\r\n        'danger',\r\n        'info',\r\n        'disabled',\r\n      ],\r\n      table: { category: 'Aparência' },\r\n      description: 'Variação visual e semântica do botão.',\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['sm', 'md', 'lg'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Tamanho do botão.',\r\n    },\r\n    position: {\r\n      control: 'select',\r\n      options: ['left', 'center', 'right'],\r\n      table: { category: 'Aparência' },\r\n      description: 'Alinhamento do botão dentro do wrapper.',\r\n    },\r\n    appearance: {\r\n      control: 'select',\r\n      options: ['default', 'back'],\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Preset visual. Com `back`, usa automaticamente o ícone `back` se nenhum ícone for informado.',\r\n    },\r\n    outline: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Aplica estilo outline (fundo transparente com borda).',\r\n    },\r\n    rounded: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Aplica borda totalmente arredondada (pill).',\r\n    },\r\n    fullWidth: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Faz o botão ocupar 100% da largura do container.',\r\n    },\r\n    iconOnly: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description:\r\n        'Exibe apenas o ícone. Use `ariaLabel` para manter acessibilidade.',\r\n    },\r\n    hideLabelOnMobile: {\r\n      control: 'boolean',\r\n      table: { category: 'Aparência' },\r\n      description: 'Oculta o texto do botão em telas menores que 900px.',\r\n    },\r\n    customClass: {\r\n      control: 'text',\r\n      table: { category: 'Aparência' },\r\n      description: 'Classe CSS adicional aplicada ao botão.',\r\n    },\r\n    type: {\r\n      control: 'select',\r\n      options: ['button', 'submit', 'reset'],\r\n      table: { category: 'Formulário' },\r\n      description: 'Tipo nativo do elemento `<button>`.',\r\n    },\r\n    backFallbackUrl: {\r\n      control: 'text',\r\n      table: { category: 'Formulário' },\r\n      description:\r\n        'URL de fallback usada pelo preset `back` quando não há histórico de navegação.',\r\n    },\r\n    disabled: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Desabilita o botão e impede cliques.',\r\n    },\r\n    loading: {\r\n      control: 'boolean',\r\n      table: { category: 'Estado' },\r\n      description: 'Exibe spinner e `loadingLabel` no lugar do conteúdo normal.',\r\n    },\r\n    ariaLabel: {\r\n      control: 'text',\r\n      table: { category: 'Acessibilidade' },\r\n      description:\r\n        'Texto para leitores de tela quando o botão não possui texto visível suficiente.',\r\n    },\r\n    buttonClick: {\r\n      action: 'buttonClick',\r\n      table: { category: 'Events' },\r\n      description:\r\n        'Evento disparado ao clicar. Não é emitido quando `disabled` ou `loading` estão ativos.',\r\n    },\r\n  },\r\n  args: { ...playgroundDefaults },\r\n}"
                 },
                 {
                     "name": "Outline",
@@ -30708,19 +30708,6 @@
                     "kind": 184
                 }
             ],
-            "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<UiAccordionPanelComponent>",
-                    "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
             "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts": [
                 {
                     "name": "Story",
@@ -30728,6 +30715,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<UiAlertComponent>",
                     "file": "projects/ui-kit/src/lib/components/alert/ui-alert.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<UiAccordionPanelComponent>",
+                    "file": "projects/ui-kit/src/lib/components/accordion-panel/ui-accordion-panel.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",

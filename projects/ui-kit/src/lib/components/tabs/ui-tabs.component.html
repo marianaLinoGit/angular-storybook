@@ -11,6 +11,7 @@
         [disabled]="tab.disabled()"
         [class.ui-tabs__tab--active]="isActive(tab)"
         class="ui-tabs__tab"
+        [attr.title]="tab.label()"
         (click)="selectTab(tab)"
       >
         @if (tab.icon()) {
