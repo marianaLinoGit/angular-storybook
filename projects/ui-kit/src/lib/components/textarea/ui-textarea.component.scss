@@ -65,8 +65,8 @@
   &:disabled,
   &[readonly] {
     cursor: not-allowed;
-    background: color-mix(in srgb, var(--ui-color-primary), transparent 90%);
+    background: color-mix(in srgb, var(--ui-color-primary), transparent 95%);
     color: var(--ui-color-text);
-    border-color: color-mix(in srgb, var(--ui-color-primary), transparent 65%);
+    border-color: color-mix(in srgb, var(--ui-color-primary), transparent 80%);
   }
 }
