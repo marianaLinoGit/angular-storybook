@@ -35,7 +35,7 @@
 
 .ui-modal {
   width: 100%;
-  max-height: calc(100vh - 48px);
+  max-height: calc(100vh - 30px);
   background: var(--ui-color-background);
   border: 1px solid var(--ui-color-border);
   border-radius: var(--ui-radius-lg);
@@ -102,7 +102,7 @@
 
   &__body {
     padding: var(--ui-space-6);
-    max-height: 60vh;
+    max-height: 100vh;
     overflow: auto;
 
     p {
