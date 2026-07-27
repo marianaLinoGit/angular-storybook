@@ -87,7 +87,8 @@ export class UiButtonComponent {
       this.appearance() === 'back' ? 'ui-button--back' : '',
       this.disabled() ? 'ui-button--disabled' : '',
       this.loading() ? 'ui-button--loading' : '',
-      this.icon() ? 'ui-button-with-icon' : '',
+      // Não misturar com icon-only: with-icon altera padding horizontal e quebra o botão quadrado.
+      this.icon() && !this.iconOnly() ? 'ui-button-with-icon' : '',
       this.customClass(),
     ]
       .filter(Boolean)

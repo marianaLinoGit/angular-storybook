@@ -1,3 +1,13 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 0;
+  vertical-align: middle;
+  color: inherit;
+}
+
 .ui-icon {
   --ui-icon-size-current: var(--ui-icon-size-md);
 
@@ -6,7 +16,7 @@
   justify-content: center;
   flex: 0 0 auto;
   color: currentColor;
-  line-height: 1;
+  line-height: 0;
   width: var(--ui-icon-custom-size, var(--ui-icon-size-current));
   height: var(--ui-icon-custom-size, var(--ui-icon-size-current));
 

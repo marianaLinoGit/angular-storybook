@@ -80,7 +80,15 @@
   &--icon-only {
     width: var(--ui-icon-size-lg);
     height: var(--ui-icon-size-lg);
+    min-width: var(--ui-icon-size-lg);
+    min-height: var(--ui-icon-size-lg);
     padding: 0;
+    gap: 0;
+
+    // Garante prioridade se with-icon ainda estiver presente por legado.
+    &.ui-button-with-icon {
+      padding: 0;
+    }
   }
 
   &--primary {
@@ -204,13 +212,12 @@
 }
 
 .ui-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
+  line-height: 0;
   color: currentColor;
-  margin-top: var(--ui-space-1);
-
-  .ui-button--icon-only & {
-    margin-top: 0;
-  }
 }
 
 .ui-button__label {

@@ -328,9 +328,11 @@
       .ui-button--icon-only {
         width: var(--ui-icon-size-md);
         height: var(--ui-icon-size-md);
+        min-width: var(--ui-icon-size-md);
+        min-height: var(--ui-icon-size-md);
       }
 
-      .ui-button__icon.ui-icon {
+      ::ng-deep .ui-button__icon .ui-icon {
         --ui-icon-size-current: var(--ui-icon-size-xs);
         width: var(--ui-icon-size-xs);
         height: var(--ui-icon-size-xs);
