@@ -19,7 +19,10 @@
   }
 
   &__tooltip {
+    display: inline-flex;
+    align-items: center;
     flex-shrink: 0;
+    line-height: 0;
   }
 
   ::ng-deep ui-icon {

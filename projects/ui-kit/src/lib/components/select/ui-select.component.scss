@@ -199,10 +199,12 @@
 
   &__dropdown {
     position: absolute;
-    z-index: 40;
-    top: calc(100% + 6px);
+    z-index: 1000;
+    top: 100%;
     left: 0;
     right: 0;
+    width: 100%;
+    margin-top: 6px;
     border: 1px solid var(--ui-color-input-border);
     border-radius: var(--ui-radius-md);
     background: var(--ui-color-surface);

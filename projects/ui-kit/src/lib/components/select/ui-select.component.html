@@ -1,4 +1,4 @@
-<div class="ui-select">
+<div [class]="classes()">
   @if (label() && !hideLabel()) {
     <ui-label
       [label]="label()"
@@ -12,89 +12,86 @@
     ></ui-label>
   }
 
-  <div [class]="classes()">
-    <div class="ui-select__control">
+  <div class="ui-select__control">
+    <button
+      type="button"
+      role="combobox"
+      class="ui-select__trigger"
+      [id]="id()"
+      [name]="name()"
+      [disabled]="isDisabled()"
+      [attr.aria-label]="selectAriaLabel()"
+      [attr.aria-labelledby]="selectAriaLabelledBy()"
+      [attr.aria-required]="hasRequired() ? 'true' : null"
+      [attr.aria-invalid]="hasError() ? 'true' : null"
+      [attr.aria-describedby]="describedBy()"
+      [attr.aria-expanded]="opened()"
+      [attr.aria-controls]="listboxId()"
+      [attr.aria-multiselectable]="multiple() ? 'true' : null"
+      aria-haspopup="listbox"
+      (click)="toggle()"
+      (blur)="handleBlur()"
+    >
+      @if (multiple()) {
+        <span class="ui-select__value ui-select__value--chips">
+          @if (selectedOptions().length === 0) {
+            <span class="ui-select__value-text">{{ placeholder() }}</span>
+          } @else {
+            <span class="ui-select__chips">
+              @for (option of selectedOptions(); track option.value) {
+                <span class="ui-select__chip">
+                  <span class="ui-select__chip-label">{{ option.label }}</span>
+                  <button
+                    type="button"
+                    class="ui-select__chip-remove"
+                    [attr.aria-label]="removeChipAriaLabel() + ': ' + option.label"
+                    [disabled]="isDisabled()"
+                    (click)="removeChip(option, $event)"
+                  >
+                    <ui-icon name="close" size="xs" />
+                  </button>
+                </span>
+              }
+            </span>
+          }
+        </span>
+      } @else {
+        <span class="ui-select__value">
+          @if (selectedOption()?.iconName) {
+            <ui-icon
+              class="ui-select__icon"
+              [name]="selectedOption()!.iconName!"
+              [label]="selectedOption()?.iconLabel ?? null"
+              size="sm"
+            />
+          }
+
+          <span class="ui-select__value-text">
+            {{ selectedLabel() || placeholder() }}
+          </span>
+        </span>
+      }
+
+      <ui-icon class="ui-select__chevron" [name]="chevronIcon()" size="sm" />
+    </button>
+
+    @if (allowClear() && hasSelection()) {
       <button
         type="button"
-        role="combobox"
-        class="ui-select__trigger"
-        [id]="id()"
-        [name]="name()"
+        class="ui-select__clear"
+        [attr.aria-label]="clearAriaLabel()"
         [disabled]="isDisabled()"
-        [attr.aria-label]="selectAriaLabel()"
-        [attr.aria-labelledby]="selectAriaLabelledBy()"
-        [attr.aria-required]="hasRequired() ? 'true' : null"
-        [attr.aria-invalid]="hasError() ? 'true' : null"
-        [attr.aria-describedby]="describedBy()"
-        [attr.aria-expanded]="opened()"
-        [attr.aria-controls]="listboxId()"
-        [attr.aria-multiselectable]="multiple() ? 'true' : null"
-        aria-haspopup="listbox"
-        (click)="toggle()"
-        (blur)="handleBlur()"
+        (click)="clearValue($event)"
       >
-        @if (multiple()) {
-          <span class="ui-select__value ui-select__value--chips">
-            @if (selectedOptions().length === 0) {
-              <span class="ui-select__value-text">{{ placeholder() }}</span>
-            } @else {
-              <span class="ui-select__chips">
-                @for (option of selectedOptions(); track option.value) {
-                  <span class="ui-select__chip">
-                    <span class="ui-select__chip-label">{{ option.label }}</span>
-                    <button
-                      type="button"
-                      class="ui-select__chip-remove"
-                      [attr.aria-label]="removeChipAriaLabel() + ': ' + option.label"
-                      [disabled]="isDisabled()"
-                      (click)="removeChip(option, $event)"
-                    >
-                      <ui-icon name="close" size="xs" />
-                    </button>
-                  </span>
-                }
-              </span>
-            }
-          </span>
-        } @else {
-          <span class="ui-select__value">
-            @if (selectedOption()?.iconName) {
-              <ui-icon
-                class="ui-select__icon"
-                [name]="selectedOption()!.iconName!"
-                [label]="selectedOption()?.iconLabel ?? null"
-                size="sm"
-              />
-            }
-
-            <span class="ui-select__value-text">
-              {{ selectedLabel() || placeholder() }}
-            </span>
-          </span>
-        }
-
-        <ui-icon class="ui-select__chevron" [name]="chevronIcon()" size="sm" />
+        <ui-icon name="close" size="xs" />
       </button>
-
-      @if (allowClear() && hasSelection()) {
-        <button
-          type="button"
-          class="ui-select__clear"
-          [attr.aria-label]="clearAriaLabel()"
-          [disabled]="isDisabled()"
-          (click)="clearValue($event)"
-        >
-          <ui-icon name="close" size="xs" />
-        </button>
-      }
-    </div>
+    }
 
     @if (opened()) {
       <div
         class="ui-select__dropdown"
         [id]="listboxId()"
         role="listbox"
-        [ngStyle]="dropdownStyle()"
         [attr.aria-labelledby]="label() ? labelId() : selectAriaLabel()"
         [attr.aria-multiselectable]="multiple() ? 'true' : null"
       >

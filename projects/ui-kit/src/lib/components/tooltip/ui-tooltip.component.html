@@ -13,16 +13,16 @@
       />
     </span>
   } @else {
-    <ng-content />
+    <span class="ui-tooltip__trigger">
+      <ng-content />
+    </span>
   }
 
-  @if (!disabled() && visible() && coords(); as position) {
+  @if (!disabled() && visible()) {
     <span
       role="tooltip"
       [id]="resolvedTooltipId()"
       [class]="tooltipClasses()"
-      [style.top]="position.top"
-      [style.left]="position.left"
       [style.max-width]="maxWidth()"
       [style.transition-delay]="delay()"
     >

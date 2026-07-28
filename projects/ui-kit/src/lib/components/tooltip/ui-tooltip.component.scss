@@ -1,3 +1,10 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
 .ui-tooltip {
   position: relative;
   display: inline-flex;
@@ -17,15 +24,16 @@
     &--icon {
       cursor: help;
       color: var(--ui-color-info);
+    }
 
-      &:focus-visible {
-        outline: 2px solid var(--ui-color-info);
-        outline-offset: 2px;
-      }
+    &:focus-visible {
+      outline: 2px solid var(--ui-color-info);
+      outline-offset: 2px;
     }
   }
 
   &__content {
+    position: absolute;
     z-index: var(--ui-z-tooltip, 1200);
     box-sizing: border-box;
     width: max-content;
@@ -49,21 +57,28 @@
       opacity 0.2s ease,
       visibility 0.2s ease;
 
-    &--fixed {
-      position: fixed;
-      transform: translate(-50%, -100%);
+    &--top {
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    &--bottom.ui-tooltip__content--fixed {
-      transform: translate(-50%, 0);
+    &--bottom {
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    &--left.ui-tooltip__content--fixed {
-      transform: translate(-100%, -50%);
+    &--left {
+      right: calc(100% + 8px);
+      top: 50%;
+      transform: translateY(-50%);
     }
 
-    &--right.ui-tooltip__content--fixed {
-      transform: translate(0, -50%);
+    &--right {
+      left: calc(100% + 8px);
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     &--visible {

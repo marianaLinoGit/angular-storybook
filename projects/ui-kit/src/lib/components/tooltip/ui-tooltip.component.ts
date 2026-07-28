@@ -16,11 +16,6 @@ import {
 
 export type UiTooltipPosition = 'top' | 'right' | 'bottom' | 'left';
 
-type TooltipCoords = {
-  top: string;
-  left: string;
-};
-
 @Component({
   selector: 'ui-tooltip',
   standalone: true,
@@ -49,7 +44,6 @@ export class UiTooltipComponent {
   id = input<string | null>(null);
 
   readonly visible = signal(false);
-  readonly coords = signal<TooltipCoords | null>(null);
 
   resolvedTooltipId = computed(
     () => this.id()?.trim() || this.fallbackTooltipId,
@@ -68,7 +62,6 @@ export class UiTooltipComponent {
     [
       'ui-tooltip__content',
       `ui-tooltip__content--${this.position()}`,
-      'ui-tooltip__content--fixed',
       this.visible() ? 'ui-tooltip__content--visible' : '',
       this.disabled() ? 'ui-tooltip__content--disabled' : '',
       this.customClass(),
@@ -84,7 +77,6 @@ export class UiTooltipComponent {
       return;
     }
 
-    this.coords.set(this.computeCoords());
     this.visible.set(true);
   }
 
@@ -107,35 +99,5 @@ export class UiTooltipComponent {
 
   private hide(): void {
     this.visible.set(false);
-    this.coords.set(null);
-  }
-
-  private computeCoords(): TooltipCoords {
-    const host = this.hostRef.nativeElement.getBoundingClientRect();
-    const gap = 8;
-
-    switch (this.position()) {
-      case 'bottom':
-        return {
-          top: `${host.bottom + gap}px`,
-          left: `${host.left + host.width / 2}px`,
-        };
-      case 'left':
-        return {
-          top: `${host.top + host.height / 2}px`,
-          left: `${host.left - gap}px`,
-        };
-      case 'right':
-        return {
-          top: `${host.top + host.height / 2}px`,
-          left: `${host.right + gap}px`,
-        };
-      case 'top':
-      default:
-        return {
-          top: `${host.top - gap}px`,
-          left: `${host.left + host.width / 2}px`,
-        };
-    }
   }
 }
